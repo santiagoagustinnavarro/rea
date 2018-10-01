@@ -68,7 +68,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</style>
 </head>
 <body>
-<button class="btn btn-primary">sisi</button>
 <div id="container">
 	<h1>Welcome to CodeIgniter!</h1>
 
