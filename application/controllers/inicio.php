@@ -6,7 +6,7 @@ class Inicio extends CI_Controller {
 		parent::__construct();
 	}
 	function index(){
-		$this->load->view('vistas/inicio');
+		$this->load->view('inicio/inicio');
 	}
 
 }
