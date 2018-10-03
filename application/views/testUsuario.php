@@ -1,14 +1,12 @@
 <html>
     <head><title>Test Usuario</title></head>
     <body>
-
+        Probando 
         <br>
         <?php 
-           if($logeo){
-               echo "existe";
-           }else{
-               echo "no existe";
-           }
+            foreach($usuarios as $unUser){
+                echo $unUser->nombre;
+            }
         
         ?>
     </body>
