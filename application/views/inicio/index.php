@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" />
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js" ></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery.min.js" ></script>
-	<style type="text/css" href="<?php echo base_url(); ?> "></style>
+	<style type="text/css" href="<?php echo base_url(); ?>assets/style.css"></style>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
