@@ -4,16 +4,14 @@ class Usuario_model extends CI_Model {
         $query=$this->db->get('usuario');
         return $query->result();
     }
-
-    function login($user="santiagoo",$pass="38365920"){
-        $res=true;
-        $query=$this->db->get('usuario');
+    
+    function login($user="snavarro",$pass="38365920"){
+        $this->db->select('*');
+        $this->db->from('usuario');
+        $this->db->where(array('nombreUsuario' => $user,'clave'=>$pass));
+        $query=$this->db->get();
         $res=$query->result();
-        foreach($res as $unUsuario){
-            
-                $res=$res && strtolower($unUsuario->nombre)==$user;
 
-        }
         return $res;
     }
 
