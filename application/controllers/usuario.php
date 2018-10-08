@@ -11,7 +11,9 @@ class Usuario extends CI_Controller {
 
     }
     function registro(){
-        $this->load->view('register');
+        $this->load->view('inicio/index');
+        $this->load->view('inicio/register');
+        
     }
 }
 
