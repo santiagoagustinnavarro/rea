@@ -12,10 +12,8 @@ img{
 	font-size: x-large;
 	font-weight:bolder;
 	font-family:sans-serif;
+	text-align:center;
 }
 #barraMenu {
 	text-align:left;
-}
-.text-secondary{
-	
 }
