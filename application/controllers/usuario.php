@@ -6,15 +6,14 @@ class Usuario extends CI_Controller {
         $this->load->model('Usuario_model');
         $usuarios=$this->Usuario_model->login();
         if(count($usuarios)>0){
+            $this->load->view('header',["title"=>"testUsuario"]);
+            $this->load->view('inicio/index');
             $this->load->view('testUsuario',["usuarios"=>$usuarios]);
+            $this->load->view('footer');
         }
 
     }
-    function registro(){
-        $this->load->view('inicio/index');
-        $this->load->view('inicio/register');
-        
-    }
+    
 }
 
 
