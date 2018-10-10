@@ -1,13 +1,10 @@
     <!-- Page Content -->
     <div class="container">
 
-      <!-- Page Heading -->
-      <h1 class="my-4">Page Heading
-        <small>Secondary Text</small>
-      </h1>
+    
       <div class="row">
       <!-- Project One -->
-      <div class="col-md-6 col-sm-6 col-lg-6"><div id="titulo"></div><center> <div id="player"></div></center>
+      <div class="col-md-6 col-sm-6 col-lg-6"><div id="titulo"></div><div id='wrap-player'><div class="video-container"> <div id="player"></div></div></div>
 
 <script>
   // 2. Este codigo carga el codigo del reproductor de forma asincronica.
@@ -23,7 +20,7 @@
  
   function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-      height: '100%',
+      height:'240',
       width: '100%',
       videoId: 'Ycs7gq_fRcA',
       events: {
@@ -39,7 +36,7 @@
     titulo=(titulo[0]).toUpperCase()+titulo.substring(1);
     
     event.target.playVideo();
-    document.getElementById("titulo").innerHTML="<center><h1 class=\"text-primary \">"+titulo+"</center></h1>";
+    document.getElementById("titulo").innerHTML="<center><h3 class=\"text-primary \">"+titulo+"</center></h3>";
   }
 
   // 5. The API calls this function when the player's state changes.
