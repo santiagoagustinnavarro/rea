@@ -11,7 +11,7 @@
  
   function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-      height:'240',
+      height:'360',
       width: '100%',
       videoId: 'Ycs7gq_fRcA',
       events: {
@@ -27,7 +27,7 @@
     titulo=(titulo[0]).toUpperCase()+titulo.substring(1);
     
     event.target.playVideo();
-    document.getElementById("titulo").innerHTML="<center><h3 class=\"text-primary \">"+titulo+"</center></h3>";
+    document.getElementById("titulo").innerHTML="<center><h3 class=\"text-secondary \">"+titulo+"</center></h3>";
   }
 
   // 5. The API calls this function when the player's state changes.
