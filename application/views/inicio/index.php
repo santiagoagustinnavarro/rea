@@ -1,9 +1,5 @@
     <!-- Page Content -->
-    <div class="container">
-		<!-- Page Heading -->
-			<h1 class="my-4">Page Heading
-        <small>Secondary Text</small>
-      </h1>
+    <div class="container" id="cuerpo">
       <div class="row">
       <!-- Project One -->
       <div class="col-md-6 col-sm-6 col-lg-6"><div id="titulo"></div><div id='wrap-player'><div class="video-container"> <div id="player"></div></div></div>
