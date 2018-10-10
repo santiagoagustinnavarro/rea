@@ -6,7 +6,9 @@ class Registro extends CI_Controller {
 		parent::__construct();
 	}
 	function index(){
+		$this->load->view("header",["title"=>"Inicio"]);
 		$this->load->view('inicio/registrarse');
+		$this->load->view("footer");
 	}
 
 }
