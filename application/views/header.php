@@ -12,9 +12,7 @@
 	<!-- Barra de Menú -->
 	<nav class="navbar navbar-expand-lg fixed-top" id="menu">
       <div class="container">
-			<ul class="nav navbar" id="logo">
-				<li class="nav-item"><a href="#" class="nav-link"><img src="<?php echo base_url(); ?>assets/imagenes/logo3.png" alt="Logo REA"></a></li>
-			</ul>
+				<img class="navbar-brand" src="<?php echo base_url(); ?>assets/imagenes/logo3.png" alt="Logo REA"  id="logo">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
