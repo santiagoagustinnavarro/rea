@@ -13,25 +13,24 @@ body {
 }
 #logo{
 	width: 160px; 
-	height: 65px;
+	height: 75px;
 }
 #menu{
 	background:#e0dede;
 	display: inline-block;
 }
-#footer{
-	background:#e0dede;
-	
-}
 #menu a{
 	font-size: x-large;
-	font-weight:bolder;
 	font-family:sans-serif;
 	text-align:center;
 }
 #cuerpo{
   margin-top:56px;
 }
- 
- 
-
+#icono{
+	color: black;
+}
+ #footer{
+	background:#e0dede;
+	font-family:sans-serif;
+}
