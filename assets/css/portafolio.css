@@ -1,19 +1,30 @@
-/*!
- * Start Bootstrap - 1 Col Portfolio (https://startbootstrap.com/template-overviews/1-col-portfolio)
- * Copyright 2013-2018 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-1-col-portfolio/blob/master/LICENSE)
- */
-
+/* Estilo de la pagina con Bootstrap y CSS */
+/*body separa la barra de inicio del contenido */
 body {
   padding-top: 54px;
 }
-
 @media (min-width: 992px) {
   body {
     padding-top: 56px;
   }
 }
-
 .pagination {
   margin-bottom: 15px;
+}
+#logo{
+	width: 160px; 
+	height: 65px;
+}
+#menu{
+	background:#e0dede;
+}
+#footer{
+	background:#e0dede;
+	color: #7c7c7c;
+}
+#menu a{
+	font-size: x-large;
+	font-weight:bolder;
+	font-family:sans-serif;
+	text-align:center;
 }

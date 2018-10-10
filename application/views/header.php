@@ -6,35 +6,32 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" />
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery.min.js" ></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js" ></script>
-	<link href="<?php echo base_url();?>assets/css/portafolio.css" rel="stylesheet">
+	<link href="<?php echo base_url();?>assets/css/portafolio.css" rel="stylesheet"/>
 </head>
 <body>
-	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<!-- Barra de Menú -->
+	<nav class="navbar navbar-expand-lg fixed-top" id="menu">
       <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
+			<ul class="nav navbar" id="logo">
+				<li class="nav-item"><a href="#" class="nav-link"><img src="<?php echo base_url(); ?>assets/imagenes/logo3.png" alt="Logo REA"></a></li>
+			</ul>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
+							<a href="#" class="nav-link text-secondary" alt="inicio">Inicio</a>
+						</li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+							<a href="#" class="nav-link text-secondary" alt="area">Área</a>
+						</li>
+							<li class="nav-item"><a href="#" class="nav-link text-secondary" alt="contacto">Contacto</a></li>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+						<li class="nav-item">
+              <a href="#"><button type="button" class="btn btn-outline-secondary">Registrarse</button></a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-
-   
