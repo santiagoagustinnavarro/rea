@@ -6,7 +6,7 @@ class Inicio extends CI_Controller {
 		parent::__construct();
 	}
 	function index(){
-		$this->load->view("header",["title"=>"Inicio","scripts"=>array("script.js"),"styles"=>array("portafolio.css")]);
+		$this->load->view("header",["title"=>"Inicio","styles"=>array("heroic-features.css")]);
 		$this->load->view("home2");
 		$this->load->view("footer");
 	}

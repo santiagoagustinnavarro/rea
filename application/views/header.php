@@ -4,12 +4,10 @@
 	<meta name="viewport"  charset="utf-8"/>
 	<title><?php echo $title; ?></title>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/estilo.css" />
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.min.js" ></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js" ></script>
-	<style>
-	#cuerpo{
-    margin-top:56px;
-  }</style>
+	
 	
 	<?php 
 		if(isset($scripts)){//Invocacion de scripts propios
