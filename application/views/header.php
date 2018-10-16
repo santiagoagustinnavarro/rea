@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" />
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.min.js" ></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js" ></script>
-	<link  rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/portafolio.css"/>
+	
 	<?php 
 		if(isset($scripts)){//Invocacion de scripts propios
 			

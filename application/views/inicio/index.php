@@ -110,6 +110,6 @@
       </ul>
 
 		<!-- /.container -->
-		<script type="text/javascript" src="<?php echo base_url();?>assets/script.js"> </script>
+		
 
     
