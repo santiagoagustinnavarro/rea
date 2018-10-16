@@ -4,7 +4,7 @@
       <!-- Jumbotron Header -->
       <div id="titulo"></div>
       <div id="player">
-      <header class="jumbotron my-4 text-center" >
+      <header class="jumbotron my-4 text-center">
        
       </header>
       </div>
