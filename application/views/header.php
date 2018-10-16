@@ -3,10 +3,10 @@
 <head>
 	<meta charset="utf-8"/>
 	<title><?php echo $title; ?></title>
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" />
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery.min.js" ></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js" ></script>
-	<link href="<?php echo base_url();?>assets/css/portafolio.css" rel="stylesheet"/>
+	<link type="text/css" href="<?php echo base_url();?>assets/css/portafolio.css" rel="stylesheet"/>
 </head>
 <body>
 	<!-- Barra de Menú -->
@@ -18,7 +18,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
 							<a href="#" class="nav-link text-secondary" alt="inicio">Inicio</a>
 						</li>
             <li class="nav-item">

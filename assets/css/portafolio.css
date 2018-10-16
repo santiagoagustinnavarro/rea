@@ -1,16 +1,19 @@
 /* Estilo de la pagina con Bootstrap y CSS */
-/*body separa la barra de inicio del contenido */
+/*body separa la barra de inicio del contenido y el color de fondo*/
 body {
-  padding-top: 54px;
+	padding-top: 54px;
+	background:#c8cae0;
 }
 @media (min-width: 992px) {
   body {
     padding-top: 56px;
   }
 }
+/*Indica en que numero de pagina y el tipo de cantidad de paginas que hay*/
 .pagination {
   margin-bottom: 15px;
 }
+/*Tamaño de la imagen del logo*/
 #logo{
 	width: 160px; 
 	height: 75px;
@@ -26,9 +29,6 @@ body {
 }
 #cuerpo{
   margin-top:56px;
-}
-#icono{
-	color: black;
 }
  #footer{
 	background:#e0dede;
