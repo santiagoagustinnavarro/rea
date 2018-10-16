@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8"/>
+	<meta name="viewport"  charset="utf-8"/>
 	<title><?php echo $title; ?></title>
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" />
-	<script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery.min.js" ></script>
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.min.js" ></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js" ></script>
-	<link href="<?php echo base_url();?>assets/css/portafolio.css" rel="stylesheet"/>
+	<link  rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/portafolio.css"/>
+	<?php 
+		if(isset($scripts)){//Invocacion de scripts propios
+			
+			foreach ($scripts as $unScript){
+				echo "<script type=\"text/javascript\" src=\"".base_url()."assets/js/" .$unScript."\"></script>";
+			}
+		}
+		if(isset($styles)){//Invocacion de estilos propios
+			foreach ($styles as $unStyle){
+				echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"".base_url()."assets/css/" .$unStyle."\" />";
+			}
+		}
+	
+	?>
 </head>
 <body>
 	<!-- Barra de Menú -->
