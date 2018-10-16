@@ -32,7 +32,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
 							<a href="#" class="nav-link text-secondary" alt="inicio">Inicio</a>
 						</li>
             <li class="nav-item">
