@@ -23,7 +23,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/Pasantias/Rea/';
+$urlCompleta= $_SERVER['REMOTE_ADDR'].$_SERVER['REQUEST_URI'];
+$urlBase=substr($urlCompleta,0,strpos($urlCompleta,"/Rea"))."/Rea";
+$config['base_url'] = $urlBase;
+
 
 /*
 |--------------------------------------------------------------------------
