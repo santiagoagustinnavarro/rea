@@ -23,7 +23,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/Pasantias/Rea/';
+
+ if($_SERVER['SERVER_ADDR']=="::1"){//Localmente
+    $base="http://localhost/Pasantias/Rea";
+ }else{
+     
+    $base="http://".$_SERVER['SERVER_ADDR']."/Pasantias/Rea";
+ }
+$config['base_url'] = $base;
+
 
 /*
 |--------------------------------------------------------------------------

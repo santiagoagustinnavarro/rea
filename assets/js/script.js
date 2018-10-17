@@ -14,7 +14,6 @@
       height:'360',
       width: '100%',
       videoId: 'Ycs7gq_fRcA',
-      rel:'0',
       events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange
