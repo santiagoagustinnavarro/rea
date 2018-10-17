@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport"  width="device-width" charset="utf-8"/>
+	<meta  name="viewport" content="width=device-width" charset="utf-8"/>
 	<title><?php echo $title; ?></title>
 	<link rel="stylesheet"   href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet"   href="<?php echo base_url(); ?>assets/css/estilo.css" />
