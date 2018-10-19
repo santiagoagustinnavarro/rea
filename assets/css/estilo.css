@@ -2,16 +2,13 @@
 /*body separa la barra de inicio del contenido y el color de fondo*/
 body {
 	padding-top: 54px;
-	background:#c8cae0;
+	background-image: url("../imagenes/computer.jpg");
+	background-size: 100%;
 }
 @media (min-width: 992px) {
   body {
     padding-top: 56px;
   }
-}
-/*Indica en que numero de pagina y el tipo de cantidad de paginas que hay*/
-.pagination {
-  margin-bottom: 15px;
 }
 /*Tamaño de la imagen del logo*/
 #logo{
@@ -27,12 +24,21 @@ body {
 	font-family:sans-serif;
 	text-align:center;
 }
-
- #footer{
-	background:#e0dede;
-	font-family:sans-serif;
-}
 #cuerpo{
 	margin-top:56px;
 }
-
+#formulario{
+	background: transparent;
+}
+.form-group{
+	text-align: center;
+	font-weight:bold;
+}
+/*Indica en que numero de pagina y el tipo de cantidad de paginas que hay*/
+.pagination {
+  margin-bottom: 15px;
+}
+#footer{
+	background:#e0dede;
+	font-family:sans-serif;
+}

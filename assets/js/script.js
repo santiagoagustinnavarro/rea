@@ -13,14 +13,12 @@
     player = new YT.Player('player', {
       height:'360',
       width: '100%',
-      videoId: 'Ycs7gq_fRcA',
-      events: {
+			videoId: 'Ycs7gq_fRcA',
+			playerVars:{controls:0,rel:0},
+			events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange
-      },
-      playerVars: {rel: 0}
-      
-      
+      }, 
     });
   }
 
