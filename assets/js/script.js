@@ -14,7 +14,7 @@
       height:'360',
       width: '100%',
 			videoId: 'Ycs7gq_fRcA',
-			playerVars:{controls:0,rel:0},
+			playerVars:{rel:0},
 			events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange
@@ -27,7 +27,7 @@
     var titulo=player.getVideoData().title;
     titulo=(titulo[0]).toUpperCase()+titulo.substring(1);
     
-    event.target.playVideo();
+    //event.target.playVideo();
     document.getElementById("titulo").innerHTML="<center><h3 class=\"text-secondary \">"+titulo+"</center></h3>";
   }
 
