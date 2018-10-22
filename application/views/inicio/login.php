@@ -1,27 +1,25 @@
-<!------ Include the above in your HEAD tag ---------->
-<html>
-  <head>
-	<body id="LoginForm">
+<div class="container py-5">
+	<div class="col-md-6 mx-auto">
 		<div class="container">
-		<h1 class="form-heading">Login Form</h1>
+			<h1 class="titulo">Login</h1>
 			<div class="login-form">
 				<div class="main-div">
     				<div class="panel">
-   						<h2>Admin Login</h2>
-   						<p>Please enter your email and password</p>
-   					</div>
-    			<form id="Login">
-        			<div class="form-group">
-						<input type="email" class="form-control" id="email" placeholder="Ingresar el Email">
-        			</div>
-        		<div class="form-group">
-            		<input type="password" class="form-control" id="clave" placeholder="Contraseña">
-        		</div>
-        		<button type="submit" class="btn btn-primary">Login</button>
-    			</form>
-    		</div>
+   					<h3 class="login">Ingrese su Usuario y Contraseña</h3>
+					</div>
+					<form id="formulario">
+        				<div class="form-group">
+							<input type="email" class="form-control" id="email" placeholder="Ingresar el Email">
+        				</div>
+        				<div class="form-group">
+            				<input type="password" class="form-control" id="clave" placeholder="Contraseña">
+        				</div>
+						<div class="form-group" id="boton">
+        					<button type="submit" class="btn btn-success">Ingresar</button>
+						</div>
+    				</form>
+    			</div>
+			</div>
 		</div>
 	</div>
 </div>
-</body>
-</html>
