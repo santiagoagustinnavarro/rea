@@ -19,7 +19,6 @@
 				echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"".base_url()."assets/css/" .$unStyle."\" />";
 			}
 		}
-	
 	?>
 </head>
 <body>
@@ -33,15 +32,18 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-							<a href="#" class="nav-link text-secondary" alt="inicio">Inicio</a>
+							<a href="<?php echo base_url(); ?>inicio" class="nav-link text-secondary" alt="inicio">Inicio</a>
 						</li>
             <li class="nav-item">
-							<a href="#" class="nav-link text-secondary" alt="area">Área</a>
+							<a href="<?php echo base_url(); ?>area" class="nav-link text-secondary" alt="area">Área</a>
 						</li>
-							<li class="nav-item"><a href="#" class="nav-link text-secondary" alt="contacto">Contacto</a></li>
+							<li class="nav-item"><a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary" alt="contacto">Contacto</a></li>
             </li>
 						<li class="nav-item">
-              <a href="#" class="nav-link"><button class="btn btn-outline-secondary">Registrarse</button></a>
+              <a href="<?php echo base_url(); ?>registro" class="nav-link"><button class="btn btn-outline-secondary">Registrarse</button></a>
+            </li>
+						<li class="nav-item">
+              <a href="<?php echo base_url(); ?>login" class="nav-link"><button class="btn btn-outline-secondary">Login</button></a>
             </li>
           </ul>
         </div>

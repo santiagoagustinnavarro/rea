@@ -6,7 +6,7 @@ class Contacto extends CI_Controller {
 		parent::__construct();
 	}
 	function index(){
-		$this->load->view("header",["title"=>"Inicio"]);
+		$this->load->view("header",["title"=>"Contacto"]);
 		$this->load->view('inicio/contacto');
 		$this->load->view("footer");
 	}

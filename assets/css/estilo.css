@@ -3,7 +3,7 @@
 body {
 	padding-top: 54px;
 	background-image: url("../imagenes/computer.jpg");
-	background-size: 100%;
+	
 }
 @media (min-width: 992px) {
   body {
