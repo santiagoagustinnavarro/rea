@@ -31,14 +31,26 @@ body {
 }
 .titulo{
 	text-align: center;
+	padding-bottom:3%;
 }
 #registro{
 	text-align: center;
 }
+#label{
+	text-align: center;
+	font-weight: bolder;
+	font-size: large;
+}
 #boton{
 	text-align: center;
 }
+#accion{
+	padding-bottom:2%;
+}
 .form-group input{
+	text-align: center;
+}
+#tabla{
 	text-align: center;
 }
 /* Indica en que numero de pagina y el tipo de cantidad de paginas que hay */
