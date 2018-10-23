@@ -15,7 +15,15 @@
 	<div class="form-group">
 		<label for="fechaFin" class="col-md-4 control-label">Fecha</label>
 		<div class="col-md-8">
-			<input type="text" name="fecha" value="<?php echo ($this->input->post('fecha') ? $this->input->post('fecha') : $tenerusuario['fecha']); ?>" class="form-control" id="fecha" />
+		<select name="" id=""></option>
+		<?php $estados=$this->EstadoUsuario_model->get_tenerusuario($tenerusuario['nombreUsuario']); 
+		foreach($estados as $estado){
+			echo "<option value=\"".$estado->nombre."\">";
+		}
+		
+		?>
+		</select>
+ 			<input type="text" name="fecha" value="<?php echo ($this->input->post('fecha') ? $this->input->post('fecha') : $tenerusuario['fecha']); ?>" class="form-control" id="fecha" />
 		</div>
 	</div>
 	<div class="form-group">

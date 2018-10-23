@@ -7,16 +7,16 @@
 class Tenerusuario_model extends CI_Model
 {
     function __construct()
-    {
+    {$this->load->model("Estadousuario_model");
         parent::__construct();
     }
     
     /*
      * Get tenerusuario by hora
      */
-    function get_tenerusuario($hora)
+    function get_tenerusuario($nombreUsuario,$fecha,$hora)
     {
-        return $this->db->get_where('tenerUsuario',array('hora'=>$hora))->row_array();
+        return $this->db->get_where('tenerUsuario',array('nombreUsuario'=>$nombreUsuario,'fecha'=>$fecha,'hora'=>$hora))->row_array();
     }
         
     /*
@@ -40,9 +40,11 @@ class Tenerusuario_model extends CI_Model
     /*
      * function to update tenerusuario
      */
-    function update_tenerusuario($hora,$params)
+    function update_tenerusuario($hora,$fecha,$nombreUsuario,$params)
     {
         $this->db->where('hora',$hora);
+        $this->db->where('fecha',$fecha);
+        $this->db->where('nombreUsuario',$nombreUsuario);
         return $this->db->update('tenerUsuario',$params);
     }
     

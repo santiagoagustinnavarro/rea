@@ -19,8 +19,11 @@
 		<td><?php echo $t['nombreEstadoUsuario']; ?></td>
 		<td><?php echo $t['fechaFin']; ?></td>
 		<td>
-            <a href="<?php echo site_url('tenerusuario/edit/'.$t['hora']); ?>" class="btn btn-info btn-xs">Edit</a> 
-            <a href="<?php echo site_url('tenerusuario/remove/'.$t['hora']); ?>" class="btn btn-danger btn-xs">Delete</a>
+		<?php echo form_open("tenerusuario/add",array("method"=>'get'),array("nombreUsuario"=>$t['nombreUsuario'],"fecha"=>$t['fecha'],"hora"=>$t['hora'])); ?>
+            <button type="submit" class="btn btn-info btn-xs">Edit</button> 
+			<?php echo form_close();?>
+			<button href="<?php echo site_url('tenerusuario/remove/'.$t['hora']); ?>" class="btn btn-danger btn-xs">Delete</a>
+			
         </td>
     </tr>
 	<?php } ?>

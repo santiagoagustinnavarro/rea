@@ -26,20 +26,18 @@ class Tenerusuario extends CI_Controller{
      * Adding a new tenerusuario
      */
     function add()
-    { print_r($_POST);
+    { 
         if(isset($_POST) && count($_POST) > 0)     
         {   if($this->input->post()>0){
             $params = array(
 				'nombreUsuario' => $this->input->post('nombreUsuario'),
-				'nombreEstadoUsuario' => $this->input->post('nombreEstadoUsuario'),
-                'fechaFin' => $this->input->post('fechaFin'),
+				
                 'fecha' => $this->input->post('fecha'),
                 'hora' => $this->input->post('hora'),
             );}else{
                 $params = array(
                     'nombreUsuario' => $_POST['nombreUsuario'],
-                    'nombreEstadoUsuario' => $_POST['nombreEstadoUsuario'],
-                    'fechaFin' => $_POST['fechaFin'],
+                    
                     'fecha' => $_POST['fecha'],
                     'hora' => $_POST['hora'],
                 );
@@ -47,40 +45,45 @@ class Tenerusuario extends CI_Controller{
             
             $insercion = $this->Tenerusuario_model->add_tenerusuario($params);
 
-            if($insercion){
+            /*if($insercion){
                 redirect('usuario/index');
             }else{
                 echo "Ah ocurrido un error verifique que el estado exista";
-            }
+            }*/
         }
-        else
-        {   $this->load->view('header',["title"=>"Historial de estados de los usuarios"]);
+        
+         $this->load->view('header',["title"=>"Historial de estados de los usuarios"]);
             
             $this->load->view('tenerusuario/add');
             $this->load->view('footer');
-        }
+        
     }  
 
     /*
      * Editing a tenerusuario
      */
-    function edit($hora)
+    function edit()
+    
     {   
+        $nombreUsuario=$_POST["nombreUsuario"];
+        $fecha=$_POST["fecha"];
+        $hora=$_POST["hora"];
         // check if the tenerusuario exists before trying to edit it
-        $data['tenerusuario'] =$this->Tenerusuario_model->get_tenerusuario($hora) ;
+        $data['tenerusuario'] =$this->Tenerusuario_model->get_tenerusuario($nombreUsuario,$fecha,$hora) ;
         
-        if(isset($data['tenerusuario']['hora']))
+        if(isset($data['tenerusuario']['nombreUsuario']))
         {
             if(isset($_POST) && count($_POST) > 0)     
             {   
                 $params = array(
-					'nombreUsuario' => $this->input->post('nombreUsuario'),
-					'nombreEstadoUsuario' => $this->input->post('nombreEstadoUsuario'),
-					'fechaFin' => $this->input->post('fechaFin'),
+					
+					'fechaFin' => getdate()["year"].":".getdate()["mon"].":".getdate()["mday"],
                 );
 
-                $this->Tenerusuario_model->update_tenerusuario($hora,$params);            
-                redirect('tenerusuario/index');
+                $this->Tenerusuario_model->update_tenerusuario($hora,$fecha,$nombreUsuario,$params);
+                  
+                           
+                //redirect('tenerusuario/index');
             }
             else
             {
