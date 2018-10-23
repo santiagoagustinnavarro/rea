@@ -6,6 +6,12 @@
 			<input type="text" name="descripcion" value="<?php echo $this->input->post('descripcion'); ?>" class="form-control" id="descripcion" />
 		</div>
 	</div>
+	<div class="form-group">
+		<label for="nombre" class="col-md-4 control-label">Nombre del estado</label>
+		<div class="col-md-8">
+			<input type="text" name="nombre" value="<?php echo $this->input->post('nombre'); ?>" class="form-control" id="nombre" />
+		</div>
+	</div>
 	
 	<div class="form-group">
 		<div class="col-sm-offset-4 col-sm-8">

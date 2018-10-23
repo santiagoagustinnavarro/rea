@@ -2,7 +2,7 @@
 	<a href="<?php echo site_url('tenerusuario/add'); ?>" class="btn btn-success">Add</a> 
 </div>
 
-<table class="table table-striped table-bordered">
+<table class="table table-light table-bordered">
     <tr>
 		<th>Hora</th>
 		<th>Fecha</th>

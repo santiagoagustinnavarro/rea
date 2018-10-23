@@ -30,16 +30,18 @@ class Estadousuario extends CI_Controller{
         if(isset($_POST) && count($_POST) > 0)     
         {   
             $params = array(
-				'descripcion' => $this->input->post('descripcion'),
+                'descripcion' => $this->input->post('descripcion'),
+                'nombre' => $this->input->post('nombre'),
             );
             
             $estadousuario_id = $this->Estadousuario_model->add_estadousuario($params);
             redirect('estadousuario/index');
         }
         else
-        {            
+        {   $this->load->view("header",["title"=>"Registro estado"]);
             $data['_view'] = 'estadousuario/add';
             $this->load->view('layouts/main',$data);
+            $this->load->view('footer');
         }
     }  
 

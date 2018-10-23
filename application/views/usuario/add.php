@@ -1,52 +1,35 @@
+<div class="container py-4">
+<div class="col-md-6 mx-auto">
+<div class="container">
+<h1 class="titulo text-secondary">Registro Usuario</h1>
 <?php echo form_open('usuario/add',array("class"=>"form")); ?>
-
-	<div class="form-group">
-		<label for="clave" class="col-md-4 control-label">Clave</label>
-		<div class="col-md-8">
-			<input type="text" name="clave" value="<?php echo $this->input->post('clave'); ?>" class="form-control" id="clave" />
+  <form id="registro" method="post">
+    <div class="form-group">
+			<input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre">
+</div>
+<div class="form-group">
+			<input type="text" class="form-control" id="apellido" placeholder="Apellido" name="apellido">
+</div>
+<div class="form-group">
+			<input type="text" class="form-control" id="domicilio" placeholder="Domicilio" name="domicilio">
+</div>
+<div class="form-group">
+			<input type="text" class="form-control" id="dni" placeholder="D.N.I" name="dni">
+</div>
+<div class="form-group">
+			<input type="email" class="form-control" id="email" placeholder="Correo@ejemplo..." name="email">
+</div>
+			<div class="form-group">
+      <input type="text" class="form-control" id="nombreUsuario" placeholder="Nombre Usuario" name="nombreUsuario">
+    </div>
+    <div class="form-group">
+      	<input type="password" class="form-control" id="clave" placeholder="Ingrese contraseña" name="clave">
 		</div>
-	</div>
-	<div class="form-group">
-		<label for="dni" class="col-md-4 control-label">Dni</label>
-		<div class="col-md-8">
-			<input type="text" name="dni" value="<?php echo $this->input->post('dni'); ?>" class="form-control" id="dni" />
+		<div class="form-group" id="boton">
+			<button type="submit" class="btn btn-success">Enviar</button>
 		</div>
-	</div>
-	<div class="form-group">
-		<label for="apellido" class="col-md-4 control-label">Apellido</label>
-		<div class="col-md-8">
-			<input type="text" name="apellido" value="<?php echo $this->input->post('apellido'); ?>" class="form-control" id="apellido" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="nombre" class="col-md-4 control-label">Nombre</label>
-		<div class="col-md-8">
-			<input type="text" name="nombre" value="<?php echo $this->input->post('nombre'); ?>" class="form-control" id="nombre" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="domicilio" class="col-md-4 control-label">Domicilio</label>
-		<div class="col-md-8">
-			<input type="text" name="domicilio" value="<?php echo $this->input->post('domicilio'); ?>" class="form-control" id="domicilio" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="email" class="col-md-4 control-label">Email</label>
-		<div class="col-md-8">
-			<input type="text" name="email" value="<?php echo $this->input->post('email'); ?>" class="form-control" id="email" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="nombreUsuario" class="col-md-4 control-label">NombreUsuario</label>
-		<div class="col-md-8">
-			<input type="text" name="nombreUsuario" value="<?php echo $this->input->post('nombreUsuario'); ?>" class="form-control" id="nombreUsuario" />
-		</div>
-	</div>
-	
-	<div class="form-group">
-		<div class="col-sm-offset-4 col-sm-8">
-			<button type="submit" class="btn btn-success">Save</button>
-        </div>
-	</div>
-
+  </form>
+</div>
+</div>
+</div>
 <?php echo form_close(); ?>

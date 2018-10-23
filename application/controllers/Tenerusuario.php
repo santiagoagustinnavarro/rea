@@ -17,9 +17,10 @@ class Tenerusuario extends CI_Controller{
     function index()
     {
         $data['tenerusuario'] = $this->Tenerusuario_model->get_all_tenerusuario();
-        
+        $this->load->view('header',["title"=>"Historial de estados de los usuarios"]);
         $data['_view'] = 'tenerusuario/index';
         $this->load->view('layouts/main',$data);
+        $this->load->view('footer');
     }
 
     /*
@@ -32,16 +33,19 @@ class Tenerusuario extends CI_Controller{
             $params = array(
 				'nombreUsuario' => $this->input->post('nombreUsuario'),
 				'nombreEstadoUsuario' => $this->input->post('nombreEstadoUsuario'),
-				'fechaFin' => $this->input->post('fechaFin'),
+                'fechaFin' => $this->input->post('fechaFin'),
+                'fecha' => $this->input->post('fecha'),
+                'hora' => $this->input->post('hora'),
             );
             
             $tenerusuario_id = $this->Tenerusuario_model->add_tenerusuario($params);
-            redirect('tenerusuario/index');
+            //redirect('tenerusuario/index');
         }
         else
-        {            
+        {            $this->load->view('header',["title"=>"Historial de estados de los usuarios"]);
             $data['_view'] = 'tenerusuario/add';
             $this->load->view('layouts/main',$data);
+            $this->load->view('footer');
         }
     }  
 
