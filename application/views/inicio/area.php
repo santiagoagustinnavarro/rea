@@ -1,4 +1,4 @@
-<h1>Tipos de Temas a Enseñar</h1>
+<h1 class="text-secondary">Tipos de Temas a Enseñar</h1>
 <!-- Pagination -->
 <ul class="pagination justify-content-center">
   <li class="page-item">

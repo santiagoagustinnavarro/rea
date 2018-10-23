@@ -1,1 +1,1 @@
-<h1>Datos de la facultad</h1>
+<h1 class="text-secondary">Datos de la facultad</h1>
