@@ -3,7 +3,9 @@
 body {
 	padding-top: 54px;
 	background-image: url("../imagenes/computer.jpg");
-	
+	display:flex;
+	min-height:100vh;
+	flex-wrap: wrap;
 }
 @media (min-width: 992px) {
   body {
@@ -33,9 +35,6 @@ body {
 #registro{
 	text-align: center;
 }
-#formulario{
-	padding-bottom:9%;
-}
 #boton{
 	text-align: center;
 }
@@ -44,12 +43,15 @@ body {
 }
 /* Indica en que numero de pagina y el tipo de cantidad de paginas que hay */
 .pagination {
-  margin-bottom: 15px;
+	align-self: flex-end;
+	margin-bottom: 15px;
 }
 /* Pie de pagina */
 #footer{
+	align-self: flex-end;
 	background:#e0dede;
+	width:100%;
 	font-weight:bold;
 	font-family:sans-serif;
-	font-size: large;
+	font-size:large;
 }
