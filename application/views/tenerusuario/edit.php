@@ -1,4 +1,4 @@
-<?php echo form_open('tenerusuario/edit/'.$tenerusuario['hora'],array("class"=>"form-horizontal")); ?>
+<?php echo form_open('tenerusuario/add/',array("class"=>"form-horizontal"),array("hora"=>$tenerusuario['hora'],"fechaFin"=>getdate()["hours"].":".getdate()["minutes"].":".getdate()["seconds"])); ?>
 
 	<div class="form-group">
 		<label for="nombreUsuario" class="col-md-4 control-label">NombreUsuario</label>
@@ -13,12 +13,11 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="fechaFin" class="col-md-4 control-label">FechaFin</label>
+		<label for="fechaFin" class="col-md-4 control-label">Fecha</label>
 		<div class="col-md-8">
-			<input type="text" name="fechaFin" value="<?php echo ($this->input->post('fechaFin') ? $this->input->post('fechaFin') : $tenerusuario['fechaFin']); ?>" class="form-control" id="fechaFin" />
+			<input type="text" name="fecha" value="<?php echo ($this->input->post('fecha') ? $this->input->post('fecha') : $tenerusuario['fecha']); ?>" class="form-control" id="fecha" />
 		</div>
 	</div>
-	
 	<div class="form-group">
 		<div class="col-sm-offset-4 col-sm-8">
 			<button type="submit" class="btn btn-success">Save</button>
