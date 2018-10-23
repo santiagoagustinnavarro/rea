@@ -1,15 +1,14 @@
-<div class="pull-right">
-	<a href="<?php echo site_url('tenerusuario/add'); ?>" class="btn btn-success">Add</a> 
+<div class="pull-right" id="accion">
+	<a href="<?php echo site_url('tenerusuario/add'); ?>" class="btn btn-success">Agregar</a> 
 </div>
-
 <table class="table table-light table-bordered">
-    <tr>
+    <tr id="tabla">
 		<th>Hora</th>
 		<th>Fecha</th>
-		<th>NombreUsuario</th>
-		<th>NombreEstadoUsuario</th>
-		<th>FechaFin</th>
-		<th>Actions</th>
+		<th>Nombre Usuario</th>
+		<th>Nombre Estado Usuario</th>
+		<th>Fecha Fin</th>
+		<th>Actualizar</th>
     </tr>
 	<?php foreach($tenerusuario as $t){ ?>
     <tr>
@@ -19,8 +18,7 @@
 		<td><?php echo $t['nombreEstadoUsuario']; ?></td>
 		<td><?php echo $t['fechaFin']; ?></td>
 		<td>
-            <a href="<?php echo site_url('tenerusuario/edit/'.$t['hora']); ?>" class="btn btn-info btn-xs">Edit</a> 
-            <a href="<?php echo site_url('tenerusuario/remove/'.$t['hora']); ?>" class="btn btn-danger btn-xs">Delete</a>
+            <a href="<?php echo site_url('tenerusuario/edit/'.$t['hora']); ?>" class="btn btn-info btn-xs">Actualizar</a> 
         </td>
     </tr>
 	<?php } ?>
