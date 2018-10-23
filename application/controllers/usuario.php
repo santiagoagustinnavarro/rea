@@ -16,11 +16,11 @@ class Usuario extends CI_Controller{
      */
     function index()
     {
-        $data['usuario'] = $this->Usuario_model->get_all_usuario();
+        $usuario = $this->Usuario_model->get_all_usuario();
         
-        $data['_view'] = 'usuario/index';
-        $this->load->view("header",["title"=>"Administrar usuarios"]);
-        $this->load->view('layouts/main',$data);
+        
+        $this->load->view("header",["title"=>"Administrar usuarios",'usuario'=>$usuario]);
+        $this->load->view('usuario/index');
         $this->load->view("footer");
     }
 
@@ -42,7 +42,8 @@ class Usuario extends CI_Controller{
             );
 
             
-            $usuario_id = $this->Usuario_model->add_usuario($params);
+            $insercion = $this->Usuario_model->add_usuario($params);
+           if($insercion){
             $estado=new Tenerusuario();
             $fecha=(getdate()["year"])."-".(getdate()["mon"])."-".(getdate()["mday"]);
             $hora=(getdate()["hours"]).":".(getdate()["minutes"]).":".(getdate()["seconds"]);
@@ -51,13 +52,24 @@ class Usuario extends CI_Controller{
             $_POST["hora"]=$hora;
             $_POST["nombreEstadoUsuario"]=$nombreEstadoUsuario;
             $estado->add();
-            redirect('usuario/index');
+            $this->load->view("header",["title"=>"Registro"]);
+            $this->load->view('usuario/add',array("mensaje"=>"Registrado con exito"));
+            $this->load->view("footer");
+           }else{
+            
+            $this->load->view("header",["title"=>"Registro"]);
+            $this->load->view('usuario/add',array("mensaje"=>"El usuario ya existe"));
+            
+            $this->load->view("footer");
+           }
+           
+           // redirect('usuario/index');
         }
         else
         {            
-            $data['_view'] = 'usuario/add';
+            
             $this->load->view("header",["title"=>"Registro"]);
-            $this->load->view('layouts/main',$data);
+            $this->load->view('usuario/add');
             
             $this->load->view("footer");
         }
@@ -109,11 +121,16 @@ class Usuario extends CI_Controller{
         // check if the usuario exists before trying to delete it
         if(isset($usuario['nombreUsuario']))
         {
-            $this->Usuario_model->delete_usuario($nombreUsuario);
-            redirect('usuario/index');
+            if($this->Usuario_model->delete_usuario($usuario['nombreUsuario'])){
+
+            }else{
+                echo "nop";
+            };
+            //redirect("usuario/index");
         }
         else
             show_error('The usuario you are trying to delete does not exist.');
     }
     
 }
+        ?>

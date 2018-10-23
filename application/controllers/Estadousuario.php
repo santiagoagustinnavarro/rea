@@ -16,10 +16,11 @@ class Estadousuario extends CI_Controller{
      */
     function index()
     {
-        $data['estadousuario'] = $this->Estadousuario_model->get_all_estadousuario();
         
-        $data['_view'] = 'estadousuario/index';
-        $this->load->view('layouts/main',$data);
+        
+        $this->load->view('header',['title'=>"Listado de estados"]);
+        $this->load->view('estadousuario/index',['estadousuario'=>$this->Estadousuario_model->get_all_estadousuario()]);
+        $this->load->view('footer');
     }
 
     /*
@@ -39,8 +40,7 @@ class Estadousuario extends CI_Controller{
         }
         else
         {   $this->load->view("header",["title"=>"Registro estado"]);
-            $data['_view'] = 'estadousuario/add';
-            $this->load->view('layouts/main',$data);
+            $this->load->view('estadousuario/add');
             $this->load->view('footer');
         }
     }  

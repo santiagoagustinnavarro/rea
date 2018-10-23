@@ -33,8 +33,13 @@ class Usuario_model extends CI_Model
      */
     function add_usuario($params)
     {
-        $this->db->insert('usuario',$params);
-        return $this->db->insert_id();
+        if(!$this->db->insert('usuario',$params)){
+            $return= false;
+        }else{
+            $return= true;
+        }
+        return $return;
+        
     }
     
     /*
@@ -51,6 +56,7 @@ class Usuario_model extends CI_Model
      */
     function delete_usuario($nombreUsuario)
     {
+        
         return $this->db->delete('usuario',array('nombreUsuario'=>$nombreUsuario));
     }
 }

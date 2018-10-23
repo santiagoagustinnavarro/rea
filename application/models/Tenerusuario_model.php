@@ -33,8 +33,8 @@ class Tenerusuario_model extends CI_Model
      */
     function add_tenerusuario($params)
     {
-        $this->db->insert('tenerUsuario',$params);
-        return $this->db->insert_id();
+       return $this->db->insert('tenerUsuario',$params);
+        //return $this->db->insert_id();
     }
     
     /*

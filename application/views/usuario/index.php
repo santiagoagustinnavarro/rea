@@ -27,8 +27,16 @@
 		<td><?php echo $u['email']; ?></td>
 		<td>
             <a href="<?php echo site_url('usuario/edit/'.$u['nombreUsuario']); ?>" class="btn btn-info btn-xs">Edit</a> 
-            <a href="<?php echo site_url('usuario/remove/'.$u['nombreUsuario']); ?>" class="btn btn-danger btn-xs">Delete</a>
+			<?php
+			$fecha=(getdate()["year"])."-".(getdate()["mon"])."-".(getdate()["mday"]);
+			$hora=(getdate()["hours"]).":".(getdate()["minutes"]).":".(getdate()["seconds"]);
+			
+
+			 echo form_open('tenerusuario/add','',array('fecha'=>$fecha,'hora'=>$hora,'nombreUsuario'=>$u['nombreUsuario'],'nombreEstadoUsuario'=>"baja")); ?>
+		 <button type="submit" class="btn btn-danger">Delete</button>
+		 <?php echo form_close(); ?>
         </td>
     </tr>
-	<?php }  ?></tbody>
+	<?php }?>
+	</tbody>
 </table>

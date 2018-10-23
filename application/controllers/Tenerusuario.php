@@ -16,10 +16,9 @@ class Tenerusuario extends CI_Controller{
      */
     function index()
     {
-        $data['tenerusuario'] = $this->Tenerusuario_model->get_all_tenerusuario();
+        
         $this->load->view('header',["title"=>"Historial de estados de los usuarios"]);
-        $data['_view'] = 'tenerusuario/index';
-        $this->load->view('layouts/main',$data);
+        $this->load->view('tenerusuario/index',array('tenerusuario'=>$this->Tenerusuario_model->get_all_tenerusuario()));
         $this->load->view('footer');
     }
 
@@ -27,24 +26,37 @@ class Tenerusuario extends CI_Controller{
      * Adding a new tenerusuario
      */
     function add()
-    {   
+    { print_r($_POST);
         if(isset($_POST) && count($_POST) > 0)     
-        {   
+        {   if($this->input->post()>0){
             $params = array(
 				'nombreUsuario' => $this->input->post('nombreUsuario'),
 				'nombreEstadoUsuario' => $this->input->post('nombreEstadoUsuario'),
                 'fechaFin' => $this->input->post('fechaFin'),
                 'fecha' => $this->input->post('fecha'),
                 'hora' => $this->input->post('hora'),
-            );
+            );}else{
+                $params = array(
+                    'nombreUsuario' => $_POST['nombreUsuario'],
+                    'nombreEstadoUsuario' => $_POST['nombreEstadoUsuario'],
+                    'fechaFin' => $_POST['fechaFin'],
+                    'fecha' => $_POST['fecha'],
+                    'hora' => $_POST['hora'],
+                );
+            }
             
-            $tenerusuario_id = $this->Tenerusuario_model->add_tenerusuario($params);
-            //redirect('tenerusuario/index');
+            $insercion = $this->Tenerusuario_model->add_tenerusuario($params);
+
+            if($insercion){
+                redirect('usuario/index');
+            }else{
+                echo "Ah ocurrido un error verifique que el estado exista";
+            }
         }
         else
-        {            $this->load->view('header',["title"=>"Historial de estados de los usuarios"]);
-            $data['_view'] = 'tenerusuario/add';
-            $this->load->view('layouts/main',$data);
+        {   $this->load->view('header',["title"=>"Historial de estados de los usuarios"]);
+            
+            $this->load->view('tenerusuario/add');
             $this->load->view('footer');
         }
     }  

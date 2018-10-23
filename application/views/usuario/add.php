@@ -2,7 +2,11 @@
 <div class="col-md-6 mx-auto">
 <div class="container">
 <h1 class="titulo text-secondary">Registro Usuario</h1>
-<?php echo form_open('usuario/add',array("class"=>"form")); ?>
+<?php 
+if(isset($mensaje)){
+	echo "<h2>".$mensaje."</h2>";
+}
+echo form_open('usuario/add',array("class"=>"form")); ?>
   <form id="registro" method="post">
     <div class="form-group">
 			<input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre">
