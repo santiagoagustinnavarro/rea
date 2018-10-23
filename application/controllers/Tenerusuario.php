@@ -67,7 +67,7 @@ class Tenerusuario extends CI_Controller{
     function edit($hora)
     {   
         // check if the tenerusuario exists before trying to edit it
-        $data['tenerusuario'] = $this->Tenerusuario_model->get_tenerusuario($hora);
+        $data['tenerusuario'] =$this->Tenerusuario_model->get_tenerusuario($hora) ;
         
         if(isset($data['tenerusuario']['hora']))
         {
@@ -85,7 +85,7 @@ class Tenerusuario extends CI_Controller{
             else
             {
                 $this->load->view('header',['title'=>'Edicion']);
-                $this->load->view('tenerusuario/edit');
+                $this->load->view('tenerusuario/edit',array('tenerusuario'=>$data['tenerusuario']));
                 $this->load->view('footer');
                 
             }
