@@ -84,8 +84,10 @@ class Tenerusuario extends CI_Controller{
             }
             else
             {
-                $data['_view'] = 'tenerusuario/edit';
-                $this->load->view('layouts/main',$data);
+                $this->load->view('header',['title'=>'Edicion']);
+                $this->load->view('tenerusuario/edit');
+                $this->load->view('footer');
+                
             }
         }
         else
