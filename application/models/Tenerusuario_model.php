@@ -14,9 +14,15 @@ class Tenerusuario_model extends CI_Model
     /*
      * Get tenerusuario by hora
      */
-    function get_tenerusuario($nombreUsuario,$fecha,$hora)
+    function get_tenerusuario($nombreUsuario,$params=array())
     {
-        return $this->db->get_where('tenerusuario',array('nombreUsuario'=>$nombreUsuario,'fecha'=>$fecha,'hora'=>$hora))->row_array();
+        if(count($params)>0){
+            $params['nombreUsuario']=$nombreUsuario;
+            $tenerUser=$this->db->get_where('tenerusuario',$params)->row_array();
+        }else{
+           $tenerUser= $this->db->get_where('tenerusuario',array('nombreUsuario'=>$nombreUsuario,'fechaFin'=>null))->row_array();
+        }
+        return $tenerUser;
     }
         
     /*

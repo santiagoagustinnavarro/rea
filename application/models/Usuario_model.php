@@ -14,9 +14,15 @@ class Usuario_model extends CI_Model
     /*
      * Get usuario by nombreUsuario
      */
-    function get_usuario($nombreUsuario)
+    function get_usuario($nombreUsuario,$params=array())
     {
-        return $this->db->get_where('usuario',array('nombreUsuario'=>$nombreUsuario))->row_array();
+        if(count($params)>0){
+            $params['nombreUsuario']=$nombreUsuario;
+            $user=$this->db->get_where('usuario',$params)->row_array();
+        }else{
+           $user= $this->db->get_where('usuario',array('nombreUsuario'=>$nombreUsuario))->row_array();
+        }
+        return $user;
     }
         
     /*
