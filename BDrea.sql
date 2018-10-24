@@ -314,13 +314,7 @@ CREATE TABLE IF NOT EXISTS `Rea`.`tieneRol` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `Rea`.`Permiso`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Rea`.`Permiso` (
-  `` INT NOT NULL,
-  PRIMARY KEY (``))
-ENGINE = InnoDB;
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
