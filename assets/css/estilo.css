@@ -1,7 +1,6 @@
 /* Estilo de la pagina con Bootstrap y CSS */
 /* body separa la barra de inicio del contenido y el color de fondo */
 body {
-	padding-top: 54px;
 	background-image: url("../imagenes/computer.jpg");
 	display:flex;
 	min-height:100vh;
@@ -17,51 +16,63 @@ body {
 	width: 160px; 
 	height: 75px;
 }
+/** Fondo de color, barra de menu fija */
 #menu{
 	background:#e0dede;
 	display: inline-block;
 }
+/** Family tiene la letra, size el tamaño de la letra y texto centrado */
 #menu a{
 	font-size: x-large;
 	font-family:sans-serif;
 	text-align:center;
 }
+/** Crea un margen en la parte superior */
 #cuerpo{
 	margin-top:56px;
 }
+/** A los titulos de la pagina les asigna un relleno de 3% arriba y abajo, y centra el texto */
 .titulo{
 	text-align: center;
 	padding-top: 3%;
 	padding-bottom: 3%;
 }
+/** A los textos del form los centra */
 #formulario{
 	text-align: center;
 }
+/** A las clases de tipo label les aplica negrita y texto grande */
 .label{
 	font-weight: bold;
 	font-size: large;
 }
+/** A las clases de tipo recurso se añade un fondo de color blanco */
 .recurso {
 	background:white;
 }
+/** Centra los botones en este caso de los formularios (login y registro) */
 #boton{
 	text-align: center;
 }
-#accion{
-	padding-bottom:2%;
+/** La seccion con el id de registro se situa a la derecha y se alinea al centro el texto */
+#registro{
+	float: right;
+	text-align: center;
 }
+/** centra los texto dentro de los inputs */
 .form-group input{
 	text-align: center;
 }
+/** Centra los textos de los id de tipo tabla */
 #tabla{
 	text-align: center;
 }
 /* Indica en que numero de pagina y el tipo de cantidad de paginas que hay */
 .pagination {
-	
 	margin-bottom: 15px;
 }
-/* Pie de pagina */
+/** Pie de pagina */
+/** flex-end me situa el footer al final de la pagina, width toma el 100% de la pagina*/
 #footer{
 	align-self: flex-end;
 	background:#e0dede;

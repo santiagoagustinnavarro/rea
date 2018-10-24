@@ -28,7 +28,7 @@
     titulo=(titulo[0]).toUpperCase()+titulo.substring(1);
     
     //event.target.playVideo();
-    document.getElementById("titulo").innerHTML="<center><h3 class=\"titulo\">"+titulo+"</center></h3>";
+    document.getElementById("titulo").innerHTML="<center><h3 class=\"text-left\">"+titulo+"</center></h3>";
   }
 
   // 5. The API calls this function when the player's state changes.

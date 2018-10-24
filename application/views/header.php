@@ -24,7 +24,7 @@
 <body>
 	<!-- Barra de Menú -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
-      <div class="container">
+    <div class="container-fluid">
 			<a href="#"><img class="navbar-brand" src="<?php echo base_url(); ?>assets/imagenes/logo3.png" alt="Logo REA"  id="logo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -40,13 +40,10 @@
 							<li class="nav-item"><a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary" alt="contacto">Contacto</a></li>
             </li>
 						<li class="nav-item">
-              <a href="<?php echo base_url(); ?>registro" class="nav-link"><button class="btn btn-outline-secondary">Registrarse</button></a>
-            </li>
-						<li class="nav-item">
-              <a href="<?php echo base_url(); ?>login" class="nav-link"><button class="btn btn-outline-secondary">Login</button></a>
+							<a href="<?php echo base_url(); ?>login" class="nav-link"><button class="btn btn-outline-success">Iniciar Sesión</button></a>
             </li>
           </ul>
         </div>
-      </div>
-    </nav>
-		<div class="container" id="cuerpo">
+    </div>
+  </nav>
+	<div class="container-fluid" id="cuerpo">
