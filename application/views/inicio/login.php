@@ -1,4 +1,4 @@
-<div id="registro" class="alert alert-info">
+<div id="registro" class="alert alert-primary">
 	<label class="label">Si no esta registrado ingrese aqui </label>
 	<a href="<?php echo base_url(); ?>registro" class="nav-link"><button class="btn btn-primary">Registrarse</button></a>
 </div>
