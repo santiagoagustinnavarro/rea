@@ -31,13 +31,13 @@ class Tenerusuario extends CI_Controller{
         {   if($this->input->post()>0){
             $params = array(
 				'nombreUsuario' => $this->input->post('nombreUsuario'),
-				
+				'nombreEstadoUsuario'=>$this->input->post('nombreEstadoUsuario'),
                 'fecha' => $this->input->post('fecha'),
                 'hora' => $this->input->post('hora'),
             );}else{
                 $params = array(
                     'nombreUsuario' => $_POST['nombreUsuario'],
-                    
+                    'nombreEstadoUsuario'=>$_POST['nombreEstadoUsuario'],
                     'fecha' => $_POST['fecha'],
                     'hora' => $_POST['hora'],
                 );
@@ -50,12 +50,13 @@ class Tenerusuario extends CI_Controller{
             }else{
                 echo "Ah ocurrido un error verifique que el estado exista";
             }*/
-        }
+        }else{
         
          $this->load->view('header',["title"=>"Historial de estados de los usuarios"]);
             
             $this->load->view('tenerusuario/add');
             $this->load->view('footer');
+        }
         
     }  
 

@@ -9,10 +9,10 @@
 					</div>
 					<form id="formulario">
         				<div class="form-group">
-							<input type="email" class="form-control" id="email" placeholder="Ingresar el Email">
+							<input type="email" class="form-control" id="email" placeholder="Ingresar el Email"  required>
         				</div>
         				<div class="form-group">
-            				<input type="password" class="form-control" id="clave" placeholder="Contraseña">
+            				<input type="password" class="form-control" id="clave" placeholder="Contraseña" required >
         				</div>
 						<div class="form-group" id="boton">
         					<button type="submit" class="btn btn-success">Ingresar</button>

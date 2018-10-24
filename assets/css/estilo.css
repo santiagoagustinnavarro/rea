@@ -55,7 +55,7 @@ body {
 }
 /* Indica en que numero de pagina y el tipo de cantidad de paginas que hay */
 .pagination {
-	align-self: flex-end;
+	
 	margin-bottom: 15px;
 }
 /* Pie de pagina */
