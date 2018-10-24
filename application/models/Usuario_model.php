@@ -21,6 +21,7 @@ class Usuario_model extends CI_Model
             $user=$this->db->get_where('usuario',$params)->row_array();
         }else{
            $user= $this->db->get_where('usuario',array('nombreUsuario'=>$nombreUsuario))->row_array();
+           echo "<script>alert(\"no\")</script>";
         }
         return $user;
     }

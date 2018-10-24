@@ -8,14 +8,29 @@ class Login extends CI_Controller {
 	function index(){
 		if($this->input->post('nombreUsuario') && $this->input->post('clave')){
 			$existe=$this->Usuario_model->get_usuario($this->input->post('nombreUsuario'),array("clave"=>$this->input->post('clave')));
-			if(count($existe)>0){
-				$verEstado=$this->Tenerusuario_model->get_tenerestado();
+			if(!is_null($existe)){
+				$verEstado=$this->Tenerusuario_model->get_tenerusuario($this->input->post('nombreUsuario'));
+				if($verEstado["nombreEstadoUsuario"]!="alta"){
+					$mensaje ="El usuario se encuentra en estado ".$verEstado["nombreEstadoUsuario"];
+				}else{
+					
+					$_SESSION['nombreUsuario']=$existe["nombreUsuario"];
+					$_SESSION['nombreUsuario']=$existe["nombreUsuario"];
+					$_SESSION['clave']=$this->input->post('clave');
+					redirect('inicio');
+				}
 			}else{
-
+				$mensaje="usuario o contraseña incorrectos";
+				
 			}
 		}else{
 		$this->load->view("header",["title"=>"Login"]);
 		$this->load->view('inicio/login.php');
+		$this->load->view("footer");
+	}
+	if(isset($mensaje)){
+		$this->load->view("header",["title"=>"Login"]);
+		$this->load->view('inicio/login.php',["mensaje"=>$mensaje]);
 		$this->load->view("footer");
 	}
 	}
