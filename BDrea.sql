@@ -367,7 +367,7 @@ INSERT INTO `Rea`.`permiso`(alias,descripcion) VALUES
 ('ac','Administrar comentarios'),
 ('rv','Realizar valorizacion');
 
---Inserción en la tabla estadoUsuario----------------------------------
+-- Inserción en la tabla estadoUsuario----------------------------------
 INSERT INTO `Rea`.`estadoUsuario`(nombre,descripcion) VALUES
 ('alta','usuario dado de alta (en funcionamiento)'),
 ('baja','usuario que no cumplio las normas'),
