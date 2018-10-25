@@ -371,7 +371,7 @@ INSERT INTO `Rea`.`permiso`(alias,descripcion) VALUES
 INSERT INTO `Rea`.`estadoUsuario`(nombre,descripcion) VALUES
 ('alta','usuario dado de alta (en funcionamiento)'),
 ('baja','usuario que no cumplio las normas'),
-('pendiente','usuario en espera de validacion'),
+('pendiente','usuario en espera de validacion');
 -- Inserción en la tabla contienePermiso-----------------------------------------------------------
 INSERT INTO `Rea`.`contienePermiso`(nombreRol,aliasPermiso) VALUES
 ('AdminUser','eup'),
@@ -382,7 +382,7 @@ INSERT INTO `Rea`.`contienePermiso`(nombreRol,aliasPermiso) VALUES
 ('Profesor','erp'),
 ('Profesor','eup'),
 ('Profesor','rc'),
-('Profesor','rv')
+('Profesor','rv');
 
 
 
