@@ -25,7 +25,7 @@ USE `Rea` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Rea`.`usuario` (
   `nombreUsuario` VARCHAR(30) NOT NULL,
-  `clave` VARCHAR(30) NOT NULL,
+  `clave` VARCHAR(70) NOT NULL,
   `dni` INT(10) NULL,
   `apellido` VARCHAR(30) NOT NULL,
   `nombre` VARCHAR(30) NOT NULL,

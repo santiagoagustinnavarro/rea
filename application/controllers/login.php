@@ -7,7 +7,7 @@ class Login extends CI_Controller {
 	}
 	function index(){
 		if($this->input->post('nombreUsuario') && $this->input->post('clave')){
-			$existe=$this->Usuario_model->get_usuario($this->input->post('nombreUsuario'),array("clave"=>$this->input->post('clave')));
+			$existe=$this->Usuario_model->get_usuario($this->input->post('nombreUsuario'),array("clave"=>hash('sha224',$this->input->post('clave'))));
 			if(!is_null($existe)){
 				$verEstado=$this->Tenerusuario_model->get_tenerusuario($this->input->post('nombreUsuario'));
 				if($verEstado["nombreEstadoUsuario"]!="alta"){
@@ -17,7 +17,7 @@ class Login extends CI_Controller {
 					$_SESSION['nombreUsuario']=$existe["nombreUsuario"];
 					$_SESSION['nombreUsuario']=$existe["nombreUsuario"];
 					$_SESSION['clave']=$this->input->post('clave');
-					redirect('inicio');
+					//redirect('inicio');
 				}
 			}else{
 				$mensaje="usuario o contraseña incorrectos";

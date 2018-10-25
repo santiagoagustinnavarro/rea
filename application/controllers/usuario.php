@@ -32,7 +32,7 @@ class Usuario extends CI_Controller{
         if(isset($_POST) && count($_POST) > 0)     
         {   
             $params = array(
-				'clave' => $this->input->post('clave'),
+				'clave' =>hash('sha224',$this->input->post('clave')),
 				'dni' => $this->input->post('dni'),
 				'apellido' => $this->input->post('apellido'),
 				'nombre' => $this->input->post('nombre'),

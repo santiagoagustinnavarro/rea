@@ -132,5 +132,5 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array("Estadousuario_model","Rol_model","Usuario_model","Tenerusuario_model","Tienerol_model");
+$autoload['model'] = array("Estadousuario_model","Rol_model","Usuario_model","tenerusuario_model","Tienerol_model");
 
