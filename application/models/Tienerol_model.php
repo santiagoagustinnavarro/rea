@@ -14,9 +14,15 @@ class Tienerol_model extends CI_Model
     /*
      * Get tienerol by nombreUsuario
      */
-    function get_tienerol($nombreUsuario)
+    function get_tienerol($nombreUsuario,$params=array())
     {
-        return $this->db->get_where('tieneRol',array('nombreUsuario'=>$nombreUsuario))->row_array();
+        if(count($params)>0){
+            $params["nombreUsuario"]=$nombreUsuario;
+            $rolActual=$this->db->get_where('tieneRol',$params)->row_array();
+        }else{
+            $rolActual=$this->db->get_where('tieneRol',array('nombreUsuario'=>$nombreUsuario))->row_array();
+        }
+        return $rolActual;
     }
         
     /*
