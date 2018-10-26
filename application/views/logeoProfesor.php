@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta  name="viewport" content="width=device-width" charset="utf-8"/>
+	<meta name="viewport" content="width=device-width" charset="utf-8"/>
 	<title><?php echo $title; ?></title>
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" />
@@ -10,7 +10,6 @@
 	<script type="text/javascript" src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js" ></script>	
 	<?php 
 		if(isset($scripts)){//Invocacion de scripts propios
-			
 			foreach ($scripts as $unScript){
 				echo "<script type=\"text/javascript\" src=\"".base_url()."assets/js/" .$unScript."\"></script>";
 			}
@@ -24,6 +23,7 @@
 </head>
 <body>
 	<!-- Barra de Menú -->
+	<!-- Profesor -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
     <div class="container-fluid">
 			<a href="<?php echo base_url(); ?>inicio"><img class="navbar-brand" src="<?php echo base_url(); ?>assets/imagenes/logo3.png" alt="Logo REA"  id="logo"></a>
@@ -46,11 +46,27 @@
 							<a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary" alt="contactenos">
 							<i class="fa fa-envelope"></i>	Contactenos
 							</a>
-            </li>
+						</li>
+						<li class="nav-item dropdown">
+      				<a class="nav-link dropdown-toggle" href="<?php echo base_url(); ?>contacto" id="navbardrop" data-toggle="dropdown">
+								<i class="fa fa-user"></i> Perfil
+      				</a>
+      				<div class="dropdown-menu" id="desplegable">
+        				<a class="dropdown-item" href="#">
+									<i class="fa fa-pencil" aria-hidden="true"></i>	Editar Perfil
+								</a>
+        				<a class="dropdown-item " href="#">
+									<i class="fa fa-file-text" aria-hidden="true"></i> Subir Archivos
+								</a>
+       	 				<a class="dropdown-item" href="#">
+									<i class="fa fa-trash" aria-hidden="true"></i> Eliminar Cuenta
+								</a>
+      				</div>
+    				</li>
 						<li class="nav-item">
-							<a href="<?php echo base_url(); ?>login" class="nav-link" alt="iniciar sesion">
-								<button class="btn btn-outline-success">
-								<i class="fa fa-sign-in"></i> Iniciar Sesión
+							<a href="<?php echo base_url(); ?>login" class="nav-link" alt="cerrar sesion">
+								<button class="btn btn-outline-danger">
+								<i class="fa fa-sign-out"></i> Cerrar Sesión
 								</button>
 							</a>
             </li>

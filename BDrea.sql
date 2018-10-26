@@ -354,9 +354,9 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- Inserción en la tabla Rol-----------------------------------------------------------
 INSERT INTO `Rea`.`rol`(nombre,descripcion) VALUES
-('AdminUser','Administra a los usuarios'),
-('AdminRecursos','Administra los recursos subidos'),
-('Profesor','Rol de profesor nivel medio');
+('AdminUser','Administra los tipos de estados que pueden tener los usuarios, y cambia el tipo de rol que pueden tener los usuarios'),
+('AdminRecursos','Administra los recursos subidos y los comentarios que hagan'),
+('Profesor','Agrega recursos, puede comentar otros recursos y puntuar los recursos');
 -- Inserción en la tabla Permiso-----------------------------------------------------------
 INSERT INTO `Rea`.`permiso`(alias,descripcion) VALUES
 ('eup','Edicion del perfil de usuario'),
@@ -369,9 +369,9 @@ INSERT INTO `Rea`.`permiso`(alias,descripcion) VALUES
 
 -- Inserción en la tabla estadoUsuario----------------------------------
 INSERT INTO `Rea`.`estadoUsuario`(nombre,descripcion) VALUES
-('alta','usuario dado de alta (en funcionamiento)'),
-('baja','usuario que no cumplio las normas'),
-('pendiente','usuario en espera de validacion');
+('alta','El usuario dado de alta (en funcionamiento)'),
+('baja','El usuario que no cumplio las normas'),
+('pendiente','El usuario en espera de validacion');
 -- Inserción en la tabla contienePermiso-----------------------------------------------------------
 INSERT INTO `Rea`.`contienePermiso`(nombreRol,aliasPermiso) VALUES
 ('AdminUser','eup'),
