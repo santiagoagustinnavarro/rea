@@ -16,9 +16,8 @@ class Login extends CI_Controller
                 if ($verEstado["nombreEstadoUsuario"] != "alta") {
                     $mensaje = "El usuario se encuentra en estado " . $verEstado["nombreEstadoUsuario"];
                 } else {
-
-                    //redirect('inicio');
-                    print_r($permisos);
+                    
+                   $this->cargarSession();
 
                 }
             } else {
@@ -46,9 +45,9 @@ class Login extends CI_Controller
         foreach ($petPermisos as $permiso) {
             $permisos[] = $permiso["aliasPermiso"];
         }
-        $_SESSION['nombreUsuario'] = $existe["nombreUsuario"];
-        $_SESSION['nombreUsuario'] = $existe["nombreUsuario"];
+        $_SESSION['nombreUsuario'] = $this->input->post('nombreUsuario');
         $_SESSION['clave'] = $this->input->post('clave');
         $_SESSION['permisos'] = $permisos;
+        $_SESSION['iniciada']=true;
     }
 }
