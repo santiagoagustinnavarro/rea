@@ -1,7 +1,7 @@
 <div id="registro" class="alert alert-primary">
 	<label class="label">Si no esta registrado ingrese aqui </label>
 	</br>
-	<a href="<?php echo base_url(); ?>registro">
+	<a href="<?php echo base_url(); ?>usuario/registro">
 		<button class="btn btn-primary">Registrarse</button>
 	</a>
 </div>
@@ -13,7 +13,6 @@
 			if(isset($mensaje)){
 				echo "<h1>".$mensaje."</h2>";
 			}
-			
 			echo form_open("login/",array('id'=>'formulario','method'=>'post'),'');
 			?>
         			<div class="form-group">
@@ -30,10 +29,7 @@
 					<?php
 			
 			echo form_close();
-			?>
-			
-        		
-    		
+			?>    		
 		</div>
 	</div>
 </div>

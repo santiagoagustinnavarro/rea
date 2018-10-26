@@ -2,7 +2,14 @@
 <div class="col-md-6 mx-auto">
 <div class="container">
 <h1 class="titulo">Registro Usuario</h1>
-  <form id="formulario" method="post" action="usuario/add">
+<?php 
+	if(isset($mensaje)){
+		echo $mensaje;
+		
+	}
+
+?>
+  <form id="formulario" method="post" action="registro">
     <div class="form-group">
 			<label class="label" for="nombre">Nombre</label>
 			<input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre"  required>

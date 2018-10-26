@@ -26,24 +26,21 @@ class Tenerusuario extends CI_Controller{
      * Adding a new tenerusuario
      */
     function add()
-    { 
+    {
         if(isset($_POST) && count($_POST) > 0)     
-        {   if($this->input->post()>0){
-            $params = array(
-				'nombreUsuario' => $this->input->post('nombreUsuario'),
-				'nombreEstadoUsuario'=>$this->input->post('nombreEstadoUsuario'),
-                'fecha' => $this->input->post('fecha'),
-                'hora' => $this->input->post('hora'),
-            );}else{
+        {   
+           
+           
                 $params = array(
                     'nombreUsuario' => $_POST['nombreUsuario'],
                     'nombreEstadoUsuario'=>$_POST['nombreEstadoUsuario'],
                     'fecha' => $_POST['fecha'],
                     'hora' => $_POST['hora'],
                 );
-            }
+                $insercion = $this->Tenerusuario_model->add_tenerusuario($params);
             
-            $insercion = $this->Tenerusuario_model->add_tenerusuario($params);
+            
+            
 
             /*if($insercion){
                 redirect('usuario/index');
@@ -52,7 +49,7 @@ class Tenerusuario extends CI_Controller{
             }*/
         }else{
         
-         $this->load->view('header',["title"=>"Historial de estados de los usuarios"]);
+         $this->load->view('header',["title"=>'asd']);
             
             $this->load->view('tenerusuario/add');
             $this->load->view('footer');
