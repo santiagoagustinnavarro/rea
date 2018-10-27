@@ -344,51 +344,51 @@ CREATE TABLE IF NOT EXISTS `Rea`.`contienePermiso` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 -- Table `Rea`.`rol`
 -- -----------------------------------------------------
 INSERT INTO `rol`(`nombre`, `descripcion`) VALUES 
-(`AdminRecurso`,`El encargado de administrar los recursos`),
-(`AdminUser`,`Administra los tipos de estados y roles de los usuarios`),
-(`Profesor`,`El encargado de subir recursos de ambito educativo`);
+('AdminRecurso','El encargado de administrar los recursos'),
+('AdminUser','Administra los tipos de estados y roles de los usuarios'),
+('Profesor','El encargado de subir recursos de ambito educativo');
 
 
 -- -----------------------------------------------------
 -- Table `Rea`.`permiso`
 -- -----------------------------------------------------
-INSERT INTO `permiso`(`alias`, `descripcion`) VALUES (`ac`,`Administrar comentarios`),
-(`ar`,`Administrar recursos`),
-(`au`,`Administrar usuarios`),
-(`erp`,`Edicion de Recursos Propios`),
-(`eup`,`Edicion del Perfil de Usuarios`),
-(`rc`,`Realizar Comentarios`),
-(`rv`,`Realizar Valorizacion`);
+INSERT INTO `permiso`(`alias`, `descripcion`) VALUES ('ac','Administrar comentarios'),
+('ar','Administrar recursos'),
+('au','Administrar usuarios'),
+('erp','Edicion de Recursos Propios'),
+('eup','Edicion del Perfil de Usuarios'),
+('rc','Realizar Comentarios'),
+('rv','Realizar Valorizacion');
 
 
 -- -----------------------------------------------------
 -- Table `Rea`.`contienePermiso`
 -- -----------------------------------------------------
 INSERT INTO `contienepermiso`(`nombreRol`, `aliasPermiso`) VALUES 
-(`AdminRecursos`,`ac`),
-(`AdminRecursos`,`ar`),
-(`AdminRecursos`,`eup`),
-(`AdminUser`,`au`),
-(`AdminUser`,`eup`),
-(`Profesor`,`erp`),
-(`Profesor`,`rc`),
-(`Profesor`,`eup`),
-(`Profesor`,`rv`);
+('AdminRecurso','ac'),
+('AdminRecurso','ar'),
+('AdminRecurso','eup'),
+('AdminUser','au'),
+('AdminUser','eup'),
+('Profesor','erp'),
+('Profesor','rc'),
+('Profesor','eup'),
+('Profesor','rv');
 
 
 -- -----------------------------------------------------
 -- Table `Rea`.`estadoUsuario`
 -- -----------------------------------------------------
 INSERT INTO `estadousuario`(`nombre`, `descripcion`) VALUES 
-(`Alta`,`El usuario esta dado de alta (en funcionamiento)`),
-(`Baja`,`El usuario no cumple con las normas o los requisitos`),
-(`Pendiente`,`El usuario en espera de validacion`);
-
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+('Alta','El usuario esta dado de alta (en funcionamiento)'),
+('Baja','El usuario no cumple con las normas o los requisitos'),
+('Pendiente','El usuario en espera de validacion');

@@ -24,7 +24,7 @@
 </head>
 <body>
 	<!-- Barra de Menú -->
-<?php session_start(); 
+<?php  
 if(!isset($_SESSION["iniciada"])){ ?>	
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
     <div class="container-fluid">

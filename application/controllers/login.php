@@ -50,7 +50,7 @@ class Login extends CI_Controller
 
     private function cargarSession()
     {
-
+        session_start();
         $rol = $this->Tienerol_model->get_tienerol($this->input->post('nombreUsuario'));
         $permisos = array();
         $petPermisos = $this->Contienepermiso_model->get_all_contienepermiso(array("nombreRol" => $rol["nombreRol"]));
