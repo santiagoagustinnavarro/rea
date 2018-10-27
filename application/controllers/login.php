@@ -16,8 +16,11 @@ class Login extends CI_Controller
                 if ($verEstado["nombreEstadoUsuario"] != "alta") {
                     $mensaje = "El usuario se encuentra en estado " . $verEstado["nombreEstadoUsuario"];
                 } else {
-                    
-                   $this->cargarSession();
+
+                    $this->cargarSession();
+                    $this->load->view("header", ["title" => "Home"]);
+                    $this->load->view('inicio/login');
+                    $this->load->view("footer");
 
                 }
             } else {
@@ -26,19 +29,28 @@ class Login extends CI_Controller
             }
         } else {
             $this->load->view("header", ["title" => "Login"]);
-            $this->load->view('inicio/login.php');
+            $this->load->view('inicio/login');
             $this->load->view("footer");
         }
         if (isset($mensaje)) {
             $this->load->view("header", ["title" => "Login"]);
-            $this->load->view('inicio/login.php', ["mensaje" => $mensaje]);
+            $this->load->view('inicio/login', ["mensaje" => $mensaje]);
             $this->load->view("footer");
         }
+    }
+    public function cerrarSession()
+    {
+
+        session_destroy();
+        $this->load->view("header", ["title" => "Login"]);
+        $this->load->view('inicio/login');
+        $this->load->view("footer");
+
     }
 
     private function cargarSession()
     {
-        session_start();
+
         $rol = $this->Tienerol_model->get_tienerol($this->input->post('nombreUsuario'));
         $permisos = array();
         $petPermisos = $this->Contienepermiso_model->get_all_contienepermiso(array("nombreRol" => $rol["nombreRol"]));
@@ -48,6 +60,6 @@ class Login extends CI_Controller
         $_SESSION['nombreUsuario'] = $this->input->post('nombreUsuario');
         $_SESSION['clave'] = $this->input->post('clave');
         $_SESSION['permisos'] = $permisos;
-        $_SESSION['iniciada']=true;
+        $_SESSION['iniciada'] = true;
     }
 }

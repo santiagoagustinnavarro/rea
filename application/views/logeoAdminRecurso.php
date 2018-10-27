@@ -27,7 +27,7 @@
 <!-- Administrador de Recursos -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
     <div class="container-fluid">
-		<a href="<?php echo base_url(); ?>inicio"><img class="navbar-brand" src="<?php echo base_url(); ?>assets/imagenes/logo3.png" alt="Logo REA"  id="logo"></a>
+		<a href="login/cerrarSession" ?>inicio"><img class="navbar-brand" src="<?php echo base_url(); ?>assets/imagenes/logo3.png" alt="Logo REA"  id="logo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -65,7 +65,7 @@
   				</div>
 			</li>
 			<li class="nav-item">
-				<a href="<?php echo base_url(); ?>login" class="nav-link" alt="cerrar sesion">
+				<a href="login/cerrarSesion" class="nav-link" alt="cerrar sesion">
 					<button class="btn btn-outline-danger">
 						<i class="fa fa-sign-out"></i> Cerrar Sesión
 					</button>
