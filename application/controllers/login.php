@@ -55,11 +55,11 @@ class Login extends CI_Controller
         $permisos = array();
         $petPermisos = $this->Contienepermiso_model->get_all_contienepermiso(array("nombreRol" => $rol["nombreRol"]));
         foreach ($petPermisos as $permiso) {
-            $permisos[] = $permiso["aliasPermiso"];
+            $permisos[] = strtolower($permiso["aliasPermiso"]);
         }
         $_SESSION['nombreUsuario'] = $this->input->post('nombreUsuario');
         $_SESSION['clave'] = $this->input->post('clave');
         $_SESSION['permisos'] = $permisos;
-        $_SESSION['iniciada'] = true;
+        $_SESSION['rol']=strtolower($rol['nombreRol']);
     }
 }
