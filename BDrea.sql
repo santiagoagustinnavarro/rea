@@ -17,7 +17,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema Rea
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `Rea` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `Rea` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `Rea` ;
 
 -- -----------------------------------------------------
