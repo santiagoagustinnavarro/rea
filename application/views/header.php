@@ -62,7 +62,7 @@ if (!isset($_SESSION)) {?>
     </div>
   </nav>
 	 <?php } else {
-    if ($_SESSION['rol']=='adminuser') {?>
+    if ($_SESSION['rol'] == 'adminuser') {?>
 			<!-- Barra de Menú -->
 <!-- Administrador de Usuarios -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
@@ -71,7 +71,7 @@ if (!isset($_SESSION)) {?>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-				
+
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
@@ -116,7 +116,7 @@ if (!isset($_SESSION)) {?>
         </div>
     </div>
   </nav>
-	<?php	} elseif ($_SESSION['rol']=='adminrecurso') {
+	<?php	} elseif ($_SESSION['rol'] == 'adminrecurso') {
         ?><nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
     <div class="container-fluid">
 		<a href="<?php echo base_url(); ?>inicio"><img class="navbar-brand" src="<?php echo base_url(); ?>assets/imagenes/logo3.png" alt="Logo REA"  id="logo"></a>
@@ -169,8 +169,8 @@ if (!isset($_SESSION)) {?>
   </nav>
 
 <?php
-}elseif($_SESSION['rol']=='profesor')
-?>
+} elseif ($_SESSION['rol'] == 'profesor') {
+        ?>
 	<!-- Barra de Menú -->
 	<!-- Profesor -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
@@ -224,6 +224,7 @@ if (!isset($_SESSION)) {?>
     </div>
   </nav>
 <?php
+}
 }
 ?>
 

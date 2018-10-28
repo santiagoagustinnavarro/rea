@@ -61,5 +61,10 @@ class Login extends CI_Controller
         $_SESSION['clave'] = $this->input->post('clave');
         $_SESSION['permisos'] = $permisos;
         $_SESSION['rol']=strtolower($rol['nombreRol']);
-    }
-}
+    ?>
+    <script>alert(" <?php 
+        echo $_SESSION['rol'];
+    
+
+?>")</script> <?php } }
+?>
