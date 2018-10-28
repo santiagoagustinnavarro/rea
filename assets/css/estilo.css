@@ -17,7 +17,6 @@ body {
 	height: 75px;
 }
 /** Fondo de color, barra de menu fija */
-
 #menu{
 	background:#e0dede;
 	display: inline-block;
@@ -43,13 +42,19 @@ body {
 }
 /** Crea un margen en la parte superior */
 #cuerpo{
-	margin-top:56px;
+	margin-top:65px;
 }
 /** A los titulos de la pagina les asigna un relleno de 3% arriba y abajo, y centra el texto */
 .titulo{
 	text-align: center;
 	padding-top: 3%;
-	padding-bottom: 3%;
+	padding-bottom: 2%;
+}
+#carousel{
+	width: 75%;
+	height: 60%;
+	position: relative;
+	left:12%;
 }
 /** A los textos del form los centra */
 #formulario{
@@ -63,6 +68,7 @@ body {
 /** A las clases de tipo recurso se añade un fondo de color blanco */
 .recurso {
 	background:white;
+	text-align: center;
 }
 /** Centra los botones en este caso de los formularios (login y registro) */
 #boton{
@@ -70,7 +76,6 @@ body {
 }
 /** La seccion con el id de registro se situa a la derecha y se alinea al centro el texto */
 #registro{
-	float: right;
 	text-align: center;
 }
 /** centra los texto dentro de los inputs */

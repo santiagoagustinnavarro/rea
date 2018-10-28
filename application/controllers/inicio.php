@@ -20,6 +20,5 @@ class Inicio extends CI_Controller {
 		$this->load->view("home2");
 		$this->load->view("footer");
 	}
-
 }
 ?>
