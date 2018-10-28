@@ -37,10 +37,6 @@ class Tenerusuario extends CI_Controller{
                 );
                 $insercion = $this->Tenerusuario_model->add_tenerusuario($params);
                 return $insercion;
-            
-            
-            
-
             /*if($insercion){
                 redirect('usuario/index');
             }else{
@@ -52,10 +48,8 @@ class Tenerusuario extends CI_Controller{
             $this->load->view('tenerusuario/add');
             $this->load->view('footer');
         }
-        
-        
     }  
-
+    
     /*
      * Editing a tenerusuario
      */

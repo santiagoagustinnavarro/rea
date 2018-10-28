@@ -41,39 +41,27 @@ class Usuario extends CI_Controller
 
             $insercion = $this->Usuario_model->add_usuario($params);
             if ($insercion) {
-                // $estado=new Tenerusuario();
                 $fecha = (getdate()["year"]) . "-" . (getdate()["mon"]) . "-" . (getdate()["mday"]);
                 $hora = (getdate()["hours"]) . ":" . (getdate()["minutes"]) . ":" . (getdate()["seconds"]);
                 $nombreEstadoUsuario = "pendiente";
                 $nombreUsuario = $params["nombreUsuario"];
-                $post = array("fechaInicio"=>$fecha,"hora"=>$hora,"nombreUsuario"=>$nombreUsuario,"nombreEstadoUsuario"=>$nombreEstadoUsuario);
-                $ch = curl_init(base_url() . "tenerusuario/add");
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
-                // execute!
-                $response = curl_exec($ch);
-                // close the connection, release resources used
-                curl_close($ch);
-                // do anything you want with your response
-                if ($response) {
-                    //$estado->add();
+                $datos = array("fechaInicio"=>$fecha,"hora"=>$hora,"nombreUsuario"=>$nombreUsuario,"nombreEstadoUsuario"=>$nombreEstadoUsuario);
+                $insercion = $this->Tenerusuario_model->add_tenerusuario($datos);
+                // $estado=new Tenerusuario();
+                if($insercion){
                     $this->load->view("header", ["title" => "Registro"]);
                     $this->load->view('inicio/registrarse', array("mensaje" => "Registrado con exito"));
                     $this->load->view("footer");
                 }
-
             } else {
                 $this->load->view("header", ["title" => "Registro"]);
                 $this->load->view('inicio/registrarse', array("mensaje" => "El usuario ya existe"));
                 $this->load->view("footer");
             }
-
             // redirect('usuario/index');
         } else {
-
             $this->load->view("header", ["title" => "Registro"]);
             $this->load->view('inicio/registrarse');
-
             $this->load->view("footer");
         }
     }
