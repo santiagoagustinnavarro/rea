@@ -32,7 +32,7 @@ class Tenerusuario extends CI_Controller{
                 $params = array(
                     'nombreUsuario' => $_POST['nombreUsuario'],
                     'nombreEstadoUsuario'=>$_POST['nombreEstadoUsuario'],
-                    'fechaInicio' => $_POST['fecha'],
+                    'fechaInicio' => $_POST['fechaInicio'],
                     'hora' => $_POST['hora'],
                 );
                 $insercion = $this->Tenerusuario_model->add_tenerusuario($params);
