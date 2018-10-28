@@ -392,3 +392,27 @@ INSERT INTO `estadousuario`(`nombre`, `descripcion`) VALUES
 ('Alta','El usuario esta dado de alta (en funcionamiento)'),
 ('Baja','El usuario no cumple con las normas o los requisitos'),
 ('Pendiente','El usuario en espera de validacion');
+
+-- -----------------------------------------------------
+-- Table `Rea`.`usuario`
+-- -----------------------------------------------------
+INSERT INTO `usuario`(`nombre`,`apellido`, `nombreUsuario`,`clave`,`email`,`domicilio`) VALUES 
+('santiago','navarro', 'adminR','78d8045d684abd2eece923758f3cd781489df3a48e1278982466017f','santiago@outlook.com.ar','mzna1 casa 3'),
+('elizabeth','barramuño','adminU','78d8045d684abd2eece923758f3cd781489df3a48e1278982466017f','eli-06nqn@hotmail.com','Las floridas 820'),
+('luis','alfonso','profesor','78d8045d684abd2eece923758f3cd781489df3a48e1278982466017f','eli-06nqn@hotmail.com','amancay 458');
+-- -----------------------------------------------------
+-- Table `Rea`.`tenerUsuario`
+-- -----------------------------------------------------
+
+INSERT INTO `tenerUsuario`(`nombreUsuario`,`nombreEstadoUsuario`, `fechaInicio`,`hora`) VALUES 
+('adminR','Alta','2018-10-28',"17:48:01"),
+('adminU','Alta','2018-10-28',"17:48:02"),
+('profesor','Alta','2018-10-28',"17:48:03");
+
+-- -----------------------------------------------------
+-- Table `Rea`.`tieneRol`
+-- -----------------------------------------------------
+INSERT INTO `tieneRol`(`nombreUsuario`,`nombreRol`, `fechaInicio`) VALUES 
+('adminR','AdminRecurso','2018-10-28'),
+('adminU','AdminUser','2018-10-28'),
+('profesor','Profesor','2018-10-28');
