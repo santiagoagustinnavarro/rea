@@ -49,7 +49,7 @@ class Tenerusuario_model extends CI_Model
     function update_tenerusuario($hora,$fecha,$nombreUsuario,$params)
     {
         $this->db->where('hora',$hora);
-        $this->db->where('fecha',$fecha);
+        $this->db->where('fechaInicio',$fecha);
         $this->db->where('nombreUsuario',$nombreUsuario);
         return $this->db->update('tenerUsuario',$params);
     }

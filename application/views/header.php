@@ -30,7 +30,8 @@ if (isset($styles)) { //Invocacion de estilos propios
 	<!-- Barra de Menú -->
 	<?php
 
-if (!isset($_SESSION)) {?>
+if (!isset($_SESSION)) {
+    ?>
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
 		<div class="container-fluid">
 			<a href="<?php echo base_url(); ?>inicio"><img class="navbar-brand" src="<?php echo base_url(); ?>assets/imagenes/logo3.png"
@@ -42,17 +43,20 @@ if (!isset($_SESSION)) {?>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>inicio" class="nav-link text-secondary" alt="inicio">
+						<a href="<?php echo base_url(); ?>inicio" class="nav-link text-secondary"
+						 alt="inicio">
 							<i class="fa fa-home"></i> Inicio
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>area" class="nav-link text-secondary" alt="area">
+						<a href="<?php echo base_url(); ?>area" class="nav-link text-secondary"
+						 alt="area">
 							<i class="fa fa-files-o"></i> Área
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary" alt="contactenos">
+						<a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary"
+						 alt="contactenos">
 							<i class="fa fa-envelope"></i> Contactenos
 						</a>
 					</li>
@@ -67,8 +71,10 @@ if (!isset($_SESSION)) {?>
 			</div>
 		</div>
 	</nav>
-	<?php } else {
-    if ($_SESSION['rol'] == 'adminuser') {?>
+	<?php
+} else {
+        if ($_SESSION['rol'] == 'adminuser') {
+            ?>
 	<!-- Barra de Menú -->
 	<!-- Administrador de Usuarios -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
@@ -83,22 +89,26 @@ if (!isset($_SESSION)) {?>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>inicio" class="nav-link text-secondary" alt="inicio">
+						<a href="<?php echo base_url(); ?>inicio" class="nav-link text-secondary"
+						 alt="inicio">
 							<i class="fa fa-home"></i> Inicio
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>area" class="nav-link text-secondary" alt="area">
+						<a href="<?php echo base_url(); ?>area" class="nav-link text-secondary"
+						 alt="area">
 							<i class="fa fa-files-o"></i> Área
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary" alt="contactenos">
+						<a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary"
+						 alt="contactenos">
 							<i class="fa fa-envelope"></i> Contactenos
 						</a>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="<?php echo base_url(); ?>contacto" id="navbardrop" data-toggle="dropdown">
+						<a class="nav-link dropdown-toggle" href="<?php echo base_url(); ?>contacto"
+						 id="navbardrop" data-toggle="dropdown">
 							<i class="fa fa-user-circle"></i> Perfil
 						</a>
 						<div class="dropdown-menu" id="desplegable">
@@ -114,7 +124,8 @@ if (!isset($_SESSION)) {?>
 						</div>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>/login/cerrarSession" class="nav-link" alt="cerrar sesion">
+						<a href="<?php echo base_url(); ?>/login/cerrarSession" class="nav-link"
+						 alt="cerrar sesion">
 							<button class="btn btn-outline-danger">
 								<i class="fa fa-sign-out"></i> Cerrar Sesión
 							</button>
@@ -124,8 +135,9 @@ if (!isset($_SESSION)) {?>
 			</div>
 		</div>
 	</nav>
-	<?php	} elseif ($_SESSION['rol'] == 'adminrecurso') {
-        ?>
+	<?php
+        } elseif ($_SESSION['rol'] == 'adminrecurso') {
+            ?>
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
 		<div class="container-fluid">
 			<a href="<?php echo base_url(); ?>inicio"><img class="navbar-brand" src="<?php echo base_url(); ?>assets/imagenes/logo3.png"
@@ -137,22 +149,26 @@ if (!isset($_SESSION)) {?>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>inicio" class="nav-link text-secondary" alt="inicio">
+						<a href="<?php echo base_url(); ?>inicio" class="nav-link text-secondary"
+						 alt="inicio">
 							<i class="fa fa-home"></i> Inicio
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>area" class="nav-link text-secondary" alt="area">
+						<a href="<?php echo base_url(); ?>area" class="nav-link text-secondary"
+						 alt="area">
 							<i class="fa fa-files-o"></i> Área
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary" alt="contactenos">
+						<a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary"
+						 alt="contactenos">
 							<i class="fa fa-envelope"></i> Contactenos
 						</a>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="<?php echo base_url(); ?>contacto" id="navbardrop" data-toggle="dropdown">
+						<a class="nav-link dropdown-toggle" href="<?php echo base_url(); ?>contacto"
+						 id="navbardrop" data-toggle="dropdown">
 							<i class="fa fa-user-circle-o"></i> Perfil
 						</a>
 						<div class="dropdown-menu" id="desplegable">
@@ -168,7 +184,8 @@ if (!isset($_SESSION)) {?>
 						</div>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>/login/cerrarSession" class="nav-link" alt="cerrar sesion">
+						<a href="<?php echo base_url(); ?>/login/cerrarSession" class="nav-link"
+						 alt="cerrar sesion">
 							<button class="btn btn-outline-danger">
 								<i class="fa fa-sign-out"></i> Cerrar Sesión
 							</button>
@@ -180,8 +197,8 @@ if (!isset($_SESSION)) {?>
 	</nav>
 
 	<?php
-} elseif ($_SESSION['rol'] == 'profesor') {
-        ?>
+        } elseif ($_SESSION['rol'] == 'profesor') {
+            ?>
 	<!-- Barra de Menú -->
 	<!-- Profesor -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
@@ -195,22 +212,26 @@ if (!isset($_SESSION)) {?>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>inicio" class="nav-link text-secondary" alt="inicio">
+						<a href="<?php echo base_url(); ?>inicio" class="nav-link text-secondary"
+						 alt="inicio">
 							<i class="fa fa-home"></i> Inicio
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>area" class="nav-link text-secondary" alt="area">
+						<a href="<?php echo base_url(); ?>area" class="nav-link text-secondary"
+						 alt="area">
 							<i class="fa fa-files-o"></i> Área
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary" alt="contactenos">
+						<a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary"
+						 alt="contactenos">
 							<i class="fa fa-envelope"></i> Contactenos
 						</a>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="<?php echo base_url(); ?>contacto" id="navbardrop" data-toggle="dropdown">
+						<a class="nav-link dropdown-toggle" href="<?php echo base_url(); ?>contacto"
+						 id="navbardrop" data-toggle="dropdown">
 							<i class="fa fa-user"></i> Perfil
 						</a>
 						<div class="dropdown-menu" id="desplegable">
@@ -237,8 +258,8 @@ if (!isset($_SESSION)) {?>
 		</div>
 	</nav>
 	<?php
-}
-}
+        }
+    }
 ?>
 
 	<div class="container-fluid" id="cuerpo">

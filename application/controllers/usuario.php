@@ -48,7 +48,7 @@ class Usuario extends CI_Controller
                 $datos = array("fechaInicio"=>$fecha,"hora"=>$hora,"nombreUsuario"=>$nombreUsuario,"nombreEstadoUsuario"=>$nombreEstadoUsuario);
                 $insercion = $this->Tenerusuario_model->add_tenerusuario($datos);
                 // $estado=new Tenerusuario();
-                if($insercion){
+                if ($insercion) {
                     $this->load->view("header", ["title" => "Registro"]);
                     $this->load->view('inicio/registrarse', array("mensaje" => "Registrado con exito"));
                     $this->load->view("footer");
@@ -65,6 +65,7 @@ class Usuario extends CI_Controller
             $this->load->view("footer");
         }
     }
+    
 
     /*
      * Editing a usuario
@@ -88,15 +89,14 @@ class Usuario extends CI_Controller
                 $this->Usuario_model->update_usuario($nombreUsuario, $params);
                 redirect('usuario/index');
             } else {
-                $data['_view'] = 'usuario/edit';
+                
                 $this->load->view("header", ["title" => "Editar Usuario"]);
-                $this->load->view('layouts/main', $data);
+                $this->load->view('usuario/edit',['usuario'=>$data['usuario']]);
                 $this->load->view("footer");
             }
         } else {
             show_error('The usuario you are trying to edit does not exist.');
         }
-
     }
 
     /*
@@ -109,15 +109,12 @@ class Usuario extends CI_Controller
         // check if the usuario exists before trying to delete it
         if (isset($usuario['nombreUsuario'])) {
             if ($this->Usuario_model->delete_usuario($usuario['nombreUsuario'])) {
-
             } else {
                 echo "nop";
             };
-            //redirect("usuario/index");
+        //redirect("usuario/index");
         } else {
             show_error('The usuario you are trying to delete does not exist.');
         }
-
     }
-
 }
