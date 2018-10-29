@@ -9,7 +9,7 @@ class Contacto extends CI_Controller {
 		$this->load->view("header",["title"=>"Contacto"]);
 		$this->load->view('inicio/contacto');
 		$this->load->view("footer");
-	}
-
+	 }
+     
 }
 ?>

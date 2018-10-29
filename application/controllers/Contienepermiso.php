@@ -9,7 +9,7 @@ class Contienepermiso extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('Contienepermiso_model');
-    } 
+        } 
 
     /*
      * Listing of contienepermiso
