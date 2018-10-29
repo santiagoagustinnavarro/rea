@@ -2,15 +2,18 @@
 /* body separa la barra de inicio del contenido y el color de fondo */
 body {
 	background-image: url("../imagenes/computer.jpg");
+	background-size: 130%;
 	display:flex;
 	min-height:100vh;
 	flex-wrap: wrap;
+	
 }
 @media (min-width: 992px) {
   body {
     padding-top: 56px;
   }
 }
+
 /* Tamaño de la imagen del logo */
 #logo{
 	width: 160px; 
@@ -31,30 +34,35 @@ body {
 	background:#e0dede;
 }
 #desplegable a{
-	font-weight:normal;
-	font-size:medium;
+	font-weight: normal;
+	font-size: medium;
 }
 #desplegable a:hover{
-	font-weight:normal;
-	font-size:medium;
-	background:#504d4d;
-	color:#ffffff;
+	font-weight: normal;
+	font-size: medium;
+	background: #504d4d;
+	color: #ffffff;
 }
 /** Crea un margen en la parte superior */
 #cuerpo{
-	margin-top:65px;
+	margin-top: 70px;
 }
-/** A los titulos de la pagina les asigna un relleno de 3% arriba y abajo, y centra el texto */
+/** A los titulos de la pagina les asigna un relleno de 2% arriba y abajo, y centra el texto */
 .titulo{
 	text-align: center;
-	padding-top: 3%;
+	padding-top: 2%;
+	padding-bottom: 2%;
+}
+/** Al titulo de la pagina login un relleno de 2% abajo, y centra el texto */
+#tituloLogin{
+	text-align: center;
 	padding-bottom: 2%;
 }
 #carousel{
 	width: 75%;
 	height: 60%;
 	position: relative;
-	left:12%;
+	left: 12%;
 }
 /** A los textos del form los centra */
 #formulario{

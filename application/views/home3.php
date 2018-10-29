@@ -1,7 +1,7 @@
 <div class="container"> <!-- Page Content -->
 	<div class="row"> <!-- clase Row -->
 		<div id="carousel" class="carousel slide" data-ride="carousel">
-			<h1 class="titulo">Inicio</h1>
+			</br>
   			<ol class="carousel-indicators">
     			<li data-target="#carousel" data-slide-to="0" class="active"></li>
     			<li data-target="#carousel" data-slide-to="1"></li>

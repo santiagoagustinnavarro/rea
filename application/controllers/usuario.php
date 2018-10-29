@@ -13,7 +13,7 @@ class Usuario extends CI_Controller
     }
 
     /*
-     * Listing of usuario
+     * Listar usuario
      */
     public function index()
     {
@@ -24,13 +24,14 @@ class Usuario extends CI_Controller
     }
 
     /*
-     * Adding a new usuario
+     * Añadiendo a nuevo usuario
      */
     public function registro()
     {
         if (isset($_POST) && count($_POST) > 0) {
             $params = array(
-                'clave' => hash('sha224', $this->input->post('clave')),
+				'clave' => hash('sha224', $this->input->post('clave')),
+				'clave2' => hash('sha224', $this->input->post('clave2')),
                 'dni' => $this->input->post('dni'),
                 'apellido' => $this->input->post('apellido'),
                 'nombre' => $this->input->post('nombre'),
@@ -50,12 +51,12 @@ class Usuario extends CI_Controller
                 // $estado=new Tenerusuario();
                 if($insercion){
                     $this->load->view("header", ["title" => "Registro"]);
-                    $this->load->view('inicio/registrarse', array("mensaje" => "Registrado con exito"));
+                    $this->load->view('inicio/registrarse', array("mensaje" => '<div class="alert alert-success text-center"><h4>'."Registrado con exito".'</h4></div>'));
                     $this->load->view("footer");
                 }
             } else {
                 $this->load->view("header", ["title" => "Registro"]);
-                $this->load->view('inicio/registrarse', array("mensaje" => "El usuario ya existe"));
+                $this->load->view('inicio/registrarse', array("mensaje" => '<div class="alert alert-info text-center"><h4>'."El usuario ya existe".'</h4></div>'));
                 $this->load->view("footer");
             }
             // redirect('usuario/index');
@@ -67,7 +68,7 @@ class Usuario extends CI_Controller
     }
 
     /*
-     * Editing a usuario
+     * Editando a un usuario
      */
     public function edit($nombreUsuario)
     {
@@ -77,7 +78,8 @@ class Usuario extends CI_Controller
         if (isset($data['usuario']['nombreUsuario'])) {
             if (isset($_POST) && count($_POST) > 0) {
                 $params = array(
-                    'clave' => $this->input->post('clave'),
+					'clave' => $this->input->post('clave'),
+					'clave2' => $this->input->post('clave2'),
                     'dni' => $this->input->post('dni'),
                     'apellido' => $this->input->post('apellido'),
                     'nombre' => $this->input->post('nombre'),
@@ -100,7 +102,7 @@ class Usuario extends CI_Controller
     }
 
     /*
-     * Deleting usuario
+     * Eliminar un usuario
      */
     public function remove($nombreUsuario)
     {
