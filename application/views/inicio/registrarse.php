@@ -7,7 +7,6 @@
 		echo $mensaje;
 		
 	}
-
 ?>
   <form id="formulario" method="post" action="registro">
     <div class="form-group">
