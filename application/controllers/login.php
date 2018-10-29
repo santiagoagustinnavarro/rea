@@ -25,7 +25,7 @@ class Login extends CI_Controller
 
                 }
             } else {
-                $mensaje = "usuario o contraseña incorrectos";
+                $mensaje = "Usuario o Contraseña incorrectos";
 
             }
         } else {
@@ -44,7 +44,6 @@ class Login extends CI_Controller
         session_start();
         session_destroy();
         redirect('login');
-    
 
     }
 
