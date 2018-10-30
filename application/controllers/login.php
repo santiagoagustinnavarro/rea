@@ -15,7 +15,7 @@ class Login extends CI_Controller
                 $verEstado = $this->Tenerusuario_model->get_tenerusuario($this->input->post('nombreUsuario'));
                 $verEstado["nombreEstadoUsuario"]=strtolower($verEstado["nombreEstadoUsuario"]);
                 if ($verEstado["nombreEstadoUsuario"] != "alta") {
-                    $mensaje = "El usuario se encuentra en estado " . $verEstado["nombreEstadoUsuario"];
+                    $mensaje = '<div class="alert alert-info text-center"><h4>'."El usuario se encuentra en estado ".$verEstado["nombreEstadoUsuario"].'</h4></div>';
                 } else {
 
                     $this->cargarSession();
@@ -25,7 +25,7 @@ class Login extends CI_Controller
 
                 }
             } else {
-                $mensaje = "Usuario o Contraseña incorrectos";
+                $mensaje = '<div class="alert alert-danger text-center"><h4>'."Usuario o Contraseña incorrectos".'</h4></div>';
 
             }
         } else {
