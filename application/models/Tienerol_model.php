@@ -57,8 +57,8 @@ class Tienerol_model extends CI_Model
     /*
      * function to delete tienerol
      */
-    public function delete_tienerol($nombreUsuario)
+    public function delete_tienerol($where)
     {
-        return $this->db->delete('tieneRol', array('nombreUsuario'=>$nombreUsuario));
+        return $this->db->delete('tieneRol', $where);
     }
 }
