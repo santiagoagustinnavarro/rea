@@ -2,7 +2,7 @@
 $sesion=new Login();
 if ($_SESSION["iniciada"] && $_SESSION["rol"]=="adminuser") {
     ?>
-<table class="table table-light table-responsive" id="tabla">
+<table class="table table-light table-responsive-sm" id="tabla">
 	<thead>
 		<tr id="table">
 			<th scope="col">Nombre Usuario</th>
