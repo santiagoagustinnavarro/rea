@@ -2,7 +2,7 @@
 /* body separa la barra de inicio del contenido y el color de fondo */
 body {
 	background-image: url("../imagenes/computer.jpg");
-	background-size: 130%;
+	background-size:110%;
 	display:flex;
 	min-height:100vh;
 	flex-wrap: wrap;
@@ -12,6 +12,7 @@ body {
     padding-top: 56px;
   }
 }
+/** ######################## HEADER/MENU ############################# */
 /* Tamaño de la imagen del logo */
 #logo{
 	width: 160px; 
@@ -48,29 +49,27 @@ body {
 #cuerpo{
 	margin-top: 70px;
 }
-/** A los titulos de la pagina les asigna un relleno de 2% arriba y abajo, y centra el texto */
+/** A la clase titulo de cada pagina le centra el texto */
 .titulo{
 	text-align: center;
-	padding-top: 2%;
-	padding-bottom: 2%;
 }
 /** Al titulo de la pagina login un relleno de 2% abajo, y centra el texto */
 #tituloLogin{
 	text-align: center;
 	padding-bottom: 2%;
 }
-#filtro{
-	padding-right:3%;
-	padding-left:2%;
-}
+/** ######################## CONTENIDO DE LA PAGINA ############################# */
+/** un relleno de 2% entre cada uno de los recursos */
 .area{
 	padding:2%;
+	float: left;
 }
+/** alto y ancho del video position relativa y un 12% para centrarlo */
 #carousel{
-	width: 75%;
+	width: 80%;
 	height: 60%;
 	position: relative;
-	left: 12%;
+	left: 10%;
 }
 /** A los textos del form los centra */
 #formulario{
@@ -90,13 +89,12 @@ body {
 #boton{
 	text-align: center;
 }
-/** La seccion con el id de registro se situa a la derecha y se alinea al centro el texto */
-#registro{
-	text-align: center;
-}
 /** centra los texto dentro de los inputs */
 .form-group input{
 	text-align: center;
+}
+#link a{
+	color: black;
 }
 /** Centra los textos de los id de tipo tabla */
 #tabla{
@@ -106,7 +104,7 @@ body {
 .pagination {
 	margin-bottom: 15px;
 }
-/** Pie de pagina */
+/** ############################## PIE DE PAGINA ################################### */
 /** flex-end me situa el footer al final de la pagina, width toma el 100% de la pagina*/
 #footer{
 	align-self: flex-end;

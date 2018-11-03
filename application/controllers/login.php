@@ -64,6 +64,5 @@ class Login extends CI_Controller
     <script>alert(" <?php 
         echo $_SESSION['rol'];
     
-
 ?>")</script> <?php } }
 ?>
