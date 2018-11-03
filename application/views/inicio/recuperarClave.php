@@ -5,37 +5,29 @@
 				</br>
 				<?php
 				echo form_open("login/",array('id'=>'formulario','method'=>'post'),'');
-					?>   
-				<div id="registro" class="alert alert-primary">
-					<label class="label">Si no esta registrado ingrese aqui <i class="fa fa-arrow-right"></i></label>
-					<a href="<?php echo base_url(); ?>usuario/registro">
-						<button class="btn btn-primary">Registrarse</button>
-					</a>
-				</div> <!-- Cierre del  id registro-->
+				?>   
 				<div id="formulario">
-					<h1 id="tituloLogin">Login</h1>
+					<h1 id="tituloLogin">Recuperar Contraseña</h1>
         			<div class="form-group">
-						<label class="label" for="nombreUsuario"><i class="fa fa-user"></i> Nombre de Usuario</label>
+						<label class="label" for="nombreUsuario">Nombre de Usuario</label>
 						<input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre Usuario" required>
 					</div>
 					<div class="form-group">
-						<label class="label" for="clave"><i class="fa fa-lock"></i> Contraseña</label>
+						<label class="label" for="clave">E-mail (Verificar su identidad)</label>
+    					<input type="email" class="form-control" id="email" name="email" placeholder="Correo@ejemplo..." required >
+					</div>
+					<div class="form-group">
+						<label class="label" for="clave">Contraseña</label>
     					<input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña" required >
 					</div>
 					<div class="form-group">
-						<a href="#">¿Olvido su contraseña?</a>
+						<label class="label" for="clave">Nueva Contraseña</label>
+    					<input type="password" class="form-control" id="clave3" name="clave3" placeholder="Nueva Contraseña" required >
 					</div>
-					<div class="form-group" id="boton">
-    					<button type="submit" class="btn btn-success">Ingresar</button>
+					<div class="form-group">
+						<label class="label" for="clave">Confirmar Contraseña</label>
+    					<input type="password" class="form-control" id="clave4" name="clave4" placeholder="Confirmar Contraseña" required >
 					</div>
-					<?php
-					if(isset($mensaje)){
-					echo $mensaje;
-					}
-					?>
-					<?php	
-					echo form_close();
-					?> 	
 				</div> <!-- Cierre de id formulario -->
 			</div> <!-- Cierre del container -->
 		</div><!-- Cierre del offset -->

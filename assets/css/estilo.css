@@ -6,14 +6,12 @@ body {
 	display:flex;
 	min-height:100vh;
 	flex-wrap: wrap;
-	
 }
 @media (min-width: 992px) {
   body {
     padding-top: 56px;
   }
 }
-
 /* Tamaño de la imagen del logo */
 #logo{
 	width: 160px; 
@@ -30,13 +28,16 @@ body {
 	font-family:sans-serif;
 	text-align:center;
 }
+/** Tiene un fonde de color gris claro */
 #desplegable{
 	background:#e0dede;
 }
+/** Tamaño de la letra en mediano, y negrita normal */
 #desplegable a{
 	font-weight: normal;
 	font-size: medium;
 }
+/** Tamaño de la letra en mediano, y negrita normal, fondo gris oscuro y color de la letra blanco */
 #desplegable a:hover{
 	font-weight: normal;
 	font-size: medium;
@@ -57,6 +58,13 @@ body {
 #tituloLogin{
 	text-align: center;
 	padding-bottom: 2%;
+}
+#filtro{
+	padding-right:3%;
+	padding-left:2%;
+}
+.area{
+	padding:2%;
 }
 #carousel{
 	width: 75%;
