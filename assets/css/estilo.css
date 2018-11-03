@@ -21,6 +21,7 @@ body {
 #menu{
 	background:#e0dede;
 	display: inline-block;
+	
 }
 /** Family tiene la letra, size el tamaño de la letra y texto centrado */
 #menu a{
@@ -46,7 +47,8 @@ body {
 }
 /** Crea un margen en la parte superior */
 #cuerpo{
-	margin-top: 70px;
+	
+	margin-top:120px;
 }
 /** A los titulos de la pagina les asigna un relleno de 2% arriba y abajo, y centra el texto */
 .titulo{
