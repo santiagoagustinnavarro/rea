@@ -1,6 +1,6 @@
 <?php include_once "application/controllers/login.php";
 $sesion=new Login();
-if ($_SESSION["iniciada"]) {
+if ($_SESSION["iniciada"] && $_SESSION["rol"]=="adminuser") {
     ?>
 <table class="table table-light " id="tabla">
 	<thead>
