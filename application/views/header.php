@@ -126,7 +126,7 @@ if (!$_SESSION["iniciada"]) {
 						</div>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>/login/cerrarSession" class="nav-link"
+						<a href="<?php echo base_url(); ?>login/cerrarSession" class="nav-link"
 						 alt="cerrar sesion">
 							<button class="btn btn-outline-danger">
 								<i class="fa fa-sign-out"></i> Cerrar Sesión
@@ -186,7 +186,7 @@ if (!$_SESSION["iniciada"]) {
 						</div>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>/login/cerrarSession" class="nav-link"
+						<a href="<?php echo base_url(); ?>login/cerrarSession" class="nav-link"
 						 alt="cerrar sesion">
 							<button class="btn btn-outline-danger">
 								<i class="fa fa-sign-out"></i> Cerrar Sesión
@@ -249,7 +249,7 @@ if (!$_SESSION["iniciada"]) {
 						</div>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>login" class="nav-link" alt="cerrar sesion">
+						<a href="<?php echo base_url(); ?>login/cerrarSession" class="nav-link" alt="cerrar sesion">
 							<button class="btn btn-outline-danger">
 								<i class="fa fa-sign-out"></i> Cerrar Sesión
 							</button>
