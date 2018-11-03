@@ -4,22 +4,28 @@
  * www.crudigniter.com
  */
 
+        
+
 class Usuario extends CI_Controller
 {
     public function __construct()
     {
+      
         parent::__construct();
-        $this->load->model('Usuario_model');
-    }
+       
+}
+
+   
 
     /*
      * Listar usuario
      */
     public function index()
     {
+        
         $usuario = $this->Usuario_model->get_all_usuario();
-        $this->load->view("header", ["title" => "Administrar usuarios", 'usuario' => $usuario]);
-        $this->load->view('usuario/index');
+        $this->load->view("header", ["title" => "Administrar usuarios"]);
+        $this->load->view('usuario/index', ['usuario' => $usuario]);
         $this->load->view("footer");
     }
 
@@ -30,8 +36,8 @@ class Usuario extends CI_Controller
     {
         if (isset($_POST) && count($_POST) > 0) {
             $params = array(
-				'clave' => hash('sha224', $this->input->post('clave')),
-				'clave2' => hash('sha224', $this->input->post('clave2')),
+                'clave' => hash('sha224', $this->input->post('clave')),
+                'clave2' => hash('sha224', $this->input->post('clave2')),
                 'dni' => $this->input->post('dni'),
                 'apellido' => $this->input->post('apellido'),
                 'nombre' => $this->input->post('nombre'),
@@ -75,25 +81,30 @@ class Usuario extends CI_Controller
     {
         // check if the usuario exists before trying to edit it
         $data['usuario'] = $this->Usuario_model->get_usuario($nombreUsuario);
-
         if (isset($data['usuario']['nombreUsuario'])) {
             if (isset($_POST) && count($_POST) > 0) {
-                $params = array(
-					'clave' => $this->input->post('clave'),
-					'clave2' => $this->input->post('clave2'),
-                    'dni' => $this->input->post('dni'),
-                    'apellido' => $this->input->post('apellido'),
-                    'nombre' => $this->input->post('nombre'),
-                    'domicilio' => $this->input->post('domicilio'),
-                    'email' => $this->input->post('email'),
-                );
-
-                $this->Usuario_model->update_usuario($nombreUsuario, $params);
-                redirect('usuario/index');
+                $estadoActual=$this->input->post('estadoActual');
+                $rolActual=$this->input->post('rolActual');
+                $rolNuevo=$this->input->post('nuevoRol');
+                $estadoNuevo = $this->input->post('nuevoEstado');
+                $actualizarEstado=$this->actualizarEstado($estadoActual, $estadoNuevo, $nombreUsuario);
+                $actualizarRol=$this->actualizarRol($rolActual, $rolNuevo, $nombreUsuario);
+                if (!$actualizarEstado) {
+                    $this->load->view("header", ["title" => "Editar Usuario"]);
+                    $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'Intente actualizar el estado mas tarde']);
+                    $this->load->view("footer");
+                } elseif (!$actualizarRol) {
+                    $this->load->view("header", ["title" => "Editar Usuario"]);
+                    $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'Intente actualizar el rol en 24 hs o elija un rol distinto']);
+                    $this->load->view("footer");
+                } else {
+                    $this->load->view("header", ["title" => "Editar Usuario"]);
+                    $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'Datos actualizados']);
+                    $this->load->view("footer");
+                }
             } else {
-                
                 $this->load->view("header", ["title" => "Editar Usuario"]);
-                $this->load->view('usuario/edit',['usuario'=>$data['usuario']]);
+                $this->load->view('usuario/edit', ['usuario'=>$data['usuario']]);
                 $this->load->view("footer");
             }
         } else {
@@ -101,13 +112,61 @@ class Usuario extends CI_Controller
         }
     }
 
+    private function actualizarEstado($antiguoEst, $nuevoEst, $nombreUsuario)
+    {
+        $fechaActual=getdate()["year"]."-".getdate()["mon"]."-".getdate()["mday"];
+        $horaActual=getdate()["hours"].":".getdate()["minutes"].":".getdate()["seconds"];
+        $actualizacion=true;
+        if ($antiguoEst!=$nuevoEst) {
+            $params = array(
+                    'nombreUsuario'=>$nombreUsuario,
+                    'nombreEstadoUsuario'=>$nuevoEst,
+                    'fechaInicio'=>$fechaActual,
+                    'hora'=>$horaActual,
+                );
+            $setAntiguoEst=$this->Tenerusuario_model->update_tenerusuario(array('fechaFin'=>$fechaActual), array('nombreEstadoUsuario'=>$antiguoEst,'nombreUsuario'=>$nombreUsuario,'fechaFin'=>null));
+            if ($setAntiguoEst) {
+                $insertEstado=$this->Tenerusuario_model->add_tenerusuario($params);
+                if (!$insertEstado) {
+                    $this->Tenerusuario_model->update_tenerusuario(array('fechaFin'=>null), array('nombreEstadoUsuario'=>$antiguoEst,'','nombreUsuario'=>$nombreUsuario,'fechaFin'=>$fechaActual));
+                    $actualizacion=false;
+                }
+            } else {
+                $actualizacion=false;
+            }
+        }
+        return $actualizacion;
+    }
+    private function actualizarRol($rolActual, $rolNuevo, $nombreUsuario)
+    {
+        $actualizacion=true;
+        if ($rolActual!=$rolNuevo) {
+            $fechaActual=getdate()["year"]."-".getdate()["mon"]."-".getdate()["mday"];
+            $params = array(
+                    'nombreUsuario'=>$nombreUsuario,
+                    'nombreRol'=>$rolNuevo,
+                    'fechaInicio'=>$fechaActual,
+                );
+            $actualiza= $this->Tienerol_model->update_tienerol(array('fechaFin'=>$fechaActual), array('nombreRol'=>$rolActual,'nombreUsuario'=>$nombreUsuario,'fechaFin'=>null));
+
+            if ($actualiza) {
+                $insertRol=$this->Tienerol_model->add_tienerol($params);
+                if (!$insertRol) {
+                    $this->Tienerol_model->update_tienerol(array('fechaFin'=>null), array('nombreRol'=>$rolActual,'nombreUsuario'=>$nombreUsuario,'fechaFin'=>$fechaActual));
+                    $actualizacion=false;
+                }
+            } else {
+                $actualizacion=false;
+            }
+        }
+        return $actualizacion;
+    }
     /*
      * Eliminar un usuario
      */
     public function remove($nombreUsuario)
     {
         $usuario = $this->Usuario_model->get_usuario($nombreUsuario);
-
         // check if the usuario exists before trying to delete it
         if (isset($usuario['nombreUsuario'])) {
             if ($this->Usuario_model->delete_usuario($usuario['nombreUsuario'])) {

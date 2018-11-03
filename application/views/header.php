@@ -29,8 +29,10 @@ if (isset($styles)) { //Invocacion de estilos propios
 <body>
 	<!-- Barra de Menú -->
 	<?php
-
-if (!isset($_SESSION)) {
+	
+include_once "application/controllers/login.php";
+$sesion=new Login();
+if (!$_SESSION["iniciada"]) {
     ?>
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
 		<div class="container-fluid">
@@ -115,7 +117,7 @@ if (!isset($_SESSION)) {
 							<a class="dropdown-item" href="#">
 								<i class="fa fa-pencil"></i> Editar Perfil
 							</a>
-							<a class="dropdown-item " href="#">
+							<a class="dropdown-item " href=" <?php echo base_url()."usuario" ?>">
 								<i class="fa fa-users"></i> Administrar Usuarios
 							</a>
 							<a class="dropdown-item" href="#">
