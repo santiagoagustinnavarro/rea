@@ -10,10 +10,8 @@ class Usuario extends CI_Controller
 {
     public function __construct()
     {
-      
         parent::__construct();
-       
-}
+    }
 
    
 
@@ -22,7 +20,6 @@ class Usuario extends CI_Controller
      */
     public function index()
     {
-        
         $usuario = $this->Usuario_model->get_all_usuario();
         $this->load->view("header", ["title" => "Administrar usuarios"]);
         $this->load->view('usuario/index', ['usuario' => $usuario]);
@@ -37,7 +34,7 @@ class Usuario extends CI_Controller
         if (isset($_POST) && count($_POST) > 0) {
             $params = array(
                 'clave' => hash('sha224', $this->input->post('clave')),
-                'clave2' => hash('sha224', $this->input->post('clave2')),
+                //'clave2' => hash('sha224', $this->input->post('clave2')),
                 'dni' => $this->input->post('dni'),
                 'apellido' => $this->input->post('apellido'),
                 'nombre' => $this->input->post('nombre'),
@@ -51,15 +48,15 @@ class Usuario extends CI_Controller
                 $fecha = (getdate()["year"]) . "-" . (getdate()["mon"]) . "-" . (getdate()["mday"]);
                 $hora = (getdate()["hours"]) . ":" . (getdate()["minutes"]) . ":" . (getdate()["seconds"]);
                 $nombreEstadoUsuario = "pendiente";
+                $nombreRol="Profesor";
                 $nombreUsuario = $params["nombreUsuario"];
-                $datos = array("fechaInicio"=>$fecha,"hora"=>$hora,"nombreUsuario"=>$nombreUsuario,"nombreEstadoUsuario"=>$nombreEstadoUsuario);
-                $insercion = $this->Tenerusuario_model->add_tenerusuario($datos);
-                // $estado=new Tenerusuario();
-                if ($insercion) {
-                    $this->load->view("header", ["title" => "Registro"]);
-                    $this->load->view('inicio/registrarse', array("mensaje" => '<div class="alert alert-success text-center"><h4>'."Registrado con exito".'</h4></div>'));
-                    $this->load->view("footer");
-                }
+                $datosEstado = array("fechaInicio"=>$fecha,"hora"=>$hora,"nombreUsuario"=>$nombreUsuario,"nombreEstadoUsuario"=>$nombreEstadoUsuario);
+                $datosRol=array("fechaInicio"=>$fecha,"nombreUsuario"=>$nombreUsuario,"nombreRol"=>$nombreRol);
+                $insercionEstado = $this->Tenerusuario_model->add_tenerusuario($datosEstado);
+                $insercionProfesor = $this->Tienerol_model->add_tienerol($datosRol);
+                $this->load->view("header", ["title" => "Registro"]);
+                $this->load->view('inicio/registrarse', array("mensaje" => '<div class="alert alert-success text-center"><h4>'."Registrado con exito".'</h4></div>'));
+                $this->load->view("footer");
             } else {
                 $this->load->view("header", ["title" => "Registro"]);
                 $this->load->view('inicio/registrarse', array("mensaje" => '<div class="alert alert-info text-center"><h4>'."El usuario ya existe".'</h4></div>'));

@@ -11,6 +11,9 @@
 						<button class="btn btn-primary">Registrarse</button>
 					</a>
 				</div> <!-- Cierre del  id registro-->
+				<?php 
+				echo form_open("login/", array('id'=>'formulario','method'=>'post'), '');?> 
+
 				<div id="formulario">
 					<h1 id="tituloLogin">Login</h1>
         			<div class="form-group">

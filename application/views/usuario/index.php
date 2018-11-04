@@ -1,17 +1,17 @@
 <?php include_once "application/controllers/login.php";
 $sesion=new Login();
-if ($_SESSION["iniciada"]) {
+if ($_SESSION["iniciada"] && $_SESSION["rol"]=="adminuser") {
     ?>
-<table class="table table-light " id="tabla">
+<table class="table table-light table-responsive-sm" id="tabla">
 	<thead>
 		<tr id="table">
-			<th>Nombre Usuario</th>
-			<th>Estado</th>
-			<th>Apellido</th>
-			<th>Nombre</th>
-			<th>Domicilio</th>
-			<th>E-mail</th>
-			<th>Actualizar</th>
+			<th scope="col">Nombre Usuario</th>
+			<th scope="col">Estado</th>
+			<th scope="col">Apellido</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Domicilio</th>
+			<th scope="col">E-mail</th>
+			<th scope="col">Actualizar</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -46,7 +46,7 @@ if ($_SESSION["iniciada"]) {
 			<td>
 				<a href="<?php echo site_url('usuario/edit/' . $u['nombreUsuario']); ?>"
 				 class="btn btn-info btn-xs">Editar</a>
-				<?php echo form_close(); ?>
+				
 			</td>
 		</tr>
 		<?php
