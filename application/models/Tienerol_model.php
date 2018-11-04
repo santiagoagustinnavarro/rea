@@ -39,17 +39,19 @@ class Tienerol_model extends CI_Model
      */
     public function add_tienerol($params)
     {
-        $this->db->insert('tieneRol', $params);
-        return $this->db->insert_id();
+        return $this->db->insert('tieneRol', $params);
+       // return $this->db->insert_id();
     }
     
     /*
      * function to update tienerol
      */
-    public function update_tienerol($nombreUsuario, $params)
-    {
-        $this->db->where('nombreUsuario', $nombreUsuario);
+    public function update_tienerol($params=array(), $where=array())
+    {  foreach ($where as $key=>$value) {
+      $this->db->where($key, $value);
+  }
         return $this->db->update('tieneRol', $params);
+
     }
     
     /*

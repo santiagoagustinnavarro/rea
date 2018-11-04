@@ -1,4 +1,13 @@
-<?php echo form_open('usuario/edit/'.$usuario['nombreUsuario'], array("class"=>"form-horizontal")); ?>
+<?php 
+include_once "application/controllers/login.php";
+$sesion=new Login();
+if ($_SESSION["iniciada"]) {
+ $estActual=$this->Tenerusuario_model->get_tenerusuario($usuario["nombreUsuario"]);
+ $rolActual=$this->Tienerol_model->get_tienerol($usuario["nombreUsuario"]);
+ if(isset($mensaje)){
+	 echo $mensaje;
+ }
+echo form_open('usuario/edit/'.$usuario['nombreUsuario'], array("class"=>"form-horizontal"),array("rolActual"=>$rolActual["nombreRol"],"estadoActual"=>$estActual["nombreEstadoUsuario"])); ?>
 <div class="container py-5">
 	<div class="col-md-6 mx-auto">
 		<div class="container">
@@ -6,27 +15,21 @@
 				<label for="nombreUsuario">nombreUsuario</label>
 				<input disabled type="text" name="nombreUsuario" class="form-control" id="nombreUsuario" value="
 					<?php echo($this->input->post('nombreUsuario') ? $this->input->post('nombreUsuario') : $usuario['nombreUsuario']); ?>">
-
 			</div>
-
 			<div class="form-group">
 				<label for="email" class="col-md-4 control-label">Email</label>
 				<input disabled type="text" name="email" class="form-control" id="email" value="
 					<?php echo($this->input->post('email') ? $this->input->post('email') : $usuario['email']); ?>">
-
 			</div>
 			<div class="form-group">
-				<label for="estadoUsuario" class="col-md-4 control-label">Estado</label>
-				<select name="estadoUsuario" class="form-control" id="estadoUsuario">
+				<label for="nuevoEstado" class="col-md-4 control-label">Estado</label>
+				<select name="nuevoEstado" class="form-control" id="nuevoEstado">
 					<?php
                  $estados=$this->Estadousuario_model->get_all_estadousuario();
-                 $estActual=$this->Tenerusuario_model->get_tenerusuario($usuario["nombreUsuario"]);
-                 
                  foreach ($estados as $estado) {
                      ?>
-					<option value=" <?php
-                         echo $estado["nombre"]; ?>
-						"
+					<option value="<?php
+                         echo $estado["nombre"]; ?>"
 						<?php if ($estActual["nombreEstadoUsuario"]==$estado["nombre"]) {
                              echo "selected";
                          } ?>>
@@ -40,22 +43,19 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="roles" class="col-md-4 control-label">Roles</label>
-				<select name="roles" class="form-control" id="roles">
+				<label for="nuevoRol" class="col-md-4 control-label">Roles</label>
+				<select name="nuevoRol" class="form-control" id="nuevoRol">
 					<?php
                  $roles=$this->Rol_model->get_all_rol();
-                 $rolActual=$this->Tienerol_model->get_tienerol($usuario["nombreUsuario"]);
-                 
                  foreach ($roles as $rol) {
                      ?>
-					<option value=" <?php
-                         echo $rol["nombre"]; ?>
-						"
+					<option value="<?php
+                         echo $rol["nombre"];?>"
 						<?php if ($rolActual["nombreRol"]==$rol["nombre"]) {
                              echo "selected";
                          } ?>>
 						<?php
-                         echo $rol["nombre"]; ?>
+                         echo $rol["nombre"];?>
 					</option>
 					<?php
                  }
@@ -72,4 +72,6 @@
 		</div>
 	</div>
 </div>
-<?php echo form_close();
+<?php echo form_close();}else{
+	echo "Acceso prohibido";
+} ?>
