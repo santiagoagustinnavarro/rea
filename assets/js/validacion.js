@@ -1,27 +1,99 @@
-function validarLogin() {
-var nombreUser, clave, res;
-nombreUser=$("nombreUser").val;
-clave=$("clave").val;
-res=false;
-if ((nombreUser=="")||(clave=="")){
-	res=false;
-}else{
-	res=true;
-}
-}
-
-function validarRegistro(){
-	var nombre,apellido,dni,domicilio,nombUser,claveUser;
-	nombre=$("nombre").val;
-	apellido=$("apellido").val;
-	dni=$("dni").val;
-	domicilio=$("domicilio").val;
-	nombUser=$("user").val;
-	claveUser=$("clave").val;
-	if((nombre=="")|| (apellido=="")|| (nombreUser=="")|| (claveUser=="")){
-		res=false;
-	}else{
-		res=true;
+/** Valida los datos del registro que completo el usuario */
+function validarRegistro() {
+    var nombre, apellido, usuario, clave, email, exp, clave2, res;
+    nombre = $("#nombre").val();
+	apellido = $("#apellido").val();
+	email = $("#email").val();
+	exp = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+    usuario = $("#nombreUsuario").val();
+    clave = $("#clave").val();
+    clave2 = $("#clave2").val();
+	res = true;
+	/** Validacion de las Claves */
+    if (clave2 !== clave) {
+        $("#clave").css("background-color", "rgba(255,0,0,0.5)");
+        $("#clave2").css("background-color", "rgba(255,0,0,0.5)");
+        alert("las claves no coinciden");
+        res = false;
+    } else {
+        if (clave === "") {
+            $("#clave2").css("background-color", "rgba(255,0,0,0.5)");
+            $("#clave").css("background-color", "rgba(255,0,0,0.5)");
+            res = false;
+        } else {
+            $("#clave2").css("background-color", "inherit");
+            $("#clave").css("background-color", "inherit");
+        }
 	}
+	/** Validacion del nombre */
+    if (nombre === "") {
+        $("#nombre").css("background-color", "rgba(255,0,0,0.5)");
+        res = false;
+    } else {
+        if (!isNaN(nombre)) {
+            $("#nombre").css("background-color", "rgba(255,0,0,0.5)");
+            res = false;
+        } else {
+            $("#nombre").css("background-color", "inherit");
+            res = res && true;
+        }
+	}
+	/** Validacion del apellido */
+    if (apellido === "") {
+        $("#apellido").css("background-color", "rgba(255,0,0,0.5)");
+        res = false;
+    } else {
+        if (!isNaN(apellido)) {
+            $("#apellido").css("background-color", "rgba(255,0,0,0.5)");
+            res = false;
+        } else {
+            $("#apellido").css("background-color", "inherit");
+            res = true && res;
+        }
+	}
+	/** Falta validar Correo Electronico */
+	if(email === ""){
+		$("#email").css("background-color", "rgba(255,0,0,0.5)");
+        res = false;
+	} else if (exp.test(email) == false) {
+		$("#email").css("background-color", "rgba(255,0,0,0.5)");
+		res=false;
+	} else{
+		$("#email").css("background-color", "inherit");
+		res = true && res;
+	}
+	/** Validacion del nombre de usuario */
+    if (usuario === "") {
+        $("#nombreUsuario").css("background-color", "rgba(255,0,0,0.5)");
+        res = false;
+    } else {
+        $("#nombreUsuario").css("background-color", "inherit");
+        res = true && res;
+    }
+    if (res) {
+        $("#clave").val($.sha224($("#clave").val()));
+        $("#clave2").val($.sha224($("#clave2").val()));
+    }
+    return res;
 }
-
+/** Verifica que el usuario y la clave sean los correctos */
+function validarIngreso() {
+    var usuario, clave, res;
+    usuario = $("#nombreUsuario").val();
+    clave = $("#clave").val();
+    res = true;
+    if (usuario == "") {
+        $("#nombreUsuario").css({"background-color": "rgba(245,0,0,0.4)"});
+        res = false;
+    } else {
+        $("#nombreUsuario").css({"background-color": "inherit"});
+    }
+    if (clave == "") {
+        $("#clave").css({"background-color": "rgba(245,0,0,0.4)"});
+        res = false;
+    } else {
+        $("#clave").val($.sha224($("#clave").val()));
+        $("#clave").css({"background-color": "inherit"});
+    }
+    return res;
+}

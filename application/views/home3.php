@@ -2,6 +2,7 @@
 	<div class="row"> <!-- clase Row -->
 		<div id="carousel" class="carousel slide" data-ride="carousel">
 			</br>
+			<!-- El carrusel de imagenes -->
   			<ol class="carousel-indicators">
     			<li data-target="#carousel" data-slide-to="0" class="active"></li>
     			<li data-target="#carousel" data-slide-to="1"></li>
@@ -29,15 +30,17 @@
 				<div class="carousel-item">
     	  			<img class="d-block w-100" src="<?php echo base_url(); ?>assets/imagenes/6.png" alt="Third slide">
     			</div> <!-- cierra la imagen 6 de carousel -->
-  			</div> <!-- cierra las imagenes de carousel -->
+			  </div> <!-- cierra las imagenes de carousel -->
+			 	<!-- anterior -->
 	  		<a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
     			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
     			<span class="sr-only">Anterior</span>
-  			</a> <!-- anterior -->
+			</a> 
+			  	<!-- siguiente -->
   			<a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
     			<span class="carousel-control-next-icon" aria-hidden="true"></span>
     			<span class="sr-only">Siguiente</span>
-  			</a> <!-- siguiente -->
+  			</a> 
 		</div> <!-- cierra el id carousel -->
 	</div> <!-- cierra el row -->
 	<div class="container">

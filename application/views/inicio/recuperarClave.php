@@ -14,19 +14,19 @@
 					</div>
 					<div class="form-group">
 						<label class="label" for="clave">E-mail (Verificar su identidad)</label>
-    					<input type="email" class="form-control" id="email" name="email" placeholder="Correo@ejemplo..." required >
+    					<input type="email" class="form-control" id="email" name="email" placeholder="Correo@ejemplo..." required>
 					</div>
 					<div class="form-group">
 						<label class="label" for="clave">Contraseña</label>
-    					<input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña" required >
+    					<input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña" required>
 					</div>
 					<div class="form-group">
 						<label class="label" for="clave">Nueva Contraseña</label>
-    					<input type="password" class="form-control" id="clave3" name="clave3" placeholder="Nueva Contraseña" required >
+    					<input type="password" class="form-control" id="clave3" name="clave3" placeholder="Nueva Contraseña" required>
 					</div>
 					<div class="form-group">
 						<label class="label" for="clave">Confirmar Contraseña</label>
-    					<input type="password" class="form-control" id="clave4" name="clave4" placeholder="Confirmar Contraseña" required >
+    					<input type="password" class="form-control" id="clave4" name="clave4" placeholder="Confirmar Contraseña" required>
 					</div>
 				</div> <!-- Cierre de id formulario -->
 			</div> <!-- Cierre del container -->
