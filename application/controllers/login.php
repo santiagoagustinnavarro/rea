@@ -49,7 +49,7 @@ class Login extends CI_Controller
     {
         session_start();
         session_destroy();
-        redirect('login');
+        redirect('inicio');
     }
 
     private function cargarSession()

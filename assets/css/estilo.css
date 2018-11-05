@@ -59,6 +59,10 @@ body {
 	text-align: center;
 	padding-bottom: 2%;
 }
+/** El id de registro centra el boton de login para enviarlo al formulario*/
+#registro{
+	text-align: center;
+}
 /** ######################## CONTENIDO DE LA PAGINA ############################# */
 /** un relleno de 2% entre cada uno de los recursos */
 .area{
@@ -107,7 +111,7 @@ body {
 }
 /**############# CAMBIAR ESTADO #############*/
 /** Centra el texto con el id nombreUsuario, nuevoEstado, nuevoRol */
-#nombreUsuario {
+.texto#nombreUsuario {
 	padding-left: 15%;
 }
 #nuevoEstado{
