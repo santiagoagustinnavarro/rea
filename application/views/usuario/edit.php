@@ -2,7 +2,7 @@
 include_once "application/controllers/login.php";
 $sesion=new Login();
 if ($_SESSION["iniciada"]) {
- $estActual=$this->Tenerusuario_model->get_tenerusuario($usuario["nombreUsuario"]);
+ $estActual=$this->TenerEstadoUsuario_model->get_tenerEstadoUsuario($usuario["nombreUsuario"]);
  $rolActual=$this->Tienerol_model->get_tienerol($usuario["nombreUsuario"]);
  if(isset($mensaje)){
 	 echo $mensaje;

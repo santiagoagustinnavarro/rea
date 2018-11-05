@@ -52,7 +52,7 @@ class Usuario extends CI_Controller
                 $nombreUsuario = $params["nombreUsuario"];
                 $datosEstado = array("fechaInicio"=>$fecha,"hora"=>$hora,"nombreUsuario"=>$nombreUsuario,"nombreEstadoUsuario"=>$nombreEstadoUsuario);
                 $datosRol=array("fechaInicio"=>$fecha,"nombreUsuario"=>$nombreUsuario,"nombreRol"=>$nombreRol);
-                $insercionEstado = $this->Tenerusuario_model->add_tenerusuario($datosEstado);
+                $insercionEstado = $this->tenerEstadoUsuario_model->add_tenerEstadoUsuario($datosEstado);
                 $insercionProfesor = $this->Tienerol_model->add_tienerol($datosRol);
                 $this->load->view("header", ["title" => "Registro"]);
                 $this->load->view('inicio/registrarse', array("mensaje" => '<div class="alert alert-success text-center"><h4>'."Registrado con exito".'</h4></div>'));
@@ -84,15 +84,13 @@ class Usuario extends CI_Controller
                 $rolActual=$this->input->post('rolActual');
                 $rolNuevo=$this->input->post('nuevoRol');
                 $estadoNuevo = $this->input->post('nuevoEstado');
-                $actualizarEstado=$this->actualizarEstado($estadoActual, $estadoNuevo, $nombreUsuario);
-                $actualizarRol=$this->actualizarRol($rolActual, $rolNuevo, $nombreUsuario);
-                if (!$actualizarEstado) {
+                $datosEstado=['tabla'=>'EstadoUsuario','antiguo'=>$estadoActual,'nuevo'=>$estadoNuevo,'nombreUsuario'=>$nombreUsuario];
+                $datosRol=['tabla'=>'Rol','antiguo'=>$rolActual,'nuevo'=>$rolNuevo,'nombreUsuario'=>$nombreUsuario];
+                $actualizarEstado=$this->actualizar($datosEstado);
+                $actualizarRol=$this->actualizar($datosRol);
+                if (!$actualizarEstado || !$actualizarRol) {
                     $this->load->view("header", ["title" => "Editar Usuario"]);
-                    $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'Intente actualizar el estado mas tarde']);
-                    $this->load->view("footer");
-                } elseif (!$actualizarRol) {
-                    $this->load->view("header", ["title" => "Editar Usuario"]);
-                    $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'Intente actualizar el rol en 24 hs o elija un rol distinto']);
+                    $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'Intente actualizar los datos en unos instantes']);
                     $this->load->view("footer");
                 } else {
                     $this->load->view("header", ["title" => "Editar Usuario"]);
@@ -108,56 +106,53 @@ class Usuario extends CI_Controller
             show_error('The usuario you are trying to edit does not exist.');
         }
     }
-
-    private function actualizarEstado($antiguoEst, $nuevoEst, $nombreUsuario)
+    /**
+     * Funcion auxiliar encargada de modificar el estado o el rol segun corresponda
+     * donde $datos corresponde a un array asociativo donde entraran las claves tabla,nombreUsuario,antiguo,nuevo 
+     */
+    private function actualizar($datos)
     {
         $fechaActual=getdate()["year"]."-".getdate()["mon"]."-".getdate()["mday"];
         $horaActual=getdate()["hours"].":".getdate()["minutes"].":".getdate()["seconds"];
         $actualizacion=true;
-        if ($antiguoEst!=$nuevoEst) {
+        if ($datos["antiguo"]!=$datos["nuevo"]) {
             $params = array(
-                    'nombreUsuario'=>$nombreUsuario,
-                    'nombreEstadoUsuario'=>$nuevoEst,
+                    'nombreUsuario'=>$datos["nombreUsuario"],
+                    'nombre'.$datos["tabla"]=>$datos["nuevo"],
                     'fechaInicio'=>$fechaActual,
                     'hora'=>$horaActual,
                 );
-            $setAntiguoEst=$this->Tenerusuario_model->update_tenerusuario(array('fechaFin'=>$fechaActual), array('nombreEstadoUsuario'=>$antiguoEst,'nombreUsuario'=>$nombreUsuario,'fechaFin'=>null));
-            if ($setAntiguoEst) {
-                $insertEstado=$this->Tenerusuario_model->add_tenerusuario($params);
-                if (!$insertEstado) {
-                    $this->Tenerusuario_model->update_tenerusuario(array('fechaFin'=>null), array('nombreEstadoUsuario'=>$antiguoEst,'','nombreUsuario'=>$nombreUsuario,'fechaFin'=>$fechaActual));
-                    $actualizacion=false;
-                }
-            } else {
-                $actualizacion=false;
-            }
-        }
-        return $actualizacion;
-    }
-    private function actualizarRol($rolActual, $rolNuevo, $nombreUsuario)
-    {
-        $actualizacion=true;
-        if ($rolActual!=$rolNuevo) {
-            $fechaActual=getdate()["year"]."-".getdate()["mon"]."-".getdate()["mday"];
-            $params = array(
-                    'nombreUsuario'=>$nombreUsuario,
-                    'nombreRol'=>$rolNuevo,
-                    'fechaInicio'=>$fechaActual,
-                );
-            $actualiza= $this->Tienerol_model->update_tienerol(array('fechaFin'=>$fechaActual), array('nombreRol'=>$rolActual,'nombreUsuario'=>$nombreUsuario,'fechaFin'=>null));
+            switch ($datos["tabla"]) {
+                    case "EstadoUsuario":
+                    $setAntiguoEst=$this->TenerEstadoUsuario_model->update_tenerEstadoUsuario(array('fechaFin'=>$fechaActual), array('nombreEstadoUsuario'=>$datos["antiguo"],'nombreUsuario'=>$datos["nombreUsuario"],'fechaFin'=>null));
+                    if ($setAntiguoEst) {
+                        $insertEstado=$this->TenerEstadoUsuario_model->add_tenerEstadoUsuario($params);
+                        if (!$insertEstado) {//Si por algun motivo fallo la insercion vuelve a null la fecha fin del ultimo estado
+                            $this->TenerEstadoUsuario_model->update_tenerEstadoUsuario(array('fechaFin'=>null), array('nombreEstadoUsuario'=>$datos["antiguo"],'nombreUsuario'=>$nombreUsuario,'fechaFin'=>$fechaActual));
+                            $actualizacion=false;
+                        }
+                    } else {
+                        $actualizacion=false;
+                    }
+                    break;
+                    case "Rol":
+                     $setAntiguoRol=$this->Tienerol_model->update_tienerol(array('fechaFin'=>$fechaActual), array('nombreRol'=>$datos["antiguo"],'nombreUsuario'=>$datos["nombreUsuario"],'fechaFin'=>null));
+                    if ($setAntiguoRol) {
+                        $insertRol=$this->Tienerol_model->add_tienerol($params);
+                        if (!$insertRol) {//Si por algun motivo fallo la insercion vuelve a null la fecha fin del ultimo rol
+                            $this->Tienerol_model->update_tienerol(array('fechaFin'=>null), array('nombreRol'=>$datos["antiguo"],'nombreUsuario'=>$datos["nombreUsuario"],'fechaFin'=>$fechaActual));
+                            $actualizacion=false;
+                        }
+                    } else {
+                        $actualizacion=false;
+                    }
+                    break;
 
-            if ($actualiza) {
-                $insertRol=$this->Tienerol_model->add_tienerol($params);
-                if (!$insertRol) {
-                    $this->Tienerol_model->update_tienerol(array('fechaFin'=>null), array('nombreRol'=>$rolActual,'nombreUsuario'=>$nombreUsuario,'fechaFin'=>$fechaActual));
-                    $actualizacion=false;
                 }
-            } else {
-                $actualizacion=false;
-            }
         }
         return $actualizacion;
     }
+    
     /*
      * Eliminar un usuario
      */
