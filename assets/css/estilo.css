@@ -80,6 +80,15 @@ body {
 #formulario{
 	text-align: center;
 }
+/**################################ CONTACTO ###################################*/
+/** El formulario con el id de contacto se centra */
+#contacto{
+	text-align: center;
+}
+#transparencia {
+	background:rgba(189, 189, 189, 0.7);
+	padding: 3%;
+}
 /** A las clases de tipo label les aplica negrita y texto grande */
 .label{
 	font-weight: bold;
