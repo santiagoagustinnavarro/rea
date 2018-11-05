@@ -25,15 +25,15 @@
 				</div>
 				<div class="form-group">
 					<label class="label" for="nombreUsuario">Nombre de Usuario (*)</label>
-  	  	  			<input type="text" class="form-control" id="nombreUsuario" placeholder="Nombre Usuario" name="nombreUsuario" minlength="6" maxlength="20" required >
+  	  	  			<input type="text" class="form-control" id="nombreUsuario" placeholder="Nombre Usuario" name="nombreUsuario" minlength="6" maxlength="15" required >
   	 	  		</div>
   		  		<div class="form-group">
 					<label class="label" for="clave">Contraseña (*)</label>
-      				<input type="password" class="form-control" id="clave" placeholder="Ingrese contraseña" name="clave" minlength="8" maxlength="20" required>
+      				<input type="password" class="form-control" id="clave" placeholder="Ingrese contraseña" name="clave" minlength="8" maxlength="15" required>
 				</div>
 				<div class="form-group">
 					<label class="label" for="clave">Confirmar Contraseña (*)</label>
-      				<input type="password" class="form-control" id="clave2" placeholder="Reingrese contraseña" name="clave2" minlength="8" maxlength="20" required>
+      				<input type="password" class="form-control" id="clave2" placeholder="Reingrese contraseña" name="clave2" minlength="8" maxlength="15" required>
 				</div>
 				<div class="form-group" id="boton">
 					<button type="submit" class="btn btn-success">Enviar</button>

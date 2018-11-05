@@ -1,6 +1,5 @@
 	<!-- Container fluid -->
 <div class="container-fluid">
-	</br>
 	<h1 class="titulo">Contenido</h1>
 	<div class="row">
   		<!-- Aca comienza las busquedas -->

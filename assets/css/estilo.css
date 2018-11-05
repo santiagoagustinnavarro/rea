@@ -2,7 +2,7 @@
 /* body separa la barra de inicio del contenido y el color de fondo */
 body {
 	background-image: url("../imagenes/computer.jpg");
-	background-size:110%;
+	background-size:125%;
 	display:flex;
 	min-height:100vh;
 	flex-wrap: wrap;
@@ -48,8 +48,7 @@ body {
 }
 /** Crea un margen en la parte superior */
 #cuerpo{
-	
-	margin-top:120px;
+	margin-top:70px;
 }
 /** A la clase titulo de cada pagina le centra el texto */
 .titulo{
@@ -95,8 +94,27 @@ body {
 .form-group input{
 	text-align: center;
 }
+/** A los id de link se le aplica la letra negra */
 #link a{
 	color: black;
+}
+/** A la clase texto se le aplica centrado, negrita y la letra grande*/
+.texto{
+	text-align: center;
+	font-weight: bold;
+	font-size: large;
+	padding-bottom:3%;
+}
+/**############# CAMBIAR ESTADO #############*/
+/** Centra el texto con el id nombreUsuario, nuevoEstado, nuevoRol */
+#nombreUsuario{
+	padding-left: 15%;
+}
+#nuevoEstado{
+	text-align: center;
+}
+#nuevoRol{
+	text-align: center;
 }
 /** Centra los textos de los id de tipo tabla */
 #tabla{

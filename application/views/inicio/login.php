@@ -13,16 +13,15 @@
 				</div> <!-- Cierre del  id registro-->
 				<?php 
 				echo form_open("login/", array('id'=>'formulario','method'=>'post'), '');?> 
-
 				<div id="formulario">
 					<h1 id="tituloLogin">Login</h1>
         			<div class="form-group">
 						<label class="label" for="nombreUsuario"><i class="fa fa-user"></i> Nombre de Usuario</label>
-						<input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre Usuario" minlength="8" maxlength="20" required>
+						<input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre Usuario" minlength="6" maxlength="15" required>
 					</div>
 					<div class="form-group">
 						<label class="label" for="clave"><i class="fa fa-lock"></i> Contraseña</label>
-    					<input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña" minlength="8" maxlength="20" required>
+    					<input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña" minlength="8" maxlength="15" required>
 					</div>
 					<div class="form-group" id="link">
 						<a href="#">¿Olvido su contraseña?</a>

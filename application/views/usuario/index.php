@@ -2,15 +2,15 @@
 $sesion=new Login();
 if ($_SESSION["iniciada"] && $_SESSION["rol"]=="adminuser") {
     ?>
-<table class="table table-light table-responsive-sm" id="tabla">
+<table class="table table-light table-responsive-md" id="tabla">
 	<thead>
-		<tr id="table">
+		<tr><th class="titulo" colspan="6"><h3>Lista de Usuarios</h3></th></tr>
+		<tr>
 			<th scope="col">Nombre Usuario</th>
-			<th scope="col">Estado</th>
-			<th scope="col">Apellido</th>
 			<th scope="col">Nombre</th>
-			<th scope="col">Domicilio</th>
+			<th scope="col">Apellido</th>
 			<th scope="col">E-mail</th>
+			<th scope="col">Estado</th>
 			<th scope="col">Actualizar</th>
 		</tr>
 	</thead>
@@ -22,31 +22,25 @@ if ($_SESSION["iniciada"] && $_SESSION["rol"]=="adminuser") {
             ?>
 		<tr>
 			<td>
-				<?php
-                
-                echo $u['nombreUsuario']; ?>
-			</td>
-			<td>
-				<?php $estado=$this->Tenerusuario_model->get_tenerusuario($u['nombreUsuario']);
-            echo $estado["nombreEstadoUsuario"]
-                ?>
-			</td>
-			<td>
-				<?php echo $u['apellido']; ?>
+				<?php echo $u['nombreUsuario']; ?>
 			</td>
 			<td>
 				<?php echo $u['nombre']; ?>
 			</td>
 			<td>
-				<?php echo $u['domicilio']; ?>
+				<?php echo $u['apellido']; ?>
 			</td>
 			<td>
 				<?php echo $u['email']; ?>
 			</td>
 			<td>
+				<?php $estado=$this->Tenerusuario_model->get_tenerusuario($u['nombreUsuario']);
+            	echo $estado["nombreEstadoUsuario"]
+                ?>
+			</td>
+			<td>
 				<a href="<?php echo site_url('usuario/edit/' . $u['nombreUsuario']); ?>"
 				 class="btn btn-info btn-xs">Editar</a>
-				
 			</td>
 		</tr>
 		<?php
