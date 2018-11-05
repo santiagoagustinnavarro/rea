@@ -75,7 +75,7 @@ if (!$_SESSION["iniciada"]) {
 	</nav>
 	<?php
 } else {
-        if ($_SESSION['rol'] == 'adminuser') {
+        if ($_SESSION['rol'] == 'administrador de usuarios') {
             ?>
 	<!-- Barra de Menú -->
 	<!-- Administrador de Usuarios -->
@@ -138,7 +138,7 @@ if (!$_SESSION["iniciada"]) {
 		</div>
 	</nav>
 	<?php
-        } elseif ($_SESSION['rol'] == 'adminrecurso') {
+        } elseif ($_SESSION['rol'] == 'administrador de recursos') {
             ?>
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
 		<div class="container-fluid">

@@ -20,14 +20,14 @@ class Login extends CI_Controller
         if ($this->input->post('nombreUsuario') && $this->input->post('clave')) {
             $existe = $this->Usuario_model->get_usuario($this->input->post('nombreUsuario'), array("clave" => hash('sha224', $this->input->post('clave'))));
             if (!is_null($existe)) {
-                $verEstado = $this->Tenerusuario_model->get_tenerusuario($this->input->post('nombreUsuario'));
+                $verEstado = $this->TenerEstadoUsuario_model->get_tenerEstadoUsuario($this->input->post('nombreUsuario'));
                 $verEstado["nombreEstadoUsuario"]=strtolower($verEstado["nombreEstadoUsuario"]);
                 if ($verEstado["nombreEstadoUsuario"] != "alta") {
                     $mensaje = '<div class="alert alert-info text-center"><h4>'."El usuario se encuentra en estado ".$verEstado["nombreEstadoUsuario"].'</h4></div>';
                 } else {
                     $this->cargarSession();
                     $this->load->view("header", ["title" => "Home"]);
-                    $this->load->view('inicio/login');
+                    $this->load->view('home3');
                     $this->load->view("footer");
                 }
             } else {
@@ -49,7 +49,7 @@ class Login extends CI_Controller
     {
         session_start();
         session_destroy();
-        redirect('inicio');
+        redirect('login');
     }
 
     private function cargarSession()

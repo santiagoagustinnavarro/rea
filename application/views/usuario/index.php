@@ -1,6 +1,6 @@
 <?php include_once "application/controllers/login.php";
 $sesion=new Login();
-if ($_SESSION["iniciada"] && $_SESSION["rol"]=="adminuser") {
+if ($_SESSION["iniciada"] && $_SESSION["rol"]=="administrador de usuarios") {
     ?>
 <table class="table table-light table-responsive-md" id="tabla">
 	<thead>
@@ -34,7 +34,7 @@ if ($_SESSION["iniciada"] && $_SESSION["rol"]=="adminuser") {
 				<?php echo $u['email']; ?>
 			</td>
 			<td>
-				<?php $estado=$this->Tenerusuario_model->get_tenerusuario($u['nombreUsuario']);
+				<?php $estado=$this->TenerEstadoUsuario_model->get_tenerestadousuario($u['nombreUsuario']);
             	echo $estado["nombreEstadoUsuario"]
                 ?>
 			</td>

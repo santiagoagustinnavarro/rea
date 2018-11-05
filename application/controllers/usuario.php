@@ -52,7 +52,7 @@ class Usuario extends CI_Controller
                 $nombreUsuario = $params["nombreUsuario"];
                 $datosEstado = array("fechaInicio"=>$fecha,"hora"=>$hora,"nombreUsuario"=>$nombreUsuario,"nombreEstadoUsuario"=>$nombreEstadoUsuario);
                 $datosRol=array("fechaInicio"=>$fecha,"nombreUsuario"=>$nombreUsuario,"nombreRol"=>$nombreRol);
-                $insercionEstado = $this->Tenerusuario_model->add_tenerusuario($datosEstado);
+                $insercionEstado = $this->tenerEstadoUsuario_model->add_tenerEstadoUsuario($datosEstado);
                 $insercionProfesor = $this->Tienerol_model->add_tienerol($datosRol);
                 $this->load->view("header", ["title" => "Registro"]);
                 $this->load->view('inicio/registrarse', array("mensaje" => '<div class="alert alert-success text-center"><h4>'."Registrado con exito".'</h4></div>'));
@@ -121,11 +121,11 @@ class Usuario extends CI_Controller
                     'fechaInicio'=>$fechaActual,
                     'hora'=>$horaActual,
                 );
-            $setAntiguoEst=$this->Tenerusuario_model->update_tenerusuario(array('fechaFin'=>$fechaActual), array('nombreEstadoUsuario'=>$antiguoEst,'nombreUsuario'=>$nombreUsuario,'fechaFin'=>null));
+            $setAntiguoEst=$this->TenerEstadoUsuario_model->update_tenerEstadoUsuario(array('fechaFin'=>$fechaActual), array('nombreEstadoUsuario'=>$antiguoEst,'nombreUsuario'=>$nombreUsuario,'fechaFin'=>null));
             if ($setAntiguoEst) {
-                $insertEstado=$this->Tenerusuario_model->add_tenerusuario($params);
+                $insertEstado=$this->TenerEstadoUsuario_model->add_tenerEstadoUsuario($params);
                 if (!$insertEstado) {
-                    $this->Tenerusuario_model->update_tenerusuario(array('fechaFin'=>null), array('nombreEstadoUsuario'=>$antiguoEst,'','nombreUsuario'=>$nombreUsuario,'fechaFin'=>$fechaActual));
+                    $this->TenerEstadoUsuario_model->update_tenerEstadoUsuario(array('fechaFin'=>null), array('nombreEstadoUsuario'=>$antiguoEst,'','nombreUsuario'=>$nombreUsuario,'fechaFin'=>$fechaActual));
                     $actualizacion=false;
                 }
             } else {
