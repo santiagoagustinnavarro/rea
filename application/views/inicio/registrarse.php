@@ -1,6 +1,6 @@
 <div class="container py-5">
 	<div class="col-md-6 mx-auto">
-		<div class="container">
+		<div class="container" id="transparencia">
   			<form id="formulario" method="post" action="registro">
 			<?php 
 			if(isset($mensaje)){
@@ -25,8 +25,8 @@
 					<input type="text" class="form-control" id="dni" placeholder="Numero de Documento" minlength="7" maxlength="12" name="dni">
 				</div>
 				<div class="form-group">
-					<label class="label" for="email">E-mail (*)</label>
-					<input type="email" class="form-control" id="email" placeholder="Correo@ejemplo..." name="email" minlength="10" maxlength="40" required>
+					<label class="label" for="email">Correo Electronico (*)</label>
+					<input type="email" class="form-control" id="email" placeholder="Correo@ejemplo.com" name="email" minlength="10" maxlength="40" required>
 				</div>
 				<div class="form-group">
 					<label class="label" for="nombreUsuario">Nombre de Usuario (*)</label>

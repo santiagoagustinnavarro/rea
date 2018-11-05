@@ -50,5 +50,5 @@ if ($_SESSION["iniciada"] && $_SESSION["rol"]=="administrador de usuarios") {
 </table>
 <?php
 } else {
-        echo "Tiene prohibido el acceso";
-    }
+    echo "Tiene prohibido el acceso";
+}
