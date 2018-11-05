@@ -9,9 +9,9 @@ if ($_SESSION["iniciada"]) {
  }
 echo form_open('usuario/edit/'.$usuario['nombreUsuario'], array("class"=>"form-horizontal"),array("rolActual"=>$rolActual["nombreRol"],"estadoActual"=>$estActual["nombreEstadoUsuario"])); ?>
 <div class="container py-3">
-	<div class="col-md-6 mx-auto">
+	<div class="col-md-6 mx-auto" id="transparencia">
 		<div class="container">
- 			<h1 class="titulo text-secondary">Cambiar Estado</h1></br>
+ 			<h1 class="titulo">Cambiar Estado</h1></br>
 			<div class="texto">
 				<label for="nombreUsuario">Nombre del Usuario</label>
 				<input disabled type="text" name="nombreUsuario" class="form-control" id="nombreUsuario" value="

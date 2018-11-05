@@ -120,8 +120,8 @@ body {
 }
 /**############# CAMBIAR ESTADO #############*/
 /** Centra el texto con el id nombreUsuario, nuevoEstado, nuevoRol */
-.texto#nombreUsuario {
-	padding-left: 15%;
+#nombreUsuario {
+	text-align: center;
 }
 #nuevoEstado{
 	text-align: center;
