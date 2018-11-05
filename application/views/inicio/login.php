@@ -1,10 +1,7 @@
 <div class="container py-4">
 	<div class="row">
 		<div class="offset-md-3 col-md-6">
-			<div class="container">
-				<?php
-				echo form_open("login/",array('id'=>'formulario','method'=>'post'),'');
-					?>   
+			<div class="container">  
 				<div id="registro" class="alert alert-primary offset-md-2 col-md-8">
 					<label class="label">Si no esta registrado ingrese aqui</label></br>
 					<a href="<?php echo base_url(); ?>usuario/registro">

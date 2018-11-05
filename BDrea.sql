@@ -414,8 +414,8 @@ INSERT INTO `tenerUsuario`(`nombreUsuario`,`nombreEstadoUsuario`, `fechaInicio`,
 -- Table `Rea`.`tieneRol`
 -- -----------------------------------------------------
 INSERT INTO `tieneRol`(`nombreUsuario`,`nombreRol`, `fechaInicio`) VALUES 
-('adminR','AdminRecurso','2018-10-28'),
-('adminU','AdminUser','2018-10-28'),
-('profesor','Profesor','2018-10-28');
+('Administrador de Recursos','AdminRecurso','2018-10-28'),
+('Administrador de Usuario','AdminUser','2018-10-28'),
+('Profesor','Profesor','2018-10-28');
 
 
