@@ -35,6 +35,7 @@
 					}
 					?>
 					<?php	
+					/** Borrar despues de aceptar jajajja */
 					echo form_close();
 					?> 	
 				</div> <!-- Cierre de id formulario -->

@@ -2,6 +2,11 @@
 	<div class="col-md-6 mx-auto">
 		<div class="container">
   			<form id="formulario" method="post" action="registro">
+			<?php 
+			if(isset($mensaje)){
+			echo $mensaje;
+			}
+			?> 
 			  <h1 class="titulo">Registro Usuario</h1>
     			<div class="form-group">
 					<label class="label" for="nombre">Nombre (*)</label>
@@ -38,11 +43,6 @@
 				<div class="form-group" id="boton">
 					<button type="submit" class="btn btn-success">Enviar</button>
 				</div>
-				<?php 
-				if(isset($mensaje)){
-				echo $mensaje;
-				}
-				?> 
 			</form>
 		</div> <!-- Cierre del container -->
 	</div> <!-- Cierre de la clase col -->
