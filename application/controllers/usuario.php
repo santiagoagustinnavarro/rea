@@ -87,12 +87,18 @@ class Usuario extends CI_Controller
                 $datosEstado=['tabla'=>'EstadoUsuario','antiguo'=>$estadoActual,'nuevo'=>$estadoNuevo,'nombreUsuario'=>$nombreUsuario];
                 $datosRol=['tabla'=>'Rol','antiguo'=>$rolActual,'nuevo'=>$rolNuevo,'nombreUsuario'=>$nombreUsuario];
                 $actualizarEstado=$this->actualizar($datosEstado);
-                $actualizarRol=$this->actualizar($datosRol);
-                if (!$actualizarEstado || !$actualizarRol) {
+                if (!$actualizarEstado) {
                     $this->load->view("header", ["title" => "Editar Usuario"]);
                     $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'Intente actualizar los datos en unos instantes']);
                     $this->load->view("footer");
-                } else {
+                } else {//Solo actualizaremos el rol si se pudo actualizar el estado para no generar conflictos 
+                    $actualizarRol=$this->actualizar($datosRol);
+                    if (!$actualizarEstado) {
+                        $this->load->view("header", ["title" => "Editar Usuario"]);
+                        $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'Intente actualizar el rol en unos instantes']);
+                        $this->load->view("footer");
+                    }
+
                     $this->load->view("header", ["title" => "Editar Usuario"]);
                     $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'Datos actualizados']);
                     $this->load->view("footer");
@@ -108,7 +114,7 @@ class Usuario extends CI_Controller
     }
     /**
      * Funcion auxiliar encargada de modificar el estado o el rol segun corresponda
-     * donde $datos corresponde a un array asociativo donde entraran las claves tabla,nombreUsuario,antiguo,nuevo 
+     * donde $datos corresponde a un array asociativo donde entraran las claves tabla,nombreUsuario,antiguo,nuevo
      */
     private function actualizar($datos)
     {
