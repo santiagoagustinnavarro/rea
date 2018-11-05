@@ -1,6 +1,6 @@
 	<!-- Container fluid -->
 <div class="container-fluid">
-	<h1 class="titulo">Contenido</h1>
+	<h1 class="titulo text-secondary">Contenido</h1>
 	<div class="row">
   		<!-- Aca comienza las busquedas -->
     <div class="col-md-3">
