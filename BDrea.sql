@@ -398,17 +398,17 @@ INSERT INTO `estadousuario`(`nombre`, `descripcion`) VALUES
 -- Table `Rea`.`usuario`
 -- -----------------------------------------------------
 INSERT INTO `usuario`(`nombre`,`apellido`, `nombreUsuario`,`clave`,`clave2`,`email`,`domicilio`) VALUES 
-('santiago','navarro', 'adminR','78d8045d684abd2eece923758f3cd781489df3a48e1278982466017f','78d8045d684abd2eece923758f3cd781489df3a48e1278982466017f','santiagonavarro@outlook.com.ar','mzna1 casa 3'),
-('elizabeth','barramuño','adminU','78d8045d684abd2eece923758f3cd781489df3a48e1278982466017f','78d8045d684abd2eece923758f3cd781489df3a48e1278982466017f','ely-06nqn@hotmail.com','Las floridas 820'),
-('luis','alfonso','profesor','78d8045d684abd2eece923758f3cd781489df3a48e1278982466017f','78d8045d684abd2eece923758f3cd781489df3a48e1278982466017f','ely-06nqn@hotmail.com','amancay 458');
+('santiago','navarro', 'Administrador de Recursos','7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1','7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1','santiagonavarro@outlook.com.ar','mzna1 casa 3'),
+('elizabeth','barramuño','Administrador de Usuario','7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1','7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1','ely-06nqn@hotmail.com','Las floridas 820'),
+('luis','alfonso','Profesor','7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1','7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1','ely-06nqn@hotmail.com','amancay 458');
 -- -----------------------------------------------------
 -- Table `Rea`.`tenerUsuario`
 -- -----------------------------------------------------
 
 INSERT INTO `tenerUsuario`(`nombreUsuario`,`nombreEstadoUsuario`, `fechaInicio`,`hora`) VALUES 
-('adminR','Alta','2018-10-28',"17:48:01"),
-('adminU','Alta','2018-10-28',"17:48:02"),
-('profesor','Alta','2018-10-28',"17:48:03");
+('Administrador de Recursos','Alta','2018-10-28',"17:48:01"),
+('Administrador de Usuario','Alta','2018-10-28',"17:48:02"),
+('Profesor','Alta','2018-10-28',"17:48:03");
 
 -- -----------------------------------------------------
 -- Table `Rea`.`tieneRol`
