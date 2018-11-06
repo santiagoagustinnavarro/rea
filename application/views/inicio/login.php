@@ -10,7 +10,7 @@
 				</div> <!-- Cierre del  id registro-->
 				<?php 
 				echo form_open("login/", array('id'=>'formulario','method'=>'post'), '');?> 
-				<div id="formulario">
+				<div id="transparencia">
 					<h1 id="tituloLogin">Login</h1>
         			<div class="form-group">
 						<label class="label" for="nombreUsuario"><i class="fa fa-user"></i> Nombre de Usuario</label>
