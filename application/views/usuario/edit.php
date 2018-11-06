@@ -14,8 +14,7 @@ echo form_open('usuario/edit/'.$usuario['nombreUsuario'], array("class"=>"form-h
  			<h1 class="titulo">Cambiar Estado</h1></br>
 			<div class="texto">
 				<label for="nombreUsuario">Nombre del Usuario</label>
-				<input disabled type="text" name="nombreUsuario" class="form-control" id="nombreUsuario" value="
-				<?php echo($this->input->post('nombreUsuario')? $this->input->post('nombreUsuario') : $usuario['nombreUsuario']);?>">
+				<input disabled type="text" name="nombreUsuario" class="form-control" id="nombreUsuario" value="<?php echo($this->input->post('nombreUsuario')? $this->input->post('nombreUsuario') : $usuario['nombreUsuario']);?>">
 			</div>
 			<div class="texto">
 				<label for="email">E-mail</label>

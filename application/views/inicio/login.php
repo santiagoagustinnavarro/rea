@@ -21,7 +21,7 @@
     					<input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña" minlength="8" maxlength="15" required>
 					</div>
 					<div class="form-group" id="link">
-						<a href="#">¿Olvido su contraseña?</a>
+						<a href="login/recuperarclave">¿Olvido su contraseña?</a>
 					</div>
 					<div class="form-group" id="boton">
     					<button type="submit" class="btn btn-success">Ingresar</button>

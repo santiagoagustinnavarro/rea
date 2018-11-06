@@ -1,7 +1,8 @@
 <div class="container py-5">
 	<div class="col-md-6 mx-auto">
 		<div class="container" id="transparencia">
-  			<form id="formulario" method="post" action="registro">
+  			<form id="formulario" method="post" action="registro" onsubmit="return validarRegistro();
+">
 			<?php 
 			if(isset($mensaje)){
 			echo $mensaje;

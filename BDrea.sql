@@ -368,7 +368,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 -- -----------------------------------------------------
--- Table `Rea`.`rol`
+-- Insercion en `rol`
 -- -----------------------------------------------------
 
 INSERT INTO `rol`(`nombre`, `descripcion`) VALUES 
@@ -377,7 +377,7 @@ INSERT INTO `rol`(`nombre`, `descripcion`) VALUES
 ('Profesor','El encargado de subir recursos de ambito educativo');
 
 -- -----------------------------------------------------
--- Table `Rea`.`permiso`
+-- Insercion en `permiso`
 -- -----------------------------------------------------
 
 INSERT INTO `permiso`(`alias`, `descripcion`) VALUES ('ac','Administrar comentarios'),
@@ -389,7 +389,7 @@ INSERT INTO `permiso`(`alias`, `descripcion`) VALUES ('ac','Administrar comentar
 ('rv','Realizar Valorizacion');
 
 -- -----------------------------------------------------
--- Table `Rea`.`contienePermiso`
+-- Insercion en `contienePermiso`
 -- -----------------------------------------------------
 
 INSERT INTO `contienepermiso`(`nombreRol`, `aliasPermiso`) VALUES 
@@ -404,7 +404,7 @@ INSERT INTO `contienepermiso`(`nombreRol`, `aliasPermiso`) VALUES
 ('Profesor','rv');
 
 -- -----------------------------------------------------
--- Table `Rea`.`estadoUsuario`
+-- Insercion en `estadoUsuario`
 -- -----------------------------------------------------
 
 INSERT INTO `estadousuario`(`nombre`, `descripcion`) VALUES 
@@ -413,7 +413,7 @@ INSERT INTO `estadousuario`(`nombre`, `descripcion`) VALUES
 ('Pendiente','El usuario en espera de validacion');
 
 -- -----------------------------------------------------
--- Table `Rea`.`usuario`
+-- Insercion en`usuario`
 -- -----------------------------------------------------
 
 INSERT INTO `usuario`(`nombre`,`apellido`, `nombreUsuario`,`clave`,`email`,`domicilio`) VALUES 
@@ -422,7 +422,7 @@ INSERT INTO `usuario`(`nombre`,`apellido`, `nombreUsuario`,`clave`,`email`,`domi
 ('luis','alfonso','Profesor','7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1','ely-06nqn@hotmail.com','amancay 458');
 
 -- -----------------------------------------------------
--- Table `Rea`.`tenerEstadoUsuario`
+-- Insercion en `tenerEstadoUsuario`
 -- -----------------------------------------------------
 
 INSERT INTO `tenerEstadoUsuario`(`nombreUsuario`,`nombreEstadoUsuario`, `fechaInicio`,`hora`) VALUES 
@@ -431,10 +431,22 @@ INSERT INTO `tenerEstadoUsuario`(`nombreUsuario`,`nombreEstadoUsuario`, `fechaIn
 ('Profesor','Alta','2018-10-28',"17:48:03");
 
 -- -----------------------------------------------------
--- Table `Rea`.`tieneRol`
+-- Insercion en `tieneRol`
 -- -----------------------------------------------------
 
 INSERT INTO `tieneRol`(`nombreUsuario`,`nombreRol`, `fechaInicio`) VALUES 
 ('AdminRecurso','Administrador de Recursos','2018-10-28'),
 ('AdminUser','Administrador de Usuarios','2018-10-28'),
 ('Profesor','Profesor','2018-10-28');
+-- -----------------------------------------------------
+-- Insercion en estadoToken`
+-- -----------------------------------------------------
+INSERT INTO `estadoToken`(`nombreEstadoToken`,`descripcion`) VALUES 
+('vencido','El token ya caduco'),
+('pendiente','El token aun no ah sido utilizado'),
+('utilizado','el token ya fue utilizado');
+
+-- Generamos el evento para el vencimiento de los tokens--------
+CREATE EVENT vencertoken
+ON SCHEDULE EVERY 1 DAY DO 
+UPDATE tenerEstadoToken SET nombreEstadoToken="vencido";
