@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta name="viewport" content="width=device-width" charset="utf-8" />
 	<title>
@@ -13,7 +12,6 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
 	<?php
 if (isset($scripts)) { //Invocacion de scripts propios
-
     foreach ($scripts as $unScript) {
         echo "<script type=\"text/javascript\" src=\"" . base_url() . "assets/js/" . $unScript . "\"></script>";
     }
@@ -25,19 +23,17 @@ if (isset($styles)) { //Invocacion de estilos propios
 }
 ?>
 </head>
-
 <body>
 	<!-- Barra de Menú -->
 	<?php
-	
-include_once "application/controllers/login.php";
-$sesion=new Login();
-if (!$_SESSION["iniciada"]) {
+	include_once "application/controllers/login.php";
+	$sesion=new Login();
+	if (!$_SESSION["iniciada"]) {
     ?>
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
 		<div class="container-fluid">
 			<a href="<?php echo base_url(); ?>inicio"><img class="navbar-brand" src="<?php echo base_url(); ?>assets/imagenes/logo3.png"
-				 alt="Logo REA" id="logo"></a>
+				alt="Logo REA" id="logo"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
 			 aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -74,50 +70,48 @@ if (!$_SESSION["iniciada"]) {
 		</div>
 	</nav>
 	<?php
-} else {
+	} else {
         if ($_SESSION['rol'] == 'administrador de usuarios') {
-            ?>
-	<!-- Barra de Menú -->
+    ?>
 	<!-- Administrador de Usuarios -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
 		<div class="container-fluid">
 			<a href="<?php echo base_url(); ?>inicio"><img class="navbar-brand" src="<?php echo base_url(); ?>assets/imagenes/logo3.png"
-				 alt="Logo REA" id="logo"></a>
+				alt="Logo REA" id="logo"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
 			 aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
 						<a href="<?php echo base_url(); ?>inicio" class="nav-link text-secondary"
-						 alt="inicio">
+						alt="inicio">
 							<i class="fa fa-home"></i> Inicio
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="<?php echo base_url(); ?>area" class="nav-link text-secondary"
-						 alt="area">
+						alt="area">
 							<i class="fa fa-files-o"></i> Área
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary"
-						 alt="contactenos">
+						alt="contactenos">
 							<i class="fa fa-envelope"></i> Contactenos
 						</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="<?php echo base_url(); ?>contacto"
-						 id="navbardrop" data-toggle="dropdown">
+						id="navbardrop" data-toggle="dropdown">
 							<i class="fa fa-user-circle"></i> Perfil
 						</a>
 						<div class="dropdown-menu" id="desplegable">
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="<?php echo base_url()."usuario" ?>">
 								<i class="fa fa-pencil"></i> Editar Perfil
 							</a>
-							<a class="dropdown-item " href=" <?php echo base_url()."usuario" ?>">
+							<a class="dropdown-item " href="<?php echo base_url()."usuario" ?>">
 								<i class="fa fa-users"></i> Administrar Usuarios
 							</a>
 							<a class="dropdown-item" href="#">
@@ -127,7 +121,7 @@ if (!$_SESSION["iniciada"]) {
 					</li>
 					<li class="nav-item">
 						<a href="<?php echo base_url(); ?>login/cerrarSession" class="nav-link"
-						 alt="cerrar sesion">
+						alt="cerrar sesion">
 							<button class="btn btn-outline-danger">
 								<i class="fa fa-sign-out"></i> Cerrar Sesión
 							</button>
@@ -139,7 +133,8 @@ if (!$_SESSION["iniciada"]) {
 	</nav>
 	<?php
         } elseif ($_SESSION['rol'] == 'administrador de recursos') {
-            ?>
+	?>
+	<!-- Administrador de Recursos -->		
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
 		<div class="container-fluid">
 			<a href="<?php echo base_url(); ?>inicio"><img class="navbar-brand" src="<?php echo base_url(); ?>assets/imagenes/logo3.png"
@@ -174,10 +169,10 @@ if (!$_SESSION["iniciada"]) {
 							<i class="fa fa-user-circle-o"></i> Perfil
 						</a>
 						<div class="dropdown-menu" id="desplegable">
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="<?php echo base_url()."usuario" ?>">
 								<i class="fa fa-pencil"></i> Editar Perfil
 							</a>
-							<a class="dropdown-item " href="#">
+							<a class="dropdown-item" href="#">
 								<i class="fa fa-pencil-square-o"></i> Administrar Recursos
 							</a>
 							<a class="dropdown-item" href="#">
@@ -201,7 +196,6 @@ if (!$_SESSION["iniciada"]) {
 	<?php
         } elseif ($_SESSION['rol'] == 'profesor') {
             ?>
-	<!-- Barra de Menú -->
 	<!-- Profesor -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
 		<div class="container-fluid">
@@ -237,14 +231,14 @@ if (!$_SESSION["iniciada"]) {
 							<i class="fa fa-user"></i> Perfil
 						</a>
 						<div class="dropdown-menu" id="desplegable">
-							<a class="dropdown-item" href="#">
-								<i class="fa fa-pencil" aria-hidden="true"></i> Editar Perfil
+							<a class="dropdown-item" href="<?php echo base_url()."usuario" ?>">
+								<i class="fa fa-pencil"></i> Editar Perfil
 							</a>
 							<a class="dropdown-item " href="#">
-								<i class="fa fa-file-text" aria-hidden="true"></i> Subir Archivos
+								<i class="fa fa-file-text"></i> Subir Archivos
 							</a>
 							<a class="dropdown-item" href="#">
-								<i class="fa fa-trash" aria-hidden="true"></i> Eliminar Cuenta
+								<i class="fa fa-trash"></i> Eliminar Cuenta
 							</a>
 						</div>
 					</li>
@@ -262,6 +256,5 @@ if (!$_SESSION["iniciada"]) {
 	<?php
         }
     }
-?>
-
-	<div class="container-fluid" id="cuerpo">
+?>	
+<div class="container-fluid" id="cuerpo">

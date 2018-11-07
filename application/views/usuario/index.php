@@ -17,7 +17,6 @@ if ($_SESSION["iniciada"] && $_SESSION["rol"]=="administrador de usuarios") {
 	<tbody>
 		<?php foreach ($usuario as $u) {
         $rol=$this->Tienerol_model->get_tienerol($u['nombreUsuario']);
-    
         if (strtolower($rol["nombreRol"])=="profesor") {
             ?>
 		<tr>

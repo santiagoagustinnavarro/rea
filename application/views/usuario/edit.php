@@ -8,6 +8,7 @@ if ($_SESSION["iniciada"]) {
 	 echo $mensaje;
  }
 echo form_open('usuario/edit/'.$usuario['nombreUsuario'], array("class"=>"form-horizontal"),array("rolActual"=>$rolActual["nombreRol"],"estadoActual"=>$estActual["nombreEstadoUsuario"])); ?>
+<!-- Esta funcion se encarga de editar los estados de los usuario y el rol que tienen o van a tener -->
 <div class="container py-3">
 	<div class="col-md-6 mx-auto" id="transparencia">
 		<div class="container">
