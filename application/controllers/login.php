@@ -32,7 +32,6 @@ class Login extends CI_Controller
                 }
             } else {
                 $mensaje = '<div class="alert alert-danger text-center"><h4>'."Usuario o Contraseña incorrectos".'</h4></div>';
-
             }
         } else {
             $this->load->view("header", ["title" => "Login"]);
@@ -67,5 +66,82 @@ class Login extends CI_Controller
         $_SESSION['permisos'] = $permisos;
         $_SESSION['rol']=strtolower($rol['nombreRol']); ?>
 <?php
+    }
+    /**
+     * Esta funcion se encarga de generar el token y de reestablecer la clave
+     */
+    public function recuperarclave($nombreUsuario="", $idToken="")
+    {
+        if ($idToken=="") {//Caso en el que se ingresa sin token
+            if ($nombreUsuario=="") {
+                $this->load->view("header", array("title"=>"RestablecerClave"));
+                $this->load->view("claveusuario");
+                $this->load->view("footer");
+            } else {
+                $user=$this->Usuario_model->get_usuario($nombreUsuario);
+                if ($user!=null) {//Si el usuario existe generamos el token
+                    $this->generarToken($user);
+                } else {
+                    echo "El usuario no existe";
+                }
+            }
+        } else {//Se ingreso con un token en caso de ser valido redirigimos para reestablecer la clave
+            $verif=$this->verificarToken($idToken);
+            if ($verif!=null) {
+                $this->load->view("header", array("title"=>"RestablecerClave"));
+                $this->load->view("restablecerclave", array("idToken"=>$idToken,"nombreUsuario"=>$nombreUsuario));
+                $this->load->view("footer");
+            } else {
+                echo "el token no existe wacho";
+            }
+        }
+    }
+    private function verificarToken($idToken)
+    {
+        $tokenR=$this->TokenRecupera_model->get_tenerestadotoken($idToken);
+     
+        if ($tokenR!=null) {
+            if ($tokenR["nombreEstadoToken"]=="pendiente") {
+                $user=$this->Usuario_model->get_usuario($tokenR["nombreUsuario"]);
+            }
+        } else {
+            $user=null;
+        }
+        return $user;
+    }
+
+    private function generarToken($user)
+    {
+        $token=rand(1, 9999).sha1($user["nombreUsuario"]);
+        $datos=array("nombreUsuario"=>$user["nombreUsuario"],'idToken'=>$token);
+        $insercion=false;
+        while (!$insercion) {//While por si el numero generado de casualidad ya existe
+            $insercion=$this->TokenRecupera_model->add_tokenrecupera($datos);
+            if (!$insercion) {
+                $datos["idToken"]=$datos["idToken"].rand(1,999);
+            }
+        }
+        unset($datos['nombreUsuario']);
+        $datos['nombreEstadoToken']='pendiente';
+        $insercionEstado=$this->TenerEstadoToken_model->add_tenerestadotoken($datos);
+        $this->enviarMail($datos, $user);
+    }
+    private function enviarMail($datos, $user)
+    {
+        require 'vendor/autoload.php';
+        $email = new \SendGrid\Mail\Mail();
+        $email->setFrom("rea@not-reply.com");
+        $email->setSubject("Reestablecer clave");
+        $email->addTo($user["email"]);
+        $email->addContent("text/html", "su token es:".$datos["idToken"]);
+        $sendgrid = new \SendGrid('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');
+        try {
+            $response = $sendgrid->send($email);
+            print $response->statusCode() . "\n";
+            print_r($response->headers());
+            print $response->body() . "\n";
+        } catch (Exception $e) {
+            echo 'Caught exception: '. $e->getMessage() ."\n";
+        }
     }
 }

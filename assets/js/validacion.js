@@ -23,6 +23,7 @@ function validarRegistro() {
         } else {
             $("#clave2").css("background-color", "inherit");
             $("#clave").css("background-color", "inherit");
+            res = true;
         }
 	}
 	/** Validacion del nombre */
