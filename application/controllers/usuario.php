@@ -4,17 +4,13 @@
  * www.crudigniter.com
  */
 
-        
-
 class Usuario extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-    }
-
-   
-
+	}
+	
     /*
      * Listar usuario
      */
@@ -72,7 +68,7 @@ class Usuario extends CI_Controller
     
 
     /*
-     * Editando a un usuario
+     * Editando a el estado y el rol del usuario
      */
     public function edit($nombreUsuario)
     {
@@ -153,7 +149,6 @@ class Usuario extends CI_Controller
                         $actualizacion=false;
                     }
                     break;
-
                 }
         }
         return $actualizacion;

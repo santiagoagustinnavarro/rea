@@ -18,7 +18,7 @@ echo form_open('usuario/add',array("class"=>"form")); ?>
 			<input type="text" class="form-control" id="domicilio" placeholder="Domicilio" name="domicilio">
 </div>
 <div class="form-group">
-			<input type="text" class="form-control" id="dni" placeholder="D.N.I" name="dni">
+			<input type="text" class="form-control" id="dni" placeholder="Numero de Documento" name="dni">
 </div>
 <div class="form-group">
 			<input type="email" class="form-control" id="email" placeholder="Correo@ejemplo..." name="email">
