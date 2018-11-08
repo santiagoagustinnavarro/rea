@@ -15,13 +15,13 @@ echo form_open('usuario/edit/'.$usuario['nombreUsuario'], array("class"=>"form-h
  			<h1 class="titulo">Cambiar Estado</h1></br>
 			<div class="texto">
 				<label for="nombreUsuario">Nombre del Usuario</label>
-				<input disabled type="text" name="nombreUsuario" class="form-control" id="nombreUsuario" 
+				<input readonly type="text" name="nombreUsuario" class="form-control" id="nombreUsuario" 
 				value="<?php echo($this->input->post('nombreUsuario')? $this->input->post('nombreUsuario') : $usuario['nombreUsuario']);?>">
 			</div>
 			<div class="texto">
 				<label for="email">E-mail</label>
-				<input disabled type="text" name="email" class="form-control" id="email" value="
-				<?php echo($this->input->post('email') ? $this->input->post('email') : $usuario['email']); ?>">
+				<input readonly type="text" name="email" class="form-control" id="email" 
+				value="<?php echo($this->input->post('email') ? $this->input->post('email') : $usuario['email']); ?>">
 			</div>
 			<div class="texto">
 				<label for="nuevoEstado">Estado Actual</label>
