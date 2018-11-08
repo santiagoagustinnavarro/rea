@@ -108,7 +108,7 @@ if (isset($styles)) { //Invocacion de estilos propios
 							<i class="fa fa-user-circle"></i> Perfil
 						</a>
 						<div class="dropdown-menu" id="desplegable">
-							<a class="dropdown-item" href="<?php echo base_url()."usuario" ?>">
+							<a class="dropdown-item" href="<?php echo base_url()."usuario/editarPerfil" ?>">
 								<i class="fa fa-pencil"></i> Editar Perfil
 							</a>
 							<a class="dropdown-item " href="<?php echo base_url()."usuario" ?>">
@@ -169,7 +169,7 @@ if (isset($styles)) { //Invocacion de estilos propios
 							<i class="fa fa-user-circle-o"></i> Perfil
 						</a>
 						<div class="dropdown-menu" id="desplegable">
-							<a class="dropdown-item" href="<?php echo base_url()."usuario" ?>">
+							<a class="dropdown-item" href="<?php echo base_url()."usuario/editarPerfil"?>">
 								<i class="fa fa-pencil"></i> Editar Perfil
 							</a>
 							<a class="dropdown-item" href="#">
@@ -231,7 +231,7 @@ if (isset($styles)) { //Invocacion de estilos propios
 							<i class="fa fa-user"></i> Perfil
 						</a>
 						<div class="dropdown-menu" id="desplegable">
-							<a class="dropdown-item" href="<?php echo base_url()."usuario" ?>">
+							<a class="dropdown-item" href="<?php echo base_url()."usuario/editarPerfil" ?>">
 								<i class="fa fa-pencil"></i> Editar Perfil
 							</a>
 							<a class="dropdown-item " href="#">

@@ -153,7 +153,34 @@ class Usuario extends CI_Controller
         }
         return $actualizacion;
     }
-    
+	
+	/**
+	 * Editar perfil del usuario
+	 * El usuario va a poder modificar sus datos, por si quiere modificar o agregar alguno de estos.
+	 */
+	public function editarPerfil(){
+		$cant=count($_POST);
+        if ($cant>0) {
+			$nombUser=$this->input->post("nombreUsuario");
+			$nombre=$this->input->post("nombre");
+			$apellido=$this->input->post("apellido");
+			$domicilio=$this->input->post("domicilio");
+			$dni=$this->input->post("dni");
+			$email=$this->input->post("email");
+			$clave=$this->input->post("clave");
+			$res=$this->Usuario_model->update_usuario($nombUser,array("nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>$clave));
+			if($res){
+				echo $res;
+			}else{
+				echo "Error";
+			}
+        }else{
+			$this->load->view("header", ["title" => "Editar Perfil"]);
+            $this->load->view('usuario/editarPerfil');
+            $this->load->view("footer");
+		}
+	}
+
     /*
      * Eliminar un usuario
      */
