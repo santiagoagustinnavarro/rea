@@ -30,7 +30,6 @@ class Usuario extends CI_Controller
         if (isset($_POST) && count($_POST) > 0) {
             $params = array(
                 'clave' => hash('sha224', $this->input->post('clave')),
-                //'clave2' => hash('sha224', $this->input->post('clave2')),
                 'dni' => $this->input->post('dni'),
                 'apellido' => $this->input->post('apellido'),
                 'nombre' => $this->input->post('nombre'),
@@ -65,7 +64,6 @@ class Usuario extends CI_Controller
             $this->load->view("footer");
         }
     }
-    
 
     /*
      * Editando a el estado y el rol del usuario
@@ -85,18 +83,18 @@ class Usuario extends CI_Controller
                 $actualizarEstado=$this->actualizar($datosEstado);
                 if (!$actualizarEstado) {
                     $this->load->view("header", ["title" => "Editar Usuario"]);
-                    $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'Intente actualizar los datos en unos instantes']);
+                    $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'<div class="offset-md-4 col-md-4 alert alert-info text-center"><h4>'.'Intente actualizar los datos en unos instantes'.'</h4></div>']);
                     $this->load->view("footer");
                 } else {//Solo actualizaremos el rol si se pudo actualizar el estado para no generar conflictos 
                     $actualizarRol=$this->actualizar($datosRol);
                     if (!$actualizarEstado) {
                         $this->load->view("header", ["title" => "Editar Usuario"]);
-                        $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'Intente actualizar el rol en unos instantes']);
+                        $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'<div class="offset-md-4 col-md-4 alert alert-info text-center"><h4>'.'Intente actualizar el rol en unos instantes'.'</h4></div>']);
                         $this->load->view("footer");
                     }
 
                     $this->load->view("header", ["title" => "Editar Usuario"]);
-                    $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'Datos actualizados']);
+                    $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'<div class="offset-md-4 col-md-4 alert alert-success text-center"><h4>'.'Datos actualizados'.'</h4></div>']);
                     $this->load->view("footer");
                 }
             } else {
@@ -170,9 +168,13 @@ class Usuario extends CI_Controller
 			$clave=$this->input->post("clave");
 			$res=$this->Usuario_model->update_usuario($nombUser,array("nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>$clave));
 			if($res){
-				echo $res;
+				$this->load->view("header", ["title" => "Editar Perfil"]);
+            	$this->load->view('usuario/editarPerfil',['usuario'=>$res['nombreUsuario'],'mensaje'=>'<div class="offset-md-4 col-md-4 alert alert-success text-center"><h4>'.'Datos Actualizados Correctamente'.'</h4></div>']);
+            	$this->load->view("footer");
 			}else{
-				echo "Error";
+				$this->load->view("header", ["title" => "Editar Perfil"]);
+            	$this->load->view('usuario/editarPerfil',['usuario'=>$res['nombreUsuario'],'mensaje'=>'<div class="offset-md-4 col-md-4 alert alert-danger text-center"><h4>'.'Error al tratar de cargar los datos'.'</h4></div>']);
+           		$this->load->view("footer");
 			}
         }else{
 			$this->load->view("header", ["title" => "Editar Perfil"]);
