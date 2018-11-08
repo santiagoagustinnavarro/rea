@@ -86,8 +86,9 @@ class Login extends CI_Controller
                 }
             }
         } else {//Se ingreso con un token en caso de ser valido redirigimos para reestablecer la clave
-            $verif=$this->verificarToken($idToken);
-            if ($verif!=null) {
+            $verif=$this->verificarToken($idToken, $nombreUsuario);
+            if ($verif) {
+                $añadirEstado=$this->TenerEstadoToken_model->add_tenerestadotoken(array("nombreEstadoToken"=>"utilizado","idToken"=>$idToken));
                 $this->load->view("header", array("title"=>"RestablecerClave"));
                 $this->load->view("restablecerclave", array("idToken"=>$idToken,"nombreUsuario"=>$nombreUsuario));
                 $this->load->view("footer");
@@ -96,18 +97,19 @@ class Login extends CI_Controller
             }
         }
     }
-    private function verificarToken($idToken)
+    private function verificarToken($idToken, $nombreUsuario)
     {
-        $tokenR=$this->TokenRecupera_model->get_tenerestadotoken($idToken);
-     
+        $tokenR=$this->TenerEstadoToken_model->get_tenerestadotoken($idToken, array("nombreUsuario"=>$nombreUsuario));
         if ($tokenR!=null) {
             if ($tokenR["nombreEstadoToken"]=="pendiente") {
-                $user=$this->Usuario_model->get_usuario($tokenR["nombreUsuario"]);
+                $res=true;
+            } else {
+                $res=false;
             }
         } else {
-            $user=null;
+            $res=false;
         }
-        return $user;
+        return $res;
     }
 
     private function generarToken($user)
@@ -118,7 +120,7 @@ class Login extends CI_Controller
         while (!$insercion) {//While por si el numero generado de casualidad ya existe
             $insercion=$this->TokenRecupera_model->add_tokenrecupera($datos);
             if (!$insercion) {
-                $datos["idToken"]=$datos["idToken"].rand(1,999);
+                $datos["idToken"]=$datos["idToken"].rand(1, 999);
             }
         }
         unset($datos['nombreUsuario']);
@@ -128,13 +130,14 @@ class Login extends CI_Controller
     }
     private function enviarMail($datos, $user)
     {
+        require 'sendgrid.env';
         require 'vendor/autoload.php';
         $email = new \SendGrid\Mail\Mail();
         $email->setFrom("rea@not-reply.com");
         $email->setSubject("Reestablecer clave");
         $email->addTo($user["email"]);
-        $email->addContent("text/html", "su token es:".$datos["idToken"]);
-        $sendgrid = new \SendGrid('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');
+        $email->addContent("text/html", "Link de recuperacion de cuenta:".base_url()."/".$user["nombreUsuario"]."/".$datos["idToken"]);
+        $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
         try {
             $response = $sendgrid->send($email);
             print $response->statusCode() . "\n";

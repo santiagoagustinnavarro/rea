@@ -1,7 +1,8 @@
 <div class="container py-5">
 	<div class="col-md-6 mx-auto">
 		<div class="container" id="transparencia">
-  			<form id="formulario" method="get" action="recuperarclave">
+           <?php echo form_open("login/recuperarclave/".$this->input->input_stream('nombreUsuario'));?> 
+  			
 			<?php 
 			if(isset($mensaje)){
 			echo $mensaje;
@@ -17,7 +18,7 @@
 				<div class="form-group" id="boton">
 					<button type="submit" class="btn btn-success">Enviar</button>
 				</div>
-			</form>
+			  <?php echo form_close();?> 
 		</div> <!-- Cierre del container -->
 	</div> <!-- Cierre de la clase col -->
 </div> <!-- Cierre del container final -->

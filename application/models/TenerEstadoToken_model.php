@@ -15,7 +15,7 @@ class TenerEstadoToken_model extends CI_Model
      * Get tienerol by nombreUsuario
      */
     public function get_tenerestadotoken($idToken, $params=array())
-    {
+    {   $this->db->select_max();
         if (count($params)>0) {
             $params["idToken"]=$idToken;
             $rolActual=$this->db->get_where('tenerestadotoken', $params)->row_array();
@@ -28,10 +28,10 @@ class TenerEstadoToken_model extends CI_Model
     /*
      * Get all tienerol
      */
-    public function get_all_tienerol()
+    public function get_all_tenerestadotoken()
     {
-        $this->db->order_by('nombreUsuario', 'desc');
-        return $this->db->get('tieneRol')->result_array();
+        $this->db->order_by('idToken', 'desc');
+        return $this->db->get('tenerestadotoken')->result_array();
     }
         
     /*
