@@ -139,12 +139,16 @@ class Login extends CI_Controller
     }
     private function enviarMail($datos, $user)
     {
-        require 'sendgrid.env';
         require 'vendor/autoload.php';
+       
+        $dotenv = new \Dotenv\Dotenv(__DIR__."/sendgrid");
+        $dotenv->load();
         $email = new \SendGrid\Mail\Mail();
         $email->setFrom("rea@not-reply.com");
         $email->setSubject("Reestablecer clave");
         $email->addTo($user["email"]);
+        $key=getenv('SENDGRID_API_KEY');
+        echo $key;
         $email->addContent("text/html", "Link de recuperacion de cuenta:".base_url()."/".$user["nombreUsuario"]."/".$datos["idToken"]);
         $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
         try {
