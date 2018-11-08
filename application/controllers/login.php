@@ -25,7 +25,7 @@ class Login extends CI_Controller
                 if ($verEstado["nombreEstadoUsuario"] != "alta") {
                     $mensaje = '<div class="alert alert-info text-center"><h4>'."El usuario se encuentra en estado ".$verEstado["nombreEstadoUsuario"].'</h4></div>';
                 } else {
-                    $this->cargarSession();
+                    $this->cargarSession($existe);
                     $this->load->view("header", ["title" => "Home"]);
                     $this->load->view('home3');
                     $this->load->view("footer");
@@ -51,7 +51,7 @@ class Login extends CI_Controller
         redirect('login');
     }
 
-    private function cargarSession()
+    private function cargarSession($user)
     {
         $_SESSION["iniciada"]=true;
 
@@ -61,6 +61,13 @@ class Login extends CI_Controller
         foreach ($petPermisos as $permiso) {
             $permisos[] = strtolower($permiso["aliasPermiso"]);
         }
+        $_SESSION['nombre'] = $user["nombre"];
+        $_SESSION['apellido'] = $user["apellido"];
+
+        $_SESSION['dni'] = $user["dni"];
+
+       
+
         $_SESSION['nombreUsuario'] = $this->input->post('nombreUsuario');
         $_SESSION['clave'] = $this->input->post('clave');
         $_SESSION['permisos'] = $permisos;
