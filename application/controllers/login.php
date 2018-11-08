@@ -81,18 +81,33 @@ class Login extends CI_Controller
      */
     public function recuperarclave($nombreUsuario="", $idToken="")
     {
+        
         if ($idToken=="") {//Caso en el que se ingresa sin token
-            if ($nombreUsuario=="") {
-                $this->load->view("header", array("title"=>"RestablecerClave"));
-                $this->load->view("claveusuario");
-                $this->load->view("footer");
-            } else {
-                $user=$this->Usuario_model->get_usuario($nombreUsuario);
-                if ($user!=null) {//Si el usuario existe generamos el token
-                    $this->generarToken($user);
+            if ($nombreUsuario=="") {//Obtenido de la url
+                $nombreUsuario=$this->input->get('nombreUsuario');
+                if ($nombreUsuario=="") {//Obtenemos el del input
+                    $this->load->view("header", array("title"=>"RestablecerClave"));
+                    $this->load->view("claveusuario");
+                    $this->load->view("footer");
                 } else {
-                    echo "El usuario no existe";
+                    $user=$this->Usuario_model->get_usuario($nombreUsuario);
+                    if ($user!=null) {//Si el usuario existe generamos el token
+                        $this->generarToken($user);
+                    } else {
+                        echo "El usuario no existe";
+                    }
                 }
+           
+                
+            }else{
+                 $user=$this->Usuario_model->get_usuario($nombreUsuario);
+                    if ($user!=null) {//Si el usuario existe generamos el token
+                        $this->generarToken($user);
+                    } else {
+                        echo "El usuario no existe";
+                    }
+
+
             }
         } else {//Se ingreso con un token en caso de ser valido redirigimos para reestablecer la clave
             $verif=$this->verificarToken($idToken, $nombreUsuario);
@@ -147,10 +162,11 @@ class Login extends CI_Controller
         $email->setFrom("rea@not-reply.com");
         $email->setSubject("Reestablecer clave");
         $email->addTo($user["email"]);
+        echo $user["email"];
         $key=getenv('SENDGRID_API_KEY');
         echo $key;
         $email->addContent("text/html", "Link de recuperacion de cuenta:".base_url()."/".$user["nombreUsuario"]."/".$datos["idToken"]);
-        $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+        $sendgrid = new \SendGrid($key);
         try {
             $response = $sendgrid->send($email);
             print $response->statusCode() . "\n";
