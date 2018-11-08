@@ -166,14 +166,14 @@ class Usuario extends CI_Controller
 			$dni=$this->input->post("dni");
 			$email=$this->input->post("email");
 			$clave=$this->input->post("clave");
-			$res=$this->Usuario_model->update_usuario($nombUser,array("nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>$clave));
+			$res=$this->Usuario_model->update_usuario($nombUser,array("nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224', $this->input->post('clave'))));
 			if($res){
 				$this->load->view("header", ["title" => "Editar Perfil"]);
-            	$this->load->view('usuario/editarPerfil',['usuario'=>$res['nombreUsuario'],'mensaje'=>'<div class="offset-md-4 col-md-4 alert alert-success text-center"><h4>'.'Datos Actualizados Correctamente'.'</h4></div>']);
+            	$this->load->view('usuario/editarPerfil',['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-success text-center"><h4>'.'Datos Actualizados Correctamente'.'</h4></div>']);
             	$this->load->view("footer");
 			}else{
 				$this->load->view("header", ["title" => "Editar Perfil"]);
-            	$this->load->view('usuario/editarPerfil',['usuario'=>$res['nombreUsuario'],'mensaje'=>'<div class="offset-md-4 col-md-4 alert alert-danger text-center"><h4>'.'Error al tratar de cargar los datos'.'</h4></div>']);
+            	$this->load->view('usuario/editarPerfil',['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Error al tratar de cargar los datos'.'</h4></div>']);
            		$this->load->view("footer");
 			}
         }else{

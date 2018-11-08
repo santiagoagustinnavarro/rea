@@ -3,7 +3,12 @@
 	$sesion=new Login();
 	if ($_SESSION["iniciada"]) {
 ?>
-<div class="container py-5">
+<div class="container py-4">
+	<?php
+		if(isset($mensaje)){
+			echo $mensaje;
+		}	
+	?>
 	<div class="col-md-6 mx-auto">
 		<div class="container" id="transparencia">
   			<form id="formulario" method="post" action="editarPerfil" onsubmit="return validarRegistro();">
