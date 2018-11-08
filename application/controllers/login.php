@@ -65,6 +65,8 @@ class Login extends CI_Controller
         $_SESSION['apellido'] = $user["apellido"];
 
         $_SESSION['dni'] = $user["dni"];
+        $_SESSION['email'] = $user["email"];
+        $_SESSION['domicilio'] = $user["domicilio"];
 
        
 
