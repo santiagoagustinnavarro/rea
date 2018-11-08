@@ -11,7 +11,7 @@
 			  <h1 class="titulo">Recuperar clave</h1>
                 </br>
   		  		<div class="form-group">
-					<label class="label" for="clave"><i class="fa fa-user"></i> Usuario</label>
+					<label class="label offset-5" for="clave"><i class="fa fa-user"></i> Usuario</label>
       				<input type="text" class="form-control" id="nombreUsuario" placeholder="Ingrese el usuario" name="nombreUsuario"  required>
 				</div>
 				
