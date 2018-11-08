@@ -130,7 +130,7 @@ class Login extends CI_Controller
     }
     private function enviarMail($datos, $user)
     {
-        require 'sengrid.env';
+        require 'sendgrid.env';
         require 'vendor/autoload.php';
         $email = new \SendGrid\Mail\Mail();
         $email->setFrom("rea@not-reply.com");
