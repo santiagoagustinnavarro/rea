@@ -132,8 +132,8 @@ class Login extends CI_Controller
             $res=false;
         }
         return $res;
-    }
-
+	}
+	
     private function generarToken($user)
     {
         $token=rand(1, 9999).sha1($user["nombreUsuario"]);

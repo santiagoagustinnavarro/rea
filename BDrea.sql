@@ -416,28 +416,28 @@ INSERT INTO `estadousuario`(`nombre`, `descripcion`) VALUES
 -- Insercion en`usuario`
 -- -----------------------------------------------------
 
-INSERT INTO `usuario`(`nombre`,`apellido`, `nombreUsuario`,`clave`,`email`,`domicilio`) VALUES 
-('santiago','navarro', 'AdminRecurso','7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1','santiagonavarro@outlook.com.ar','mzna1 casa 3'),
-('elizabeth','barramuño','AdminUser','7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1','ely-06nqn@hotmail.com','Las floridas 820'),
-('luis','alfonso','Profesor','7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1','ely-06nqn@hotmail.com','amancay 458');
+INSERT INTO `usuario`(`nombreUsuario`,`clave`,`dni`,`apellido`,`nombre`,`domicilio`,`email`) VALUES 
+('adminRecurso','7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1','38365920','navarro','santiago','mzna1 casa 3','santiagonavarro@outlook.com.ar'),
+('adminUser','7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1','38044872','barramuño','elizabeth','Las floridas 820','ely-06nqn@hotmail.com'),
+('profesor','7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1','12345678','alfonso','luis','amancay 458','ely-06nqn@hotmail.com');
 
 -- -----------------------------------------------------
 -- Insercion en `tenerEstadoUsuario`
 -- -----------------------------------------------------
 
 INSERT INTO `tenerEstadoUsuario`(`nombreUsuario`,`nombreEstadoUsuario`, `fechaInicio`,`hora`) VALUES 
-('AdminRecurso','Alta','2018-10-28',"17:48:01"),
-('AdminUser','Alta','2018-10-28',"17:48:02"),
-('Profesor','Alta','2018-10-28',"17:48:03");
+('adminRecurso','Alta','2018-10-28',"17:48:01"),
+('adminUser','Alta','2018-10-28',"17:48:02"),
+('profesor','Alta','2018-10-28',"17:48:03");
 
 -- -----------------------------------------------------
 -- Insercion en `tieneRol`
 -- -----------------------------------------------------
 
 INSERT INTO `tieneRol`(`nombreUsuario`,`nombreRol`, `fechaInicio`) VALUES 
-('AdminRecurso','Administrador de Recursos','2018-10-28'),
-('AdminUser','Administrador de Usuarios','2018-10-28'),
-('Profesor','Profesor','2018-10-28');
+('adminRecurso','Administrador de Recursos','2018-10-28'),
+('adminUser','Administrador de Usuarios','2018-10-28'),
+('profesor','Profesor','2018-10-28');
 -- -----------------------------------------------------
 -- Insercion en estadoToken`
 -- -----------------------------------------------------

@@ -54,7 +54,7 @@
 							</div> <!-- cierra el card body -->
 					</div> <!-- cierra el card my-4 -->
 					<div class="card-body">
-						<div class="offset-4 col-md-4">
+						<div class="col-md-5 mx-auto">
 							<button type="button" class="btn btn-success" id="envio">Enviar</button>
 						</div>
 					</div>

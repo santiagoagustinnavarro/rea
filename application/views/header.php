@@ -108,13 +108,13 @@ if (isset($styles)) { //Invocacion de estilos propios
 							<i class="fa fa-user-circle"></i> Perfil
 						</a>
 						<div class="dropdown-menu" id="desplegable">
-							<a class="dropdown-item" href="<?php echo base_url()."usuario/editarPerfil" ?>">
+							<a class="dropdown-item" href="<?php echo base_url()."usuario/editarPerfil"?>">
 								<i class="fa fa-pencil"></i> Editar Perfil
 							</a>
-							<a class="dropdown-item " href="<?php echo base_url()."usuario" ?>">
+							<a class="dropdown-item " href="<?php echo base_url()."usuario"?>">
 								<i class="fa fa-users"></i> Administrar Usuarios
 							</a>
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="<?php echo base_url()."usuario/eliminarCuenta"?>">
 								<i class="fa fa-trash"></i> Eliminar Cuenta
 							</a>
 						</div>
@@ -175,7 +175,7 @@ if (isset($styles)) { //Invocacion de estilos propios
 							<a class="dropdown-item" href="#">
 								<i class="fa fa-pencil-square-o"></i> Administrar Recursos
 							</a>
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="<?php echo base_url()."usuario/eliminarCuenta"?>">
 								<i class="fa fa-trash"></i> Eliminar Cuenta
 							</a>
 						</div>
@@ -231,13 +231,13 @@ if (isset($styles)) { //Invocacion de estilos propios
 							<i class="fa fa-user"></i> Perfil
 						</a>
 						<div class="dropdown-menu" id="desplegable">
-							<a class="dropdown-item" href="<?php echo base_url()."usuario/editarPerfil" ?>">
+							<a class="dropdown-item" href="<?php echo base_url()."usuario/editarPerfil"?>">
 								<i class="fa fa-pencil"></i> Editar Perfil
 							</a>
 							<a class="dropdown-item " href="#">
 								<i class="fa fa-file-text"></i> Subir Archivos
 							</a>
-							<a class="dropdown-item" href="#">
+							<a class="dropdown-item" href="<?php echo base_url()."usuario/eliminarCuenta"?>">
 								<i class="fa fa-trash"></i> Eliminar Cuenta
 							</a>
 						</div>

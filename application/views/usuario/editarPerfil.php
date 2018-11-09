@@ -45,8 +45,12 @@
 					value="<?php echo $_SESSION["email"];?>" required>
 				</div>
 				<div class="form-group">
+					<label class="label" for="clave">Contraseña</label>
+      				<input type="password" class="form-control" id="clave" placeholder="Ingrese Contraseña" name="clave" minlength="8" maxlength="15" required>
+				</div>
+				<div class="form-group">
 					<label class="label" for="clave">Cambiar Contraseña</label>
-      				<input type="password" class="form-control" id="clave" placeholder="Nueva Contraseña" name="clave" minlength="8" maxlength="15" required>
+      				<input type="password" class="form-control" id="clave1" placeholder="Nueva Contraseña" name="clave1" minlength="8" maxlength="15">
 				</div>
 				<div class="form-group">
 					<label class="label" for="clave">Confirmar Contraseña</label>
