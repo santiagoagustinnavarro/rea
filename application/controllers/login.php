@@ -63,13 +63,9 @@ class Login extends CI_Controller
         }
         $_SESSION['nombre'] = $user["nombre"];
         $_SESSION['apellido'] = $user["apellido"];
-
         $_SESSION['dni'] = $user["dni"];
         $_SESSION['email'] = $user["email"];
         $_SESSION['domicilio'] = $user["domicilio"];
-
-       
-
         $_SESSION['nombreUsuario'] = $this->input->post('nombreUsuario');
         $_SESSION['clave'] = $this->input->post('clave');
         $_SESSION['permisos'] = $permisos;
@@ -81,7 +77,6 @@ class Login extends CI_Controller
      */
     public function recuperarclave($nombreUsuario="", $idToken="")
     {
-        
         if ($idToken=="") {//Caso en el que se ingresa sin token
             if ($nombreUsuario=="") {//Obtenido de la url
                 $nombreUsuario=$this->input->get('nombreUsuario');
@@ -97,17 +92,23 @@ class Login extends CI_Controller
                         echo "El usuario no existe";
                     }
                 }
-            }else{
-                 $user=$this->Usuario_model->get_usuario($nombreUsuario);
-                    if ($user!=null) {//Si el usuario existe generamos el token
-                        $this->generarToken($user);
-                    } else {
-                        echo "El usuario no existe";
-                    }
+            } else {
+                $user=$this->Usuario_model->get_usuario($nombreUsuario);
+                if ($user!=null) {//Si el usuario existe generamos el token
+                    $this->generarToken($user);
+                } else {
+                    echo "El usuario no existe";
+                }
             }
         } else {//Se ingreso con un token en caso de ser valido redirigimos para reestablecer la clave
+           
+
             $verif=$this->verificarToken($idToken, $nombreUsuario);
+           
+
             if ($verif) {
+                
+
                 $añadirEstado=$this->TenerEstadoToken_model->add_tenerestadotoken(array("nombreEstadoToken"=>"utilizado","idToken"=>$idToken));
                 $this->load->view("header", array("title"=>"RestablecerClave"));
                 $this->load->view("restablecerclave", array("idToken"=>$idToken,"nombreUsuario"=>$nombreUsuario));
@@ -119,9 +120,10 @@ class Login extends CI_Controller
     }
     private function verificarToken($idToken, $nombreUsuario)
     {
-        $tokenR=$this->TenerEstadoToken_model->get_tenerestadotoken($idToken, array("nombreUsuario"=>$nombreUsuario));
+        $tokenR=$this->TenerEstadoToken_model->get_tenerestadotoken($idToken, array("nombreUsuario"=>$nombreUsuario,"idToken"=>$idToken));
         if ($tokenR!=null) {
             if ($tokenR["nombreEstadoToken"]=="pendiente") {
+               
                 $res=true;
             } else {
                 $res=false;
@@ -150,26 +152,34 @@ class Login extends CI_Controller
     }
     private function enviarMail($datos, $user)
     {
-        require 'vendor/autoload.php';
-       
-        $dotenv = new \Dotenv\Dotenv(__DIR__."/sendgrid");
-        $dotenv->load();
-        $email = new \SendGrid\Mail\Mail();
-        $email->setFrom("rea@not-reply.com");
-        $email->setSubject("Reestablecer clave");
-        $email->addTo($user["email"]);
-        echo $user["email"];
-        $key=getenv('SENDGRID_API_KEY');
-        echo $key;
-        $email->addContent("text/html", "Link de recuperacion de cuenta:".base_url()."/".$user["nombreUsuario"]."/".$datos["idToken"]);
-        $sendgrid = new \SendGrid($key);
-        try {
-            $response = $sendgrid->send($email);
-            print $response->statusCode() . "\n";
-            print_r($response->headers());
-            print $response->body() . "\n";
-        } catch (Exception $e) {
-            echo 'Caught exception: '. $e->getMessage() ."\n";
-        }
+        $this->load->library('email');
+ 
+        $this->email->from('santiago.navarro@est.fi.uncoma.edu.ar', 'You');
+        $this->email->to($user["email"]);
+        $this->email->subject('My first email by Mailjet');
+        $this->email->message("Link de validacion de la cuenta <a href=".base_url()."login/recuperarclave/".$user["nombreUsuario"]."/".$datos["idToken"].">".base_url()."login/recuperarclave/".$user["nombreUsuario"]."/".$datos["idToken"]."</a>");
+        $this->email->send();
+        /*require 'vendor/autoload.php';
+
+               $dotenv = new \Dotenv\Dotenv(__DIR__."/sendgrid");
+               $dotenv->load();
+               $email = new \SendGrid\Mail\Mail();
+               $email->setFrom("rea@not-reply.com");
+               $email->setSubject("Reestablecer clave");
+               $email->addTo("santiago.navarro@est.fi.uncoma.edu.ar");
+               echo $user["email"];
+               $key=getenv('SENDGRID_API_KEY');
+               echo $key;
+               $email->addContent("text/html", "Link de recuperacion de cuenta:".base_url()."/".$user["nombreUsuario"]."/".$datos["idToken"]);
+               $sendgrid = new \SendGrid($key);
+               try {
+                   $response = $sendgrid->send($email);
+                   print $response->statusCode() . "\n";
+                   print_r($response->headers());
+                   print $response->body() . "\n";
+               } catch (Exception $e) {
+                   echo 'Caught exception: '. $e->getMessage() ."\n";
+               }
+           }*/
     }
 }
