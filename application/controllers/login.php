@@ -97,8 +97,6 @@ class Login extends CI_Controller
                         echo "El usuario no existe";
                     }
                 }
-           
-                
             }else{
                  $user=$this->Usuario_model->get_usuario($nombreUsuario);
                     if ($user!=null) {//Si el usuario existe generamos el token
@@ -106,8 +104,6 @@ class Login extends CI_Controller
                     } else {
                         echo "El usuario no existe";
                     }
-
-
             }
         } else {//Se ingreso con un token en caso de ser valido redirigimos para reestablecer la clave
             $verif=$this->verificarToken($idToken, $nombreUsuario);
@@ -134,8 +130,8 @@ class Login extends CI_Controller
             $res=false;
         }
         return $res;
-    }
-
+	}
+	
     private function generarToken($user)
     {
         $token=rand(1, 9999).sha1($user["nombreUsuario"]);

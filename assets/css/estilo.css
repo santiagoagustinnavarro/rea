@@ -2,7 +2,7 @@
 /* body separa la barra de inicio del contenido y el color de fondo */
 body {
 	background-image: url("../imagenes/computer.jpg");
-	background-size:125%;
+	background-size:130%;
 	display:flex;
 	min-height:100vh;
 	flex-wrap: wrap;
@@ -102,6 +102,11 @@ body {
 /** Centra los botones en este caso de los formularios (login y registro) */
 #boton{
 	text-align: center;
+	font-size: large;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	padding-left: 3%;
+	padding-right: 3%;
 }
 /** centra los texto dentro de los inputs */
 .form-group input{
@@ -139,6 +144,9 @@ body {
 /* Indica en que numero de pagina y el tipo de cantidad de paginas que hay */
 .pagination {
 	margin-bottom: 15px;
+}
+#eliminar{
+	text-align: center;
 }
 /** ############################## PIE DE PAGINA ################################### */
 /** flex-end me situa el footer al final de la pagina, width toma el 100% de la pagina*/

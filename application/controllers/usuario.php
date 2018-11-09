@@ -166,11 +166,14 @@ class Usuario extends CI_Controller
 			$dni=$this->input->post("dni");
 			$email=$this->input->post("email");
 			$clave=$this->input->post("clave");
+			$datos=["nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>$clave];
 			$res=$this->Usuario_model->update_usuario($nombUser,array("nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224', $this->input->post('clave'))));
 			if($res){
+				$this->actualizarSesion($datos);
 				$this->load->view("header", ["title" => "Editar Perfil"]);
             	$this->load->view('usuario/editarPerfil',['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-success text-center"><h4>'.'Datos Actualizados Correctamente'.'</h4></div>']);
-            	$this->load->view("footer");
+				$this->load->view("footer");
+				
 			}else{
 				$this->load->view("header", ["title" => "Editar Perfil"]);
             	$this->load->view('usuario/editarPerfil',['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Error al tratar de cargar los datos'.'</h4></div>']);
@@ -182,22 +185,35 @@ class Usuario extends CI_Controller
             $this->load->view("footer");
 		}
 	}
-
+private function actualizarSesion($datos){
+	session_start();
+	$_SESSION["nombre"]=$datos["nombre"];
+	$_SESSION["apellido"]=$datos["apellido"];
+	$_SESSION["domicilio"]=$datos["domicilio"];
+	$_SESSION["dni"]=$datos["dni"];
+	$_SESSION["email"]=$datos["email"];
+	$_SESSION["clave"]=$datos["clave"];
+}
     /*
      * Eliminar un usuario
      */
-    public function remove($nombreUsuario)
+    public function eliminarCuenta ()
     {
-        $usuario = $this->Usuario_model->get_usuario($nombreUsuario);
-        // check if the usuario exists before trying to delete it
+		$nombUser=$this->input->post("nombreUsuario");
+
+		$this->load->view("header", ["title" => "Eliminar Cuenta"]);
+        $this->load->view('usuario/eliminarCuenta');
+		$this->load->view("footer");
+		
+       /**  $usuario = $this->Usuario_model->post_usuario($nombreUsuario);
         if (isset($usuario['nombreUsuario'])) {
-            if ($this->Usuario_model->delete_usuario($usuario['nombreUsuario'])) {
+            if ($this->Usuario_model->darBaja_usuario($usuario['nombreUsuario'])) {
             } else {
-                echo "nop";
+                echo "No se ha podido dar de baja";
             };
         //redirect("usuario/index");
         } else {
-            show_error('The usuario you are trying to delete does not exist.');
-        }
-    }
+            show_error('El usuario no existe');
+        } */
+    } 
 }

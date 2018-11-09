@@ -13,22 +13,22 @@
   			</ol>
   			<div class="carousel-inner">
     			<div class="carousel-item active"> 
-					<img class="d-block w-100" src="<?php echo base_url(); ?>assets/imagenes/1.png" alt="First slide">
+					<img class="d-block w-100" src="<?php echo base_url(); ?>assets/imagenes/1.png" alt="Recursos Educativos Abiertos">
     			</div> <!-- cierra la imagen 1 de carousel -->
     			<div class="carousel-item">
-	      			<img class="d-block w-100" src="<?php echo base_url(); ?>assets/imagenes/2.png" alt="Second slide">
+	      			<img class="d-block w-100" src="<?php echo base_url(); ?>assets/imagenes/2.png" alt="Es una plataforma educativa">
     			</div> <!-- cierra la imagen 2 de carousel -->
     			<div class="carousel-item">
-      				<img class="d-block w-100" src="<?php echo base_url(); ?>assets/imagenes/3.png" alt="Third slide">
+      				<img class="d-block w-100" src="<?php echo base_url(); ?>assets/imagenes/3.png" alt="Para integrar en las escuelas secundarias">
 				</div> <!-- cierra la imagen 3 de carousel -->
 				<div class="carousel-item">
-    	  			<img class="d-block w-100" src="<?php echo base_url(); ?>assets/imagenes/4.png" alt="Third slide">
+    	  			<img class="d-block w-100" src="<?php echo base_url(); ?>assets/imagenes/4.png" alt="Brindar herramientas a los adolescentes">
     			</div> <!-- cierra la imagen 4 de carousel -->
 				<div class="carousel-item">
-    	  			<img class="d-block w-100" src="<?php echo base_url(); ?>assets/imagenes/5.png" alt="Third slide">
+    	  			<img class="d-block w-100" src="<?php echo base_url(); ?>assets/imagenes/5.png" alt="En esta pagina es de ambito colaborativo">
     			</div> <!-- cierra la imagen 5 de carousel -->
 				<div class="carousel-item">
-    	  			<img class="d-block w-100" src="<?php echo base_url(); ?>assets/imagenes/6.png" alt="Third slide">
+    	  			<img class="d-block w-100" src="<?php echo base_url(); ?>assets/imagenes/6.png" alt="Se puede descargar, comentar, valorar y intercambiar informacion">
     			</div> <!-- cierra la imagen 6 de carousel -->
 			  </div> <!-- cierra las imagenes de carousel -->
 			 	<!-- anterior -->
