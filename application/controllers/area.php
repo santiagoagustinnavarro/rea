@@ -7,9 +7,14 @@ class Area extends CI_Controller {
 	}
 	function index(){
 		$this->load->view("header",["title"=>"Area"]);
-		$this->load->view('inicio/area');
+		$this->load->view('inicio/area',['recurso' => $recurso]);
 		$this->load->view("footer");
 	}
-
+	/** Esta funcion muestra el recurso que selecciona el usuario */
+	function unRecurso (){
+		$this->load->view("header",["title"=>"Recurso"]);
+		$this->load->view('area/recurso');
+		$this->load->view("footer");
+	}
 }
 ?>

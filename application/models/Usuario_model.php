@@ -59,10 +59,14 @@ class Usuario_model extends CI_Model
     
     /*
 	 *Esta funcion da de baja la cuenta del usuario
-	 *TERMINAR EN MI CASA JAJAJA XD
      */
     public function darBaja_usuario($nombreUsuario)
     {
-        return $this->db->delete('usuario', array('nombreUsuario'=>$nombreUsuario));
+		if($nombreUsuario){
+			$resp=$this->db->get('usuario', array('nombreUsuario'=>$nombreUsuario));
+		}else{
+			echo "Error ingrese despues";
+		}
+        return $resp;
     }
 }
