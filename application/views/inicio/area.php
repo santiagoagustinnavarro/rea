@@ -75,7 +75,7 @@
 						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
 					</div> <!-- cierra el card body-->
 					<div class="card-footer recurso">
-      					<a href="#" class="btn btn-success">Ver Recurso</a>
+      					<a href="<?php echo base_url()."area/recurso";?>" class="btn btn-success">Ver Recurso</a>
     				</div> <!-- cierrala clase recurso -->
 				</div> <!-- cierrala clase card h-100 -->
 			</div> <!-- cierrala clase area -->

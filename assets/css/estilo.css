@@ -69,6 +69,15 @@ body {
 	padding:2%;
 	float: left;
 }
+/** Muestra una breve introduccion de que se trata cada recurso */
+.descripcion{
+	font-size: large;
+}
+/** Estructura el contenido del recurso */
+.contenido img{
+	width:20%;
+	height:30%;
+}
 /** alto y ancho del video position relativa y un 12% para centrarlo */
 #carousel{
 	width: 80%;
