@@ -64,8 +64,9 @@ class Usuario_model extends CI_Model
     {
 		if($nombreUsuario){
 			$resp=$this->db->get('usuario', array('nombreUsuario'=>$nombreUsuario));
+
 		}else{
-			echo "Error ingrese despues";
+			echo "Error intente luego";
 		}
         return $resp;
     }
