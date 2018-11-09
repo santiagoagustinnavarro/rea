@@ -87,7 +87,7 @@ class Login extends CI_Controller
                 } else {
                     $user=$this->Usuario_model->get_usuario($nombreUsuario);
                     if ($user!=null) {//Si el usuario existe generamos el token
-                        $this->generarToken($user);
+                       $generacion= $this->generarToken($user);
                     } else {
                         echo "El usuario no existe";
                     }
@@ -95,7 +95,7 @@ class Login extends CI_Controller
             } else {
                 $user=$this->Usuario_model->get_usuario($nombreUsuario);
                 if ($user!=null) {//Si el usuario existe generamos el token
-                    $this->generarToken($user);
+                   $generacion= $this->generarToken($user);
                 } else {
                     echo "El usuario no existe";
                 }
@@ -148,7 +148,8 @@ class Login extends CI_Controller
         unset($datos['nombreUsuario']);
         $datos['nombreEstadoToken']='pendiente';
         $insercionEstado=$this->TenerEstadoToken_model->add_tenerestadotoken($datos);
-        $this->enviarMail($datos, $user);
+       $envio= $this->enviarMail($datos, $user);
+
     }
     private function enviarMail($datos, $user)
     {
@@ -158,7 +159,16 @@ class Login extends CI_Controller
         $this->email->to($user["email"]);
         $this->email->subject('My first email by Mailjet');
         $this->email->message("Link de validacion de la cuenta <a href=".base_url()."login/recuperarclave/".$user["nombreUsuario"]."/".$datos["idToken"].">".base_url()."login/recuperarclave/".$user["nombreUsuario"]."/".$datos["idToken"]."</a>");
-        $this->email->send();
+        $envio=$this->email->send();
+        if($envio){
+            $res=true;
+            echo "hola";
+        }else{
+            $res=false;
+            echo ":(";
+        }
+        return $res;
+        
         /*require 'vendor/autoload.php';
 
                $dotenv = new \Dotenv\Dotenv(__DIR__."/sendgrid");

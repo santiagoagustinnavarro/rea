@@ -1,5 +1,7 @@
+
 /** Valida los datos del registro que completo el usuario */
 function validarRegistro() {
+    
     var nombre, apellido, usuario, clave, email, exp, clave2, res;
     nombre = $("#nombre").val();
 	apellido = $("#apellido").val();
@@ -79,6 +81,7 @@ function validarRegistro() {
 }
 /** Verifica que el usuario y la clave sean los correctos */
 function validarIngreso() {
+    
     var usuario, clave, res;
     usuario = $("#nombreUsuario").val();
     clave = $("#clave").val();
@@ -93,7 +96,7 @@ function validarIngreso() {
         $("#clave").css({"background-color": "rgba(245,0,0,0.4)"});
         res = false;
     } else {
-        $("#clave").val($.sha224($("#clave").val()));
+        //$("#clave").val($.sha224($("#clave").val()));
         $("#clave").css({"background-color": "inherit"});
     }
     return res;

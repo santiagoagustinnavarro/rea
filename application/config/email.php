@@ -3,7 +3,7 @@ require_once ("vendor/vlucas/phpdotenv/src/Dotenv.php");
 require_once ("vendor/vlucas/phpdotenv/src/Loader.php");
 $dotenv = new \Dotenv\Dotenv("mailjet");
 $dotenv->load();
-echo "<script>alert('".getenv("ID_API_SECURITY")."')</script>";
+echo "<script>alert('".getenv("ID_API")."')</script>";
 
 $config['protocol'] = 'smtp';
 $config['smtp_host'] = 'ssl://in.mailjet.com';
