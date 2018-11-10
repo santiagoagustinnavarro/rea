@@ -9,8 +9,8 @@ class Usuario extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-	}
-	
+    }
+    
     /*
      * Listar usuario
      */
@@ -59,7 +59,7 @@ class Usuario extends CI_Controller
             }
             // redirect('usuario/index');
         } else {
-            $this->load->view("header",["title" => "Registro","scripts"=>["validacion.js"]]);
+            $this->load->view("header", ["title" => "Registro","scripts"=>["validacion.js"]]);
             $this->load->view('inicio/registrarse');
             $this->load->view("footer");
         }
@@ -85,7 +85,7 @@ class Usuario extends CI_Controller
                     $this->load->view("header", ["title" => "Editar Usuario"]);
                     $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'<div class="offset-md-4 col-md-4 alert alert-info text-center"><h4>'.'Intente actualizar los datos en unos instantes'.'</h4></div>']);
                     $this->load->view("footer");
-                } else {//Solo actualizaremos el rol si se pudo actualizar el estado para no generar conflictos 
+                } else {//Solo actualizaremos el rol si se pudo actualizar el estado para no generar conflictos
                     $actualizarRol=$this->actualizar($datosRol);
                     if (!$actualizarEstado) {
                         $this->load->view("header", ["title" => "Editar Usuario"]);
@@ -151,69 +151,92 @@ class Usuario extends CI_Controller
         }
         return $actualizacion;
     }
-	
-	/**
-	 * Editar perfil del usuario
-	 * El usuario va a poder modificar sus datos, por si quiere modificar o agregar alguno de estos.
-	 */
-	public function editarPerfil(){
-		$cant=count($_POST);
+    
+    /**
+     * Editar perfil del usuario
+     * El usuario va a poder modificar sus datos, por si quiere modificar o agregar alguno de estos.
+     */
+    public function editarPerfil()
+    {
+        $cant=count($_POST);
         if ($cant>0) {
-			$nombUser=$this->input->post("nombreUsuario");
-			$nombre=$this->input->post("nombre");
-			$apellido=$this->input->post("apellido");
-			$domicilio=$this->input->post("domicilio");
-			$dni=$this->input->post("dni");
-			$email=$this->input->post("email");
-			$clave=$this->input->post("clave");
-			$datos=["nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>$clave];
-			$res=$this->Usuario_model->update_usuario($nombUser,array("nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224', $this->input->post('clave'))));
-			if($res){
-				$this->actualizarSesion($datos);
-				$this->load->view("header", ["title" => "Editar Perfil"]);
-            	$this->load->view('usuario/editarPerfil',['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-success text-center"><h4>'.'Datos Actualizados Correctamente'.'</h4></div>']);
-				$this->load->view("footer");
-				
-			}else{
-				$this->load->view("header", ["title" => "Editar Perfil"]);
-            	$this->load->view('usuario/editarPerfil',['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Error al tratar de cargar los datos'.'</h4></div>']);
-           		$this->load->view("footer");
-			}
-        }else{
-			$this->load->view("header", ["title" => "Editar Perfil"]);
+            $nombUser=$this->input->post("nombreUsuario");
+            $nombre=$this->input->post("nombre");
+            $apellido=$this->input->post("apellido");
+            $domicilio=$this->input->post("domicilio");
+            $dni=$this->input->post("dni");
+            $email=$this->input->post("email");
+            $clave=$this->input->post("clave");
+            $datos=["nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>$clave];
+            $res=$this->Usuario_model->update_usuario($nombUser, array("nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224', $this->input->post('clave'))));
+            if ($res) {
+                $this->actualizarSesion($datos);
+                $this->load->view("header", ["title" => "Editar Perfil"]);
+                $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-success text-center"><h4>'.'Datos Actualizados Correctamente'.'</h4></div>']);
+                $this->load->view("footer");
+            } else {
+                $this->load->view("header", ["title" => "Editar Perfil"]);
+                $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Error al tratar de cargar los datos'.'</h4></div>']);
+                $this->load->view("footer");
+            }
+        } else {
+            $this->load->view("header", ["title" => "Editar Perfil"]);
             $this->load->view('usuario/editarPerfil');
             $this->load->view("footer");
-		}
-	}
-private function actualizarSesion($datos){
-	session_start();
-	$_SESSION["nombre"]=$datos["nombre"];
-	$_SESSION["apellido"]=$datos["apellido"];
-	$_SESSION["domicilio"]=$datos["domicilio"];
-	$_SESSION["dni"]=$datos["dni"];
-	$_SESSION["email"]=$datos["email"];
-	$_SESSION["clave"]=$datos["clave"];
-}
+        }
+    }
+    private function actualizarSesion($datos)
+    {
+        session_start();
+        $_SESSION["nombre"]=$datos["nombre"];
+        $_SESSION["apellido"]=$datos["apellido"];
+        $_SESSION["domicilio"]=$datos["domicilio"];
+        $_SESSION["dni"]=$datos["dni"];
+        $_SESSION["email"]=$datos["email"];
+        $_SESSION["clave"]=$datos["clave"];
+    }
     /*
      * Eliminar un usuario
      */
-    public function eliminarCuenta ()
+    public function eliminarCuenta()
     {
-		$nombUser=$this->input->post("nombreUsuario");
-
-		$this->load->view("header", ["title" => "Eliminar Cuenta"]);
-        $this->load->view('usuario/eliminarCuenta');
-		$this->load->view("footer");
-		
-       /**  $usuario = $this->Usuario_model->post_usuario($nombreUsuario);
-        if (isset($usuario['nombreUsuario'])) {
-            if ($this->Usuario_model->darBaja_usuario($usuario['nombreUsuario'])) {
-            } else {
-                echo "No se ha podido dar de baja";
-            };
-        //redirect("usuario/index");
+        $nombUser=$this->input->post("nombreUsuario");
+        if ($nombUser=="") {
+            $this->load->view("header", ["title" => "Eliminar Cuenta"]);
+            $this->load->view('usuario/eliminarCuenta');
+            $this->load->view("footer");
         } else {
-            show_error('El usuario no existe');
-        } */
-    } 
+            $hora=date("H:i:s");
+            $fecha=date("Y-m-d");
+            $paramsUpdate=array("fechaFin"=>date("Y-m-d"));
+            $paramsNew=array("nombreEstadoUsuario"=>"baja","fechaFin"=>null,"fechaInicio"=>$fecha,"nombreUsuario"=>$nombUser,"hora"=>$hora);
+            $where=array("fechaFin"=>null,"nombreUsuario"=>$nombUser,"nombreEstadoUsuario"=>"alta");
+            $actualizarEstado=$this->TenerEstadoUsuario_model->update_tenerestadousuario($params, $where);
+            if ($actualizarEstado) {
+                $nuevoEstado=$this->TenerEstadoUsuario_model->add_tenerEstadoUsuario($paramsNew);
+                if ($nuevoEstado) {
+                    redirect("login");
+                } else {
+                    $this->load->view("header", ["title" => "Eliminar Cuenta"]);
+                    $this->load->view('usuario/eliminarCuenta', ['mensaje'=>'ah ocurrido un error']);
+                    $this->load->view("footer");
+                }
+            } else {
+                $paramsNew["fechaFin"]=null;
+                $reestablecerEstado=$this->TenerEstadoUsuario_model->add_tenerEstadoUsuario($paramsNew);
+            }
+        }
+
+        
+        /*  $usuario = $this->Usuario_model->post_usuario($nombreUsuario);
+         if (isset($usuario['nombreUsuario'])) {
+             if ($this->Usuario_model->darBaja_usuario($usuario['nombreUsuario'])) {
+             } else {
+                 echo "No se ha podido dar de baja";
+             };
+         //redirect("usuario/index");
+         } else {
+             show_error('El usuario no existe');
+         } */
+    }
 }
