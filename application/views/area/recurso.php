@@ -13,14 +13,35 @@
 				cómo detectar casos y prevenirlos y qué hacer ante un caso de Ciberbulling.
 				Las piezas gráficas fueron desarrolladas por estudiantes del CPEM 54 de Neuquén.</p>
 			</div>
-			<div class="contenido">
+			<div class="col-md-12 mx-auto">
 				<h3>Vista Previa</h3>
-				<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-				<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-			</div>
-			</br>
-			<div class="form-group" id="boton">
-				<button type="submit" name="descargar" id="descargar" class="btn btn-success">Descargar</button>
+				<div class="col-md-3 col-sm-6 archivo">
+  					<a href="#">
+    	  				<img class="img-fluid" src="http://placehold.it/500x300" alt="">
+					</a>
+					<div class="card-footer text-center">
+        				<a href="#" class="btn btn-success"><i class="fa fa-download"></i> Descargar</a>
+        			</div>
+  				</div>
+				<div class="col-md-3 col-sm-6 archivo">
+  					<a href="#">
+    	  				<img class="img-fluid" src="http://placehold.it/500x300" alt="">
+					</a>
+					<div class="card-footer text-center">
+        				<a href="#" class="btn btn-success"><i class="fa fa-download"></i> Descargar</a>
+        			</div>
+  				</div>
+				<div class="col-md-3 col-sm-6 archivo">
+  					<a href="#">
+    	  				<img class="img-fluid" src="http://placehold.it/500x300" alt="">
+					</a>
+					<div class="card-footer text-center">
+        				<a href="#" class="btn btn-success"><i class="fa fa-download"></i> Descargar</a>
+        			</div>
+				</div>
+				<div class="col-md-4 mx-auto" id="boton">
+					<button type="submit" name="descargar" id="descargar" class="btn btn-success"><i class="fa fa-download"></i> Descargar Completo</button>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -74,9 +74,9 @@ body {
 	font-size: large;
 }
 /** Estructura el contenido del recurso */
-.contenido img{
-	width:20%;
-	height:30%;
+.archivo{
+	padding: 2%;
+	float: left;
 }
 /** alto y ancho del video position relativa y un 12% para centrarlo */
 #carousel{

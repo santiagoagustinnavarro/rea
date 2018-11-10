@@ -235,7 +235,7 @@ if (isset($styles)) { //Invocacion de estilos propios
 							<a class="dropdown-item" href="<?php echo base_url()."usuario/editarPerfil"?>">
 								<i class="fa fa-pencil"></i> Editar Perfil
 							</a>
-							<a class="dropdown-item " href="#">
+							<a class="dropdown-item " href="<?php echo base_url()."usuario/subirArchivo"?>">
 								<i class="fa fa-file-text"></i> Subir Archivos
 							</a>
 							<a class="dropdown-item" href="<?php echo base_url()."usuario/eliminarCuenta"?>">

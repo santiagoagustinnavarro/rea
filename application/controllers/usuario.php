@@ -226,8 +226,6 @@ class Usuario extends CI_Controller
                 $reestablecerEstado=$this->TenerEstadoUsuario_model->add_tenerEstadoUsuario($paramsNew);
             }
         }
-
-        
         /*  $usuario = $this->Usuario_model->post_usuario($nombreUsuario);
          if (isset($usuario['nombreUsuario'])) {
              if ($this->Usuario_model->darBaja_usuario($usuario['nombreUsuario'])) {
@@ -238,5 +236,13 @@ class Usuario extends CI_Controller
          } else {
              show_error('El usuario no existe');
          } */
-    }
+	}
+	/* 
+	* Esta funcion es para subir un archivo
+	*/
+	public function subirArchivo(){
+		$this->load->view("header", ["title" => "Subir Archivo"]);
+        $this->load->view('usuario/subirArchivo');
+        $this->load->view("footer");
+	}
 }
