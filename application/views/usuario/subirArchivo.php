@@ -9,7 +9,7 @@
 				</div>
 				<div class="form-group">
 					<label class="label" for="archivo"><i class="fa fa-upload"></i> Seleccione Archivo/s</label>
-					<input type="file" id="archivo" name="archivo">
+					<input type="file" id="archivo[]" name="archivo[]" multiple="">
 				</div>
 				<div class="form-group">
 					<label class="label" for="descripcion"><i class="fa fa-pencil-square-o"></i> Descripcion</label>
