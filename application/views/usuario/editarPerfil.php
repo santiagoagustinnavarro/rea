@@ -11,7 +11,7 @@
 	?>
 	<div class="col-md-6 mx-auto">
 		<div class="container" id="transparencia">
-  			<form id="formulario" method="post" action="editarPerfil" onsubmit="return validarRegistro();">
+  			<form id="formulario" method="post" action="editarPerfil" onsubmit="return validarPerfil();">
 			  <h1 class="titulo">Editar Perfil</h1>
 			  	</br>
 			  	<div class="form-group">
