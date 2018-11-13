@@ -12,7 +12,7 @@ class Usuario extends CI_Controller
     }
     
     /*
-     * Listar usuario
+     * Lista a los usuarios
      */
     public function index()
     {
@@ -37,7 +37,6 @@ class Usuario extends CI_Controller
                 'email' => $this->input->post('email'),
                 'nombreUsuario' => $this->input->post('nombreUsuario'),
             );
-
             $insercion = $this->Usuario_model->add_usuario($params);
             if ($insercion) {
                 $fecha = (getdate()["year"]) . "-" . (getdate()["mon"]) . "-" . (getdate()["mday"]);
@@ -122,7 +121,7 @@ class Usuario extends CI_Controller
                     'fechaInicio'=>$fechaActual,
                     'hora'=>$horaActual,
                 );
-            switch ($datos["tabla"]) {
+            	switch ($datos["tabla"]) {
                     case "EstadoUsuario":
                     $setAntiguoEst=$this->TenerEstadoUsuario_model->update_tenerEstadoUsuario(array('fechaFin'=>$fechaActual), array('nombreEstadoUsuario'=>$datos["antiguo"],'nombreUsuario'=>$datos["nombreUsuario"],'fechaFin'=>null));
                     if ($setAntiguoEst) {
