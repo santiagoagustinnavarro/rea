@@ -21,6 +21,24 @@ class Usuario extends CI_Controller
         $this->load->view('usuario/index', ['usuario' => $usuario]);
         $this->load->view("footer");
     }
+    function actualizarClave($nombreUsuario=""){
+        echo $nombreUsuario;
+        echo "mama";
+        if($nombreUsuario!=""){
+            $antigua=$this->input->post("clave");
+            $nueva=$this->input->post("clave2");
+            $user=$this->Usuario_model->get_usuario($nombreUsuario,array("clave"=>hash("sha224",$antigua)));
+            if($user!=null){
+               $update= $this->Usuario_model->update_usuario($nombreUsuario,array("clave"=>$nueva));
+               if($update){
+                   $this->load->view("header",array("title"=>"Clave actualizada"));
+                   $this->load->view("reestablecerClave");
+                   $this->load->view("footer");
+               }
+            }
+
+        }
+    }
 
     /*
      * Añadiendo a nuevo usuario

@@ -111,7 +111,7 @@ class Login extends CI_Controller
                }
                 $añadirEstado=$this->TenerEstadoToken_model->add_tenerestadotoken(array("nombreEstadoToken"=>"utilizado","nroToken"=>$nroToken,"fechaInicio"=>date("Y-m-d"),"hora"=>"H:i:s"));
                 $this->load->view("header", array("title"=>"RestablecerClave"));
-                $this->load->view("restablecerclave", array("nroToken"=>$nroToken,"nombreUsuario"=>$nombreUsuario));
+                $this->load->view("restablecerclave", array("nombreUsuario"=>$nombreUsuario));
                 $this->load->view("footer");
             } else {
                 echo "el token no existe wacho";
@@ -163,7 +163,6 @@ class Login extends CI_Controller
     private function enviarMail($datos, $user)
     {
       /*  $this->load->library('email');
- 
         $this->email->from('santiago.navarro@est.fi.uncoma.edu.ar', 'You');
         $this->email->to($user["email"]);
         echo $user["email"];
@@ -191,7 +190,7 @@ class Login extends CI_Controller
                $email->addTo($user["email"]);
                $key=getenv('SENDGRID_API_KEY');
                echo $key;
-               $email->addContent("text/html", "Link de recuperacion de cuenta:".base_url().$user["nombreUsuario"]."/".$datos["nroToken"]);
+               $email->addContent("text/html", "Link de recuperacion de cuenta:".base_url()."login/recuperarclave/".$user["nombreUsuario"]."/".$datos["nroToken"]);
                $sendgrid = new \SendGrid($key);
                try {
                    $response = $sendgrid->send($email);
