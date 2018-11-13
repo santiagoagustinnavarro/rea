@@ -75,7 +75,7 @@ INSERT INTO `tieneRol`(`nombreUsuario`,`nombreRol`, `fechaInicio`) VALUES
 -- -----------------------------------------------------
 INSERT INTO `estadoToken`(`nombreEstadoToken`,`descripcion`) VALUES 
 ('vencido','El token ya caduco'),
-('pendiente','El token aun no ah sido utilizado'),
+('Pendiente','El token aun no ah sido utilizado'),
 ('utilizado','el token ya fue utilizado');
 
 -- Generamos el evento para el vencimiento de los tokens--------
