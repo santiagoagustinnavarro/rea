@@ -21,22 +21,22 @@ class Usuario extends CI_Controller
         $this->load->view('usuario/index', ['usuario' => $usuario]);
         $this->load->view("footer");
     }
-    function actualizarClave($nombreUsuario=""){
+    public function actualizarClave($nombreUsuario="")
+    {
         echo $nombreUsuario;
         echo "mama";
-        if($nombreUsuario!=""){
+        if ($nombreUsuario!="") {
             $antigua=$this->input->post("clave");
             $nueva=$this->input->post("clave2");
-            $user=$this->Usuario_model->get_usuario($nombreUsuario,array("clave"=>hash("sha224",$antigua)));
-            if($user!=null){
-               $update= $this->Usuario_model->update_usuario($nombreUsuario,array("clave"=>$nueva));
-               if($update){
-                   $this->load->view("header",array("title"=>"Clave actualizada"));
-                   $this->load->view("reestablecerClave");
-                   $this->load->view("footer");
-               }
+            $user=$this->Usuario_model->get_usuario($nombreUsuario, array("clave"=>hash("sha224", $antigua)));
+            if ($user!=null) {
+                $update= $this->Usuario_model->update_usuario($nombreUsuario, array("clave"=>$nueva));
+                if ($update) {
+                    $this->load->view("header", array("title"=>"Clave actualizada"));
+                    $this->load->view("reestablecerClave");
+                    $this->load->view("footer");
+                }
             }
-
         }
     }
 
@@ -64,7 +64,7 @@ class Usuario extends CI_Controller
                 $nombreUsuario = $params["nombreUsuario"];
                 $datosEstado = array("fechaInicio"=>$fecha,"hora"=>$hora,"nombreUsuario"=>$nombreUsuario,"nombreEstadoUsuario"=>$nombreEstadoUsuario);
                 $datosRol=array("fechaInicio"=>$fecha,"nombreUsuario"=>$nombreUsuario,"nombreRol"=>$nombreRol);
-                $insercionEstado = $this->tenerEstadoUsuario_model->add_tenerEstadoUsuario($datosEstado);
+                $insercionEstado = $this->TenerEstadoUsuario_model->add_tenerEstadoUsuario($datosEstado);
                 $insercionProfesor = $this->Tienerol_model->add_tienerol($datosRol);
                 $this->load->view("header", ["title" => "Registro"]);
                 $this->load->view('inicio/registrarse', array("mensaje" => '<div class="alert alert-success text-center"><h4>'."Registrado con exito".'</h4></div>'));
@@ -139,7 +139,7 @@ class Usuario extends CI_Controller
                     'fechaInicio'=>$fechaActual,
                     'hora'=>$horaActual,
                 );
-            	switch ($datos["tabla"]) {
+            switch ($datos["tabla"]) {
                     case "EstadoUsuario":
                     $setAntiguoEst=$this->TenerEstadoUsuario_model->update_tenerEstadoUsuario(array('fechaFin'=>$fechaActual), array('nombreEstadoUsuario'=>$datos["antiguo"],'nombreUsuario'=>$datos["nombreUsuario"],'fechaFin'=>null));
                     if ($setAntiguoEst) {
@@ -217,23 +217,22 @@ class Usuario extends CI_Controller
      */
     public function eliminarCuenta($nombUser="")
     {
-		
         if ($nombUser=="") {
             $this->load->view("header", ["title" => "Eliminar Cuenta"]);
             $this->load->view('usuario/eliminarCuenta');
             $this->load->view("footer");
         } else {
             $hora=date("H:i:s");
-			$fecha=date("Y-m-d");
+            $fecha=date("Y-m-d");
             $paramsUpdate=array("fechaFin"=>date("Y-m-d"));
             $paramsNew=array("nombreEstadoUsuario"=>"baja","fechaFin"=>null,"fechaInicio"=>$fecha,"nombreUsuario"=>$nombUser,"hora"=>$hora);
             $where=array("fechaFin"=>null,"nombreUsuario"=>$nombUser,"nombreEstadoUsuario"=>"alta");
             $actualizarEstado=$this->TenerEstadoUsuario_model->update_tenerestadousuario($paramsUpdate, $where);
-			if ($actualizarEstado) {
+            if ($actualizarEstado) {
                 $nuevoEstado=$this->TenerEstadoUsuario_model->add_tenerEstadoUsuario($paramsNew);
                 if ($nuevoEstado) {
-       				session_destroy();
-        			redirect('login/cerrarSession');
+                    session_destroy();
+                    redirect('login/cerrarSession');
                 } else {
                     $this->load->view("header", ["title" => "Eliminar Cuenta"]);
                     $this->load->view('usuario/eliminarCuenta', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Ah ocurrido un error'.'</h4></div>']);
@@ -254,14 +253,52 @@ class Usuario extends CI_Controller
          } else {
              show_error('El usuario no existe');
          } */
-	}
-	/* 
-	* Esta funcion es para subir un archivo
-	*/
-	public function subirArchivo(){
+    }
+    /*
+    * Esta funcion es para subir un archivo
+    */
+    public function subirRecurso()
+    {
+        $nombreRec=$this->input->post("nombre");
         $archivos=$this->input->post("archivo");
-		$this->load->view("header", ["title" => "Subir Archivo"]);
-        $this->load->view('usuario/subirArchivo');
-        $this->load->view("footer");
-	}
+        $desc=$this->input->post("descripcion");
+        if (count($_POST)>0) {
+            if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
+                $recurso=$this->subida($nombreRec, $archivos, $desc);
+                if ($recurso) {
+                    $this->load->view("header", ["title" => "Subir Recurso"]);
+                    $this->load->view('usuario/subirRecurso', ["mensaje"=>"Recurso subido con exito"]);
+                    $this->load->view("footer");
+                }
+            } else {
+                $this->load->view("header", ["title" => "Subir Recurso"]);
+                $this->load->view('usuario/subirRecurso', ["mensaje"=>"Faltan completar campos"]);
+                $this->load->view("footer");
+            }
+        } else {
+            $this->load->view("header", ["title" => "Subir Recurso"]);
+            $this->load->view('usuario/subirRecurso');
+            $this->load->view("footer");
+        }
+    }
+
+    private function subida($nombreRec, $archivos, $descripcion)
+    {
+        require "login.php";
+        $login=new Login();
+        $recurso=array("nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$nombreRec,"descripcion"=>$descripcion);
+        $idRecurso=$this->Recurso_model->add_recurso($recurso);
+        if ($idRecurso >0) {
+            $res=true;
+            foreach ($archivos as $elem) {
+                $idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$elem,"idRecurso"=>$idRecurso));
+                if ($idArchivo<=0) {
+                    $res=false;
+                }
+            }
+        } else {
+            $res=false;
+        }
+        return $res;
+    }
 }

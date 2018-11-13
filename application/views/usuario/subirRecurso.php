@@ -1,8 +1,12 @@
 <div class="container-fluid">
 	<div class="container py-3">
 		<div class="offset-md-3 col-md-6" id="transparencia">
-			<h1 class="titulo">Subir Archivo</h1></br>
-			<form id="contacto">
+			<h1 class="titulo">Subir Recurso</h1></br>
+			<?php
+			if(isset($mensaje)){
+				echo $mensaje;
+			} ?>
+			<form id="contacto" action="subirrecurso" method="post">
 				<div class="form-group">
 					<label class="label" for="nombre"><i class="fa fa-file-text-o"></i> Nombre del Recurso</label>
 					<input type="text" class="form-control" id="nombre" placeholder="Ingrese el Nombre" name="nombre" minlength="4" maxlength="30">

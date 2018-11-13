@@ -132,5 +132,5 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array("TenerEstadoToken_model","TokenRecupera_model","Contienepermiso_model","Estadousuario_model","Rol_model","Usuario_model","TenerEstadoUsuario_model","Tienerol_model");
+$autoload['model'] = array("Recurso_model","Archivo_model","TenerEstadoToken_model","TokenRecupera_model","Contienepermiso_model","Estadousuario_model","Rol_model","Usuario_model","TenerEstadoUsuario_model","Tienerol_model");
 

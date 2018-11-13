@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width" charset="utf-8" />
-	<link rel="icon" type="image/png" href="<?php echo base_url()?>assets/imagenes/favicon.png" sizes="16x16"/>
+	<link rel="icon" type="image/png" href="<?php echo base_url()?>assets/imagenes/logo3.png" sizes="16x25"/>
 	<title>
 		<?php echo $title; ?>
 	</title>
@@ -236,8 +236,8 @@ if (isset($styles)) { //Invocacion de estilos propios
 							<a class="dropdown-item" href="<?php echo base_url()."usuario/editarPerfil"?>">
 								<i class="fa fa-pencil"></i> Editar Perfil
 							</a>
-							<a class="dropdown-item " href="<?php echo base_url()."usuario/subirArchivo"?>">
-								<i class="fa fa-file-text"></i> Subir Archivos
+							<a class="dropdown-item " href="<?php echo base_url()."usuario/subirRecurso"?>">
+								<i class="fa fa-file-text"></i> Subir Recurso
 							</a>
 							<a class="dropdown-item" href="<?php echo base_url()."usuario/eliminarCuenta"?>">
 								<i class="fa fa-trash"></i> Eliminar Cuenta
