@@ -200,25 +200,27 @@ class Usuario extends CI_Controller
      */
     public function eliminarCuenta()
     {
-        $nombUser=$this->input->post("nombreUsuario");
+		$nombUser=$this->input->post("nombreUsuario");
         if ($nombUser=="") {
             $this->load->view("header", ["title" => "Eliminar Cuenta"]);
             $this->load->view('usuario/eliminarCuenta');
             $this->load->view("footer");
         } else {
+			alert("hola");
             $hora=date("H:i:s");
-            $fecha=date("Y-m-d");
+			$fecha=date("Y-m-d");
             $paramsUpdate=array("fechaFin"=>date("Y-m-d"));
             $paramsNew=array("nombreEstadoUsuario"=>"baja","fechaFin"=>null,"fechaInicio"=>$fecha,"nombreUsuario"=>$nombUser,"hora"=>$hora);
             $where=array("fechaFin"=>null,"nombreUsuario"=>$nombUser,"nombreEstadoUsuario"=>"alta");
-            $actualizarEstado=$this->TenerEstadoUsuario_model->update_tenerestadousuario($params, $where);
-            if ($actualizarEstado) {
+            $actualizarEstado=$this->TenerEstadoUsuario_model->update_tenerestadousuario($paramsUpdate, $where);
+			if ($actualizarEstado) {
                 $nuevoEstado=$this->TenerEstadoUsuario_model->add_tenerEstadoUsuario($paramsNew);
                 if ($nuevoEstado) {
-                    redirect("login");
+       				session_destroy();
+        			redirect('login');
                 } else {
                     $this->load->view("header", ["title" => "Eliminar Cuenta"]);
-                    $this->load->view('usuario/eliminarCuenta', ['mensaje'=>'ah ocurrido un error']);
+                    $this->load->view('usuario/eliminarCuenta', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Ah ocurrido un error'.'</h4></div>']);
                     $this->load->view("footer");
                 }
             } else {

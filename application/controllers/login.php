@@ -154,7 +154,6 @@ class Login extends CI_Controller
     private function enviarMail($datos, $user)
     {
         $this->load->library('email');
- 
         $this->email->from('santiago.navarro@est.fi.uncoma.edu.ar', 'You');
         $this->email->to($user["email"]);
         $this->email->subject('My first email by Mailjet');

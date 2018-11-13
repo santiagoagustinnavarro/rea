@@ -157,11 +157,32 @@ function validarPerfil() {
     } else {
         $("#nombreUsuario").css("background-color", "inherit");
         res = true && res;
-    }
+	}
+	if(clave==""){
+        res=false;
+          $("#clave").css("background-color", "rgba(255,0,0,0.4)");
+    }else{
+         $("#clave").css("background-color", "inherit");
+    }if (clave1 !== clave2) {
+        $("#clave1").css("background-color", "rgba(255,0,0,0.4)");
+        $("#clave2").css("background-color", "rgba(255,0,0,0.4)");
+        alert("Las claves no coinciden");
+        res = false;
+	} else {
+		if (clave1 == "") {
+            $("#clave1").css("background-color", "rgba(255,0,0,0.4)");
+            $("#clave2").css("background-color", "rgba(255,0,0,0.4)");
+            res = false;
+        } else {
+            $("#clave1").css("background-color", "inherit");
+			$("#clave2").css("background-color", "inherit");
+			res = true && res;
+		}
+	}
     if (res) {
         $("#clave").val($.sha224($("#clave").val()));
-        $("#clave2").val($.sha224($("#clave2").val()));
+		$("#clave1").val($.sha224($("#clave1").val()));
+		$("#clave2").val($.sha224($("#clave2").val()));
 	}
-	
 	return res;
 }

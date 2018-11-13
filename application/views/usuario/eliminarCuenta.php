@@ -3,20 +3,31 @@
 	$sesion=new Login();
     if ($_SESSION["iniciada"]) {
 ?>
-<div class="col-md-6 mx-auto">
-<div class="container-fluid">
-	<div class="container py-5">
-		<div class="alert alert-danger" id="eliminar">
-			<h2 class="titulo"><b> Eliminar Cuenta</b></h2>
-			<h4 class="titulo">Esta seguro que desea eliminar su cuenta</h4></br>
-			<div class="form-group" id="boton">
-				<button type="submit" name="si" id="si" class="btn btn-success">SI</button>
-				<button type="submit" name="no" id="no" class="btn btn-danger">NO</button>
-			</div>
-		</div>
-	</div>
-</div>
-</div>
+<div class="container py-5">
+	<?php
+		if(isset($mensaje)){
+			echo $mensaje;
+		}	
+	?>
+	<div class="col-md-6 mx-auto">
+		<div class="container-fluid">
+			<?php echo form_open('usuario/eliminarCuenta',array("class"=>"form")); ?>
+			<div class="alert alert-danger" id="eliminar">
+				<h2 class="titulo"><b> Eliminar Cuenta</b></h2>
+				<h4 class="titulo">Esta seguro que desea eliminar su cuenta</h4></br>
+				<div id="boton">
+					<a href="<?php echo base_url()?>usuario/eliminarCuenta">
+						<button type="button" name="si" id="si" class="btn btn-success">Si</button>
+					</a>
+					<a href="<?php echo base_url()?>inicio">
+						<button type="button" name="no" id="no" class="btn btn-danger">No</button>
+					</a>
+				</div> <!-- Cierre del clase id boton -->
+			</div> <!-- Cierre del alert -->
+			<?php echo form_close(); ?>
+		</div> <!-- Cierre del container-fluid -->
+	</div> <!-- Cierre de la clases col-md-6 -->
+</div> <!-- Cierre del container final -->
 <?php
 	}
 ?>
