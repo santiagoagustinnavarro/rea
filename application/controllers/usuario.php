@@ -198,15 +198,14 @@ class Usuario extends CI_Controller
     /*
      * Eliminar un usuario
      */
-    public function eliminarCuenta()
+    public function eliminarCuenta($nombUser="")
     {
-		$nombUser=$this->input->post("nombreUsuario");
+		
         if ($nombUser=="") {
             $this->load->view("header", ["title" => "Eliminar Cuenta"]);
             $this->load->view('usuario/eliminarCuenta');
             $this->load->view("footer");
         } else {
-			alert("hola");
             $hora=date("H:i:s");
 			$fecha=date("Y-m-d");
             $paramsUpdate=array("fechaFin"=>date("Y-m-d"));
@@ -217,7 +216,7 @@ class Usuario extends CI_Controller
                 $nuevoEstado=$this->TenerEstadoUsuario_model->add_tenerEstadoUsuario($paramsNew);
                 if ($nuevoEstado) {
        				session_destroy();
-        			redirect('login');
+        			redirect('login/cerrarSession');
                 } else {
                     $this->load->view("header", ["title" => "Eliminar Cuenta"]);
                     $this->load->view('usuario/eliminarCuenta', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Ah ocurrido un error'.'</h4></div>']);
