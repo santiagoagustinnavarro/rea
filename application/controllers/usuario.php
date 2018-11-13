@@ -259,6 +259,7 @@ class Usuario extends CI_Controller
 	* Esta funcion es para subir un archivo
 	*/
 	public function subirArchivo(){
+        $archivos=$this->input->post("archivo");
 		$this->load->view("header", ["title" => "Subir Archivo"]);
         $this->load->view('usuario/subirArchivo');
         $this->load->view("footer");
