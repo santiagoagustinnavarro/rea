@@ -85,7 +85,6 @@ CREATE TABLE IF NOT EXISTS `Rea`.`archivo` (
   `nombre` VARCHAR(30) NOT NULL,
   `descripcion` VARCHAR(80) NULL DEFAULT NULL,
   `idRecurso` INT NOT NULL,
-  `idTipo` INT NOT NULL,
   PRIMARY KEY (`idArchivo`),
   INDEX `fk_archivo_recurso1_idx` (`idRecurso` ASC),
   CONSTRAINT `fk_archivo_recurso1`
@@ -223,9 +222,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Rea`.`Tema`
+-- Table `Rea`.`tema`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Rea`.`Tema` (
+CREATE TABLE IF NOT EXISTS `Rea`.`tema` (
   `nombre` VARCHAR(50) NOT NULL,
   `descripcion` VARCHAR(100) NULL,
   `idRecurso` INT NOT NULL,
