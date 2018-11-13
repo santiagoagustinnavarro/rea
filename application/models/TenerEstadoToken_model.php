@@ -14,15 +14,16 @@ class TenerEstadoToken_model extends CI_Model
     /*
      * Get tienerol by nombreUsuario
      */
-    public function get_tenerestadotoken($idToken, $params=array())
-    {   $this->db->select_max();
+    public function get_tenerestadotoken($nroToken, $params=array())
+    { 
+
         if (count($params)>0) {
-            $params["idToken"]=$idToken;
-            $rolActual=$this->db->get_where('tenerestadotoken', $params)->row_array();
+            $params["nroToken"]=$nroToken;
+            $estado=$this->db->get_where('tenerestadotoken',$params)->row_array();
         } else {
-            $rolActual=$this->db->get_where('tenerestadotoken', array('nombreUsuario'=>$nombreUsuario,'fechaFin'=>null))->row_array();
+            $estado=$this->db->get_where('tenerestadotoken', array('nroToken'=>$nroToken,'fechaFin'=>null))->row_array();
         }
-        return $rolActual;
+        return $estado;
     }
         
     /*
@@ -39,19 +40,20 @@ class TenerEstadoToken_model extends CI_Model
      */
     public function add_tenerestadotoken($params)
     {
+       // return
         return $this->db->insert('tenerestadotoken', $params);
-        // return $this->db->insert_id();
+         //return $this->db->insert_id();
     }
     
     /*
      * function to update tienerol
      */
-    public function update_tienerol($params=array(), $where=array())
+    public function update_tenerestadotoken($params=array(), $where=array())
     {
         foreach ($where as $key=>$value) {
             $this->db->where($key, $value);
         }
-        return $this->db->update('tieneRol', $params);
+        return $this->db->update('tenerestadotoken', $params);
     }
     
     /*
