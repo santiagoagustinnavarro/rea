@@ -5,6 +5,19 @@ if ($_SESSION["iniciada"] && $_SESSION["rol"]=="administrador de usuarios") {
 <table class="table table-light table-responsive-md" id="tabla">
 	<thead>
 		<tr><th class="titulo" colspan="6"><h3>Lista de Usuarios</h3></th></tr>
+		<tr><th colspan="4" id="filtro"><div class="container-fluid">
+            	<div class="row">
+                	<div class="col-md-5">
+                    	<input type="text" class="form-control" id="busqueda" placeholder="Ingresa el usuario">
+                	</div>
+                	<div class="col-md-5" id="listaEstados">
+                	</div>
+            	</div>
+            	<div class="row">
+                	<div  class="col-md-offset-2 col-md-1" id="recomendacion"></div>
+            	</div>
+        	</div>
+		</th></tr>
 		<tr>
 			<th scope="col">Nombre Usuario</th>
 			<th scope="col">Nombre</th>

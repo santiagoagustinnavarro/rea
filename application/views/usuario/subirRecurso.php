@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="container py-3">
 		<div class="offset-md-3 col-md-6" id="transparencia">
-			<h1 class="titulo">Subir Recurso</h1></br>
+			<h1>Subir Recurso</h1></br>
 			<?php
 			if(isset($mensaje)){
 				echo $mensaje;

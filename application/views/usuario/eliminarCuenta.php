@@ -8,8 +8,8 @@
 		<div class="container-fluid">
 			<?php echo form_open('usuario/eliminarCuenta',array("class"=>"form")); ?>
 			<div class="alert alert-danger" id="eliminar">
-				<h2 class="titulo"><b> Eliminar Cuenta</b></h2>
-				<h4 class="titulo">Esta seguro que desea eliminar su cuenta</h4></br>
+				<h2><b> Eliminar Cuenta</b></h2>
+				<h4>Esta seguro que desea eliminar su cuenta</h4></br>
 				<div id="boton">
 					<a href="<?php echo base_url()?>usuario/eliminarCuenta/<?php echo $_SESSION["nombreUsuario"];?>">
 						<button type="button" name="si" id="si" class="btn btn-success">Si</button>
