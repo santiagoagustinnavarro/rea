@@ -7,7 +7,7 @@
 			echo $mensaje;
 			}
 			?> 
-			  <h1 class="titulo">Reestablecer Contraseña</h1>
+			  <h1>Reestablecer Contraseña</h1>
                 </br>
   		  		<div class="form-group">
 					<label class="label" for="clave"><i class="fa fa-lock"></i> Contraseña</label>

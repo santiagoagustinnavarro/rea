@@ -1,7 +1,7 @@
 <div class="container py-4">
 	<div class="col-md-6 mx-auto">
 		<div class="container">
-			<h1 class="titulo text-secondary">Registro Usuario</h1>
+			<h1 text-secondary">Registro Usuario</h1>
 			<?php 
 				if(isset($mensaje)){
 					echo "<h2>".$mensaje."</h2>";

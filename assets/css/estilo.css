@@ -6,6 +6,7 @@ body {
 	display:flex;
 	min-height:100vh;
 	flex-wrap: wrap;
+	text-align: center;
 }
 @media (min-width: 992px) {
   body {
@@ -50,18 +51,9 @@ body {
 #cuerpo{
 	margin-top:70px;
 }
-/** A la clase titulo de cada pagina le centra el texto */
-.titulo{
-	text-align: center;
-}
 /** Al titulo de la pagina login un relleno de 2% abajo, y centra el texto */
 #tituloLogin{
-	text-align: center;
 	padding-bottom: 2%;
-}
-/** El id de registro centra el boton de login para enviarlo al formulario*/
-#registro{
-	text-align: center;
 }
 /** ######################## CONTENIDO DE LA PAGINA ############################# */
 /** un relleno de 2% entre cada uno de los recursos */
@@ -85,15 +77,8 @@ body {
 	position: relative;
 	left: 10%;
 }
-/** A los textos del form los centra */
-#formulario{
-	text-align: center;
-}
 /**################################ CONTACTO ###################################*/
 /** El formulario con el id de contacto se centra */
-#contacto{
-	text-align: center;
-}
 #transparencia {
 	background:rgba(189, 189, 189, 0.7);
 	padding: 3%;
@@ -106,20 +91,14 @@ body {
 /** A las clases de tipo recurso se añade un fondo de color blanco */
 .recurso {
 	background:white;
-	text-align: center;
 }
 /** Centra los botones en este caso de los formularios (login y registro) */
 #boton{
-	text-align: center;
 	font-size: large;
 	padding-top: 1%;
 	padding-bottom: 1%;
 	padding-left: 3%;
 	padding-right: 3%;
-}
-/** centra los texto dentro de los inputs */
-.form-group input{
-	text-align: center;
 }
 /** A los id de link se le aplica la letra negra */
 #link a{
@@ -127,35 +106,13 @@ body {
 }
 /** A la clase texto se le aplica centrado, negrita y la letra grande*/
 .texto{
-	text-align: center;
 	font-weight: bold;
 	font-size: large;
 	padding-bottom:3%;
 }
-/**############# CAMBIAR ESTADO #############*/
-/** Centra el texto con el id nombreUsuario, nuevoEstado, nuevoRol */
-#nombreUsuario {
-	text-align: center;
-}
-#nuevoEstado{
-	text-align: center;
-}
-#email{
-	text-align: center;
-}
-#nuevoRol{
-	text-align: center;
-}
-/** Centra los textos de los id de tipo tabla */
-#tabla{
-	text-align: center;
-}
 /* Indica en que numero de pagina y el tipo de cantidad de paginas que hay */
 .pagination {
 	margin-bottom: 15px;
-}
-#eliminar{
-	text-align: center;
 }
 /** ############################## PIE DE PAGINA ################################### */
 /** flex-end me situa el footer al final de la pagina, width toma el 100% de la pagina*/

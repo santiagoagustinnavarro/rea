@@ -12,7 +12,7 @@ echo form_open('usuario/edit/'.$usuario['nombreUsuario'], array("class"=>"form-h
 <div class="container py-3">
 	<div class="col-md-6 mx-auto" id="transparencia">
 		<div class="container">
- 			<h1 class="titulo">Cambiar Estado</h1></br>
+ 			<h1>Cambiar Estado</h1></br>
 			<div class="texto">
 				<label for="nombreUsuario">Nombre del Usuario</label>
 				<input readonly type="text" name="nombreUsuario" class="form-control" id="nombreUsuario" 

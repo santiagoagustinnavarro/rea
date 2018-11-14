@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width" charset="utf-8" />
-	<link rel="icon" type="image/png" href="<?php echo base_url()?>assets/imagenes/logo3.png" sizes="16x25"/>
+	<link rel="icon" type="image/png" href="<?php echo base_url()?>assets/imagenes/favicon.png" sizes="16x25"/>
 	<title>
 		<?php echo $title; ?>
 	</title>
