@@ -2,7 +2,7 @@
 	<div class="col-md-6 mx-auto">
 		<div class="container" id="transparencia">
   			<form id="formulario" method="post" action="<?php echo base_url()."usuario"?>/actualizarClave<?php echo "/".$nombreUsuario;?>">
-			<?php 
+			<?php 	
 			if(isset($mensaje)){ 
 			echo $mensaje;
 			}

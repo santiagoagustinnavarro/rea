@@ -16,8 +16,8 @@
 					<input type="file" id="archivo[]" name="archivo[]" multiple="">
 				</div>
 				<div class="form-group">
-					<label class="label" for="descripcion"><i class="fa fa-pencil-square-o"></i> Descripcion</label>
-					<textarea class="form-control" name="descripcion" id="descripcion" rows="5" placeholder="Una descripcion del recurso ..."></textarea>
+					<label class="label" for="textarea"><i class="fa fa-pencil-square-o"></i> Descripcion</label>
+					<textarea class="form-control" name="textarea" id="textarea" rows="5" placeholder="Una descripcion del recurso ..."></textarea>
 				</div>
 				<div class="form-group" id="boton">
 					<button type="submit" class="btn btn-success">Enviar</button>
