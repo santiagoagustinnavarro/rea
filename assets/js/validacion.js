@@ -168,17 +168,8 @@ function validarPerfil() {
         $("#clave2").css("background-color", "rgba(255,0,0,0.4)");
         alert("Las claves no coinciden");
         res = false;
-	} else {
-		if (clave1 == "") {
-            $("#clave1").css("background-color", "rgba(255,0,0,0.4)");
-            $("#clave2").css("background-color", "rgba(255,0,0,0.4)");
-            res = false;
-        } else {
-            $("#clave1").css("background-color", "inherit");
-			$("#clave2").css("background-color", "inherit");
-			res = true && res;
-		}
-	}
+	} 
+
     if (res) {
         $("#clave").val($.sha224($("#clave").val()));
 		$("#clave1").val($.sha224($("#clave1").val()));

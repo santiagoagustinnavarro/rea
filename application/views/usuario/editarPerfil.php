@@ -49,7 +49,7 @@
       				<input type="password" class="form-control" id="clave" placeholder="Ingrese Contraseña" name="clave" minlength="8" maxlength="15" required>
 				</div>
 				<div class="form-group">
-					<label class="label" for="clave">Cambiar Contraseña</label>
+					<label class="label" for="clave1">Cambiar Contraseña</label>
       				<input type="password" class="form-control" id="clave1" placeholder="Nueva Contraseña" name="clave1" minlength="8" maxlength="15">
 				</div>
 				<div class="form-group">

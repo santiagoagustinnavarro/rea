@@ -168,7 +168,24 @@ class Usuario extends CI_Controller
         }
         return $actualizacion;
     }
-    
+    function test(){
+        $this->email->to('santiago.navarro@est.fi.uncoma.edu.ar');
+        $config=['mailtype'=>'html',
+        'protocol' => 'smtp',
+        'smtp_host'=>'ssl://smtp.gmail.com',
+    'smtp_port'=>587,
+    'smtp_user'=>'reanotreply@gmail.com',
+    'smtp_pass'=>'rea2018FI'];
+        $this->email->initialize($config);
+$this->email->from('rea@notereply','Programacionnet');
+$this->email->subject('Test Email (TEXT)');
+$this->email->message('Text email testing by CodeIgniter Email library.');
+if($this->email->send()){
+    echo "enviado";
+}else{
+show_error($this->email->print_debugger());
+}
+    }
     /**
      * Editar perfil del usuario
      * El usuario va a poder modificar sus datos, por si quiere modificar o agregar alguno de estos.
@@ -176,7 +193,7 @@ class Usuario extends CI_Controller
     public function editarPerfil()
     {
         $cant=count($_POST);
-        if ($cant>0) {
+        if ($cant>0) {//Se enviaron datos desde el formulario
             $nombUser=$this->input->post("nombreUsuario");
             $nombre=$this->input->post("nombre");
             $apellido=$this->input->post("apellido");
@@ -184,16 +201,31 @@ class Usuario extends CI_Controller
             $dni=$this->input->post("dni");
             $email=$this->input->post("email");
             $clave=$this->input->post("clave");
-            $datos=["nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>$clave];
-            $res=$this->Usuario_model->update_usuario($nombUser, array("nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224', $this->input->post('clave'))));
-            if ($res) {
-                $this->actualizarSesion($datos);
-                $this->load->view("header", ["title" => "Editar Perfil"]);
-                $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-success text-center"><h4>'.'Datos Actualizados Correctamente'.'</h4></div>']);
-                $this->load->view("footer");
+            $claveNueva=$this->input->post("clave1");
+            $claveNuevaRep=$this->input->post("clave2");
+            $usuarioBuscado=$this->Usuario_model->get_usuario($nombUser);
+            if ($usuarioBuscado!=null) {
+                if (hash('sha224', $clave)==$usuarioBuscado["clave"]) {
+                    $datos=["nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>$clave];
+                    $res=$this->Usuario_model->update_usuario($nombUser, array("nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224', $this->input->post('clave'))));
+                    if ($res) {
+                        $this->actualizarSesion($datos);
+                        $this->load->view("header", ["title" => "Editar Perfil"]);
+                        $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-success text-center"><h4>'.'Datos Actualizados Correctamente'.'</h4></div>']);
+                        $this->load->view("footer");
+                    } else {
+                        $this->load->view("header", ["title" => "Editar Perfil"]);
+                        $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Error al tratar de cargar los datos'.'</h4></div>']);
+                        $this->load->view("footer");
+                    }
+                } else {
+                    $this->load->view("header", ["title" => "Editar Perfil"]);
+                    $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'La clave actual es invalida'.'</h4></div>']);
+                    $this->load->view("footer");
+                }
             } else {
                 $this->load->view("header", ["title" => "Editar Perfil"]);
-                $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Error al tratar de cargar los datos'.'</h4></div>']);
+                $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'El usuario no existe'.'</h4></div>']);
                 $this->load->view("footer");
             }
         } else {
