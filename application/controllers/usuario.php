@@ -293,7 +293,7 @@ show_error($this->email->print_debugger());
     {
         $nombreRec=$this->input->post("nombre");
         $archivos=$this->input->post("archivo");
-        $desc=$this->input->post("descripcion");
+        $desc=$this->input->post("textarea");
         if (count($_POST)>0) {
             if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
                 $recurso=$this->subida($nombreRec, $archivos, $desc);
@@ -314,11 +314,11 @@ show_error($this->email->print_debugger());
         }
     }
 
-    private function subida($nombreRec, $archivos, $descripcion)
+    private function subida($nombreRec, $archivos, $textarea)
     {
         require "login.php";
         $login=new Login();
-        $recurso=array("nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$nombreRec,"descripcion"=>$descripcion);
+        $recurso=array("nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$nombreRec,"descripcion"=>$textarea);
         $idRecurso=$this->Recurso_model->add_recurso($recurso);
         if ($idRecurso >0) {
             $res=true;
