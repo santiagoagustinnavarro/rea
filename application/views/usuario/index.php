@@ -34,8 +34,12 @@ if ($_SESSION["iniciada"] && $_SESSION["rol"]=="administrador de usuarios") {
 			</td>
 			<td>
 				<?php $estado=$this->TenerEstadoUsuario_model->get_tenerestadousuario($u['nombreUsuario']);
-            	echo $estado["nombreEstadoUsuario"]
-                ?>
+            	if(strtolower($estado["nombreEstadoUsuario"])=="pendiente"){
+				?>	<button class="btn btn-success"> Dar alta</button> <?php 
+				}else{
+					echo $estado["nombreEstadoUsuario"];
+				}?>
+                
 			</td>
 			<td>
 				<a href="<?php echo site_url('usuario/edit/' . $u['nombreUsuario']); ?>"
