@@ -11,24 +11,24 @@ var bkExtend=function(){var A=arguments;if(A.length==1){A=[this,A[0]]}for(var B 
 
 var nicEditorConfig = bkClass.extend({
 	buttons : {
-		'bold' : {name : __('Click to Bold'), command : 'Bold', tags : ['B','STRONG'], css : {'font-weight' : 'bold'}, key : 'b'},
-		'italic' : {name : __('Click to Italic'), command : 'Italic', tags : ['EM','I'], css : {'font-style' : 'italic'}, key : 'i'},
-		'underline' : {name : __('Click to Underline'), command : 'Underline', tags : ['U'], css : {'text-decoration' : 'underline'}, key : 'u'},
-		'left' : {name : __('Left Align'), command : 'justifyleft', noActive : true},
-		'center' : {name : __('Center Align'), command : 'justifycenter', noActive : true},
-		'right' : {name : __('Right Align'), command : 'justifyright', noActive : true},
-		'justify' : {name : __('Justify Align'), command : 'justifyfull', noActive : true},
-		'ol' : {name : __('Insert Ordered List'), command : 'insertorderedlist', tags : ['OL']},
-		'ul' : 	{name : __('Insert Unordered List'), command : 'insertunorderedlist', tags : ['UL']},
-		'subscript' : {name : __('Click to Subscript'), command : 'subscript', tags : ['SUB']},
-		'superscript' : {name : __('Click to Superscript'), command : 'superscript', tags : ['SUP']},
-		'strikethrough' : {name : __('Click to Strike Through'), command : 'strikeThrough', css : {'text-decoration' : 'line-through'}},
-		'removeformat' : {name : __('Remove Formatting'), command : 'removeformat', noActive : true},
-		'indent' : {name : __('Indent Text'), command : 'indent', noActive : true},
-		'outdent' : {name : __('Remove Indent'), command : 'outdent', noActive : true},
-		'hr' : {name : __('Horizontal Rule'), command : 'insertHorizontalRule', noActive : true}
+		'bold' : {name : __('Negrita'), command : 'Bold', tags : ['B','STRONG'], css : {'font-weight' : 'bold'}, key : 'b'},
+		'italic' : {name : __('Italico'), command : 'Italic', tags : ['EM','I'], css : {'font-style' : 'italic'}, key : 'i'},
+		'underline' : {name : __('Subrayar'), command : 'Underline', tags : ['U'], css : {'text-decoration' : 'underline'}, key : 'u'},
+		'left' : {name : __('Izquierda'), command : 'justifyleft', noActive : true},
+		'center' : {name : __('Centrar'), command : 'justifycenter', noActive : true},
+		'right' : {name : __('Derecha'), command : 'justifyright', noActive : true},
+		'justify' : {name : __('Justificado'), command : 'justifyfull', noActive : true},
+		'ol' : {name : __('Lista Ordenada'), command : 'insertorderedlist', tags : ['OL']},
+		'ul' : 	{name : __('Lista Desordenada'), command : 'insertunorderedlist', tags : ['UL']},
+		'subscript' : {name : __('Subindice'), command : 'subscript', tags : ['SUB']},
+		'superscript' : {name : __('Sobre Escrito'), command : 'superscript', tags : ['SUP']},
+		'strikethrough' : {name : __('Tachado'), command : 'strikeThrough', css : {'text-decoration' : 'line-through'}},
+		'removeformat' : {name : __('Eliminar Formato'), command : 'removeformat', noActive : true},
+		'indent' : {name : __('Sangria'), command : 'indent', noActive : true},
+		'outdent' : {name : __('Quitar Sangria'), command : 'outdent', noActive : true},
+		'hr' : {name : __('Salto de Linea'), command : 'insertHorizontalRule', noActive : true}
 	},
-	iconsPath : '../nicEditorIcons.gif',
+	iconsPath : '../assets/imagenes/nicEditorIcons.gif',
 	buttonList : ['save','bold','italic','underline','left','center','right','justify','ol','ul','fontSize','fontFamily','fontFormat','indent','outdent','image','upload','link','unlink','forecolor','bgcolor'],
 	iconList : {"bgcolor":1,"forecolor":2,"bold":3,"center":4,"hr":5,"indent":6,"italic":7,"justify":8,"left":9,"ol":10,"outdent":11,"removeformat":12,"right":13,"save":24,"strikethrough":15,"subscript":16,"superscript":17,"ul":18,"underline":19,"image":20,"link":21,"unlink":22,"close":23,"arrow":25}
 	
@@ -53,9 +53,9 @@ var nicButtonTips=bkClass.extend({construct:function(A){this.ne=A;A.addEvent("bu
 
 var nicSelectOptions = {
 	buttons : {
-		'fontSize' : {name : __('Select Font Size'), type : 'nicEditorFontSizeSelect', command : 'fontsize'},
-		'fontFamily' : {name : __('Select Font Family'), type : 'nicEditorFontFamilySelect', command : 'fontname'},
-		'fontFormat' : {name : __('Select Font Format'), type : 'nicEditorFontFormatSelect', command : 'formatBlock'}
+		'fontSize' : {name : __('Tamaño Fuente'), type : 'nicEditorFontSizeSelect', command : 'fontsize'},
+		'fontFamily' : {name : __('Tipografia'), type : 'nicEditorFontFamilySelect', command : 'fontname'},
+		'fontFormat' : {name : __('Formato Fuente'), type : 'nicEditorFontFormatSelect', command : 'formatBlock'}
 	}
 };
 
