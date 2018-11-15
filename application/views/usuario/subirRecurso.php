@@ -23,7 +23,7 @@
 				<div class="form-group">
 					<label class="label" for="textarea"><i class="fa fa-pencil-square-o"></i> Descripcion</label>
 					<div class="bg-light">
-						<textarea class="form-control" name="textarea" id="textarea" rows="5"></textarea>
+						<textarea class="form-control" name="textarea" id="textarea" rows="5" maxsize="10"></textarea>
 					</div>
 				</div>
 				<div class="form-group" id="boton">

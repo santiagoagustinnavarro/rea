@@ -104,6 +104,10 @@ body {
 #link a{
 	color: black;
 }
+/** Todos los input de la clase form-group se centran */
+.form-group input {
+	text-align: center;
+}
 /** A la clase texto se le aplica centrado, negrita y la letra grande*/
 .texto{
 	font-weight: bold;
