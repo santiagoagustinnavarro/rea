@@ -26,15 +26,25 @@ class Usuario extends CI_Controller
         echo $nombreUsuario;
         echo "mama";
         if ($nombreUsuario!="") {
-            $antigua=$this->input->post("clave");
-            $nueva=$this->input->post("clave2");
-            $user=$this->Usuario_model->get_usuario($nombreUsuario, array("clave"=>hash("sha224", $antigua)));
+            $clave=$this->input->post("clave");
+            $clave2=$this->input->post("clave2");
+
+            $user=$this->Usuario_model->get_usuario($nombreUsuario);
             if ($user!=null) {
-                $update= $this->Usuario_model->update_usuario($nombreUsuario, array("clave"=>$nueva));
-                if ($update) {
+                if ($clave==$clave2) {
+                    $update= $this->Usuario_model->update_usuario($nombreUsuario, array("clave"=>hash('sha224', $clave2)));
+                    if ($update) {
+                        $this->load->view("header", array("title"=>"Clave actualizada"));
+                        $this->load->view("restablecerClave",["mensaje"=>"actualizado"]);
+                        $this->load->view("footer");
+                    } else {
+                        echo "algo fallo en la actualizacion";
+                    }
+                } else {
                     $this->load->view("header", array("title"=>"Clave actualizada"));
-                    $this->load->view("reestablecerClave");
-                    $this->load->view("footer");
+                        $this->load->view("restablecerClave", ["mensaje"=>"las claves no coinciden"]);
+                        $this->load->view("footer");
+
                 }
             }
         }
@@ -168,23 +178,8 @@ class Usuario extends CI_Controller
         }
         return $actualizacion;
     }
-    function test(){
-        $this->email->to('santiago.navarro@est.fi.uncoma.edu.ar');
-        $config=['mailtype'=>'html',
-        'protocol' => 'smtp',
-        'smtp_host'=>'ssl://smtp.gmail.com',
-    'smtp_port'=>587,
-    'smtp_user'=>'reanotreply@gmail.com',
-    'smtp_pass'=>'rea2018FI'];
-        $this->email->initialize($config);
-$this->email->from('rea@notereply','Programacionnet');
-$this->email->subject('Test Email (TEXT)');
-$this->email->message('Text email testing by CodeIgniter Email library.');
-if($this->email->send()){
-    echo "enviado";
-}else{
-show_error($this->email->print_debugger());
-}
+    public function test()
+    {
     }
     /**
      * Editar perfil del usuario
