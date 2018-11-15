@@ -6,6 +6,11 @@
 			if(isset($mensaje)){
 				echo $mensaje;
 			} ?>
+			<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/nicEdit.js"></script> <script type="text/javascript">
+				//<![CDATA[
+        		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+  				//]]>
+			</script>
 			<form id="contacto" action="subirrecurso" method="post">
 				<div class="form-group">
 					<label class="label" for="nombre"><i class="fa fa-file-text-o"></i> Nombre del Recurso</label>
@@ -16,8 +21,10 @@
 					<input type="file" id="archivo[]" name="archivo[]" multiple="">
 				</div>
 				<div class="form-group">
-					<label class="label" for="descripcion"><i class="fa fa-pencil-square-o"></i> Descripcion</label>
-					<textarea class="form-control" name="descripcion" id="descripcion" rows="5" placeholder="Una descripcion del recurso ..."></textarea>
+					<label class="label" for="textarea"><i class="fa fa-pencil-square-o"></i> Descripcion</label>
+					<div class="bg-light">
+						<textarea class="form-control" name="textarea" id="textarea" rows="5"></textarea>
+					</div>
 				</div>
 				<div class="form-group" id="boton">
 					<button type="submit" class="btn btn-success">Enviar</button>

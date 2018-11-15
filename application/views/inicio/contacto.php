@@ -9,7 +9,7 @@
 				</div>
 				<div class="form-group">
 					<label class="label" for="mensaje"><i class="fa fa-pencil-square-o"></i> Escribir Mensaje</label>
-					<textarea class="form-control" name="mensaje" rows="5" placeholder="Este mensaje..."></textarea>
+					<textarea class="form-control" name="mensaje" id="mensaje" rows="5" maxsize="10" placeholder="Ingrese el motivo por el cual desea contactarse ..."></textarea>
 				</div>
 				<div class="form-group" id="boton">
 					<button type="submit" class="btn btn-success">Enviar</button>
