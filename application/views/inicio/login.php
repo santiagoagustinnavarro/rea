@@ -9,7 +9,13 @@
 					</a>
 				</div> <!-- Cierre del  id registro-->
 				<?php 
-				echo form_open("login/", array('id'=>'formulario',"onsubmit"=>"return validarIngreso();",'method'=>'post'));?> 
+				echo form_open("login/", array('id'=>'formulario',"onsubmit"=>"return validarIngreso();",'method'=>'post'));
+				?> 
+				<?php
+					if(isset($mensaje)){
+					echo $mensaje;
+					}
+				?>
 				<div id="transparencia">
 					<h1 id="tituloLogin">Login</h1>
         			<div class="form-group">
@@ -26,11 +32,6 @@
 					<div class="form-group" id="boton">
     					<button type="submit" class="btn btn-success">Ingresar</button>
 					</div>
-					<?php
-					if(isset($mensaje)){
-					echo $mensaje;
-					}
-					?>
 					<?php	
 					/** Borrar despues de aceptar jajajja */
 					echo form_close();

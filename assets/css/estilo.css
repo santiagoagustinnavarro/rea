@@ -95,10 +95,7 @@ body {
 /** Centra los botones en este caso de los formularios (login y registro) */
 #boton{
 	font-size: large;
-	padding-top: 1%;
-	padding-bottom: 1%;
-	padding-left: 3%;
-	padding-right: 3%;
+	padding: 1% 3% 1% 3%;
 }
 /** A los id de link se le aplica la letra negra */
 #link a{

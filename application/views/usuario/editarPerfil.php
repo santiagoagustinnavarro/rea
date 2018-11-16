@@ -10,9 +10,10 @@
 		}	
 	?>
 	<div class="col-md-6 mx-auto">
-		<div class="container" id="transparencia">
+		<div class="container">
   			<form id="formulario" method="post" action="editarPerfil" onsubmit="return validarPerfil();">
-			  <h1>Editar Perfil</h1>
+				<div id="transparencia">
+			  	<h2>Datos Personales</h2>
 			  	</br>
 			  	<div class="form-group">
 					<label class="label" for="nombreUsuario">Nombre de Usuario</label>
@@ -44,20 +45,32 @@
 					<input type="email" class="form-control" id="email" placeholder="Correo@ejemplo.com" name="email" minlength="10" maxlength="40"
 					value="<?php echo $_SESSION["email"];?>" required>
 				</div>
+			</div>
+			<div id="transparencia">
+				<h3>Actualizar Contraseña</h3>
 				<div class="form-group">
-					<label class="label" for="clave">Contraseña</label>
-      				<input type="password" class="form-control" id="clave" placeholder="Ingrese Contraseña" name="clave" minlength="8" maxlength="15" required>
+					<label class="label" for="clave">Contraseña Antigua</label>
+      				<input type="password" class="form-control" id="clave" placeholder="Ingrese Contraseña" name="clave" minlength="8" maxlength="15">
 				</div>
 				<div class="form-group">
-					<label class="label" for="clave1">Cambiar Contraseña</label>
+					<label class="label" for="clave1">Nueva Contraseña</label>
       				<input type="password" class="form-control" id="clave1" placeholder="Nueva Contraseña" name="clave1" minlength="8" maxlength="15">
 				</div>
 				<div class="form-group">
 					<label class="label" for="clave">Confirmar Contraseña</label>
       				<input type="password" class="form-control" id="clave2" placeholder="Reingrese Contraseña" name="clave2" minlength="8" maxlength="15">
 				</div>
-				<div class="form-group" id="boton">
-					<button type="submit" class="btn btn-success">Actualizar</button>
+			</div>
+				<div class="form-group" id="transparencia">
+					<a href="<?php echo base_url()?>inicio">
+						<button type="button" name="no" id="no" class="btn btn-danger">Cancelar</button>
+					</a>
+					<a href="#">
+						<button type="submit" class="btn btn-success">Actualizar</button>
+					</a>
+					<a>
+						<button type="reset" class="btn btn-info">Limpiar</button>
+					</a>
 				</div>
 			</form>
 		</div> <!-- Cierre del container -->
