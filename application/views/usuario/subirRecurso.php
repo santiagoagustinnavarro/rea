@@ -11,14 +11,14 @@
         		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
   				//]]>
 			</script>
-			<form id="contacto" action="subirrecurso" method="post">
+			<form id="contacto" action="subirrecurso" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label class="label" for="nombre"><i class="fa fa-file-text-o"></i> Nombre del Recurso</label>
 					<input type="text" class="form-control" id="nombre" placeholder="Ingrese el Nombre" name="nombre" minlength="4" maxlength="30">
 				</div>
 				<div class="form-group">
 					<label class="label" for="archivo"><i class="fa fa-upload"></i> Seleccione Archivo/s</label>
-					<input type="file" id="archivo[]" name="archivo[]" multiple="">
+					<input type="file" id="archivo" name="archivo" multiple="">
 				</div>
 				<div class="form-group">
 					<label class="label" for="textarea"><i class="fa fa-pencil-square-o"></i> Descripcion</label>
@@ -27,9 +27,12 @@
 					</div>
 				</div>
 				<div class="form-group" id="boton">
-					<button type="submit" class="btn btn-success">Enviar</button>
+					<button type="submit" name="form" id="form" class="btn btn-success">Enviar</button>
 				</div>
 			</form>
+			<?php
+				
+			?>
 		</div>
 	</div>
 </div>

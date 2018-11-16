@@ -158,7 +158,7 @@ function validarPerfil() {
 	return res;
 }
 /** TERMINAR DE MODIFICAR EL ACTUALIZAR CLAVE */
-function actualizarClave{
+function actualizarClave(){
 	var clave,clave1,clave2,res;
 	clave = $("#clave").val();
 	clave1 = $("#clave1").val();
