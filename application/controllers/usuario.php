@@ -306,7 +306,11 @@ class Usuario extends CI_Controller
     */
     public function subirRecurso()
     {
-        $nombreRec=$this->input->post("nombre");
+		$config['upload_path'] = '../assets/recursos/archivos/';
+		$config['allowed_types'] = '*';
+		$config['max_size'] = '20048';
+		$this->load->library('upload',$config);
+        /* $nombreRec=$this->input->post("nombre");
         $archivos=$this->input->post("archivo");
         $desc=$this->input->post("textarea");
         if (count($_POST)>0) {
@@ -346,6 +350,6 @@ class Usuario extends CI_Controller
         } else {
             $res=false;
         }
-        return $res;
-    }
+        return $res;*/
+    } 
 }

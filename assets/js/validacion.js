@@ -103,15 +103,12 @@ function validarIngreso() {
 /*********************** VALIDAR EDITAR PERFIL ***************************/
 /** Valida los datos del editar perfil y actualiza a el usuario */
 function validarPerfil() {
-    var nombre, apellido, usuario, clave, email, exp, clave1, clave2, res;
+    var nombre, apellido, usuario, email, exp, res;
     nombre = $("#nombre").val();
 	apellido = $("#apellido").val();
 	email = $("#email").val();
 	exp = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
     usuario = $("#nombreUsuario").val();
-	clave = $("#clave").val();
-	clave1 = $("#clave1").val();
-    clave2 = $("#clave2").val();
 	res = true;
 	/** Validacion del nombre */
     if (nombre === "") {
@@ -158,24 +155,32 @@ function validarPerfil() {
         $("#nombreUsuario").css("background-color", "inherit");
         res = true && res;
 	}
+	return res;
+}
+/** TERMINAR DE MODIFICAR EL ACTUALIZAR CLAVE */
+function actualizarClave(){
+	var clave,clave1,clave2,res;
+	clave = $("#clave").val();
+	clave1 = $("#clave1").val();
+	clave2 = $("#clave2").val();
+	res = true;
 	if(clave==""){
         res=false;
-          $("#clave").css("background-color", "rgba(255,0,0,0.4)");
+        $("#clave").css("background-color", "rgba(255,0,0,0.4)");
     }else{
-         $("#clave").css("background-color", "inherit");
-    }if (clave1 !== clave2) {
+        $("#clave").css("background-color", "inherit");
+	}
+	if (clave1 !== clave2) {
         $("#clave1").css("background-color", "rgba(255,0,0,0.4)");
         $("#clave2").css("background-color", "rgba(255,0,0,0.4)");
         alert("Las claves no coinciden");
         res = false;
 	} 
-
     if (res) {
         $("#clave").val($.sha224($("#clave").val()));
 		$("#clave1").val($.sha224($("#clave1").val()));
 		$("#clave2").val($.sha224($("#clave2").val()));
 	}
-	return res;
 }
 $(document).ready(function () {
     $("#enviarmail").click(function () {
