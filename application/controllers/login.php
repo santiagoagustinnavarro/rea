@@ -92,13 +92,12 @@ class Login extends CI_Controller
                         $this->load->view("header", array("title"=>"RestablecerClave"));
                     $this->load->view("claveusuario",["mensaje"=>'<div class="alert alert-danger text-center"><h4>'."No existe el usuario".'</h4></div>']);
                     $this->load->view("footer");
-
                     }
                 }
             } else {
                 $user=$this->Usuario_model->get_usuario($nombreUsuario);
                 if ($user!=null) {//Si el usuario existe generamos el token
-                    $generacion= $this->generarToken($user);
+                    $this->generarToken($user);
                 } else {
                     echo "El usuario no existe";
                 }
@@ -108,24 +107,22 @@ class Login extends CI_Controller
 
             $verif=$this->verificarToken($nroToken, $nombreUsuario);
             if ($verif) {
-                $updateEstado=$this->TenerEstadoToken_model->update_tenerestadotoken(array("fechaFin"=>date("Y-m-d")), array("fechaFin"=>null));
-                if ($updateEstado) {
-                    echo "actualization";
-                }
-                $añadirEstado=$this->TenerEstadoToken_model->add_tenerestadotoken(array("nombreEstadoToken"=>"utilizado","nroToken"=>$nroToken,"fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s")));
                 $this->load->view("header", array("title"=>"RestablecerClave"));
-                $this->load->view("restablecerclave", array("nombreUsuario"=>$nombreUsuario));
+                $this->load->view("restablecerclave", array("nombreUsuario"=>$nombreUsuario,"nroToken"=>$nroToken));
                 $this->load->view("footer");
             } else {
-                echo "el token no existe wacho";
+                $this->load->view("header", array("title"=>"RestablecerClave"));
+                $this->load->view("claveusuario", array("mensaje"=>'<div class="alert alert-warning text-center"><h4>'."El token es invalido".'</h4></div>'));
+                $this->load->view("footer");
             }
         }
     }
-    private function verificarToken($nroToken, $nombreUsuario)
-    {
-        $tokenR=$this->TenerEstadoToken_model->get_tenerestadotoken($nroToken,array("nroToken"=>$nroToken));
-        if ($tokenR!=null) {
-            if ($tokenR["nombreEstadoToken"]=="pendiente") {
+   private function verificarToken($nroToken, $nombreUsuario)
+    {   $token=$this->TokenRecupera_model->get_tokenrecupera($nroToken,array("nombreUsuario"=>$nombreUsuario));
+        $tokenR=$this->TenerEstadoToken_model->get_tenerestadotoken($nroToken);
+        if ($tokenR!=null && $token!=null) {
+            if ($tokenR["nombreEstadoToken"]=="pendiente" && $tokenR["fechaFin"]==null) {
+                
                 $res=true;
             } else {
                 $res=false;
@@ -155,6 +152,12 @@ class Login extends CI_Controller
         $datos["hora"]=date("H:i:s");
         $insercionEstado=$this->TenerEstadoToken_model->add_tenerestadotoken($datos);
         $envio= $this->enviarMail($datos, $user);
+        if($envio){
+            $this->load->view("header", array("title"=>"Mail enviado"));
+                $this->load->view("claveusuario", array("mensaje"=>'<div class="alert alert-success text-center"><h4>'."Se ah enviado un enlace de recuperacion a su correo".'</h4></div>'));
+                $this->load->view("footer");
+
+        }
     }
     private function enviarMail($datos, $user)
     {
@@ -184,9 +187,10 @@ class Login extends CI_Controller
         $this->email->to($user["email"]);
         $this->email->message('Codigo de recuperacion '.base_url()."login/recuperarclave/".$user['nombreUsuario']."/".$datos['nroToken']);
         if ($this->email->send()) {
-            echo "enviado";
+
+            $res=true;
         } else {
-            show_error($this->email->print_debugger());
+            $res=false;
         }
 
         /*$dotenv = new \Dotenv\Dotenv("sendgrid");//Libreria necesaria para las variables contenidas en el archivo sendgrid.env
@@ -208,5 +212,6 @@ class Login extends CI_Controller
             echo 'Caught exception: '. $e->getMessage() ."\n";
         }
            }*/
+           return $res;
     }
 }
