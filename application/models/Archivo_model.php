@@ -25,7 +25,7 @@ class Archivo_model extends CI_Model
      */
     public function get_all_recurso()
     {
-        $this->db->order_by('nombre', 'desc');
+        $this->db->order_by('nombre','desc');
         return $this->db->get('recurso')->result_array();
     }
         
@@ -34,14 +34,14 @@ class Archivo_model extends CI_Model
      */
     public function add_archivo($params)
     {
-        $this->db->insert('archivo', $params);
+        $this->db->insert('archivo',$params);
         return $this->db->insert_id();
     }
     
     /*
      * function to update estadousuario
      */
-    public function update_estadousuario($nombre, $params)
+    public function update_estadousuario($nombre,$params)
     {
         $this->db->where('nombre', $nombre);
         return $this->db->update('estadoUsuario', $params);

@@ -8,7 +8,8 @@ class Usuario extends CI_Controller
 {
     public function __construct()
     {
-        parent::__construct();
+		parent::__construct();
+		$this->load->helper('url');
     }
     
     /*
@@ -24,7 +25,6 @@ class Usuario extends CI_Controller
     public function actualizarClave($nombreUsuario="")
     {
         echo $nombreUsuario;
-        echo "mama";
         if ($nombreUsuario!="") {
             $clave=$this->input->post("clave");
             $clave2=$this->input->post("clave2");
@@ -280,30 +280,23 @@ class Usuario extends CI_Controller
          } else {
              show_error('El usuario no existe');
          } */
-    }
-    /*
-    * Esta funcion es para subir un archivo
-    */
-    public function subirRecurso()
-    {
-		$config['upload_path'] = '../assets/recursos/archivos/';
-		$config['allowed_types'] = '*';
-		$config['max_size'] = '20048';
-		$this->load->library('upload',$config);
-        /* $nombreRec=$this->input->post("nombre");
-        $archivos=$this->input->post("archivo");
-        $desc=$this->input->post("textarea");
+	}
+	public function subirRecurso()
+	{
         if (count($_POST)>0) {
+			$nombreRec=$this->input->post("nombre");
+			$desc=$this->input->post("textarea");
+			$archivos=$_FILES["archivo"];
             if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
                 $recurso=$this->subida($nombreRec, $archivos, $desc);
                 if ($recurso) {
                     $this->load->view("header", ["title" => "Subir Recurso"]);
-                    $this->load->view('usuario/subirRecurso', ["mensaje"=>"Recurso subido con exito"]);
+                    $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-success text-center'><h4>".'Recurso subido con exito'."</h4></div>"]);
                     $this->load->view("footer");
                 }
             } else {
                 $this->load->view("header", ["title" => "Subir Recurso"]);
-                $this->load->view('usuario/subirRecurso', ["mensaje"=>"Faltan completar campos"]);
+                $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-danger text-center'><h4>".'Faltan completar campos'."</h4></div>"]);
                 $this->load->view("footer");
             }
         } else {
@@ -318,18 +311,21 @@ class Usuario extends CI_Controller
         require "login.php";
         $login=new Login();
         $recurso=array("nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$nombreRec,"descripcion"=>$textarea);
-        $idRecurso=$this->Recurso_model->add_recurso($recurso);
-        if ($idRecurso >0) {
+		$idRecurso=$this->Recurso_model->add_recurso($recurso);
+        if ($idRecurso>0) {
             $res=true;
-            foreach ($archivos as $elem) {
-                $idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$elem,"idRecurso"=>$idRecurso));
-                if ($idArchivo<=0) {
-                    $res=false;
-                }
-            }
+            foreach ($archivos as $etiqueta=>$valor) {
+				if($etiqueta=="name"){
+					$ruta=base_url()."assets/recurso/archivo/".$valor;
+                	$idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
+                	if ($idArchivo<=0) {
+                    	$res=false;
+					}
+				}
+			}	
         } else {
             $res=false;
         }
-        return $res;*/
+        return $res;
     } 
 }

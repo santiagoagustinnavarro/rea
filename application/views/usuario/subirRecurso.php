@@ -30,9 +30,6 @@
 					<button type="submit" name="form" id="form" class="btn btn-success">Enviar</button>
 				</div>
 			</form>
-			<?php
-				
-			?>
 		</div>
 	</div>
 </div>
