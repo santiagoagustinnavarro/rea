@@ -182,3 +182,9 @@ function actualizarClave(){
 		$("#clave2").val($.sha224($("#clave2").val()));
 	}
 }
+$(document).ready(function () {
+    $("#enviarmail").click(function () {
+        $('#loading').removeAttr('hidden');
+    })
+})
+

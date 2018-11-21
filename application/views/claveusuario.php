@@ -15,9 +15,10 @@
       				<input type="text" class="form-control" id="nombreUsuario" placeholder="Ingrese el usuario" name="nombreUsuario"  required>
 				</div>
 				
-				<div class="form-group" id="boton">
-					<button type="submit" class="btn btn-success">Enviar</button>
+				<div class="form-group" >
+					<button type="submit" id="enviarmail" class="btn btn-success">Enviar</button>
 				</div>
+				<div id="loading" hidden>Cargando... <span class="fa fa-spinner fa-spin"></span></div>
 			  <?php echo form_close();?> 
 		</div> <!-- Cierre del container -->
 	</div> <!-- Cierre de la clase col -->

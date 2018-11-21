@@ -24,30 +24,51 @@ class Usuario extends CI_Controller
     }
     public function actualizarClave($nombreUsuario="")
     {
-        echo $nombreUsuario;
         if ($nombreUsuario!="") {
+            $token=$_POST["nroToken"];
+         print_r($_POST);
             $clave=$this->input->post("clave");
             $clave2=$this->input->post("clave2");
-
-            $user=$this->Usuario_model->get_usuario($nombreUsuario);
-            if ($user!=null) {
+            if ($this->verificarToken($token, $nombreUsuario)) {
                 if ($clave==$clave2) {
                     $update= $this->Usuario_model->update_usuario($nombreUsuario, array("clave"=>hash('sha224', $clave2)));
                     if ($update) {
+                        $updateEstado=$this->TenerEstadoToken_model->update_tenerestadotoken(array("fechaFin"=>date("Y-m-d")), array("fechaFin"=>null));
+                        $añadirEstado=$this->TenerEstadoToken_model->add_tenerestadotoken(array("nombreEstadoToken"=>"utilizado","nroToken"=>$nroToken,"fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s")));
                         $this->load->view("header", array("title"=>"Clave actualizada"));
-                        $this->load->view("restablecerClave",["mensaje"=>"actualizado"]);
+                        $this->load->view("restablecerClave", ["mensaje"=>"actualizado"]);
                         $this->load->view("footer");
                     } else {
-                        echo "algo fallo en la actualizacion";
+                        $this->load->view("header", array("title"=>"Clave actualizada"));
+                    $this->load->view("restablecerClave", ["mensaje"=>"ocurrio un problema en la actualizacion"]);
+                    $this->load->view("footer");
+
                     }
                 } else {
                     $this->load->view("header", array("title"=>"Clave actualizada"));
-                        $this->load->view("restablecerClave", ["mensaje"=>"las claves no coinciden"]);
-                        $this->load->view("footer");
-
+                    $this->load->view("restablecerClave", ["mensaje"=>"las claves no coinciden"]);
+                    $this->load->view("footer");
                 }
+            }else{
+
             }
         }
+    }
+
+    private function verificarToken($nroToken, $nombreUsuario)
+    {
+        $token=$this->TokenRecupera_model->get_tokenrecupera($nroToken, array("nombreUsuario"=>$nombreUsuario));
+        $tokenR=$this->TenerEstadoToken_model->get_tenerestadotoken($nroToken);
+        if ($tokenR!=null && $token!=null) {
+            if ($tokenR["nombreEstadoToken"]=="pendiente" && $tokenR["fechaFin"]==null) {
+                $res=true;
+            } else {
+                $res=false;
+            }
+        } else {
+            $res=false;
+        }
+        return $res;
     }
 
     /*
