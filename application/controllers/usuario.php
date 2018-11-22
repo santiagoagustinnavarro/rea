@@ -305,7 +305,6 @@ class Usuario extends CI_Controller
 	public function subirRecurso()
 	{
         if (count($_POST)>0) {
-			print_r($_FILES);
 			$nombreRec=$this->input->post("nombre");
 			$desc=$this->input->post("textarea");
 			$archivos=$_FILES["archivo"];
@@ -336,7 +335,6 @@ class Usuario extends CI_Controller
 		$idRecurso=$this->Recurso_model->add_recurso($recurso);
         if ($idRecurso>0) {
 			$res=true;
-			print_r($archivos);
             foreach ($archivos as $etiqueta=>$valor) {
 					$ruta=base_url()."assets/recurso/archivo/".$valor;
 					$idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
