@@ -23,8 +23,12 @@ class Archivo_model extends CI_Model
     /*
      * Get all estadousuario
      */
-    public function get_all_recurso()
+    public function get_all_recurso($filters="")
     {
+        if ($filters!="") {
+            $this->db->where($filters);
+        }
+
         $this->db->order_by('nombre', 'desc');
         return $this->db->get('recurso')->result_array();
     }
