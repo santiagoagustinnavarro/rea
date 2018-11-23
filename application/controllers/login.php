@@ -90,8 +90,8 @@ class Login extends CI_Controller
                         $envio= $this->generarToken($user);
                     } else {
                         $this->load->view("header", array("title"=>"RestablecerClave"));
-                        $this->load->view("claveusuario", ["mensaje"=>'<div class="alert alert-danger text-center"><h4>'."No existe el usuario".'</h4></div>']);
-                        $this->load->view("footer");
+                    $this->load->view("claveusuario",["mensaje"=>'<div class="alert alert-danger text-center"><h4>'."No existe el usuario".'</h4></div>']);
+                    $this->load->view("footer");
                     }
                 }
             } else {
@@ -117,12 +117,12 @@ class Login extends CI_Controller
             }
         }
     }
-    private function verificarToken($nroToken, $nombreUsuario)
-    {
-        $token=$this->TokenRecupera_model->get_tokenrecupera($nroToken, array("nombreUsuario"=>$nombreUsuario));
+   private function verificarToken($nroToken, $nombreUsuario)
+    {   $token=$this->TokenRecupera_model->get_tokenrecupera($nroToken,array("nombreUsuario"=>$nombreUsuario));
         $tokenR=$this->TenerEstadoToken_model->get_tenerestadotoken($nroToken);
         if ($tokenR!=null && $token!=null) {
             if ($tokenR["nombreEstadoToken"]=="pendiente" && $tokenR["fechaFin"]==null) {
+                
                 $res=true;
             } else {
                 $res=false;
@@ -152,10 +152,11 @@ class Login extends CI_Controller
         $datos["hora"]=date("H:i:s");
         $insercionEstado=$this->TenerEstadoToken_model->add_tenerestadotoken($datos);
         $envio= $this->enviarMail($datos, $user);
-        if ($envio) {
+        if($envio){
             $this->load->view("header", array("title"=>"Mail enviado"));
-            $this->load->view("claveusuario", array("mensaje"=>'<div class="alert alert-success text-center"><h4>'."Se ah enviado un enlace de recuperacion a su correo".'</h4></div>'));
-            $this->load->view("footer");
+                $this->load->view("claveusuario", array("mensaje"=>'<div class="alert alert-success text-center"><h4>'."Se ah enviado un enlace de recuperacion a su correo".'</h4></div>'));
+                $this->load->view("footer");
+
         }
     }
     private function enviarMail($datos, $user)
@@ -176,29 +177,29 @@ class Login extends CI_Controller
           }
           return $res;
           */
-        /*  $config['protocol'] = 'sendmail';
-          $config['mailpath'] = "\"D:\\xampp\\sendmail\\sendmail.exe\" -t";
-          $config['charset'] = 'iso-8859-1';
-          $config['wordwrap'] = true;
-          $this->email->initialize($config);
-          $this->email->from('reanotreply@gmail.com', 'Programacionnet');
-          $this->email->subject('Test Email (TEXT)');
-          $this->email->to($user["email"]);
-          $this->email->message('Codigo de recuperacion '.base_url()."login/recuperarclave/".$user['nombreUsuario']."/".$datos['nroToken']);
-          if ($this->email->send()) {
+        $config['protocol'] = 'sendmail';
+        $config['mailpath'] = "\"D:\\xampp\\sendmail\\sendmail.exe\" -t";
+        $config['charset'] = 'iso-8859-1';
+        $config['wordwrap'] = true;
+        $this->email->initialize($config);
+        $this->email->from('reanotreply@gmail.com', 'Programacionnet');
+        $this->email->subject('Test Email (TEXT)');
+        $this->email->to($user["email"]);
+        $this->email->message('Codigo de recuperacion '.base_url()."login/recuperarclave/".$user['nombreUsuario']."/".$datos['nroToken']);
+        if ($this->email->send()) {
 
-              $res=true;
-          } else {
-              $res=false;
-          }
-*/
-        $dotenv = new \Dotenv\Dotenv("sendgrid");//Libreria necesaria para las variables contenidas en el archivo sendgrid.env
+            $res=true;
+        } else {
+            $res=false;
+        }
+
+        /*$dotenv = new \Dotenv\Dotenv("sendgrid");//Libreria necesaria para las variables contenidas en el archivo sendgrid.env
         $dotenv->load();
         $email = new \SendGrid\Mail\Mail();
         $email->setFrom("rea@not-reply.com");
         $email->setSubject("Reestablecer clave");
         $email->addTo($user["email"]);
-        $key=fgets("sendgrid.txt");
+        $key=getenv('SENDGRID_API_KEY');
         echo $key;
         $email->addContent("text/html", "Link de recuperacion de cuenta:".base_url()."login/recuperarclave/".$user["nombreUsuario"]."/".$datos["nroToken"]);
         $sendgrid = new \SendGrid($key);
@@ -210,6 +211,7 @@ class Login extends CI_Controller
         } catch (Exception $e) {
             echo 'Caught exception: '. $e->getMessage() ."\n";
         }
+           }*/
+           return $res;
     }
 }
-?>
