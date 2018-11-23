@@ -38,14 +38,14 @@ class Archivo_model extends CI_Model
      */
     public function add_archivo($params)
     {
-        $this->db->insert('archivo', $params);
+        $this->db->insert('archivo',$params);
         return $this->db->insert_id();
     }
     
     /*
      * function to update estadousuario
      */
-    public function update_estadousuario($nombre, $params)
+    public function update_estadousuario($nombre,$params)
     {
         $this->db->where('nombre', $nombre);
         return $this->db->update('estadoUsuario', $params);
