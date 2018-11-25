@@ -10,7 +10,8 @@ class Usuario extends CI_Controller
     {
 		parent::__construct();
         $this->load->helper('url');
-        $this->load->library("session");
+		$this->load->library("session");
+		$this->load->helper('download');
 
     }
     
@@ -306,17 +307,48 @@ class Usuario extends CI_Controller
 	}
 	public function subirRecurso()
 	{
-        $mi_archivo = 'mi_archivo';
-        $config['upload_path'] = "uploads/";
-        $config['file_name'] = "nombre_archivo";
-        $config['allowed_types'] = "*";
-        $config['max_size'] = "50000";
-        $this->load->library('upload', $config);
-        if (!$this->upload->do_upload($mi_archivo)) {
-            //*** ocurrio un error
-            $data['uploadError'] = $this->upload->display_errors();
-            echo $this->upload->display_errors();
-            return $data;
+        if (count($_POST)>0) {
+			$nombreRec=$this->input->post("nombre");
+			$desc=$this->input->post("textarea");
+			$archivos=$_FILES["archivo"];
+            if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
+				$recurso=$this->subida($nombreRec, $archivos["name"], $desc);
+                if ($recurso) {
+                    $this->load->view("header", ["title" => "Subir Recurso"]);
+                    $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-success text-center'><h4>".'Recurso subido con exito'."</h4></div>"]);
+                    $this->load->view("footer");
+                }
+            } else {
+                $this->load->view("header", ["title" => "Subir Recurso"]);
+                $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-danger text-center'><h4>".'Faltan completar campos'."</h4></div>"]);
+                $this->load->view("footer");
+            }
+        } else {
+            $this->load->view("header", ["title" => "Subir Recurso"]);
+            $this->load->view('usuario/subirRecurso');
+            $this->load->view("footer");
         }
     }
+    private function subida($nombreRec, $archivos, $textarea)
+    {
+        $recurso=array("nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$nombreRec,"descripcion"=>$textarea);
+		$idRecurso=$this->Recurso_model->add_recurso($recurso);
+        if ($idRecurso>0) {
+			$res=true;
+            foreach ($archivos as $etiqueta=>$valor) {
+					$ruta="./assets/recurso/".$valor;
+					$idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
+					if ($idArchivo<=0) {
+                    	$res=false;
+					}
+			}	
+        } else {
+            $res=false;
+        }
+        return $res;
+    } 
+	public function download(){
+		$data= file_get_contents('./assets/upload/'.$nombreRec);
+		force_download($nombreRec,$data);
+	}
 }
