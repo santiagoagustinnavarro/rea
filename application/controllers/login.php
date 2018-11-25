@@ -3,16 +3,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Login extends CI_Controller
 {
-    private $inciada;
+
     public function __construct()
     {
-        parent::__construct();
-        if (!isset($_SESSION)) {
-            session_start();
-        }
+           parent::__construct();
 
-        if (!isset($_SESSION["iniciada"])) {
-            $_SESSION["iniciada"]=false;
+        $this->load->library('session');
+
+     
+       
+
+        if (!isset($this->session->iniciada)) {
+            $this->session->set_userdata(['iniciada'=>false]);
+           
         }
     }
     public function index()
@@ -46,30 +49,33 @@ class Login extends CI_Controller
     }
     public function cerrarSession()
     {
-        session_start();
-        session_destroy();
+        $this->session->sess_destroy();
         redirect('login');
     }
 
     private function cargarSession($user)
     {
-        $_SESSION["iniciada"]=true;
-
+        
         $rol = $this->Tienerol_model->get_tienerol($this->input->post('nombreUsuario'));
         $permisos = array();
         $petPermisos = $this->Contienepermiso_model->get_all_contienepermiso(array("nombreRol" => $rol["nombreRol"]));
         foreach ($petPermisos as $permiso) {
             $permisos[] = strtolower($permiso["aliasPermiso"]);
         }
-        $_SESSION['nombre'] = $user["nombre"];
-        $_SESSION['apellido'] = $user["apellido"];
-        $_SESSION['dni'] = $user["dni"];
-        $_SESSION['email'] = $user["email"];
-        $_SESSION['domicilio'] = $user["domicilio"];
-        $_SESSION['nombreUsuario'] = $this->input->post('nombreUsuario');
-        $_SESSION['clave'] = $this->input->post('clave');
-        $_SESSION['permisos'] = $permisos;
-        $_SESSION['rol']=strtolower($rol['nombreRol']); ?>
+        $datos=array(
+        'nombre'=>$user["nombre"],
+        'apellido'=> $user["apellido"],
+        'dni'=>$user["dni"],
+        'email'=> $user["email"],
+        'domicilio'=> $user["domicilio"],
+        'nombreUsuario'=>$this->input->post('nombreUsuario'),
+        'clave'=>$this->input->post('clave'),
+        'permisos'=>$permisos,
+        'rol'=>strtolower($rol['nombreRol']),
+        'iniciada'=>true
+        );
+         $this->session->set_userdata($datos);
+         ?>
 <?php
     }
     /**

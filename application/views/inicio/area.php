@@ -36,6 +36,7 @@
 						<h5 class="card-header text-center">Año de Enseñanza</h5>
 							<div class="card-body">
 								<div class="row">
+							
 									<div class="col-md-6">
 										<ul class="list-unstyled mb-0 text-center">
 											<li><input type="checkbox" id="uno" value="primero"><a> 1° Año</a></li>
@@ -43,6 +44,7 @@
 											<li><input type="checkbox" id="tres" value="tercero"><a> 3° Año</a></li>
 										</ul>
 									</div> <!-- cierra el col -->
+							
 									<div class="col-md-6">
 										<ul class="list-unstyled mb-0 text-center">
 											<li><input type="checkbox" id="cuatro" value="cuarto"><a> 4° Año</a></li>
@@ -65,121 +67,25 @@
 			<!-- Aca comienza los recursos -->
 		<div class="col-md-9">
 				<!-- recurso 1 -->
+					<?php foreach($results as $data){?>
 			<div class="col-md-6 area">
 				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+					<!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
 					<div class="card-body">
 						<h4 class="card-title">
-							<a href="#">Project One</a>
+							<a href="#"><?php echo $data->titulo; ?></a>
 						</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+						<p class="card-text"><?php echo $data->descripcion; ?></p>
 					</div> <!-- cierra el card body-->
 					<div class="card-footer recurso">
       					<a href="<?php echo base_url()."area/recurso";?>" class="btn btn-success">Ver Recurso</a>
     				</div> <!-- cierrala clase recurso -->
 				</div> <!-- cierrala clase card h-100 -->
 			</div> <!-- cierrala clase area -->
-				<!-- recurso 2 -->
-			<div class="col-md-6 area">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project Two</a>
-						</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit aliquam aperiam nulla perferendis dolor nobis numquam, rem expedita, aliquid optio, alias illum eaque. Non magni, voluptates quae, necessitatibus unde temporibus.</p>
-					</div> <!-- cierra el card body-->
-					<div class="card-footer recurso">
-      					<a href="#" class="btn btn-success">Ver Recurso</a>
-      				</div> <!-- cierra la clase recurso -->
-				</div> <!-- cierra la clase card h-100 -->
-			</div> <!-- cierra la clase area -->
-				<!-- recurso 3 -->
-			<div class="col-md-6 area">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project Three</a>
-						</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-					</div> <!-- cierra el card body-->
-					<div class="card-footer recurso"> 
-  	    				<a href="#" class="btn btn-success">Ver Recurso</a>
-					</div> <!-- cierra la clase recurso-->
-				</div> <!-- cierra la clase card h-100 -->
-			</div> <!-- cierra la clase area -->
-				<!-- recurso 4 -->
-			<div class="col-md-6 area">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project Four</a>
-						</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit aliquam aperiam nulla perferendis dolor nobis numquam, rem expedita, aliquid optio, alias illum eaque. Non magni, voluptates quae, necessitatibus unde temporibus.</p>
-					</div> <!-- cierra el card body-->
-					<div class="card-footer recurso">
-    	  				<a href="#" class="btn btn-success">Ver Recurso</a>
-      				</div> <!-- cierra la clase recurso -->
-				</div> <!-- cierra la clase card h-100 -->
-			</div> <!-- cierra la clase area -->
-				<!-- recurso 5 -->
-			<div class="col-md-6 area">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project Five</a>
-						</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-					</div> <!-- cierra el card body-->
-					<div class="card-footer recurso"> 
-  	    				<a href="#" class="btn btn-success">Ver Recurso</a>
-					</div> <!-- cierra la clase recurso-->
-				</div> <!-- cierra la clase card h-100 -->
-			</div> <!-- cierra la clase area -->
-				<!-- recurso 6 -->
-			<div class="col-md-6 area">
-				<div class="card h-100">
-					<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#">Project Six</a>
-						</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit aliquam aperiam nulla perferendis dolor nobis numquam, rem expedita, aliquid optio, alias illum eaque. Non magni, voluptates quae, necessitatibus unde temporibus.</p>
-					</div> <!-- cierra el card body-->
-					<div class="card-footer recurso">
-    	  				<a href="#" class="btn btn-success">Ver Recurso</a>
-      				</div> <!-- cierra la clase recurso -->
-				</div> <!-- cierra la clase card h-100 -->
-			</div> <!-- cierra la clase area -->
+				<?php }  echo $links; ?></p>
+			
 		</div> <!-- cierra col-md-9 -->
 	</div> <!-- cierra el row -->
 		<!-- Pagination -->
-	<div class="offset-0">
-		<ul class="pagination justify-content-center">
-			<li class="page-item">
-				<a class="page-link" href="#" aria-label="Anterior">
-					<span aria-hidden="true">&laquo;</span>
-					<span class="sr-only">Anterior</span>
-				</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">1</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">2</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">3</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#" aria-label="Siguiente">
-					<span aria-hidden="true">&raquo;</span>
-					<span class="sr-only">Siguiente</span>
-				</a>
-			</li>
-		</ul>
-	</div> <!-- cierra la paginacion -->
+	
 </div> <!-- container fluid cierra los recursos -->

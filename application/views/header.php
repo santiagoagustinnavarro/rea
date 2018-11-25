@@ -28,9 +28,11 @@ if (isset($styles)) { //Invocacion de estilos propios
 <body>
 	<!-- Barra de Menú -->
 	<?php
-	include_once "application/controllers/login.php";
-	$sesion=new Login();
-	if (!$_SESSION["iniciada"]) {
+	
+	
+		
+	
+	if (!$this->session->iniciada) {
     ?>
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
 		<div class="container-fluid">
@@ -73,7 +75,7 @@ if (isset($styles)) { //Invocacion de estilos propios
 	</nav>
 	<?php
 	} else {
-        if ($_SESSION['rol'] == 'administrador de usuarios') {
+        if ($this->session->rol == 'administrador de usuarios') {
     ?>
 	<!-- Administrador de Usuarios -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
@@ -134,7 +136,7 @@ if (isset($styles)) { //Invocacion de estilos propios
 		</div>
 	</nav>
 	<?php
-        } elseif ($_SESSION['rol'] == 'administrador de recursos') {
+        } elseif ($this->session->rol == 'administrador de recursos') {
 	?>
 	<!-- Administrador de Recursos -->		
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
@@ -196,7 +198,7 @@ if (isset($styles)) { //Invocacion de estilos propios
 	</nav>
 
 	<?php
-        } elseif ($_SESSION['rol'] == 'profesor') {
+        } elseif ($this->session->rol == 'profesor') {
             ?>
 	<!-- Profesor -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">

@@ -1,7 +1,6 @@
 <?php 
-include_once "application/controllers/login.php";
-$sesion=new Login();
-if ($_SESSION["iniciada"]) {
+
+if ($this->session->iniciada) {
  $estActual=$this->TenerEstadoUsuario_model->get_tenerEstadoUsuario($usuario["nombreUsuario"]);
  $rolActual=$this->Tienerol_model->get_tienerol($usuario["nombreUsuario"]);
  if(isset($mensaje)){
