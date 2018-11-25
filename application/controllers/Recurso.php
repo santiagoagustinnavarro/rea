@@ -18,7 +18,7 @@ class Recurso extends CI_Controller
         $config["base_url"] = base_url() . "recurso/listar";
         $config["total_rows"] = $this->Recurso_model->record_count();
         $config["per_page"] = 8;
-        $config["uri_segment"] = 4;
+        $config["uri_segment"] = 3;
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $data["results"] = $this->Recurso_model->fetch_recurso($config["per_page"], $page);

@@ -82,7 +82,11 @@
     				</div> <!-- cierrala clase recurso -->
 				</div> <!-- cierrala clase card h-100 -->
 			</div> <!-- cierrala clase area -->
-				<?php }  echo $links; ?>
+			<nav aria-label="Page navigation example">
+  <ul class="pagination">
+  
+  
+<?php }  echo $links; ?></ul></nav>
 			
 		</div> <!-- cierra col-md-9 -->
 	</div> <!-- cierra el row -->
