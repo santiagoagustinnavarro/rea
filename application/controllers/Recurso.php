@@ -17,8 +17,8 @@ class Recurso extends CI_Controller
         $config = array();
         $config["base_url"] = base_url() . "recurso/listar";
         $config["total_rows"] = $this->Recurso_model->record_count();
-        $config["per_page"] = 1;
-        $config["uri_segment"] = 3;
+        $config["per_page"] = 8;
+        $config["uri_segment"] = 4;
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $data["results"] = $this->Recurso_model->fetch_recurso($config["per_page"], $page);
@@ -26,8 +26,6 @@ class Recurso extends CI_Controller
         $this->load->view('header', ["title"=>'Recursos']);
         $this->load->view('inicio/area', $data);
         $this->load->view('footer');
- 
-
         function listarConArchivos($usuario="")
         {
             if ($usuario!="") {

@@ -82,7 +82,7 @@
     				</div> <!-- cierrala clase recurso -->
 				</div> <!-- cierrala clase card h-100 -->
 			</div> <!-- cierrala clase area -->
-				<?php }  echo $links; ?></p>
+				<?php }  echo $links; ?>
 			
 		</div> <!-- cierra col-md-9 -->
 	</div> <!-- cierra el row -->
