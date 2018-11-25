@@ -36,7 +36,7 @@ class Recurso extends CI_Controller
         $config['num_tag_close'] = '</li>';
         $config["base_url"] = base_url() . "recurso/listar";
         $config["total_rows"] = $this->Recurso_model->record_count();
-        $config["per_page"] = 6;
+        $config["per_page"] = 9;
         $config["uri_segment"] = 3;
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
