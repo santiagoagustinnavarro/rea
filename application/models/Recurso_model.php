@@ -23,11 +23,34 @@ class Recurso_model extends CI_Model
     /*
      * Get all estadousuario
      */
-    public function get_all_recurso()
+    public function get_all_recurso($filters="")
     {
-        $this->db->order_by('nombre', 'desc');
-        return $this->db->get('recurso')->result_array();
+        $this->db->join('archivo', 'archivo.idRecurso = recurso.idRecurso');
+        if ($filters!="") {
+            $this->db->where($filters);
+        }
+        $this->db->order_by('recurso.idrecurso', 'desc');
+        $recursos=$this->db->get('recurso')->result_array();
+       
+        return $recursos;
     }
+    
+   public function record_count() {
+        return $this->db->count_all("recurso");
+    }
+
+    public function fetch_recurso($limit, $start) {
+        $this->db->limit($limit, $start);
+        $query = $this->db->get("recurso");
+
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+   }
         
     /*
      * function to add new estadousuario
@@ -55,9 +78,3 @@ class Recurso_model extends CI_Model
         return $this->db->delete('estadoUsuario', array('nombre'=>$nombre));
     }
 }
-
-
-
-
-
-?>

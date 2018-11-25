@@ -1,7 +1,7 @@
 <?php
 	include_once "application/controllers/usuario.php";
 	$sesion=new Login();
-    if ($_SESSION["iniciada"]) {
+    if ($this->session->iniciada) {
 ?>
 <div class="container py-5">
 	<div class="col-md-6 mx-auto">

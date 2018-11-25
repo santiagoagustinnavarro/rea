@@ -8,7 +8,8 @@ class Tienerol extends CI_Controller{
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Tienerol_model');
+      $this->load->library("session");
+
     } 
 
     /*
