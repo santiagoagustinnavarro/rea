@@ -45,6 +45,10 @@ class Recurso extends CI_Controller
         $this->load->view('header', ["title"=>'Recursos']);
         $this->load->view('inicio/area', $data);
         $this->load->view('footer');
+
+
+
+
         function listarConArchivos($usuario="")
         {
             if ($usuario!="") {

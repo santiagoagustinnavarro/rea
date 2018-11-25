@@ -67,40 +67,53 @@
 		<!-- Aca comienza los recursos -->
 		<div class="col-md-9">
 			<!-- recurso 1 -->
-			<?php foreach ($results as $data) {
-    ?>
-			<div class="col-md-6 area">
-				<div class="card h-100">
-					<!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#"><?php echo $data->titulo; ?></a>
-						</h4>
-						<p class="card-text"><?php echo $data->descripcion; ?>
-						</p>
-					</div> <!-- cierra el card body-->
-					<div class="card-footer recurso">
-						<a href="<?php echo base_url()."area/recurso"; ?>"
-						 class="btn btn-success">Ver Recurso</a>
-					</div> <!-- cierrala clase recurso -->
-				</div> <!-- cierrala clase card h-100 -->
-			</div> <!-- cierrala clase area -->
+			<?php $i=0; foreach ($results as $data) {
+    if ($i%3==0) {//Inicia el nuevo row
+       if($i!=0){
+		?></div>
+
+	   <?php } ?>
+			<div class="row"><?php
+    } ?>
+				<div class="col-md-4 area">
+					<div class="card h-100">
+						<!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
+						<div class="card-body">
+							<h4 class="card-title">
+								<a href="#"><?php echo $data->titulo; ?></a>
+							</h4>
+							<p class="card-text"><?php echo $data->descripcion; ?>
+							</p>
+						</div> <!-- cierra el card body-->
+						<div class="card-footer recurso">
+							<a href="<?php echo base_url()."area/recurso"; ?>"
+							 class="btn btn-success">Ver Recurso</a>
+						</div> <!-- cierrala clase recurso -->
+					</div> <!-- cierrala clase card h-100 -->
+				</div> <!-- cierrala clase area -->
 
 
+
+
+			
 
 
 			<?php
-} ?>
-			
+        $i++;
+}?>
+			<div class="row">
+				<div class="offset-md-7"><?php echo $links;?>
+				</div>
+			</div>
+		</div>
+		<!-- cierra col-md-9 -->
 
-		</div> <!-- cierra col-md-9 -->
-		
-				
-				
-				
-			
+
+
+
+
+
+
+		<!-- Pagination -->
 	</div> <!-- cierra el row -->
-	<div class="row"><div class="offset-md-7"><?php echo $links;?> </div></div>	
-	<!-- Pagination -->
-
 </div> <!-- container fluid cierra los recursos -->
