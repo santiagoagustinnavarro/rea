@@ -339,9 +339,10 @@ class Usuario extends CI_Controller
 				$idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
 			}
 			for ($i=0;$i<(count($tmp));$i++) {
-				$ruta="./assets/upload/";
-				$arch=$ruta.basename($valor);
+				$arch=$ruta.basename($archivos[$i]);
 				move_uploaded_file($tmp[$i],$arch);
+				echo $tmp[$i];
+				echo $arch;
 			}	
         } else {
             $res=false;
