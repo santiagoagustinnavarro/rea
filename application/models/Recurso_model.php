@@ -13,7 +13,7 @@ class Recurso_model extends CI_Model
     }
     
     /*
-     * Get estadousuario by nombre
+     * Get recurso by nombre
      */
     public function get_recurso($nombre)
     {
@@ -21,7 +21,7 @@ class Recurso_model extends CI_Model
     }
         
     /*
-     * Get all estadousuario
+     * Get all recurso
      */
     public function get_all_recurso($filters="")
     {
@@ -31,18 +31,25 @@ class Recurso_model extends CI_Model
         }
         $this->db->order_by('recurso.idrecurso', 'desc');
         $recursos=$this->db->get('recurso')->result_array();
-       
         return $recursos;
     }
     
-   public function record_count() {
+    public function record_count()
+    {
         return $this->db->count_all("recurso");
     }
 
-    public function fetch_recurso($limit, $start) {
+    public function fetch_recurso($limit, $start, $tema="")
+    {   
+        if ($tema!="") {
+            $this->db->from("recurso");
+            $this->db->join("tema", "tema.idRecurso=recurso.idRecurso");
+            $this->db->where(array("tema.nombre"=>$tema));
+           $query= $this->db->get();
+        } else {
+            $query = $this->db->get("recurso");
+        }
         $this->db->limit($limit, $start);
-        $query = $this->db->get("recurso");
-
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {
                 $data[] = $row;
@@ -50,10 +57,10 @@ class Recurso_model extends CI_Model
             return $data;
         }
         return false;
-   }
+    }
         
     /*
-     * function to add new estadousuario
+     * function to add new recurso
      */
     public function add_recurso($params)
     {
@@ -62,19 +69,19 @@ class Recurso_model extends CI_Model
     }
     
     /*
-     * function to update estadousuario
+     * function to update recurso
      */
-    public function update_estadousuario($nombre, $params)
+    public function update_recurso($nombre, $params)
     {
         $this->db->where('nombre', $nombre);
-        return $this->db->update('estadoUsuario', $params);
+        return $this->db->update('recurso', $params);
     }
     
     /*
-     * function to delete estadousuario
+     * function to delete recurso
      */
-    public function delete_estadousuario($nombre)
+    public function delete_recurso($nombre)
     {
-        return $this->db->delete('estadoUsuario', array('nombre'=>$nombre));
+        return $this->db->delete('recurso', array('nombre'=>$nombre));
     }
 }

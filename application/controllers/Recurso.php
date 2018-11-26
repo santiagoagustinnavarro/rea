@@ -10,8 +10,9 @@ class Recurso extends CI_Controller
         $this->load->library("session");
 
     }
-    public function listar($usuario="")
+    public function listar()
     {
+        $tema=$this->input->post('tema');
         $this->load->helper('url');
         $this->load->library("pagination");
         $config = array();
@@ -35,14 +36,18 @@ class Recurso extends CI_Controller
         $config['num_tag_open'] = '<li class="page-item">';
         $config['num_tag_close'] = '</li>';
         $config["base_url"] = base_url() . "recurso/listar";
-        $config["total_rows"] = $this->Recurso_model->record_count();
         $config["per_page"] = 9;
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $config["total_rows"] = count($this->Recurso_model->fetch_recurso($config["per_page"], $page,$tema));
         $config["uri_segment"] = 3;
         $this->pagination->initialize($config);
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data["results"] = $this->Recurso_model->fetch_recurso($config["per_page"], $page);
-        $data["links"] = $this->pagination->create_links();     
-        $this->load->view('header', ["title"=>'Recursos']);
+        $data["results"] = $this->Recurso_model->fetch_recurso($config["per_page"], $page,$tema);
+        $data["links"] = $this->pagination->create_links();
+        $this->load->model("Tema_model");
+        $this->load->model("Nivel_model");
+        $data["temas"]=$this->Tema_model->get_all_tema(); 
+        $data["niveles"]=$this->Nivel_model->get_all_nivel();     
+        $this->load->view('header', ["title"=>'Recursos',"scripts"=>["busquedaRecurso.js"]]);
         $this->load->view('inicio/area', $data);
         $this->load->view('footer');
 

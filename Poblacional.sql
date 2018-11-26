@@ -78,6 +78,36 @@ INSERT INTO `estadoToken`(`nombreEstadoToken`,`descripcion`) VALUES
 ('Pendiente','El token aun no ah sido utilizado'),
 ('utilizado','el token ya fue utilizado');
 
+-- -----------------------------------------------------
+-- Insercion en nivel`
+-- -----------------------------------------------------
+INSERT INTO `nivel`(`nombre`,`descripcion`) VALUES 
+("1º Año","Primer año del secundario"),
+("2º Año","Segundo año del secundario"),
+("3º Año","Tercer año del secundario"),
+("4º Año","Cuarto año del secundario"),
+("5º Año","Quinto año del secundario"),
+("6º Año","Sexto año del secundario");
+-- -----------------------------------------------------
+-- Insercion en Tema`
+-- -----------------------------------------------------
+INSERT INTO `tema`(`nombre`,`descripcion`,`idRecurso`) VALUES 
+("Base de datos","Todo lo relacioando a BD",1),
+("Programacion basica","Es la programacion secuencial",2),
+("Programacion orientada a objetos","Todo lo relacionado a objetos",3);
+
+-- ----------------------------------------
+-- -----------------------------------------------------
+-- Insercion en poseeNivel`
+/*-- -----------------------------------------------------
+INSERT INTO `poseeNivel`(`nombreNivel`,`idRecurso`) VALUES 
+('1º Año',1),
+('2º Año',1),
+('3º Año',1),
+('4º Año',2),
+('5º Año',2),
+('6º Año',3);
+*/
 -- Generamos el evento para el vencimiento de los tokens--------
 CREATE EVENT vencertoken
 ON SCHEDULE EVERY 1 DAY DO 
