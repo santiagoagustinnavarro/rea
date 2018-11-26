@@ -341,8 +341,6 @@ class Usuario extends CI_Controller
 			for ($i=0;$i<(count($tmp));$i++) {
 				$arch=$ruta.basename($archivos[$i]);
 				move_uploaded_file($tmp[$i],$arch);
-				echo $tmp[$i];
-				echo $arch;
 			}	
         } else {
             $res=false;
