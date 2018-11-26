@@ -43,15 +43,17 @@
 								<div class="col-md-6">
 									<ul class="list-unstyled mb-0 text-center">
 									<?php
-								
+									 
 									 foreach($niveles as $unNivel){
                                         ?>
 										<li><input type="checkbox" id="<?php echo $unNivel["nombre"];?>" value="<?php echo $unNivel["nombre"];?>"><a> <?php echo $unNivel["nombre"];?></a></li>
+										
+									
 									<?php
                                     }?></ul>
 								</div> <!-- cierra el col -->
 
-							
+								
 							</div> <!-- cierra el row -->
 						</div> <!-- cierra el card body -->
 					</div> <!-- cierra el card my-4 -->
@@ -88,7 +90,7 @@
 						<h4 class="card-title">
 							<a href="#"><?php echo $data->titulo; ?></a>
 						</h4>
-						<p class="card-text"><?php echo $data->descripcion; ?>
+						<p class="card-text"><?php echo $data->recursoDesc; ?>
 						</p>
 					</div> <!-- cierra el card body-->
 					<div class="card-footer recurso">
@@ -110,7 +112,7 @@
 							<h4 class="card-title">
 								<a href="#"><?php echo $data->titulo; ?></a>
 							</h4>
-							<p class="card-text"><?php echo $data->descripcion; ?>
+							<p class="card-text"><?php echo $data->recursoDesc; ?>
 							</p>
 						</div> <!-- cierra el card body-->
 						<div class="card-footer recurso">
@@ -129,7 +131,7 @@
 							<h4 class="card-title">
 								<a href="#"><?php echo $data->titulo; ?></a>
 							</h4>
-							<p class="card-text"><?php echo $data->descripcion; ?>
+							<p class="card-text"><?php echo $data->recursoDesc; ?>
 							</p>
 						</div> <!-- cierra el card body-->
 						<div class="card-footer recurso">
@@ -149,7 +151,7 @@
 						<h4 class="card-title">
 							<a href="#"><?php echo $data->titulo; ?></a>
 						</h4>
-						<p class="card-text"><?php echo $data->descripcion; ?>
+						<p class="card-text"><?php echo $data->recursoDesc; ?>
 						</p>
 					</div> <!-- cierra el card body-->
 					<div class="card-footer recurso">

@@ -42,12 +42,15 @@ class Recurso_model extends CI_Model
     public function fetch_recurso($limit, $start, $tema="")
     {   
         if ($tema!="") {
-            $this->db->from("recurso");
-            $this->db->join("tema", "tema.idRecurso=recurso.idRecurso");
-            $this->db->where(array("tema.nombre"=>$tema));
+            $this->db->select("r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre,t.descripcion as temaDesc",false);
+            $this->db->from("recurso as r");
+            $this->db->join("tema as t", "t.idRecurso=r.idRecurso");
+            $this->db->where(array("t.nombre"=>$tema));
            $query= $this->db->get();
         } else {
-            $query = $this->db->get("recurso");
+            $this->db->select("r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario",false);
+            $this->db->from("recurso as r");
+            $query = $this->db->get();
         }
         $this->db->limit($limit, $start);
         if ($query->num_rows() > 0) {
