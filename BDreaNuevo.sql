@@ -212,16 +212,16 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Rea`.`poseeNivel` (
   `idRecurso` INT NOT NULL,
-  `idNivel` VARCHAR(30) NOT NULL,
-  PRIMARY KEY (`idRecurso`, `idNivel`),
-  INDEX `fk_poseeNivel_nivel1_idx` (`idNivel` ASC),
+  `nombreNivel` VARCHAR(30) NOT NULL,
+  PRIMARY KEY (`idRecurso`, `nombreNivel`),
+  INDEX `fk_poseeNivel_nivel1_idx` (`nombreNivel` ASC),
   CONSTRAINT `fk_poseeNivel_recurso1`
     FOREIGN KEY (`idRecurso`)
     REFERENCES `Rea`.`recurso` (`idRecurso`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_poseeNivel_nivel1`
-    FOREIGN KEY (`idNivel`)
+    FOREIGN KEY (`nombreNivel`)
     REFERENCES `Rea`.`nivel` (`nombre`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

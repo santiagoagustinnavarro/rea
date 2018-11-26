@@ -23,10 +23,13 @@
 						<div class="card-body">
 							<div class="row">
 								<select class="form-control text-center" id="tema">
-									<option value="a">Tema1</option>
-									<option value="b">Tema2</option>
-									<option value="c">Tema3</option>
-									<option value="d">Tema4</option>
+									<option value="ninguno" selected>Elija una opcion</option>
+									<?php foreach ($temas as $unTema) {
+    ?>
+									<option value="<?php echo $unTema["nombre"]; ?>"><?php echo $unTema["nombre"];
+}?>
+									</option>
+
 								</select>
 							</div> <!-- cierra la clase row -->
 						</div> <!-- cierra el card-body -->
@@ -39,19 +42,18 @@
 
 								<div class="col-md-6">
 									<ul class="list-unstyled mb-0 text-center">
-										<li><input type="checkbox" id="uno" value="primero"><a> 1° Año</a></li>
-										<li><input type="checkbox" id="dos" value="segundo"><a> 2° Año</a></li>
-										<li><input type="checkbox" id="tres" value="tercero"><a> 3° Año</a></li>
-									</ul>
+									<?php
+									 
+									 foreach($niveles as $unNivel){
+                                        ?>
+										<li><input type="checkbox" id="<?php echo $unNivel["nombre"];?>" value="<?php echo $unNivel["nombre"];?>"><a> <?php echo $unNivel["nombre"];?></a></li>
+										
+									
+									<?php
+                                    }?></ul>
 								</div> <!-- cierra el col -->
 
-								<div class="col-md-6">
-									<ul class="list-unstyled mb-0 text-center">
-										<li><input type="checkbox" id="cuatro" value="cuarto"><a> 4° Año</a></li>
-										<li><input type="checkbox" id="cinco" value="quinto"><a> 5° Año</a></li>
-										<li><input type="checkbox" id="seis" value="sexto"><a> 6° Año</a></li>
-									</ul>
-								</div> <!-- cierra el col -->
+								
 							</div> <!-- cierra el row -->
 						</div> <!-- cierra el card body -->
 					</div> <!-- cierra el card my-4 -->
@@ -70,10 +72,10 @@
 
 
 		<?php
-		/**
-		 * Esta funcion genera las filas de los recursos donde $porFila sera la cantidad a mostrar por filas
-		 * $results es el array de recursos
-		 */
+        /**
+         * Esta funcion genera las filas de los recursos donde $porFila sera la cantidad a mostrar por filas
+         * $results es el array de recursos
+         */
  function generarFilas($results, $porFila)
  {
      ?>
@@ -88,7 +90,7 @@
 						<h4 class="card-title">
 							<a href="#"><?php echo $data->titulo; ?></a>
 						</h4>
-						<p class="card-text"><?php echo $data->descripcion; ?>
+						<p class="card-text"><?php echo $data->recursoDesc; ?>
 						</p>
 					</div> <!-- cierra el card body-->
 					<div class="card-footer recurso">
@@ -110,7 +112,7 @@
 							<h4 class="card-title">
 								<a href="#"><?php echo $data->titulo; ?></a>
 							</h4>
-							<p class="card-text"><?php echo $data->descripcion; ?>
+							<p class="card-text"><?php echo $data->recursoDesc; ?>
 							</p>
 						</div> <!-- cierra el card body-->
 						<div class="card-footer recurso">
@@ -129,7 +131,7 @@
 							<h4 class="card-title">
 								<a href="#"><?php echo $data->titulo; ?></a>
 							</h4>
-							<p class="card-text"><?php echo $data->descripcion; ?>
+							<p class="card-text"><?php echo $data->recursoDesc; ?>
 							</p>
 						</div> <!-- cierra el card body-->
 						<div class="card-footer recurso">
@@ -149,7 +151,7 @@
 						<h4 class="card-title">
 							<a href="#"><?php echo $data->titulo; ?></a>
 						</h4>
-						<p class="card-text"><?php echo $data->descripcion; ?>
+						<p class="card-text"><?php echo $data->recursoDesc; ?>
 						</p>
 					</div> <!-- cierra el card body-->
 					<div class="card-footer recurso">
@@ -172,3 +174,4 @@
 		<!-- Pagination -->
 	</div> <!-- cierra el row -->
 </div> <!-- container fluid cierra los recursos -->
+

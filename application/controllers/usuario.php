@@ -25,33 +25,34 @@ class Usuario extends CI_Controller
     }
     public function actualizarClave($nombreUsuario="")
     {
-        if ($nombreUsuario!="") {
-            $token=$_POST["nroToken"];
-         print_r($_POST);
+        if ($nombreUsuario!="" && isset($_POST["nroToken"])) {
+            $nroToken=$_POST["nroToken"];
             $clave=$this->input->post("clave");
             $clave2=$this->input->post("clave2");
-            if ($this->verificarToken($token, $nombreUsuario)) {
+            if ($this->verificarToken($nroToken, $nombreUsuario)) {
                 if ($clave==$clave2) {
                     $update= $this->Usuario_model->update_usuario($nombreUsuario, array("clave"=>hash('sha224', $clave2)));
                     if ($update) {
                         $updateEstado=$this->TenerEstadoToken_model->update_tenerestadotoken(array("fechaFin"=>date("Y-m-d")), array("fechaFin"=>null));
                         $añadirEstado=$this->TenerEstadoToken_model->add_tenerestadotoken(array("nombreEstadoToken"=>"utilizado","nroToken"=>$nroToken,"fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s")));
                         $this->load->view("header", array("title"=>"Clave actualizada"));
-                        $this->load->view("restablecerClave", ["mensaje"=>"actualizado"]);
+                        $this->load->view("restablecerClave", ["nroToken"=>$nroToken,"mensaje"=>'<div class="alert alert-success text-center"><h4>'."Clave actualizada con exito".'</h4></div>',"nombreUsuario"=>$nombreUsuario]);
                         $this->load->view("footer");
                     } else {
                         $this->load->view("header", array("title"=>"Clave actualizada"));
-                    $this->load->view("restablecerClave", ["mensaje"=>"ocurrio un problema en la actualizacion"]);
+                    $this->load->view("restablecerClave", ["mensaje"=>'<div class="alert alert-warning text-center"><h4>'."Ocurrio un problema en la actualizacion".'</h4></div>',"nroToken"=>$nroToken,"nombreUsuario"=>$nombreUsuario]);
                     $this->load->view("footer");
 
                     }
                 } else {
                     $this->load->view("header", array("title"=>"Clave actualizada"));
-                    $this->load->view("restablecerClave", ["mensaje"=>"las claves no coinciden"]);
+                    $this->load->view("restablecerClave", ["nroToken"=>$nroToken,"mensaje"=>'<div class="alert alert-warning text-center"><h4>'."Las claves no coinciden".'</h4></div>',"nombreUsuario"=>$nombreUsuario]);
                     $this->load->view("footer");
                 }
             }else{
-
+                $this->load->view("header", array("title"=>"Clave actualizada"));
+                $this->load->view("restablecerClave", ["mensaje"=>'<div class="alert alert-warning text-center"><h4>'."Esta solicitud ah expirado vuelva a solicitarla".'</h4></div>',"nroToken"=>$nroToken,"nombreUsuario"=>$nombreUsuario]);
+                $this->load->view("footer");
             }
         }
     }

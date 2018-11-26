@@ -2,7 +2,9 @@
 	<div class="col-md-6 mx-auto">
 		<div class="container" id="transparencia">
 		<?php
-			$_POST["nroToken"]=$nroToken;
+        if (isset($nroToken)) {
+            $_POST["nroToken"]=$nroToken;
+        }
 			
             
             ?> 
@@ -15,6 +17,7 @@
 			?> 
 			  <h1>Reestablecer Contraseña</h1>
                 </br>
+		<?php if(isset($nroToken)){?><input type="hidden" name="nroToken" id="nroToken" value="<?php echo $nroToken;?>"><?php }?>
   		  		<div class="form-group">
 					<label class="label" for="clave"><i class="fa fa-lock"></i> Contraseña</label>
       				<input type="password" class="form-control" id="clave" placeholder="Ingrese contraseña" name="clave" minlength="8" maxlength="15" required>
