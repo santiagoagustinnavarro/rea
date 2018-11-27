@@ -60,13 +60,16 @@ class Recurso_model extends CI_Model
             if ($filtros["tema"]!="") {
                 $this->db->where(array("t.nombre"=>$filtros["tema"]));
             }
-                
+            if($filtros["busqueda"]!=""){
+                $this->db->like("r.titulo",$filtros["busqueda"],'both');
+            }
             
         } else {
             $this->db->select("r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario",false);
             $this->db->from("recurso as r");
            
         }
+       
         $this->db->limit($limit, $start);
         $query= $this->db->get();
         if ($query->num_rows() > 0) {

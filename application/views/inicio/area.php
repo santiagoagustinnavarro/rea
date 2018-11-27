@@ -60,11 +60,7 @@
 							</div> <!-- cierra el row -->
 						</div> <!-- cierra el card body -->
 					</div> <!-- cierra el card my-4 -->
-					<div class="card-body">
-						<div class="col-md-5 mx-auto">
-							<button type="button" class="btn btn-success" id="envio">Enviar</button>
-						</div>
-					</div>
+					
 				</div> <!-- Cierra card md-3 -->
 			</div> <!-- cierra el col-my-3 -->
 		</div> <!-- cierra el col-md-3 -->
@@ -184,3 +180,5 @@
 		<!-- Pagination -->
 	</div> <!-- cierra el row -->
 </div> <!-- container fluid cierra los recursos -->
+<br/>
+<br/>
