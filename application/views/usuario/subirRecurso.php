@@ -17,13 +17,24 @@
 					<input type="text" class="form-control" id="nombre" placeholder="Ingrese el Nombre" name="nombre" minlength="4" maxlength="30">
 				</div>
 				<div class="form-group">
+					<label class="label" for="categoria"><i class="fa fa-caret-down"></i> Seleccione una Categoria</label>
+					<select class="form-control" id="categoria" name="categoria">
+					<?php 
+						$cat=$this->Tema_model->get_all_tema();
+						print_r($cat);
+					?>
+					<option id="" name="" value="">
+					</option>
+					</select>
+				</div>
+				<div class="form-group">
 					<label class="label" for="archivo"><i class="fa fa-upload"></i> Seleccione Archivo/s</label>
 					<input type="file" id="archivo[]" name="archivo[]" multiple="">
 				</div>
 				<div class="form-group">
 					<label class="label" for="textarea"><i class="fa fa-pencil-square-o"></i> Descripcion</label>
 					<div class="bg-light">
-						<textarea class="form-control" name="textarea" id="textarea" rows="5" maxsize="10"></textarea>
+						<textarea class="form-control" name="textarea" id="textarea" rows="5" value="Este recurso me parecio muy interesante, muchas gracias por compartirlo"></textarea>
 					</div>
 				</div>
 				<div class="form-group" id="boton">
