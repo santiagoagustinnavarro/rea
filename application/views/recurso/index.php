@@ -54,7 +54,7 @@ jQuery.extend(jQuery.expr[":"],
 				<?php echo $r['descripcion']; ?>
 			</td>
 			<td>
-				<?php if($r['validado']==0){?><input type="checkbox" id="validado" name="validado"><?php }else{  ?><input type="checkbox" id="validado" name="validado" checked><?php }?>
+				<?php if($r['validado']==0){?><input type="checkbox" id="validado" name="validado"><?php }else{  ?><input type="checkbox" id="validado" name="validado" checkçed><?php }?>
 			</td>
 			<td>
 				<?php echo count($r['archivos']); ?>
