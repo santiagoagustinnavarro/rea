@@ -69,5 +69,6 @@ class Usuario_model extends CI_Model
 			echo "Error intente luego";
 		}
         return $resp;
-    }
+	}
+	/** busca un usuario */
 }

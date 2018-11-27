@@ -18,16 +18,15 @@ class Usuario extends CI_Controller
      */
     public function index()
     {
-        $usuario = $this->Usuario_model->get_all_usuario();
+		$usuario = $this->Usuario_model->get_all_usuario();		
         $this->load->view("header", ["title" => "Administrar usuarios"]);
         $this->load->view('usuario/index', ['usuario' => $usuario]);
         $this->load->view("footer");
-    }
+	}
     public function actualizarClave($nombreUsuario="")
     {
         if ($nombreUsuario!="" && isset($_POST["nroToken"])) {
             $nroToken=$_POST["nroToken"];
-            $clave=$this->input->post("clave");
             $clave2=$this->input->post("clave2");
             if ($this->verificarToken($nroToken, $nombreUsuario)) {
                 if ($clave==$clave2) {
@@ -322,13 +321,17 @@ class Usuario extends CI_Controller
          } else {
              show_error('El usuario no existe');
          } */
-    }
-    public function subirRecurso()
-    {
+	}
+	/** Esta funcion es la encargada de subir los recursos con sus respectivos archivos */
+	public function subirRecurso()
+	{
         if (count($_POST)>0) {
-            $nombreRec=$this->input->post("nombre");
-            $desc=$this->input->post("textarea");
-            $archivos=$_FILES["archivo"];
+			$nombreRec=$this->input->post("nombre");
+			$desc=$this->input->post("textarea");
+			$archivos=$_FILES["archivo"];
+			$niveles=$this->db->Nivel_model->get_all_nivel();
+			$tema=$this->db->Tema_model->get_all_tema();
+			$categoria=$this->db->Tema_model->get_all_tema();
             if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
                 $recurso=$this->subida($nombreRec, $archivos["name"], $desc, $archivos["tmp_name"]);
                 if ($recurso) {
@@ -337,39 +340,43 @@ class Usuario extends CI_Controller
                     $this->load->view("footer");
                 }
             } else {
+				// Error falta completar alguno de los campos 
                 $this->load->view("header", ["title" => "Subir Recurso"]);
                 $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-danger text-center'><h4>".'Faltan completar campos'."</h4></div>"]);
                 $this->load->view("footer");
             }
         } else {
+			// Si no subio ningun archivo, muestra vista del subir archivo
             $this->load->view("header", ["title" => "Subir Recurso"]);
             $this->load->view('usuario/subirRecurso');
             $this->load->view("footer");
         }
-    }
-    private function subida($nombreRec, $archivos, $textarea, $tmp)
+	}
+	/** La funcion es llamada por subirArchivo, con esta funcion se cargan los archivos del recurso */
+    private function subida($nombreRec, $archivos, $textarea, $arrArchivos)
     {
         $recurso=array("nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$nombreRec,"descripcion"=>$textarea);
-        $idRecurso=$this->Recurso_model->add_recurso($recurso);
-        if ($idRecurso>0) {
-            $res=true;
+		$idRecurso=$this->Recurso_model->add_recurso($recurso);	
+		if ($idRecurso>0) {
+			$res=true;
             foreach ($archivos as $etiqueta=>$valor) {
-                $ruta="./assets/upload/";
-                $idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
-            }
-            for ($i=0;$i<(count($tmp));$i++) {
-                $arch=$ruta.basename($archivos[$i]);
-                move_uploaded_file($tmp[$i], $arch);
-            }
+				$ruta="./assets/upload/";
+				$idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
+			}
+			for ($i=0;$i<(count($arrArchivos));$i++) {
+				$arch=$ruta.basename($archivos[$i]);
+				move_uploaded_file($arrArchivos[$i],$arch);
+				print_r($arrArchivos[$i]);
+			}	
         } else {
             $res=false;
         }
         return $res;
-    }
-    
-    public function download()
-    {
-        $data= file_get_contents('./assets/upload/'.$nombreRec);
-        force_download($nombreRec, $data);
-    }
+	} 
+	
+	/** Esta funcion descarga los archivos del recurso */
+	public function download(){
+		$data= file_get_contents('./assets/upload/'.$nombreRec);
+		force_download($nombreRec,$data);
+	}
 }

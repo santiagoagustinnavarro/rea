@@ -27,7 +27,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  if($_SERVER['SERVER_ADDR']=="::1"){//Localmente
     $base="http://localhost/Pasantias/Rea";
  }else{
-     
     $base="http://".$_SERVER['SERVER_ADDR']."/Pasantias/Rea";
  }
 $config['base_url'] = $base;

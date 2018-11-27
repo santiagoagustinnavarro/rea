@@ -1,22 +1,24 @@
 <?php 
+	if ($this->session->iniciada && $this->session->rol=="administrador de usuarios") {
+?>
+<script type="text/javascript">
+	$(document).ready(function () {
+    $("#busqueda").keyup(function () {
+        var filtro = $("#busqueda").val();
 
-if ($this->session->iniciada && $this->session->rol=="administrador de usuarios") {
-    ?>
+    });
+});
+
+</script>
 <table class="table table-light table-responsive-md" id="tabla">
 	<thead>
 		<tr><th class="titulo" colspan="6"><h3>Lista de Usuarios</h3></th></tr>
 		<tr><th colspan="4" id="filtro"><div class="container-fluid">
-            	<div class="row">
-                	<div class="col-md-5">
-                    	<input type="text" class="form-control" id="busqueda" placeholder="Ingresa el usuario">
-                	</div>
-                	<div class="col-md-5" id="listaEstados">
-                	</div>
-            	</div>
-            	<div class="row">
-                	<div  class="col-md-offset-2 col-md-1" id="recomendacion"></div>
-            	</div>
-        	</div>
+			<form id="buscar" method="post" action="<?php echo base_url()?>/application/controllers/usuario/buscar">
+				<div class="col-md-6">
+                    <input type="text" class="form-control" id="busqueda"/>
+                </div>
+			</form>
 		</th></tr>
 		<tr>
 			<th scope="col">Nombre Usuario</th>
@@ -68,3 +70,4 @@ if ($this->session->iniciada && $this->session->rol=="administrador de usuarios"
 } else {
     echo "Tiene prohibido el acceso";
 }
+?>
