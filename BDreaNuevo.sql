@@ -75,7 +75,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Rea`.`estadoUsuario`
+-- Table `Rea`.`estadoUsuario`sjsj
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Rea`.`estadoUsuario` (
   `nombre` VARCHAR(30) NOT NULL,
