@@ -310,6 +310,9 @@ class Usuario extends CI_Controller
 			$nombreRec=$this->input->post("nombre");
 			$desc=$this->input->post("textarea");
 			$archivos=$_FILES["archivo"];
+			$niveles=$this->db->Nivel_model->get_all_nivel();
+			$tema=$this->db->Tema_model->get_all_tema();
+			$categoria=$this->db->Tema_model->get_all_tema();
             if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
 				$recurso=$this->subida($nombreRec, $archivos["name"], $desc, $archivos["tmp_name"]);
                 if ($recurso) {

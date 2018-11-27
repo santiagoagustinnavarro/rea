@@ -39,7 +39,6 @@
 						<h5 class="card-header text-center">Año de Enseñanza</h5>
 						<div class="card-body">
 							<div class="row">
-
 								<div class="col-md-6">
 									<ul class="list-unstyled mb-0 text-center">
 										<?php
@@ -49,14 +48,10 @@
 										<li><input type="checkbox" id="<?php echo $unNivel["nombre"]; ?>"
 											 value="<?php echo $unNivel["nombre"]; ?>"><span>
 												<?php echo $unNivel["nombre"]; ?></span></li>
-
-
 										<?php
                                      }?>
 									</ul>
 								</div> <!-- cierra el col -->
-
-
 							</div> <!-- cierra el row -->
 						</div> <!-- cierra el card body -->
 					</div> <!-- cierra el card my-4 -->

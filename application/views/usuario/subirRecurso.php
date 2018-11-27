@@ -20,16 +20,29 @@
 					<label class="label" for="categoria"><i class="fa fa-caret-down"></i> Seleccione una Categoria</label>
 					<select class="form-control" id="categoria" name="categoria">
 					<?php 
-						$cat=$this->Tema_model->get_all_tema();
-						print_r($cat);
+						/* $cat=$this->db->Tema_model->get_all_tema();
+						foreach ($cat as $valor){
+							echo'<option id="$valor" name="$valor" value="$valor">';
+							echo '</option>';
+						}*/
 					?>
-					<option id="" name="" value="">
-					</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label class="label" for="archivo"><i class="fa fa-upload"></i> Seleccione Archivo/s</label>
 					<input type="file" id="archivo[]" name="archivo[]" multiple="">
+				</div>
+				<div class="form-group">
+					<label class="label" for="check"><i class="fa fa-check-square-o"></i> Seleccione el año de Enseñanza</label>
+					<?php
+                    	 foreach ($niveles as $unNivel) {
+                	?>
+					<li><input type="checkbox" id="<?php echo $unNivel["nombre"]; ?>"
+						value="<?php echo $unNivel["nombre"]; ?>"><span>
+					<?php echo $unNivel["nombre"]; ?></span></li>
+					<?php
+					}
+					?>
 				</div>
 				<div class="form-group">
 					<label class="label" for="textarea"><i class="fa fa-pencil-square-o"></i> Descripcion</label>
