@@ -11,8 +11,6 @@ class Usuario extends CI_Controller
 		parent::__construct();
         $this->load->helper('url');
 		$this->load->library("session");
-		$this->load->helper('download');
-
     }
     
     /*
@@ -313,7 +311,7 @@ class Usuario extends CI_Controller
 			$desc=$this->input->post("textarea");
 			$archivos=$_FILES["archivo"];
             if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
-				$recurso=$this->subida($nombreRec, $archivos["name"], $desc);
+				$recurso=$this->subida($nombreRec, $archivos["name"], $desc, $archivos["tmp_name"]);
                 if ($recurso) {
                     $this->load->view("header", ["title" => "Subir Recurso"]);
                     $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-success text-center'><h4>".'Recurso subido con exito'."</h4></div>"]);
@@ -330,24 +328,26 @@ class Usuario extends CI_Controller
             $this->load->view("footer");
         }
     }
-    private function subida($nombreRec, $archivos, $textarea)
+    private function subida($nombreRec, $archivos, $textarea, $tmp)
     {
         $recurso=array("nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$nombreRec,"descripcion"=>$textarea);
 		$idRecurso=$this->Recurso_model->add_recurso($recurso);
         if ($idRecurso>0) {
 			$res=true;
             foreach ($archivos as $etiqueta=>$valor) {
-					$ruta="./assets/recurso/".$valor;
-					$idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
-					if ($idArchivo<=0) {
-                    	$res=false;
-					}
+				$ruta="./assets/upload/";
+				$idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
+			}
+			for ($i=0;$i<(count($tmp));$i++) {
+				$arch=$ruta.basename($archivos[$i]);
+				move_uploaded_file($tmp[$i],$arch);
 			}	
         } else {
             $res=false;
         }
         return $res;
-    } 
+	} 
+	
 	public function download(){
 		$data= file_get_contents('./assets/upload/'.$nombreRec);
 		force_download($nombreRec,$data);
