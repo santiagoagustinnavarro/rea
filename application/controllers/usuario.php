@@ -98,7 +98,7 @@ class Usuario extends CI_Controller
                 $insercionEstado = $this->TenerEstadoUsuario_model->add_tenerEstadoUsuario($datosEstado);
                 $insercionProfesor = $this->Tienerol_model->add_tienerol($datosRol);
                 $this->load->view("header", ["title" => "Registro"]);
-                $this->load->view('inicio/registrarse', array("mensaje" => '<div class="alert alert-success text-center"><h4>'."Registrado con exito".'</h4></div>'));
+                $this->load->view('inicio/registrarse', array("mensaje" => '<div class="alert alert-success text-center"><h4>'."Se ah registrado correctamente espere a que un administrador valide su cuenta".'</h4></div>'));
                 $this->load->view("footer");
             } else {
                 $this->load->view("header", ["title" => "Registro"]);
