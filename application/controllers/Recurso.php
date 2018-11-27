@@ -12,7 +12,14 @@ class Recurso extends CI_Controller
     }
     public function listar()
     {
-        $tema=$this->input->post('tema');
+        $filtros=$_POST;
+        if(count($filtros)<=0){
+            $filtros="";
+        }else{
+            $filtros['niveles']=json_decode($filtros["niveles"]);
+            
+        }
+        
         $this->load->helper('url');
         $this->load->library("pagination");
         $config = array();
@@ -35,13 +42,13 @@ class Recurso extends CI_Controller
         $config['cur_tag_close'] = '<span class="sr-only">(current)</span></a></li>';
         $config['num_tag_open'] = '<li class="page-item">';
         $config['num_tag_close'] = '</li>';
-        $config["base_url"] = base_url() . "recurso/listar";
-        $config["per_page"] = 9;
+        $config["base_url"] = base_url()."recurso/listar";
+        $config["per_page"] = 1;
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $config["total_rows"] = count($this->Recurso_model->fetch_recurso($config["per_page"], $page,$tema));
+        $config["total_rows"] = $this->Recurso_model->row_count($filtros);
         $config["uri_segment"] = 3;
         $this->pagination->initialize($config);
-        $data["results"] = $this->Recurso_model->fetch_recurso($config["per_page"], $page,$tema);
+        $data["results"] = $this->Recurso_model->fetch_recurso($config["per_page"], $page,$filtros);
         $data["links"] = $this->pagination->create_links();
         $this->load->model("Tema_model");
         $this->load->model("Nivel_model");

@@ -51,7 +51,7 @@ if (isset($styles)) { //Invocacion de estilos propios
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>area" class="nav-link text-secondary"
+						<a href="<?php echo base_url(); ?>recurso/listar" class="nav-link text-secondary"
 						 alt="area">
 							<i class="fa fa-files-o"></i> Área
 						</a>
@@ -95,7 +95,7 @@ if (isset($styles)) { //Invocacion de estilos propios
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>area" class="nav-link text-secondary"
+						<a href="<?php echo base_url(); ?>recurso/listar" class="nav-link text-secondary"
 						alt="area">
 							<i class="fa fa-files-o"></i> Área
 						</a>
@@ -156,7 +156,7 @@ if (isset($styles)) { //Invocacion de estilos propios
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>area" class="nav-link text-secondary"
+						<a href="<?php echo base_url(); ?>recurso/listar" class="nav-link text-secondary"
 						 alt="area">
 							<i class="fa fa-files-o"></i> Área
 						</a>
@@ -218,7 +218,7 @@ if (isset($styles)) { //Invocacion de estilos propios
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>area" class="nav-link text-secondary"
+						<a href="<?php echo base_url(); ?>recurso/listar" class="nav-link text-secondary"
 						 alt="area">
 							<i class="fa fa-files-o"></i> Área
 						</a>
