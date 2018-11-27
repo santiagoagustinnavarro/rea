@@ -193,9 +193,9 @@
 	 <div class="offset-md-5"><?php echo $links; ?>
 	 </div>
  </div> <?php
-	 if(count($results)!=1){
+	 
 		?> </div><?php	 
-	}?>
+	?>
 
 	 
 	
@@ -212,5 +212,5 @@
 
 <!-- cierra el row -->
 <!-- container fluid cierra los recursos -->
-<br />
-<br />
+<br/>
+<br/>

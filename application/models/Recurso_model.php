@@ -44,11 +44,11 @@ class Recurso_model extends CI_Model
             $this->db->join("nivel as n", "n.nombre=p.nombreNivel");
             
             if (count($filtros["niveles"])>0) {
-                $sql="";
+                $sql="exists(select * from nivel where ";
                 foreach ($filtros["niveles"] as $unNivel) {
-                   $sql.="n.nombre="."\"".$unNivel."\""." or ";
+                   $sql.="n.nombre="."\"".$unNivel."\""." and ";
                 }
-                $sql=substr($sql,0,strripos($sql,"or")-1);
+                $sql=substr($sql,0,strripos($sql,"and")-1).")";
                 $this->db->where($sql);
             }
             if ($filtros["tema"]!="") {
@@ -80,11 +80,11 @@ class Recurso_model extends CI_Model
             $this->db->join("nivel as n", "n.nombre=p.nombreNivel");
             
             if (count($filtros["niveles"])>0) {
-                $sql="";
+                $sql="exists(select * from nivel where ";
                 foreach ($filtros["niveles"] as $unNivel) {
-                   $sql.="n.nombre="."\"".$unNivel."\""." or ";
+                   $sql.="n.nombre="."\"".$unNivel."\""." and ";
                 }
-                $sql=substr($sql,0,strripos($sql,"or")-1);
+                $sql=substr($sql,0,strripos($sql,"and")-1).")";
                 $this->db->where($sql);
             }
             if ($filtros["tema"]!="") {

@@ -43,7 +43,7 @@ class Recurso extends CI_Controller
         $config['num_tag_open'] = '<li class="page-item">';
         $config['num_tag_close'] = '</li>';
         $config["base_url"] = base_url()."recurso/listar";
-        $config["per_page"] = 2;
+        $config["per_page"] = 1;
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $config["total_rows"] = $this->Recurso_model->row_count($filtros);
         $config["uri_segment"] = 3;
