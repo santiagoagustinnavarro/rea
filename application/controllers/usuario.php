@@ -328,38 +328,43 @@ class Usuario extends CI_Controller
 		$this->load->model("Nivel_model");
 		$this->load->model("Tema_model");
 		$niveles=$this->Nivel_model->get_all_nivel();
-		$categorias=$this->Tema_model->get_all_tema();
+		$categoria=$this->Tema_model->get_all_tema();
         if (count($_POST)>0) {
 			$nombreRec=$this->input->post("nombre");
+			$nivel=$this->input->post("niveles");
+			$cat=$this->input->post("tema");
 			$desc=$this->input->post("textarea");
 			$archivos=$_FILES["archivo"];
             if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
-                $recurso=$this->subida($nombreRec, $archivos["name"], $desc, $archivos["tmp_name"]);
+                $recurso=$this->subida($nombreRec, $archivos["name"], $desc, $archivos["tmp_name"],$cat,$nivel);
                 if ($recurso) {
                     $this->load->view("header", ["title" => "Subir Recurso"]);
-                    $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-success text-center'><h4>".'Recurso subido con exito'."</h4></div>","niveles"=>$niveles,"categorias"=>$categorias]);
+                    $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-success text-center'><h4>".'Recurso subido con exito'."</h4></div>","niveles"=>$niveles,"categoria"=>$categoria]);
                     $this->load->view("footer");
                 }
             } else {
 				// Error falta completar alguno de los campos 
                 $this->load->view("header", ["title" => "Subir Recurso"]);
-                $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-danger text-center'><h4>".'Faltan completar campos'."</h4></div>","niveles"=>$niveles,"categorias"=>$categorias]);
+                $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-danger text-center'><h4>".'Faltan completar campos'."</h4></div>","niveles"=>$niveles,"categoria"=>$categoria]);
                 $this->load->view("footer");
             }
         } else {
 			// Si no subio ningun archivo, muestra vista del subir archivo
             $this->load->view("header", ["title" => "Subir Recurso"]);
-            $this->load->view('usuario/subirRecurso',["niveles"=>$niveles,"categorias"=>$categorias]);
+            $this->load->view('usuario/subirRecurso',["niveles"=>$niveles,"categoria"=>$categoria]);
             $this->load->view("footer");
         }
 	}
 	/** La funcion es llamada por subirArchivo, con esta funcion se cargan los archivos del recurso */
-    private function subida($nombreRec, $archivos, $textarea, $arrArchivos)
+    private function subida($nombreRec, $archivos, $textarea, $arrArchivos,$arrCat,$arrNivel)
     {
         $recurso=array("nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$nombreRec,"descripcion"=>$textarea);
 		$idRecurso=$this->Recurso_model->add_recurso($recurso);	
 		if ($idRecurso>0) {
 			$res=true;
+			$this->load->model("Tema_model");
+			$insercion=$this->Tema_model->add_tema(['nombre'=>$arrCat,'idRecurso'=>$idRecurso]);
+			print_r($insercion);
             foreach ($archivos as $etiqueta=>$valor) {
 				$ruta="./assets/upload/";
 				$idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
@@ -367,7 +372,7 @@ class Usuario extends CI_Controller
 			for ($i=0;$i<(count($arrArchivos));$i++) {
 				$arch=$ruta.basename($archivos[$i]);
 				move_uploaded_file($arrArchivos[$i],$arch);
-			}	
+			}
         } else {
             $res=false;
         }

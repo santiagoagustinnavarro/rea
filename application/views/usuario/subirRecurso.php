@@ -18,17 +18,17 @@
 				</div>
 				<div class="form-group offset-md-1 col-md-10">
 					<label class="label" for="categoria"><i class="fa fa-caret-down"></i> Seleccione una Categoria</label>
-					<select class="form-control text-center" id="tema">
+					<select class="form-control text-center" id="tema" name="tema">
 						<option value="" selected>Elija una opcion</option>
 							<?php 
-								foreach ($categorias as $unCat) {
+								foreach ($categoria as $unCat) {
     						?>
 							<option value="<?php echo $unCat["nombre"]; ?>"><?php echo $unCat["nombre"];
 							}?>
 						</option>
 					</select>
 					<?php
-						$this->db->Tema_model->get_insert
+						
 					?>
 				</div>
 				<div class="form-group">
