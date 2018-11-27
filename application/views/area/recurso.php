@@ -3,7 +3,7 @@
 <div class="container-fluid py-4">
 	<div class="mx-auto">
 		<div id="transparencia">
-			<h1 class="titulo"><?php echo $recurso["titulo"];?></h1></br>
+			<h1 class="titulo"><?php echo $recurso["titulo"];?></h1><br/>
 			<div class="descripcion">
 			<h3>Descripcion</h3>
 				<p>	<?php echo $recurso["descripcion"];?></p>
