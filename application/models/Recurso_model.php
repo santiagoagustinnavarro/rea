@@ -78,8 +78,8 @@ class Recurso_model extends CI_Model
             }
             return $data;
         }
-        $arr=[];
-        return $arr;
+        $data=[];
+        return $data;
     }
         
     /*

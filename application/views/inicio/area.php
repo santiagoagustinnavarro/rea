@@ -1,6 +1,6 @@
 <!-- Container fluid -->
 <div class="container-fluid">
-	</br>
+	<br />
 	<h1 class="titulo text-secondary">Contenido</h1>
 	<div class="row">
 		<div class="col-md-3">
@@ -60,18 +60,16 @@
 							</div> <!-- cierra el row -->
 						</div> <!-- cierra el card body -->
 					</div> <!-- cierra el card my-4 -->
-					
+
 				</div> <!-- Cierra card md-3 -->
 			</div> <!-- cierra el col-my-3 -->
 		</div> <!-- cierra el col-md-3 -->
-
-
+	
+	<div class="col-md-9">
 		<?php
          if (count($results)>0) {
-             generarFilas($results, $links, 3);
-         }else{
-			?><div class="col-md-9"></div><?php 
-		 }
+             generarFilas($results, $links, 2);
+         }
          ?>
 
 
@@ -84,10 +82,12 @@
  function generarFilas($results, $links, $porFila)
  {
      ?>
-		<div class="col-md-9">
-			<?php $i=1;
+
+		<?php $i=1;
+		
      foreach ($results as $data) {
-         if ($i%$porFila==0 && $i!=1 && $i!=count($results)) {//Ultimo elemento de la fila?>
+         if (count($results)==1) {//Solo tiene un elemento ?>
+		<div class="row">
 			<div class="col-md-<?php echo 12/$porFila?> area">
 				<div class="card h-100">
 					<!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
@@ -105,50 +105,31 @@
 				</div> <!-- cierrala clase card h-100 -->
 			</div> <!-- cierrala clase area -->
 		</div>
-		<div class="row">
-			<?php
-         } elseif ($i==1) {//Primer elemento
-            ?>
-			<div class="row">
-				<div class="col-md-<?php echo 12/$porFila?> area">
-					<div class="card h-100">
-						<!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
-						<div class="card-body">
-							<h4 class="card-title">
-								<a href="#"><?php echo $data->titulo; ?></a>
-							</h4>
-							<p class="card-text"><?php echo $data->recursoDesc; ?>
-							</p>
-						</div> <!-- cierra el card body-->
-						<div class="card-footer recurso">
-							<a href="<?php echo base_url()."area/recurso"; ?>"
-							 class="btn btn-success">Ver Recurso</a>
-						</div> <!-- cierrala clase recurso -->
-					</div> <!-- cierrala clase card h-100 -->
-				</div> <!-- cierrala clase area --><?php
-         } elseif ($i==count($results)) {//Ultimo elemento
-            ?>
-
-				<div class="col-md-<?php echo 12/$porFila?> area">
-					<div class="card h-100">
-						<!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
-						<div class="card-body">
-							<h4 class="card-title">
-								<a href="#"><?php echo $data->titulo; ?></a>
-							</h4>
-							<p class="card-text"><?php echo $data->recursoDesc; ?>
-							</p>
-						</div> <!-- cierra el card body-->
-						<div class="card-footer recurso">
-							<a href="<?php echo base_url()."area/recurso"; ?>"
-							 class="btn btn-success">Ver Recurso</a>
-						</div> <!-- cierrala clase recurso -->
-					</div> <!-- cierrala clase card h-100 -->
-				</div> <!-- cierrala clase area -->
-			</div>
-			<?php
+		<?php
          } else {
-             ?>
+             if ($i%$porFila==0 && $i!=1 && $i!=count($results)) {//Ultimo elemento de la fila?>
+		<div class="col-md-<?php echo 12/$porFila?> area">
+			<div class="card h-100">
+				<!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
+				<div class="card-body">
+					<h4 class="card-title">
+						<a href="#"><?php echo $data->titulo; ?></a>
+					</h4>
+					<p class="card-text"><?php echo $data->recursoDesc; ?>
+					</p>
+				</div> <!-- cierra el card body-->
+				<div class="card-footer recurso">
+					<a href="<?php echo base_url()."area/recurso"; ?>"
+					 class="btn btn-success">Ver Recurso</a>
+				</div> <!-- cierrala clase recurso -->
+			</div> <!-- cierrala clase card h-100 -->
+		</div> <!-- cierrala clase area -->
+	</div>
+	<div class="row">
+		<?php
+             } elseif ($i==1) {//Primer elemento
+            ?>
+		<div class="row">
 			<div class="col-md-<?php echo 12/$porFila?> area">
 				<div class="card h-100">
 					<!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
@@ -164,21 +145,72 @@
 						 class="btn btn-success">Ver Recurso</a>
 					</div> <!-- cierrala clase recurso -->
 				</div> <!-- cierrala clase card h-100 -->
-			</div> <!-- cierrala clase area --> <?php
-         }
-         $i++;
-     } ?>
-			<div class="row">
-				<div class="offset-md-7"><?php echo $links; ?>
-				</div>
-			</div>
-		</div> <?php
- }
+			</div> <!-- cierrala clase area --><?php
+             } elseif ($i==count($results)) {//Ultimo elemento
+            ?>
+
+			<div class="col-md-<?php echo 12/$porFila?> area">
+				<div class="card h-100">
+					<!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
+					<div class="card-body">
+						<h4 class="card-title">
+							<a href="#"><?php echo $data->titulo; ?></a>
+						</h4>
+						<p class="card-text"><?php echo $data->recursoDesc; ?>
+						</p>
+					</div> <!-- cierra el card body-->
+					<div class="card-footer recurso">
+						<a href="<?php echo base_url()."area/recurso"; ?>"
+						 class="btn btn-success">Ver Recurso</a>
+					</div> <!-- cierrala clase recurso -->
+				</div> <!-- cierrala clase card h-100 -->
+			</div> <!-- cierrala clase area -->
+		</div>
+		<?php
+             } else {
+                 ?>
+		<div class="col-md-<?php echo 12/$porFila?> area">
+			<div class="card h-100">
+				<!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
+				<div class="card-body">
+					<h4 class="card-title">
+						<a href="#"><?php echo $data->titulo; ?></a>
+					</h4>
+					<p class="card-text"><?php echo $data->recursoDesc; ?>
+					</p>
+				</div> <!-- cierra el card body-->
+				<div class="card-footer recurso">
+					<a href="<?php echo base_url()."area/recurso"; ?>"
+					 class="btn btn-success">Ver Recurso</a>
+				</div> <!-- cierrala clase recurso -->
+			</div> <!-- cierrala clase card h-100 -->
+		</div> <!-- cierrala clase area --> <?php
+             }
+             $i++;
+         }//Fin else
+	 }//Fin foreach
+	 ?><div class="row">
+	 <div class="offset-md-5"><?php echo $links; ?>
+	 </div>
+ </div> <?php
+	 if(count($results)!=1){
+		?> </div><?php	 
+	}?>
+
+	 
+	
+	
+	</div>
+	<?php
+ }//Fin funcion
  ?>
 
-		<!-- cierra col-md-9 -->
-		<!-- Pagination -->
-	</div> <!-- cierra el row -->
-</div> <!-- container fluid cierra los recursos -->
-<br/>
-<br/>
+	<!-- cierra col-md-9 -->
+	<!-- Pagination -->
+
+</div>
+
+<!-- cierra el row -->
+<!-- container fluid cierra los recursos -->
+<br />
+<br />
