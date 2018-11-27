@@ -9,6 +9,13 @@ class Recurso extends CI_Controller
         parent::__construct();
         $this->load->library("session");
     }
+    public function index()
+    {   
+		$recursos = $this->listarConArchivos();		
+        $this->load->view("header", ["title" => "Administrar usuarios"]);
+        $this->load->view('recurso/index', ['recursos' => $recursos]);
+        $this->load->view("footer");
+	}
     public function listar()
     {
         $filtros=$_POST;
