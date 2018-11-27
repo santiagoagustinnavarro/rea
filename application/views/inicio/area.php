@@ -23,7 +23,7 @@
 						<div class="card-body">
 							<div class="row">
 								<select class="form-control text-center" id="tema">
-									<option value="ninguno" selected>Elija una opcion</option>
+									<option value="" selected>Elija una opcion</option>
 									<?php foreach ($temas as $unTema) {
     ?>
 									<option value="<?php echo $unTema["nombre"]; ?>"><?php echo $unTema["nombre"];
@@ -42,18 +42,21 @@
 
 								<div class="col-md-6">
 									<ul class="list-unstyled mb-0 text-center">
-									<?php
-									 
-									 foreach($niveles as $unNivel){
-                                        ?>
-										<li><input type="checkbox" id="<?php echo $unNivel["nombre"];?>" value="<?php echo $unNivel["nombre"];?>"><a> <?php echo $unNivel["nombre"];?></a></li>
-										
-									
-									<?php
-                                    }?></ul>
+										<?php
+                                     
+                                     foreach ($niveles as $unNivel) {
+                                         ?>
+										<li><input type="checkbox" id="<?php echo $unNivel["nombre"]; ?>"
+											 value="<?php echo $unNivel["nombre"]; ?>"><span>
+												<?php echo $unNivel["nombre"]; ?></span></li>
+
+
+										<?php
+                                     }?>
+									</ul>
 								</div> <!-- cierra el col -->
 
-								
+
 							</div> <!-- cierra el row -->
 						</div> <!-- cierra el card body -->
 					</div> <!-- cierra el card my-4 -->
@@ -67,7 +70,13 @@
 		</div> <!-- cierra el col-md-3 -->
 
 
-		<?php generarFilas($results, 3); ?>
+		<?php
+         if (count($results)>0) {
+             generarFilas($results, $links, 3);
+         }else{
+			?><div class="col-md-9"></div><?php 
+		 }
+         ?>
 
 
 
@@ -76,7 +85,7 @@
          * Esta funcion genera las filas de los recursos donde $porFila sera la cantidad a mostrar por filas
          * $results es el array de recursos
          */
- function generarFilas($results, $porFila)
+ function generarFilas($results, $links, $porFila)
  {
      ?>
 		<div class="col-md-9">
@@ -162,16 +171,16 @@
 			</div> <!-- cierrala clase area --> <?php
          }
          $i++;
-     }
- }
- ?>
+     } ?>
 			<div class="row">
-				<div class="offset-md-7"><?php echo $links;?>
+				<div class="offset-md-7"><?php echo $links; ?>
 				</div>
 			</div>
-		</div>
+		</div> <?php
+ }
+ ?>
+
 		<!-- cierra col-md-9 -->
 		<!-- Pagination -->
 	</div> <!-- cierra el row -->
 </div> <!-- container fluid cierra los recursos -->
-

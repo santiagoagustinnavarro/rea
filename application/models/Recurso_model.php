@@ -39,27 +39,44 @@ class Recurso_model extends CI_Model
         return $this->db->count_all("recurso");
     }
 
-    public function fetch_recurso($limit, $start, $tema="")
+    public function fetch_recurso($limit, $start, $filtros="")
     {   
-        if ($tema!="") {
-            $this->db->select("r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre,t.descripcion as temaDesc",false);
+        if ($filtros!="") {
+            $this->db->distinct("r.idRecurso");
+            $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre,t.descripcion as temaDesc",false);
             $this->db->from("recurso as r");
             $this->db->join("tema as t", "t.idRecurso=r.idRecurso");
-            $this->db->where(array("t.nombre"=>$tema));
-           $query= $this->db->get();
+            $this->db->join("poseenivel as p", "p.idRecurso=r.idRecurso");
+            $this->db->join("nivel as n", "n.nombre=p.nombreNivel");
+            
+            if (count($filtros["niveles"])>0) {
+                $sql="";
+                foreach ($filtros["niveles"] as $unNivel) {
+                   $sql.="n.nombre="."\"".$unNivel."\""." or ";
+                }
+                $sql=substr($sql,0,strripos($sql,"or")-1);
+                $this->db->where($sql);
+            }
+            if ($filtros["tema"]!="") {
+                $this->db->where(array("t.nombre"=>$filtros["tema"]));
+            }
+                
+            
         } else {
             $this->db->select("r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario",false);
             $this->db->from("recurso as r");
-            $query = $this->db->get();
+           
         }
         $this->db->limit($limit, $start);
+        $query= $this->db->get();
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {
                 $data[] = $row;
             }
             return $data;
         }
-        return false;
+        $arr=[];
+        return $arr;
     }
         
     /*
