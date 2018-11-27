@@ -1,6 +1,5 @@
 <?php
-	include_once "application/controllers/usuario.php";
-	$sesion=new Login();
+	
     if ($this->session->iniciada) {
 ?>
 <div class="container py-5">

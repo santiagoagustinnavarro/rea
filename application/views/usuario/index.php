@@ -48,7 +48,7 @@ if ($this->session->iniciada && $this->session->rol=="administrador de usuarios"
 			<td>
 				<?php $estado=$this->TenerEstadoUsuario_model->get_tenerestadousuario($u['nombreUsuario']);
             	if(strtolower($estado["nombreEstadoUsuario"])=="pendiente"){
-				?>	<button class="btn btn-success"> Dar alta</button> <?php 
+				echo form_open("usuario/edit/".$u['nombreUsuario'],array("method"=>'post'),array("estadoActual"=>"Pendiente","nuevoEstado"=>"Alta"));?>	<button type="submit" class="btn btn-success"> Dar alta</button> <?php echo form_close();
 				}else{
 					echo $estado["nombreEstadoUsuario"];
 				}?>

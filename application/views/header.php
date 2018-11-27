@@ -109,7 +109,7 @@ if (isset($styles)) { //Invocacion de estilos propios
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="<?php echo base_url(); ?>contacto"
 						id="navbardrop" data-toggle="dropdown">
-							<i class="fa fa-user-circle"></i> Perfil
+							<i class="fa fa-user-circle"></i> <?php echo $this->session->nombreUsuario; ?>
 						</a>
 						<div class="dropdown-menu" id="desplegable">
 							<a class="dropdown-item" href="<?php echo base_url()."usuario/editarPerfil"?>">
@@ -170,7 +170,7 @@ if (isset($styles)) { //Invocacion de estilos propios
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="<?php echo base_url(); ?>contacto"
 						 id="navbardrop" data-toggle="dropdown">
-							<i class="fa fa-user-circle-o"></i> Perfil
+							<i class="fa fa-user-circle-o"></i> <?php echo $this->session->nombreUsuario; ?>
 						</a>
 						<div class="dropdown-menu" id="desplegable">
 							<a class="dropdown-item" href="<?php echo base_url()."usuario/editarPerfil"?>">
@@ -232,7 +232,7 @@ if (isset($styles)) { //Invocacion de estilos propios
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="<?php echo base_url(); ?>contacto"
 						 id="navbardrop" data-toggle="dropdown">
-							<i class="fa fa-user"></i> Perfil
+							<i class="fa fa-user"></i> <?php echo $this->session->nombreUsuario; ?>
 						</a>
 						<div class="dropdown-menu" id="desplegable">
 							<a class="dropdown-item" href="<?php echo base_url()."usuario/editarPerfil"?>">

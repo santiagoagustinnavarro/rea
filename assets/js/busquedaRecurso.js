@@ -59,9 +59,9 @@ $(document).ready(function(){
                 }
             }); 
     });
-    $(".pagination").click(function(){
-      
-    });
+    
+  
+
   
     
 });
