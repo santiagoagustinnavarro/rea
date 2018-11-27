@@ -8,9 +8,9 @@ class Usuario extends CI_Controller
 {
     public function __construct()
     {
-		parent::__construct();
+        parent::__construct();
         $this->load->helper('url');
-		$this->load->library("session");
+        $this->load->library("session");
     }
     
     /*
@@ -39,16 +39,15 @@ class Usuario extends CI_Controller
                         $this->load->view("footer");
                     } else {
                         $this->load->view("header", array("title"=>"Clave actualizada"));
-                    $this->load->view("restablecerClave", ["mensaje"=>'<div class="alert alert-warning text-center"><h4>'."Ocurrio un problema en la actualizacion".'</h4></div>',"nroToken"=>$nroToken,"nombreUsuario"=>$nombreUsuario]);
-                    $this->load->view("footer");
-
+                        $this->load->view("restablecerClave", ["mensaje"=>'<div class="alert alert-warning text-center"><h4>'."Ocurrio un problema en la actualizacion".'</h4></div>',"nroToken"=>$nroToken,"nombreUsuario"=>$nombreUsuario]);
+                        $this->load->view("footer");
                     }
                 } else {
                     $this->load->view("header", array("title"=>"Clave actualizada"));
                     $this->load->view("restablecerClave", ["nroToken"=>$nroToken,"mensaje"=>'<div class="alert alert-warning text-center"><h4>'."Las claves no coinciden".'</h4></div>',"nombreUsuario"=>$nombreUsuario]);
                     $this->load->view("footer");
                 }
-            }else{
+            } else {
                 $this->load->view("header", array("title"=>"Clave actualizada"));
                 $this->load->view("restablecerClave", ["mensaje"=>'<div class="alert alert-warning text-center"><h4>'."Esta solicitud ah expirado vuelva a solicitarla".'</h4></div>',"nroToken"=>$nroToken,"nombreUsuario"=>$nombreUsuario]);
                 $this->load->view("footer");
@@ -134,17 +133,19 @@ class Usuario extends CI_Controller
                     $this->load->view("header", ["title" => "Editar Usuario"]);
                     $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'<div class="offset-md-4 col-md-4 alert alert-info text-center"><h4>'.'Intente actualizar los datos en unos instantes'.'</h4></div>']);
                     $this->load->view("footer");
-                } else {//Solo actualizaremos el rol si se pudo actualizar el estado para no generar conflictos
-                    $actualizarRol=$this->actualizar($datosRol);
-                    if (!$actualizarEstado) {
-                        $this->load->view("header", ["title" => "Editar Usuario"]);
-                        $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'<div class="offset-md-4 col-md-4 alert alert-info text-center"><h4>'.'Intente actualizar el rol en unos instantes'.'</h4></div>']);
-                        $this->load->view("footer");
-                    }
-
+                } elseif ($rolActual && $rolNuevo!="") {//Solo actualizaremos el rol si se pudo actualizar el estado para no generar conflictos
+                        $actualizarRol=$this->actualizar($datosRol);
+                        if (!$actualizarEstado) {
+                            $this->load->view("header", ["title" => "Editar Usuario"]);
+                            $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'<div class="offset-md-4 col-md-4 alert alert-info text-center"><h4>'.'Intente actualizar el rol en unos instantes'.'</h4></div>']);
+                            $this->load->view("footer");
+                        }
                     $this->load->view("header", ["title" => "Editar Usuario"]);
                     $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'<div class="offset-md-4 col-md-4 alert alert-success text-center"><h4>'.'Datos actualizados'.'</h4></div>']);
                     $this->load->view("footer");
+                }else{
+                    $this->mailAlta($nombreUsuario,$data["usuario"]["email"]);
+                    redirect("usuario");
                 }
             } else {
                 $this->load->view("header", ["title" => "Editar Usuario"]);
@@ -154,6 +155,24 @@ class Usuario extends CI_Controller
         } else {
             show_error('The usuario you are trying to edit does not exist.');
         }
+    }
+    private function mailAlta($nombreUsuario,$email){
+        $config['protocol'] = 'sendmail';
+        $config['mailpath'] = "\"D:\\xampp\\sendmail\\sendmail.exe\" -t";
+        $config['charset'] = 'iso-8859-1';
+        $config['wordwrap'] = true;
+        $this->email->initialize($config);
+        $this->email->from('reanotreply@gmail.com', 'Programacionnet');
+        $this->email->subject('Test Email (TEXT)');
+        $this->email->to($email);
+        $this->email->message('Bienvenido a la plataforma Rea su usuario ah sido dado de alta ingrese su usario y contraseña en '.base_url().'login ');
+        if ($this->email->send()) {
+
+            $res=true;
+        } else {
+            $res=false;
+        }
+        return $res;
     }
     /**
      * Funcion auxiliar encargada de modificar el estado o el rol segun corresponda
@@ -315,7 +334,7 @@ class Usuario extends CI_Controller
 			$desc=$this->input->post("textarea");
 			$archivos=$_FILES["archivo"];
             if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
-				$recurso=$this->subida($nombreRec, $archivos["name"], $desc, $archivos["tmp_name"]);
+                $recurso=$this->subida($nombreRec, $archivos["name"], $desc, $archivos["tmp_name"]);
                 if ($recurso) {
                     $this->load->view("header", ["title" => "Subir Recurso"]);
                     $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-success text-center'><h4>".'Recurso subido con exito'."</h4></div>","niveles"=>$niveles,"categorias"=>$categorias]);

@@ -61,7 +61,7 @@
 	<div class="col-md-9">
 		<?php
          if (count($results)>0) {
-             generarFilas($results, $links, 2);
+             generarFilas($results, $links, 3);
          }
          ?>
 
@@ -92,7 +92,7 @@
 						</p>
 					</div> <!-- cierra el card body-->
 					<div class="card-footer recurso">
-						<a href="<?php echo base_url()."area/recurso"; ?>"
+						<a href="<?php echo base_url()."recurso/view/".$data->idRecurso; ?>"
 						 class="btn btn-success">Ver Recurso</a>
 					</div> <!-- cierrala clase recurso -->
 				</div> <!-- cierrala clase card h-100 -->
@@ -112,7 +112,7 @@
 					</p>
 				</div> <!-- cierra el card body-->
 				<div class="card-footer recurso">
-					<a href="<?php echo base_url()."area/recurso"; ?>"
+					<a href="<?php echo base_url()."recurso/view/".$data->idRecurso; ?>"
 					 class="btn btn-success">Ver Recurso</a>
 				</div> <!-- cierrala clase recurso -->
 			</div> <!-- cierrala clase card h-100 -->
@@ -134,7 +134,7 @@
 						</p>
 					</div> <!-- cierra el card body-->
 					<div class="card-footer recurso">
-						<a href="<?php echo base_url()."area/recurso"; ?>"
+						<a href="<?php echo base_url()."recurso/view/".$data->idRecurso; ?>"
 						 class="btn btn-success">Ver Recurso</a>
 					</div> <!-- cierrala clase recurso -->
 				</div> <!-- cierrala clase card h-100 -->
@@ -153,7 +153,7 @@
 						</p>
 					</div> <!-- cierra el card body-->
 					<div class="card-footer recurso">
-						<a href="<?php echo base_url()."area/recurso"; ?>"
+						<a href="<?php echo base_url()."recurso/view/".$data->idRecurso; ?>"
 						 class="btn btn-success">Ver Recurso</a>
 					</div> <!-- cierrala clase recurso -->
 				</div> <!-- cierrala clase card h-100 -->
@@ -173,7 +173,7 @@
 					</p>
 				</div> <!-- cierra el card body-->
 				<div class="card-footer recurso">
-					<a href="<?php echo base_url()."area/recurso"; ?>"
+					<a href="<?php echo base_url()."recurso/view/".$data->idRecurso; ?>"
 					 class="btn btn-success">Ver Recurso</a>
 				</div> <!-- cierrala clase recurso -->
 			</div> <!-- cierrala clase card h-100 -->
@@ -182,10 +182,12 @@
              $i++;
          }//Fin else
 	 }//Fin foreach
-	 ?><div class="row">
-	 <div class="offset-md-5"><?php echo $links; ?>
-	 </div>
- </div> <?php
+	 ?>
+	 <div class="row">
+	 	<div class="offset-md-5"><?php echo $links; ?>
+	 	</div>
+ 	</div>
+  <?php
 	 
 		?> </div><?php	 
 	?>

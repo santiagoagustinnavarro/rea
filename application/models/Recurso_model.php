@@ -59,7 +59,7 @@ class Recurso_model extends CI_Model
             }
             
         } else {
-            $this->db->select("r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario",false);
+            $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario",false);
             $this->db->from("recurso as r");
            
         }
@@ -102,7 +102,7 @@ class Recurso_model extends CI_Model
             }
             
         } else {
-            $this->db->select("r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario",false);
+            $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario",false);
             $this->db->from("recurso as r");
            
         }

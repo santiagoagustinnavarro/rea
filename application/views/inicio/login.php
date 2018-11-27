@@ -1,3 +1,4 @@
+<?php if($this->session->iniciada){ redirect("inicio");} ?>
 <div class="container py-4">
 	<div class="row">
 		<div class="offset-md-3 col-md-6">
