@@ -338,7 +338,6 @@ class Usuario extends CI_Controller
             if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
 				$params=['nombreRecurso'=>$nombreRec,'arrArc'=>$archivos["name"],'descripcion'=>$desc,'arrTmp'=>$archivos["tmp_name"],'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema];
 				$recurso=$this->subida($params);
-				print_r($recurso);
                 if ($recurso) {
                     $this->load->view("header", ["title" => "Subir Recurso"]);
                     $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-success text-center'><h4>".'Recurso subido con exito'."</h4></div>",'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
