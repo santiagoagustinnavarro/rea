@@ -369,6 +369,12 @@ class Usuario extends CI_Controller
 			$niveles=$parametros['niveles'];
 			$archivos=$parametros['arrArc'];
 			/* TERMINAR LA FUNCION NIVEL, Y FILTRAR TEMA Y CATEGORIA
+			if($tema=='selected'){
+				$temaSel=$this->Tema_model->add_tema($params);
+			}
+			if($categoria=='selected'){
+				$catSel=$this->Categoria_model->add_categoria($params);
+			}
 			foreach($niveles as $nivel){
 				if($nivel=='checked'){
 					$param=$nivel['idRecurso']
