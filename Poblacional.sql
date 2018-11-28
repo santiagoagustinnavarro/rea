@@ -100,6 +100,13 @@ INSERT INTO `nivel`(`nombre`,`descripcion`) VALUES
 ("5º Año","Quinto año del secundario"),
 ("6º Año","Sexto año del secundario");
 -- -----------------------------------------------------
+-- Insercion en Recurso`
+-- -----------------------------------------------------
+INSERT INTO `recurso`(`idRecurso`,`titulo`,`descripcion`,`nombreUsuario`) VALUES 
+(1,"Programando usando Mysql","Enseñanza de metodos educativos para programar BD en el lenguaje mysql","profesor"),
+(2,"Programando en Java","Enseñanza de nivel basico de java de forma secuencial","profesor"),
+(3,"Programando usando Php Poo","Enseñanza de metodos educativos para programar en paradigma de objetos en PHP","profesor");
+-- -----------------------------------------------------
 -- Insercion en Tema`
 -- -----------------------------------------------------
 INSERT INTO `tema`(`nombre`,`descripcion`,`idRecurso`) VALUES 
