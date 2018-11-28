@@ -25,21 +25,22 @@ jQuery.extend(jQuery.expr[":"],
 });
 
 </script>
+<?php echo form_open(base_url()."recurso/edit/",array("method"=>"get","id"=>"buscar"));?>
 <table class="table table-light table-responsive-md" id="tabla">
 	<thead>
 		<tr><th class="titulo" colspan="6"><h3>Lista de Recursos</h3></th></tr>
 		<tr><th colspan="2" id="filtro">
-			<form id="buscar" method="post" action="<?php echo base_url()?>/application/controllers/usuario/buscar">
+			
 				<div class="col-md-6">
                     <input type="text" class="form-control" id="busqueda"/>
                 </div>
-			</form>
+		
 		</th></tr>
 		<tr>
 			<th scope="col">Titulo</th>
-			<th scope="col">Descripcion</th>
 			<th scope="col">Validado</th>
 			<th scope="col">Cantidad de archivos</th>
+			<th scope="col"></th>
 			
 		</tr>
 	</thead>
@@ -47,25 +48,35 @@ jQuery.extend(jQuery.expr[":"],
 		<?php foreach ($recursos as $r) {
             ?>
 		<tr>
+			
 			<td>
 				<?php echo $r['titulo']; ?>
 			</td>
+			
 			<td>
-				<?php echo $r['descripcion']; ?>
-			</td>
-			<td>
-				<?php if($r['validado']==0){?><input type="checkbox" id="validado" name="validado"><?php }else{  ?><input type="checkbox" id="validado" name="validado" checkçed><?php }?>
+				<?php if($r['validado']==0){?><input type="checkbox" id="validado" name="validado"><?php }else{  ?><input type="checkbox" id="validado" name="validado" checked><?php }?>
 			</td>
 			<td>
 				<?php echo count($r['archivos']); ?>
 			</td>
+			<td><a href="<?php echo base_url()."recurso/view/".$r['idRecurso']; ?>" class="btn btn-info">Ver recurso</a></td>
 			
 		</tr>
+		
 		<?php
         }
      ?>
+	<tr><td></td>
+	<td><button class="btn btn-success" type="submit">Actualizar</button></td>
+	<td></td>
+	
+	<td></td></tr>
 	</tbody>
+	
 </table>
+<?php echo form_close();?>
+
+
 <?php
 } else {
     echo "Tiene prohibido el acceso";
