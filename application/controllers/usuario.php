@@ -379,7 +379,7 @@ class Usuario extends CI_Controller
         return $res;
 	} 
 	
-	/** Esta funcion descarga los archivos del recurso */
+	/** Esta funcion descarga los archivos del recurso NO FUNCIONA TODAVIA*/
 	public function download(){
 		$data= file_get_contents('./assets/upload/'.$nombreRec);
 		force_download($nombreRec,$data);
