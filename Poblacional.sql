@@ -109,10 +109,10 @@ INSERT INTO `recurso`(`idRecurso`,`titulo`,`descripcion`,`nombreUsuario`) VALUES
 -- -----------------------------------------------------
 -- Insercion en Tema`
 -- -----------------------------------------------------
-INSERT INTO `tema`(`nombre`,`descripcion`,`idRecurso`) VALUES 
-("Base de datos","Todo lo relacioando a BD",1),
-("Programacion basica","Es la programacion secuencial",2),
-("Programacion orientada a objetos","Todo lo relacionado a objetos",3);
+INSERT INTO `tema`(`nombre`,`idRecurso`) VALUES 
+("Base de datos",1),
+("Programacion basica",2),
+("Programacion orientada a objetos",3);
 
 -- ----------------------------------------
 -- -----------------------------------------------------
