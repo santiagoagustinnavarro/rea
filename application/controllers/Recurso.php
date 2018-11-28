@@ -84,11 +84,13 @@ class Recurso extends CI_Controller
         $data["results"] = $this->Recurso_model->fetch_recurso($config["per_page"], $page, $filtros);
         $data["links"] = $this->pagination->create_links();
         $this->load->model("Tema_model");
-        $this->load->model("Nivel_model");
+		$this->load->model("Nivel_model");
+		$this->load->model("Categoria_model");
         $data["temas"]=$this->Tema_model->get_all_tema();
-        $data["niveles"]=$this->Nivel_model->get_all_nivel();
+		$data["niveles"]=$this->Nivel_model->get_all_nivel();
+		$data["categoria"]=$this->Categoria_model->get_all_categoria();
         $this->load->view('header', ["title"=>'Recursos',"scripts"=>["busquedaRecurso.js"]]);
-        $this->load->view('inicio/area', $data);
+        $this->load->view('inicio/area',$data);
         $this->load->view('footer');
     }
     public function view($idRecurso)

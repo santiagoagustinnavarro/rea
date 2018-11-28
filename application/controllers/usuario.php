@@ -325,48 +325,57 @@ class Usuario extends CI_Controller
 	/** Esta funcion es la encargada de subir los recursos con sus respectivos archivos */
 	public function subirRecurso()
 	{
+		$this->load->model("Tema_model");
+		$this->load->model("Categoria_model");
+		$this->load->model("Nivel_model");
+		$niveles=$this->Nivel_model->get_all_nivel();
+		$tema=$this->Tema_model->get_all_tema();
+		$categoria=$this->Categoria_model->get_all_categoria();
         if (count($_POST)>0) {
 			$nombreRec=$this->input->post("nombre");
 			$desc=$this->input->post("textarea");
 			$archivos=$_FILES["archivo"];
-			$niveles=$this->db->Nivel_model->get_all_nivel();
-			$tema=$this->db->Tema_model->get_all_tema();
-			$categoria=$this->db->Tema_model->get_all_tema();
             if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
-                $recurso=$this->subida($nombreRec, $archivos["name"], $desc, $archivos["tmp_name"]);
+				$params=['nombreRecurso'=>$nombreRec,'arrArc'=>$archivos["name"],'descripcion'=>$desc,'arrTmp'=>$archivos["tmp_name"],'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema];
+				$recurso=$this->subida($params);
                 if ($recurso) {
                     $this->load->view("header", ["title" => "Subir Recurso"]);
-                    $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-success text-center'><h4>".'Recurso subido con exito'."</h4></div>"]);
+                    $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-success text-center'><h4>".'Recurso subido con exito'."</h4></div>",'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
                     $this->load->view("footer");
                 }
             } else {
 				// Error falta completar alguno de los campos 
                 $this->load->view("header", ["title" => "Subir Recurso"]);
-                $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-danger text-center'><h4>".'Faltan completar campos'."</h4></div>"]);
+                $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-danger text-center'><h4>".'Faltan completar campos'."</h4></div>",'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
                 $this->load->view("footer");
             }
         } else {
 			// Si no subio ningun archivo, muestra vista del subir archivo
             $this->load->view("header", ["title" => "Subir Recurso"]);
-            $this->load->view('usuario/subirRecurso');
+            $this->load->view('usuario/subirRecurso',['categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
             $this->load->view("footer");
         }
 	}
 	/** La funcion es llamada por subirArchivo, con esta funcion se cargan los archivos del recurso */
-    private function subida($nombreRec, $archivos, $textarea, $arrArchivos)
+    private function subida($parametros)
     {
-        $recurso=array("nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$nombreRec,"descripcion"=>$textarea);
+		print_r($parametros);
+		//'arrArc'=>$archivos["name"],'descripcion'=>$desc
+        $recurso=array("nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$parametros['arrArc'],"descripcion"=>$parametros['descripcion']);
 		$idRecurso=$this->Recurso_model->add_recurso($recurso);	
 		if ($idRecurso>0) {
 			$res=true;
+			$categoria=$parametros['categoria'];
+			$tema=$parametros['tema'];
+			$niveles=$parametros['niveles'];
             foreach ($archivos as $etiqueta=>$valor) {
 				$ruta="./assets/upload/";
 				$idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
 			}
-			for ($i=0;$i<(count($arrArchivos));$i++) {
+			for ($i=0;$i<(count($parametros['arrTmp']));$i++) {
 				$arch=$ruta.basename($archivos[$i]);
-				move_uploaded_file($arrArchivos[$i],$arch);
-				print_r($arrArchivos[$i]);
+				move_uploaded_file($parametros['arrTmp'][$i],$arch);
+				print_r($parametros['arrTmp'][$i]);
 			}	
         } else {
             $res=false;
