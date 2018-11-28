@@ -25,10 +25,11 @@
 								<select class="form-control text-center" id="tema">
 									<option value="" selected>Elija una opcion</option>
 									<?php foreach ($temas as $unTema) {
-    								?>
+    ?>
 									<option value="<?php echo $unTema["nombre"]; ?>"><?php echo $unTema["nombre"];
-									}?>
+}?>
 									</option>
+
 								</select>
 							</div> <!-- cierra la clase row -->
 						</div> <!-- cierra el card-body -->
@@ -41,7 +42,8 @@
 								<div class="col-md-6">
 									<ul class="list-unstyled mb-0 text-center">
 										<?php
-                                     		foreach ($niveles as $unNivel) {
+                                     
+                                     foreach ($niveles as $unNivel) {
                                          ?>
 										<li><input type="checkbox" id="<?php echo $unNivel["nombre"]; ?>"
 											 value="<?php echo $unNivel["nombre"]; ?>"><span>
