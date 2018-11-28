@@ -125,6 +125,14 @@ INSERT INTO `poseeNivel`(`nombreNivel`,`idRecurso`) VALUES
 ("4º Año",2),
 ("5º Año",2),
 ("6º Año",3);
+-- ----------------------------------------
+-- -----------------------------------------------------
+-- Insercion en archivo`
+-- -----------------------------------------------------
+INSERT INTO `archivo`(`nombre`,`ruta`,`idRecurso`) VALUES 
+("1erParcial.pdf","assets/upload/1erParcial.pdf",1),
+("1erParcial.pdf","assets/upload/1erParcial.pdf",2),
+("1erParcial.pdf","assets/upload/1erParcial.pdf",3);
 
 -- Generamos el evento para el vencimiento de los tokens--------
 CREATE EVENT vencertoken
