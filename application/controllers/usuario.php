@@ -338,6 +338,7 @@ class Usuario extends CI_Controller
             if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
 				$params=['nombreRecurso'=>$nombreRec,'arrArc'=>$archivos["name"],'descripcion'=>$desc,'arrTmp'=>$archivos["tmp_name"],'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema];
 				$recurso=$this->subida($params);
+				print_r($recurso);
                 if ($recurso) {
                     $this->load->view("header", ["title" => "Subir Recurso"]);
                     $this->load->view('usuario/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-success text-center'><h4>".'Recurso subido con exito'."</h4></div>",'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
@@ -359,23 +360,24 @@ class Usuario extends CI_Controller
 	/** La funcion es llamada por subirArchivo, con esta funcion se cargan los archivos del recurso */
     private function subida($parametros)
     {
-		print_r($parametros);
-		//'arrArc'=>$archivos["name"],'descripcion'=>$desc
-        $recurso=array("nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$parametros['arrArc'],"descripcion"=>$parametros['descripcion']);
+		print_r($parametros['arrArc']);
+		print_r($parametros['arrTmp']);
+        $recurso=array("nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$parametros["nombreRecurso"],"descripcion"=>$parametros['descripcion']);
 		$idRecurso=$this->Recurso_model->add_recurso($recurso);	
 		if ($idRecurso>0) {
 			$res=true;
 			$categoria=$parametros['categoria'];
 			$tema=$parametros['tema'];
 			$niveles=$parametros['niveles'];
+			$archivos=$parametros['arrArc'];
             foreach ($archivos as $etiqueta=>$valor) {
+				print_r($archivos);
 				$ruta="./assets/upload/";
 				$idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
 			}
 			for ($i=0;$i<(count($parametros['arrTmp']));$i++) {
-				$arch=$ruta.basename($archivos[$i]);
+				$arch=$ruta.basename($parametros['arrArc'][$i]);
 				move_uploaded_file($parametros['arrTmp'][$i],$arch);
-				print_r($parametros['arrTmp'][$i]);
 			}	
         } else {
             $res=false;
