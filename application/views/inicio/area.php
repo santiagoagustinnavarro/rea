@@ -19,22 +19,38 @@
 					</div> <!-- Cierra card-body -->
 					<!-- Categories Widget -->
 					<div class="card my-4">
-						<h5 class="card-header text-center">Categorias</h5>
+						<h5 class="card-header text-center">Categoria</h5>
 						<div class="card-body">
 							<div class="row">
-								<select class="form-control text-center" id="tema">
+								<select class="form-control text-center" id="categoria" name="categoria">
 									<option value="" selected>Elija una opcion</option>
-									<?php foreach ($temas as $unTema) {
-    ?>
-									<option value="<?php echo $unTema["nombre"]; ?>"><?php echo $unTema["nombre"];
-}?>
+									<?php 
+										foreach ($categoria as $unCat) {
+    								?>
+									<option value="<?php echo $unCat["nombre"]; ?>"><?php echo $unCat["nombre"];
+									}?>
 									</option>
-
 								</select>
 							</div> <!-- cierra la clase row -->
 						</div> <!-- cierra el card-body -->
 					</div> <!-- cierra el card my-4 -->
 					<!-- Side Widget -->
+					<div class="card my-4">
+						<h5 class="card-header text-center">Tema</h5>
+						<div class="card-body">
+							<div class="row">
+								<select class="form-control text-center" id="tema" name="tema">
+									<option value="" selected>Elija una opcion</option>
+										<?php 
+											foreach ($temas as $unTema) {
+    									?>
+									<option value="<?php echo $unTema["nombre"]; ?>"><?php echo $unTema["nombre"];
+										}?>
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
 					<div class="card my-4">
 						<h5 class="card-header text-center">Año de Enseñanza</h5>
 						<div class="card-body">
@@ -42,12 +58,12 @@
 								<div class="col-md-6">
 									<ul class="list-unstyled mb-0 text-center">
 										<?php
-                                     
-                                     foreach ($niveles as $unNivel) {
+                                     		foreach ($niveles as $unNivel) {
                                          ?>
 										<li><input type="checkbox" id="<?php echo $unNivel["nombre"]; ?>"
 											 value="<?php echo $unNivel["nombre"]; ?>"><span>
-												<?php echo $unNivel["nombre"]; ?></span></li>
+											<?php echo $unNivel["nombre"]; ?></span>
+										</li>
 										<?php
                                      }?>
 									</ul>
