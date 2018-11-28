@@ -99,13 +99,6 @@ INSERT INTO `nivel`(`nombre`,`descripcion`) VALUES
 ("4º Año","Cuarto año del secundario"),
 ("5º Año","Quinto año del secundario"),
 ("6º Año","Sexto año del secundario");
--- -----------------------------------------------------
--- Insercion en Recurso`
--- -----------------------------------------------------
-INSERT INTO `recurso`(`idRecurso`,`titulo`,`descripcion`,`nombreUsuario`,`nombreCategoria`) VALUES 
-(1,"Programando usando Mysql","Enseñanza de metodos educativos para programar BD en el lenguaje mysql","profesor","Base de datos"),
-(2,"Programando en Java","Enseñanza de nivel basico de java de forma secuencial","profesor","Programacion estructural"),
-(3,"Programando usando Php Poo","Enseñanza de metodos educativos para programar en paradigma de objetos en PHP","profesor","Programacion orientada a objetos");
 
 -- -----------------------------------------------------
 -- Insercion en Categoria`
@@ -116,6 +109,14 @@ INSERT INTO `categoria`(`nombre`) VALUES
 ("Programacion orientada a objetos");
 
 -- ----------------------------------------
+-- -----------------------------------------------------
+-- Insercion en Recurso`
+-- -----------------------------------------------------
+INSERT INTO `recurso`(`idRecurso`,`titulo`,`descripcion`,`nombreUsuario`,`nombreCategoria`) VALUES 
+(1,"Programando usando Mysql","Enseñanza de metodos educativos para programar BD en el lenguaje mysql","profesor","Base de datos"),
+(2,"Programando en Java","Enseñanza de nivel basico de java de forma secuencial","profesor","Programacion estructural"),
+(3,"Programando usando Php Poo","Enseñanza de metodos educativos para programar en paradigma de objetos en PHP","profesor","Programacion orientada a objetos");
+
 -- -----------------------------------------------------
 -- Insercion en Tema`
 -- -----------------------------------------------------
