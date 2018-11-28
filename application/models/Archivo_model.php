@@ -29,7 +29,7 @@ class Archivo_model extends CI_Model
             $this->db->where($filters);
         }
 
-        $this->db->order_by('nombre', 'desc');
+        $this->db->order_by('idArchivo', 'asc');
         return $this->db->get('recurso')->result_array();
     }
         

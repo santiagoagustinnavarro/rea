@@ -59,9 +59,9 @@
 									<ul class="list-unstyled mb-0 text-center">
 										<?php
                                      		foreach ($niveles as $unNivel) {
-                                         ?>
+                                        ?>
 										<li><input type="checkbox" id="<?php echo $unNivel["nombre"]; ?>"
-											 value="<?php echo $unNivel["nombre"]; ?>"><span>
+											value="<?php echo $unNivel["nombre"]; ?>"><span>
 											<?php echo $unNivel["nombre"]; ?></span>
 										</li>
 										<?php

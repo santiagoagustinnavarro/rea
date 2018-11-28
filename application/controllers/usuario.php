@@ -360,8 +360,6 @@ class Usuario extends CI_Controller
 	/** La funcion es llamada por subirArchivo, con esta funcion se cargan los archivos del recurso */
     private function subida($parametros)
     {
-		print_r($parametros['arrArc']);
-		print_r($parametros['arrTmp']);
         $recurso=array("nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$parametros["nombreRecurso"],"descripcion"=>$parametros['descripcion']);
 		$idRecurso=$this->Recurso_model->add_recurso($recurso);	
 		if ($idRecurso>0) {
@@ -370,13 +368,19 @@ class Usuario extends CI_Controller
 			$tema=$parametros['tema'];
 			$niveles=$parametros['niveles'];
 			$archivos=$parametros['arrArc'];
+			/* TERMINAR LA FUNCION NIVEL, Y FILTRAR TEMA Y CATEGORIA
+			foreach($niveles as $nivel){
+				if($nivel=='checked'){
+					$param=$nivel['idRecurso']
+					$arrNivel=$this->Nivel_model->add_nivel($param);
+				}
+			}*/
             foreach ($archivos as $etiqueta=>$valor) {
-				print_r($archivos);
 				$ruta="./assets/upload/";
 				$idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
 			}
 			for ($i=0;$i<(count($parametros['arrTmp']));$i++) {
-				$arch=$ruta.basename($parametros['arrArc'][$i]);
+				$arch=$ruta.basename($archivos[$i]);
 				move_uploaded_file($parametros['arrTmp'][$i],$arch);
 			}	
         } else {
