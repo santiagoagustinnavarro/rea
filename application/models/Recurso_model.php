@@ -37,7 +37,7 @@ class Recurso_model extends CI_Model
     {   
         if ($filtros!="") {
             $this->db->distinct("r.idRecurso");
-            $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre,t.descripcion as temaDesc",false);
+            $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
             $this->db->from("recurso as r");
             $this->db->join("tema as t", "t.idRecurso=r.idRecurso");
             $this->db->join("poseenivel as p", "p.idRecurso=r.idRecurso");
@@ -80,7 +80,7 @@ class Recurso_model extends CI_Model
     {   
         if ($filtros!="") {
             $this->db->distinct("r.idRecurso");
-            $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre,t.descripcion as temaDesc",false);
+            $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
             $this->db->from("recurso as r");
             $this->db->join("tema as t", "t.idRecurso=r.idRecurso");
             $this->db->join("poseenivel as p", "p.idRecurso=r.idRecurso");

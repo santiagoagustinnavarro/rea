@@ -117,7 +117,7 @@ INSERT INTO `tema`(`nombre`,`idRecurso`) VALUES
 -- ----------------------------------------
 -- -----------------------------------------------------
 -- Insercion en poseeNivel`
-/*-- -----------------------------------------------------
+-- -----------------------------------------------------
 INSERT INTO `poseeNivel`(`nombreNivel`,`idRecurso`) VALUES 
 ("1º Año",1),
 ("2º Año",1),
@@ -125,7 +125,7 @@ INSERT INTO `poseeNivel`(`nombreNivel`,`idRecurso`) VALUES
 ("4º Año",2),
 ("5º Año",2),
 ("6º Año",3);
-*/
+
 -- Generamos el evento para el vencimiento de los tokens--------
 CREATE EVENT vencertoken
 ON SCHEDULE EVERY 1 DAY DO 
