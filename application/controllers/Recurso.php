@@ -9,13 +9,41 @@ class Recurso extends CI_Controller
         parent::__construct();
         $this->load->library("session");
     }
+
+    /*
+    * Editing a recurso
+    */
+    public function edit($recursos)
+    {
+        foreach ($recursos as $idRecurso) {
+            $data['recurso'] = $this->Recurso_model->get_recurso($idRecurso);
+        
+            if (isset($data['recurso']['idRecurso'])) {
+                if (isset($_POST) && count($_POST) > 0) {
+                    $params = array(
+                        'validado' => 1,
+                    );
+                    $this->Recurso_model->update_recurso($idRecurso, $params);
+                    redirect('rol/index');
+                } else {
+                    $data['_view'] = 'rol/edit';
+                    $this->load->view('layouts/main', $data);
+                }
+            } else {
+                show_error('The rol you are trying to edit does not exist.');
+            }
+        }
+    }
+    // check if the rol exists before trying to edit it
+      
     public function index()
-    {   
-		$recursos = $this->listarConArchivos();		
+    {
+        $recursos = $this->listarConArchivos();
         $this->load->view("header", ["title" => "Administrar usuarios"]);
         $this->load->view('recurso/index', ['recursos' => $recursos]);
         $this->load->view("footer");
-	}
+    }
+    
     public function listar()
     {
         $filtros=$_POST;
@@ -66,7 +94,8 @@ class Recurso extends CI_Controller
         $this->load->view('footer');
     }
     public function view($idRecurso)
-    {   $unRecurso=$this->listarConArchivos("",$idRecurso);
+    {
+        $unRecurso=$this->listarConArchivos("", $idRecurso);
         $this->load->view("header", ["title"=>"Un recurso"]);
         $this->load->view("area/recurso", ["unRecurso"=>$unRecurso]);
         $this->load->view("footer");
@@ -83,8 +112,8 @@ class Recurso extends CI_Controller
         $anterior=-1;//Esta variable hara referencia al recurso anterior en el array
         
 
-         for ($i=0;$i<count($recursos);$i++) {
-             $actual=$recursos[$i]["idRecurso"];//Recurso en el que estoy situado
+        for ($i=0;$i<count($recursos);$i++) {
+            $actual=$recursos[$i]["idRecurso"];//Recurso en el que estoy situado
             if ($actual==$anterior) {//El anterior y el actual son el mismo recurso
                 //Aqui generamos el array con el archivo asociado y lo añadimos al array de archivos del recurso
                 $archivo['idArchivo']=$recursos[$i]["idArchivo"];
@@ -107,8 +136,7 @@ class Recurso extends CI_Controller
                 $archivo=array();//vaciamos los datos del archivo para proximas cargas
                 $anterior=$actual;//Cambiamos de recurso por lo cual ahora este sera el anterior
             }
-             
-         }
-         return $recursos;
+        }
+        return $recursos;
     }
 }
