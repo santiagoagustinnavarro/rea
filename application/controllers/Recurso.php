@@ -51,6 +51,9 @@ class Recurso extends CI_Controller
             $filtros="";
         } else {
             $filtros['niveles']=json_decode($filtros["niveles"]);
+            if(count($filtros["niveles"])<=0 && empty($filtros["tema"]) && empty($filtros["busqueda"])){
+                $filtros="";
+            }
         }
         
         $this->load->helper('url');
@@ -87,7 +90,7 @@ class Recurso extends CI_Controller
 		$this->load->model("Nivel_model");
 		$this->load->model("Categoria_model");
         $data["temas"]=$this->Tema_model->get_all_tema();
-		$data["niveles"]=$this->Nivel_model->get_all_nivel();
+        $data["niveles"]=$this->Nivel_model->get_all_nivel();
 		$data["categoria"]=$this->Categoria_model->get_all_categoria();
         $this->load->view('header', ["title"=>'Recursos',"scripts"=>["busquedaRecurso.js"]]);
         $this->load->view('inicio/area',$data);
