@@ -39,7 +39,8 @@ class Recurso_model extends CI_Model
             $this->db->distinct("r.idRecurso");
             $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
             $this->db->from("recurso as r");
-            $this->db->join("tema as t", "t.idRecurso=r.idRecurso");
+            $this->db->join("categoria as c", "c.nombre=r.nombreCategoria");
+            $this->db->join("tema as t", "t.nombreCategoria=c.nombre");
             $this->db->join("poseenivel as p", "p.idRecurso=r.idRecurso");
             $this->db->join("nivel as n", "n.nombre=p.nombreNivel");
             
@@ -59,6 +60,7 @@ class Recurso_model extends CI_Model
             }
             
         } else {
+            $this->db->distinct("r.idRecurso");
             $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario",false);
             $this->db->from("recurso as r");
            
@@ -82,7 +84,8 @@ class Recurso_model extends CI_Model
             $this->db->distinct("r.idRecurso");
             $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
             $this->db->from("recurso as r");
-            $this->db->join("tema as t", "t.idRecurso=r.idRecurso");
+            $this->db->join("categoria as c", "c.nombre=r.nombreCategoria");
+            $this->db->join("tema as t", "t.nombreCategoria=c.nombre");
             $this->db->join("poseenivel as p", "p.idRecurso=r.idRecurso");
             $this->db->join("nivel as n", "n.nombre=p.nombreNivel");
             
