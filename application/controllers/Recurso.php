@@ -43,22 +43,33 @@ class Recurso extends CI_Controller
         $this->load->view('recurso/index', ['recursos' => $recursos]);
         $this->load->view("footer");
     }
-    
+    /**
+     * Funcion encargada de listar todos los recursos(con paginacion)
+     */
     public function listar()
     {
-        $filtros=$_POST;
-        if (count($filtros)<=0) {
+        $this->load->model("Tema_model");
+		$this->load->model("Nivel_model");
+        $this->load->model("Categoria_model");
+        $data["temas"]=array();
+        $filtros=$_POST;//Array con los filtros de categoria,tema,niveles y el filtrado de la busqueda
+        if (count($filtros)<=0) {//No se han recibido filtros
             $filtros="";
-        } else {
-            $filtros['niveles']=json_decode($filtros["niveles"]);
-            if(count($filtros["niveles"])<=0 && empty($filtros["tema"]) && empty($filtros["busqueda"])){
+        } else {//Se han recibido filtros
+            if($filtros["categoria"]!=""){
+                $data["temas"]=$this->Tema_model->get_all_tema($filtros["categoria"]);//Para el select de temas
+            }
+            $filtros['niveles']=json_decode($filtros["niveles"]);//Decodificamos el array de niveles
+            if(count($filtros["niveles"])<=0 && $filtros["tema"]!="" && $filtros["busqueda"]!=""){//Los filtros estan vacios(nada seleccionado)
                 $filtros="";
             }
         }
         
         $this->load->helper('url');
         $this->load->library("pagination");
+        //Comienza la configuracion para la paginacion de los recursos
         $config = array();
+        //Para ponerle bootstrap a la pagination
         $config['full_tag_open'] = '<ul class="pagination">';
         $config['full_tag_close'] = '</ul>';
         $config['attributes'] = ['class' => 'page-link'];
@@ -78,20 +89,16 @@ class Recurso extends CI_Controller
         $config['cur_tag_close'] = '<span class="sr-only">(current)</span></a></li>';
         $config['num_tag_open'] = '<li class="page-item">';
         $config['num_tag_close'] = '</li>';
-        $config["base_url"] = base_url()."recurso/listar";
-        $config["per_page"] = 9;
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $config["total_rows"] = $this->Recurso_model->row_count($filtros);
-        $config["uri_segment"] = 3;
-        $this->pagination->initialize($config);
-        $data["results"] = $this->Recurso_model->fetch_recurso($config["per_page"], $page, $filtros);
-        $data["links"] = $this->pagination->create_links();
-        $this->load->model("Tema_model");
-		$this->load->model("Nivel_model");
-		$this->load->model("Categoria_model");
-        $data["temas"]=$this->Tema_model->get_all_tema();
-        $data["niveles"]=$this->Nivel_model->get_all_nivel();
-		$data["categoria"]=$this->Categoria_model->get_all_categoria();
+        $config["base_url"] = base_url()."recurso/listar";//Lugar en el que se cargaran los recursos
+        $config["per_page"] = 9;//Numero de elementos por pagina
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;//Si el numero en la uri(3ra posicion) no existe por defecto sera el 0
+        $config["total_rows"] = $this->Recurso_model->row_count($filtros);//LLamamos al modelo que nos brindara el total de filas
+        $config["uri_segment"] = 3;//Ubicacion de la uri en la cual aparecera el numero de pagina
+        $this->pagination->initialize($config);//Inicializa la paginacion con las configuraciones proporcionadas
+        $data["results"] = $this->Recurso_model->fetch_recurso($config["per_page"], $page, $filtros);//Recursos a mostrar
+        $data["links"] = $this->pagination->create_links();//Generamos los links de las paginaciones
+        $data["categoria"]=$this->Categoria_model->get_all_categoria();//Para el select de categorias
+        $data["niveles"]=$this->Nivel_model->get_all_nivel();//Para el select de niveles
         $this->load->view('header', ["title"=>'Recursos',"scripts"=>["busquedaRecurso.js"]]);
         $this->load->view('inicio/area',$data);
         $this->load->view('footer');

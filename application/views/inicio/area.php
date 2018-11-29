@@ -39,7 +39,7 @@
 						<h5 class="card-header text-center">Tema</h5>
 						<div class="card-body">
 							<div class="row">
-								<select class="form-control text-center" id="tema" name="tema">
+								<select class="form-control text-center" id="tema" name="tema" onchange="actualizarTema();">
 									<option value="" selected>Elija una opcion</option>
 										<?php 
 											foreach ($temas as $unTema) {
