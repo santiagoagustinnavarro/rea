@@ -22,10 +22,18 @@ class Tema_model extends CI_Model
     /*
      * Get all tema
      */
-    public function get_all_tema()
+    public function get_all_tema($nombreCat="")
     {
-        $this->db->order_by('nombre', 'desc');
-        return $this->db->get('tema')->result_array();
+        if ($nombreCat!="") {
+            $this->db->select("*");
+            $this->db->from("tema");
+            $this->db->where(["nombreCategoria"=>$nombreCat]);
+            return $this->db->get()->result_array();
+            echo $this->db->last_query(); 
+        } else {
+            $this->db->order_by('nombre', 'desc');
+            return $this->db->get('tema')->result_array();
+        }
     }
         
     /*

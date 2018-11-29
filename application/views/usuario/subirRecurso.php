@@ -63,7 +63,7 @@
 				<div class="form-group col-md-12">
 					<label class="label" for="textarea"><i class="fa fa-pencil-square-o"></i> Descripcion</label>
 					<div class="bg-light">
-						<textarea class="form-control" name="textarea" id="textarea" rows="8" value="Este recurso me parecio muy interesante, muchas gracias por compartirlo"></textarea>
+						<textarea class="form-control" name="textarea" id="textarea" rows="8" value="Espero que les sea de utilidad"></textarea>
 					</div>
 				</div>
 				<div class="form-group" id="boton">
