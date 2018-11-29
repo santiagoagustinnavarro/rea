@@ -36,21 +36,20 @@ class Recurso_model extends CI_Model
     public function row_count($filtros="")
     {   
         if ($filtros!="") {
-            $this->db->distinct("r.idRecurso");
+
             $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
-            $this->db->from("recurso as r");
-          
+            $this->db->from("recurso as r");         
             $this->db->join("tema as t", "t.nombre=r.nombreTema");
             $this->db->join("categoria as c", "c.nombre=t.nombreCategoria");
             $this->db->join("poseenivel as p", "p.idRecurso=r.idRecurso");
             $this->db->join("nivel as n", "n.nombre=p.nombreNivel");
             
             if (count($filtros["niveles"])>0) {
-                $sql="";
+                $sql="(";
                 foreach ($filtros["niveles"] as $unNivel) {
                    $sql.="n.nombre="."\"".$unNivel."\""." or ";
                 }
-                $sql=substr($sql,0,strripos($sql,"or")-1);
+                $sql=substr($sql,0,strripos($sql,"or")-1).")";
                 $this->db->where($sql);
             }
             if ($filtros["tema"]!="") {
@@ -88,7 +87,7 @@ class Recurso_model extends CI_Model
     public function fetch_recurso($limit, $start, $filtros="")
     {   
         if ($filtros!="") {
-           $this->db->distinct("r.idRecurso");
+         
             $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
             $this->db->from("recurso as r");
             $this->db->join("tema as t", "t.nombre=r.nombreTema");
@@ -96,14 +95,7 @@ class Recurso_model extends CI_Model
             $this->db->join("poseenivel as p", "p.idRecurso=r.idRecurso");
             $this->db->join("nivel as n", "n.nombre=p.nombreNivel");
             
-            if (count($filtros["niveles"])>0) {
-                $sql="";
-                foreach ($filtros["niveles"] as $unNivel) {
-                   $sql.="n.nombre="."\"".$unNivel."\""." or ";
-                }
-                $sql=substr($sql,0,strripos($sql,"or")-1);
-                $this->db->where($sql);
-            }
+            
             if ($filtros["tema"]!="") {
                 $this->db->where(array("t.nombre"=>$filtros["tema"]));
             }
@@ -111,6 +103,14 @@ class Recurso_model extends CI_Model
                 $this->db->where(array("c.nombre"=>$filtros["categoria"]));
                 
                }
+               if (count($filtros["niveles"])>0) {
+                $sql="(";
+                foreach ($filtros["niveles"] as $unNivel) {
+                   $sql.="n.nombre="."\"".$unNivel."\""." or ";
+                }
+                $sql=substr($sql,0,strripos($sql,"or")-1).")";
+                $this->db->where($sql);
+            }
             if($filtros["busqueda"]!=""){
                 $this->db->like("r.titulo",$filtros["busqueda"],'both');//Both hace referencia a cualquier aparicion
             }
@@ -119,9 +119,8 @@ class Recurso_model extends CI_Model
           
             
         } else {
-            $this->db->distinct("r.idRecurso");
-            $this->db->group_by('r.idRecurso');
-            $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario",false);
+          
+                 $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario",false);
             $this->db->from("recurso as r");
            
         }
@@ -129,7 +128,7 @@ class Recurso_model extends CI_Model
         $this->db->limit($limit, $start);
         $query= $this->db->get();
       
-            // echo $this->db->last_query();
+      //      echo $this->db->last_query();
         
          
         if ($query->num_rows() > 0) {

@@ -323,13 +323,18 @@ class Usuario extends CI_Controller
          } */
 	}
 	/** Esta funcion es la encargada de subir los recursos con sus respectivos archivos */
-	public function subirRecurso()
+	public function subirRecurso($filtros="")
 	{
 		$this->load->model("Tema_model");
-		$this->load->model("Categoria_model");
+        $this->load->model("Categoria_model");
+        if($filtros!="" && $filtros["categoria"!=""]){
+            $tema=$this->Tema_model->get_all_tema($filtros["categoria"]);
+        }else{
+            $niveles=array();
+        }
 		$this->load->model("Nivel_model");
 		$niveles=$this->Nivel_model->get_all_nivel();
-		$tema=$this->Tema_model->get_all_tema();
+		
 		$categoria=$this->Categoria_model->get_all_categoria();
         if (count($_POST)>0) {
 			$nombreRec=$this->input->post("nombre");
