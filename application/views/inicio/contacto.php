@@ -2,7 +2,7 @@
 	<div class="container py-3">
 		<div class="offset-md-3 col-md-6" id="transparencia">
 			<h1 class="titulo">Contacto</h1></br>
-			<form id="contacto">
+			<form id="contacto" action="contacto" method="post" onsubmit="return validarContacto();">
 				<div class="form-group">
 					<label class="label" for="email"><i class="fa fa-envelope"></i> Correo Electronico</label>
 					<input type="email" class="form-control" id="email" placeholder="Correo@ejemplo.com" name="email" minlength="10" maxlength="40" required>
