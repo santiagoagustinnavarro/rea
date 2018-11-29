@@ -44,7 +44,7 @@ $(document).ready(function(){
                 }
             }); 
     }); 
-    $("button").click(function(){//Click en la opcion de busqueda
+    $("input[type=text]").keyup(function(){//Click en la opcion de busqueda
         checkbox=[];
         if(($("input[type=checkbox]:checked").length)>0){
         $("input[type=checkbox]:checked").each(function(){  
@@ -80,6 +80,7 @@ $(document).ready(function(){
             success: function(response) {
                 $(".col-md-9").replaceWith($(".col-md-9", response));
                 $("#tema").replaceWith($("#tema", response));
+               
               
             }
         }); 
