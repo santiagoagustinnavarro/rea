@@ -22,8 +22,8 @@ function validarRegistro() {
             $("#clave").css("background-color", "rgba(255,0,0,0.3)");
             res = false;
         } else {
-            $("#clave2").css("background-color", "inherit");
-            $("#clave").css("background-color", "inherit");
+            $("#clave2").css("background-color", "white");
+            $("#clave").css("background-color", "white");
             res = true;
         }
 	}
@@ -36,7 +36,7 @@ function validarRegistro() {
             $("#nombre").css("background-color", "rgba(255,0,0,0.3)");
             res = false;
         } else {
-            $("#nombre").css("background-color", "inherit");
+            $("#nombre").css("background-color", "white");
             res = res && true;
         }
 	}
@@ -49,7 +49,7 @@ function validarRegistro() {
             $("#apellido").css("background-color", "rgba(255,0,0,0.3)");
             res = false;
         } else {
-            $("#apellido").css("background-color", "inherit");
+            $("#apellido").css("background-color", "white");
             res = true && res;
         }
 	}
@@ -61,7 +61,7 @@ function validarRegistro() {
 		$("#email").css("background-color", "rgba(255,0,0,0.3)");
 		res=false;
 	} else{
-		$("#email").css("background-color", "inherit");
+		$("#email").css("background-color", "white");
 		res = true && res;
 	}
 	/** Validacion del nombre de usuario */
@@ -69,7 +69,7 @@ function validarRegistro() {
         $("#nombreUsuario").css("background-color", "rgba(255,0,0,0.3)");
         res = false;
     } else {
-        $("#nombreUsuario").css("background-color", "inherit");
+        $("#nombreUsuario").css("background-color", "white");
         res = true && res;
     }
     if (res) {
@@ -89,26 +89,29 @@ function validarIngreso() {
         $("#nombreUsuario").css({"background-color": "rgba(245,0,0,0.3)"});
         res = false;
     } else {
-        $("#nombreUsuario").css({"background-color": "inherit"});
+        $("#nombreUsuario").css({"background-color": "white"});
     }
     if (clave == "") {
         $("#clave").css({"background-color": "rgba(245,0,0,0.3)"});
         res = false;
     } else {
         //$("#clave").val($.sha224($("#clave").val()));
-        $("#clave").css({"background-color": "inherit"});
+        $("#clave").css({"background-color": "white"});
     }
     return res;
 }
 /*********************** VALIDAR EDITAR PERFIL ***************************/
 /** Valida los datos del editar perfil y actualiza a el usuario */
 function validarPerfil() {
-    var nombre, apellido, usuario, email, exp, res;
+    var nombre, apellido, usuario, email, exp, clave, clave1, clave2, res;
     nombre = $("#nombre").val();
 	apellido = $("#apellido").val();
 	email = $("#email").val();
 	exp = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
-    usuario = $("#nombreUsuario").val();
+	usuario = $("#nombreUsuario").val();
+	clave = $("#clave").val();
+	clave1 = $("#clave1").val();
+	clave2 = $("#clave2").val();
 	res = true;
 	/** Validacion del nombre */
     if (nombre === "") {
@@ -119,7 +122,7 @@ function validarPerfil() {
             $("#nombre").css("background-color", "rgba(255,0,0,0.3)");
             res = false;
         } else {
-            $("#nombre").css("background-color", "inherit");
+            $("#nombre").css("background-color", "white");
             res = res && true;
         }
 	}
@@ -132,11 +135,11 @@ function validarPerfil() {
             $("#apellido").css("background-color", "rgba(255,0,0,0.3)");
             res = false;
         } else {
-            $("#apellido").css("background-color", "inherit");
+            $("#apellido").css("background-color", "white");
             res = true && res;
         }
 	}
-	/** Falta validar Correo Electronico */
+	/** valida el Correo Electronico */
 	if(email === ""){
 		$("#email").css("background-color", "rgba(255,0,0,0.3)");
         res = false;
@@ -144,31 +147,23 @@ function validarPerfil() {
 		$("#email").css("background-color", "rgba(255,0,0,0.3)");
 		res=false;
 	} else{
-		$("#email").css("background-color", "inherit");
+		$("#email").css("background-color", "white");
 		res = true && res;
 	}
-	/** Validacion del nombre de usuario */
+	/** Validacion en el nombre de usuario*/
     if (usuario === "") {
         $("#nombreUsuario").css("background-color", "rgba(255,0,0,0.3)");
         res = false;
     } else {
-        $("#nombreUsuario").css("background-color", "inherit");
+        $("#nombreUsuario").css("background-color", "white");
         res = true && res;
 	}
-	return res;
-}
-/** TERMINAR DE MODIFICAR EL ACTUALIZAR CLAVE */
-function actualizarClave(){
-	var clave,clave1,clave2,res;
-	clave = $("#clave").val();
-	clave1 = $("#clave1").val();
-	clave2 = $("#clave2").val();
-	res = true;
+	/** Actualizacion de la clave es Opcional */
 	if(clave==""){
         res=false;
         $("#clave").css("background-color", "rgba(255,0,0,0.4)");
     }else{
-        $("#clave").css("background-color", "inherit");
+        $("#clave").css("background-color", "white");
 	}
 	if (clave1 !== clave2) {
         $("#clave1").css("background-color", "rgba(255,0,0,0.4)");
@@ -181,13 +176,37 @@ function actualizarClave(){
 		$("#clave1").val($.sha224($("#clave1").val()));
 		$("#clave2").val($.sha224($("#clave2").val()));
 	}
+	return res;
 }
 $(document).ready(function () {
-    $("#enviarmail").click(function () {
-        $('#loading').removeAttr('hidden');
-    })
-    
-
+	$("#enviarmail").click(function () {
+		$('#loading').removeAttr('hidden');
+	})
 })
 
-
+/** Valida  meel correo electronico y el mensaje que se le envia al administrador de usuarios */
+function validarContacto() {
+	var email, exp, desc, res;
+	email = $("#email").val();
+	exp = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+	desc = $("#mensaje").val();
+	res = true;
+	if(email === ""){
+		$("#email").css("background-color", "rgba(255,0,0,0.3)");
+        res = false;
+	} else if (exp.test(email) == false) {
+		$("#email").css("background-color", "rgba(255,0,0,0.3)");
+		res=false;
+	} else{
+		$("#email").css("background-color", "white");
+		res = true && res;
+	}
+	if(desc===""){
+		$("#mensaje").css("background-color", "rgba(255,0,0,0.3)");
+        res = false;
+	}else{
+		$("#mensaje").css("background-color", "white");
+		res = true && res;
+	}
+	return res;
+}
