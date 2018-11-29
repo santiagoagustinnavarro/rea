@@ -72,7 +72,7 @@ class Recurso_model extends CI_Model
            
         }
         $this->db->distinct("r.idRecurso");
-        $this->db->group_by('r.idRecurso');
+      
         return $this->db->count_all_results();
 
        
@@ -91,7 +91,6 @@ class Recurso_model extends CI_Model
            $this->db->distinct("r.idRecurso");
             $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
             $this->db->from("recurso as r");
-          
             $this->db->join("tema as t", "t.nombre=r.nombreTema");
             $this->db->join("categoria as c", "c.nombre=t.nombreCategoria");
             $this->db->join("poseenivel as p", "p.idRecurso=r.idRecurso");
@@ -126,8 +125,7 @@ class Recurso_model extends CI_Model
             $this->db->from("recurso as r");
            
         }
-        $this->db->distinct("r.idRecurso");
-        $this->db->group_by('r.idRecurso'); 
+        $this->db->distinct("r.idRecurso"); 
         $this->db->limit($limit, $start);
         $query= $this->db->get();
       
