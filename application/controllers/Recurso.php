@@ -60,7 +60,7 @@ class Recurso extends CI_Controller
                 $data["temas"]=$this->Tema_model->get_all_tema($filtros["categoria"]);//Para el select de temas
             }
             $filtros['niveles']=json_decode($filtros["niveles"]);//Decodificamos el array de niveles
-            if(count($filtros["niveles"])<=0 && $filtros["tema"]!="" && $filtros["busqueda"]!=""){//Los filtros estan vacios(nada seleccionado)
+            if(count($filtros["niveles"])<=0 && $filtros["categoria"]=="" && $filtros["busqueda"]==""){//Los filtros estan vacios(nada seleccionado)
                 $filtros="";
             }
         }
