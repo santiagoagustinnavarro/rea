@@ -1,12 +1,13 @@
 /*********************** VALIDAR REGISTRO ***************************/
 /** Valida los datos del registro que completo el usuario */
 function validarRegistro() {
-    var nombre, apellido, usuario, clave, email, exp, clave2, res;
+	var nombre, apellido, usuario, clave, email, exp, est, clave2, res;
     nombre = $("#nombre").val();
 	apellido = $("#apellido").val();
 	email = $("#email").val();
 	exp = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
-    usuario = $("#nombreUsuario").val();
+	usuario = $("#nombreUsuario").val();
+	est = $("#estudio").val();
     clave = $("#clave").val();
     clave2 = $("#clave2").val();
 	res = true;
@@ -51,6 +52,19 @@ function validarRegistro() {
         } else {
             $("#apellido").css("background-color", "white");
             res = true && res;
+        }
+	}
+	/** Valida la universidad o terciario en donde estudian o estudiaron los usuarios */
+	if (est === "") {
+        $("#estudio").css("background-color", "rgba(255,0,0,0.3)");
+        res = false;
+    } else {
+        if (!isNaN(est)) {
+            $("#estudio").css("background-color", "rgba(255,0,0,0.3)");
+            res = false;
+        } else {
+            $("#estudio").css("background-color", "white");
+            res = res && true;
         }
 	}
 	/** Falta validar Correo Electronico */
@@ -103,12 +117,13 @@ function validarIngreso() {
 /*********************** VALIDAR EDITAR PERFIL ***************************/
 /** Valida los datos del editar perfil y actualiza a el usuario */
 function validarPerfil() {
-    var nombre, apellido, usuario, email, exp, clave, clave1, clave2, res;
+	var nombre, apellido, usuario, email, exp, clave, clave1, clave2, est, res;
     nombre = $("#nombre").val();
 	apellido = $("#apellido").val();
 	email = $("#email").val();
 	exp = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
 	usuario = $("#nombreUsuario").val();
+	est = $("#estudio").val();
 	clave = $("#clave").val();
 	clave1 = $("#clave1").val();
 	clave2 = $("#clave2").val();
@@ -137,6 +152,19 @@ function validarPerfil() {
         } else {
             $("#apellido").css("background-color", "white");
             res = true && res;
+        }
+	}
+	/** Valida la universidad o terciario en donde estudian o estudiaron los usuarios */
+	if (est === "") {
+        $("#estudio").css("background-color", "rgba(255,0,0,0.3)");
+        res = false;
+    } else {
+        if (!isNaN(est)) {
+            $("#estudio").css("background-color", "rgba(255,0,0,0.3)");
+            res = false;
+        } else {
+            $("#estudio").css("background-color", "white");
+            res = res && true;
         }
 	}
 	/** valida el Correo Electronico */
@@ -183,8 +211,8 @@ $(document).ready(function () {
 		$('#loading').removeAttr('hidden');
 	})
 })
-
-/** Valida  meel correo electronico y el mensaje que se le envia al administrador de usuarios */
+/*********************** VALIDAR CONTACTO ***************************/
+/** Valida el correo electronico y el mensaje que se le envia al administrador de usuarios */
 function validarContacto() {
 	var email, exp, desc, res;
 	email = $("#email").val();

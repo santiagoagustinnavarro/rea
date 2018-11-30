@@ -31,8 +31,8 @@
 					</div>
 					<div class="form-group">
 						<label class="label" for="estudio">Terciario o Universidad</label>
-						<input type="text" class="form-control" id="estudio" placeholder="Domicilio" minlength="6" maxlength="35"
-						value="<?php echo $_SESSION["domicilio"];?>" name="estudio">
+						<input type="text" class="form-control" id="estudio" placeholder="Terciario o Universidad" minlength="6" maxlength="35"
+						value="<?php echo $_SESSION["estudio"];?>" name="estudio">
 					</div>
 					<div class="form-group">
 						<label class="label" for="dni">Numero de Documento</label>
