@@ -15,7 +15,7 @@ class Recurso_model extends CI_Model
     /*
      * Get recurso by nombre
      */
-    public function get_recurso($nombre)
+    public function get_recurso($idRecurso)
     {
         return $this->db->get_where('recurso', array('nombre'=>$nombre))->row_array();
     }
@@ -78,11 +78,6 @@ class Recurso_model extends CI_Model
         
     }
     
-    public function record_count()
-    {
-        return $this->db->count_all("recurso");
-        
-    }
 
     public function fetch_recurso($limit, $start, $filtros="")
     {   
@@ -114,9 +109,6 @@ class Recurso_model extends CI_Model
             if($filtros["busqueda"]!=""){
                 $this->db->like("r.titulo",$filtros["busqueda"],'both');//Both hace referencia a cualquier aparicion
             }
-          
-
-          
             
         } else {
           

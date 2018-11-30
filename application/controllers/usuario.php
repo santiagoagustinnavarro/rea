@@ -323,25 +323,29 @@ class Usuario extends CI_Controller
          } */
 	}
 	/** Esta funcion es la encargada de subir los recursos con sus respectivos archivos */
-	public function subirRecurso($filtros="")
-	{
+	public function subirRecurso()
+	{  
 		$this->load->model("Tema_model");
-        $this->load->model("Categoria_model");
-        if($filtros!="" && $filtros["categoria"!=""]){
-            $tema=$this->Tema_model->get_all_tema($filtros["categoria"]);
-        }else{
-            $niveles=array();
-        }
+		$this->load->model("Categoria_model");
 		$this->load->model("Nivel_model");
 		$niveles=$this->Nivel_model->get_all_nivel();
-		
-		$categoria=$this->Categoria_model->get_all_categoria();
-        if (count($_POST)>0) {
+		$tema=[];
+        $categoria=$this->Categoria_model->get_all_categoria();
+        if(count($_GET)>0){//Recibio datos del ajax
+            if ($this->input->get("categoria")!="") {
+                $tema=$this->Tema_model->get_all_tema($this->input->get("categoria"));
+            }
+        }
+        if (count($_POST)>0) {//Recibio los datos del formulario
+            
+            $categoriaRecibida=$this->input->post("categoria");
 			$nombreRec=$this->input->post("nombre");
-			$desc=$this->input->post("textarea");
-			$archivos=$_FILES["archivo"];
+            $desc=$this->input->post("textarea");
+            $archivos=$_FILES["archivo"];
+            $nivelesRecibidos=$this->input->post("niveles");
+            $temaRecibido=$this->input->post("tema");
             if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
-				$params=['nombreRecurso'=>$nombreRec,'arrArc'=>$archivos["name"],'descripcion'=>$desc,'arrTmp'=>$archivos["tmp_name"],'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema];
+				$params=['nombreRecurso'=>$nombreRec,'arrArc'=>$archivos["name"],'descripcion'=>$desc,'arrTmp'=>$archivos["tmp_name"],'categoria'=>$categoriaRecibida,'niveles'=>$nivelesRecibidos,'tema'=>$temaRecibido];
 				$recurso=$this->subida($params);
                 if ($recurso) {
                     $this->load->view("header", ["title" => "Subir Recurso"]);
@@ -358,7 +362,7 @@ class Usuario extends CI_Controller
             }
         } else {
 			// Si no subio ningun archivo, muestra vista del subir archivo
-            $this->load->view("header", ["title" => "Subir Recurso"]);
+            $this->load->view("header", ["title" => "Subir Recurso","scripts"=>["subirRecurso.js"]]);
             $this->load->view('usuario/subirRecurso',['categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
             $this->load->view("footer");
         }
@@ -366,14 +370,18 @@ class Usuario extends CI_Controller
 	/** La funcion es llamada por subirArchivo, con esta funcion se cargan los archivos del recurso */
     private function subida($parametros)
     {
-        $recurso=array("nombreCategoria"=>"Base de datos","nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$parametros["nombreRecurso"],"descripcion"=>$parametros['descripcion']);
+        $recurso=array("nombreTema"=>$parametros["tema"],"nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$parametros["nombreRecurso"],"descripcion"=>$parametros['descripcion']);
 		$idRecurso=$this->Recurso_model->add_recurso($recurso);	
 		if ($idRecurso>0) {
 			$res=true;
 			$categoria=$parametros['categoria'];
 			$tema=$parametros['tema'];
 			$niveles=$parametros['niveles'];
-			$archivos=$parametros['arrArc'];
+            $archivos=$parametros['arrArc'];
+            $this->load->model("Poseenivel_model");
+            foreach($niveles as $unNivel){
+                $this->Poseenivel_model->add_poseenivel(["idRecurso"=>$idRecurso,"nombreNivel"=>$unNivel]);
+            }
 			/* TERMINAR LA FUNCION NIVEL, Y FILTRAR TEMA Y CATEGORIA
 			if($tema=='selected'){
 				$temaSel=$this->Tema_model->add_tema($params);
@@ -386,7 +394,8 @@ class Usuario extends CI_Controller
 					$param=$nivel['idRecurso']
 					$arrNivel=$this->Nivel_model->add_nivel($param);
 				}
-			}*/
+            }*/
+            
             foreach ($archivos as $etiqueta=>$valor) {
 				$ruta="./assets/upload/";
 				$idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));

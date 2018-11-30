@@ -12,7 +12,7 @@
         		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
   				//]]>
 			</script>
-			<form id="contacto" action="subirrecurso" method="post" enctype="multipart/form-data">
+			<form id="contacto" action="subirrecurso" onsubmit="return subirrecurso($(this));" method="post" enctype="multipart/form-data">
 				<div class="form-group offset-md-1 col-md-10">
 					<label class="label" for="nombre"><i class="fa fa-file-text-o"></i> Nombre del Recurso</label>
 					<input type="text" class="form-control" id="nombre" placeholder="Ingrese el Nombre" name="nombre" minlength="4" maxlength="30">
@@ -51,7 +51,7 @@
 						<?php             
                             foreach ($niveles as $unNivel) {
                         ?>
-						<li><input type="checkbox" id="<?php echo $unNivel["nombre"]; ?>"
+						<li><input type="checkbox" name="niveles[]" id="niveles[]"
 							value="<?php echo $unNivel["nombre"]; ?>"><span>
 							<?php echo $unNivel["nombre"]; ?></span>
 						</li>
