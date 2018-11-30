@@ -93,6 +93,8 @@
  function generarFilas($results, $links, $porFila)
  {
      ?>
+<section class="blog-area section">
+		<div class="container">
 
 		<?php $i=1;
 		
@@ -100,40 +102,54 @@
          if (count($results)==1) {//Solo tiene un elemento ?>
 		<div class="row">
 			<div class="col-md-<?php echo 12/$porFila?> area">
-				<div class="card h-100">
-					<!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#"><?php echo $data->titulo; ?></a>
-						</h4>
-						<p class="card-text"><?php echo $data->recursoDesc; ?>
-						</p>
-					</div> <!-- cierra el card body-->
-					<div class="card-footer recurso">
-						<a href="<?php echo base_url()."recurso/view/".$data->idRecurso; ?>"
-						 class="btn btn-success">Ver Recurso</a>
-					</div> <!-- cierrala clase recurso -->
-				</div> <!-- cierrala clase card h-100 -->
+			<div class="card h-100">
+						<div class="single-post post-style-1">
+
+							<div class="blog-image"><img src="<?php echo base_url()."assets/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
+
+							<a class="avatar" href="#"><img src="<?php echo base_url()."assets/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
+
+							<div class="blog-info">
+
+								<h4 class="title"><a href="#"><b><?php echo $data->titulo; ?></b></a></h4>
+
+								<ul class="post-footer">
+									<li><a href="#"><i class="ion-heart"></i>57</a></li>
+									<li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
+									<li><a href="#"><i class="ion-eye"></i>138</a></li>
+								</ul>
+
+							</div><!-- blog-info -->
+						</div><!-- single-post -->
+					</div><!-- card -->
+
 			</div> <!-- cierrala clase area -->
 		</div>
 		<?php
          } else {
              if ($i%$porFila==0 && $i!=1 && $i!=count($results)) {//Ultimo elemento de la fila?>
 		<div class="col-md-<?php echo 12/$porFila?> area">
-			<div class="card h-100">
-				<!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
-				<div class="card-body">
-					<h4 class="card-title">
-						<a href="#"><?php echo $data->titulo; ?></a>
-					</h4>
-					<p class="card-text"><?php echo $data->recursoDesc; ?>
-					</p>
-				</div> <!-- cierra el card body-->
-				<div class="card-footer recurso">
-					<a href="<?php echo base_url()."recurso/view/".$data->idRecurso; ?>"
-					 class="btn btn-success">Ver Recurso</a>
-				</div> <!-- cierrala clase recurso -->
-			</div> <!-- cierrala clase card h-100 -->
+		<div class="card h-100">
+						<div class="single-post post-style-1">
+
+							<div class="blog-image"><img src="<?php echo base_url()."assets/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
+
+							<a class="avatar" href="#"><img src="<?php echo base_url()."assets/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
+
+							<div class="blog-info">
+
+								<h4 class="title"><a href="#"><b><?php echo $data->titulo; ?></b></a></h4>
+
+								<ul class="post-footer">
+									<li><a href="#"><i class="ion-heart"></i>57</a></li>
+									<li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
+									<li><a href="#"><i class="ion-eye"></i>138</a></li>
+								</ul>
+
+							</div><!-- blog-info -->
+						</div><!-- single-post -->
+					</div><!-- card -->
+
 		</div> <!-- cierrala clase area -->
 	</div>
 	<div class="row">
@@ -142,59 +158,81 @@
             ?>
 		<div class="row">
 			<div class="col-md-<?php echo 12/$porFila?> area">
-				<div class="card h-100">
-					<!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#"><?php echo $data->titulo; ?></a>
-						</h4>
-						<p class="card-text"><?php echo $data->recursoDesc; ?>
-						</p>
-					</div> <!-- cierra el card body-->
-					<div class="card-footer recurso">
-						<a href="<?php echo base_url()."recurso/view/".$data->idRecurso; ?>"
-						 class="btn btn-success">Ver Recurso</a>
-					</div> <!-- cierrala clase recurso -->
-				</div> <!-- cierrala clase card h-100 -->
+			<div class="card h-100">
+						<div class="single-post post-style-1">
+
+							<div class="blog-image"><img src="<?php echo base_url()."assets/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
+
+							<a class="avatar" href="#"><img src="<?php echo base_url()."assets/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
+
+							<div class="blog-info">
+
+								<h4 class="title"><a href="#"><b><?php echo $data->titulo; ?></b></a></h4>
+
+								<ul class="post-footer">
+									<li><a href="#"><i class="ion-heart"></i>57</a></li>
+									<li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
+									<li><a href="#"><i class="ion-eye"></i>138</a></li>
+								</ul>
+
+							</div><!-- blog-info -->
+						</div><!-- single-post -->
+					</div><!-- card -->
+
 			</div> <!-- cierrala clase area --><?php
              } elseif ($i==count($results)) {//Ultimo elemento
             ?>
 
 			<div class="col-md-<?php echo 12/$porFila?> area">
-				<div class="card h-100">
-					<!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
-					<div class="card-body">
-						<h4 class="card-title">
-							<a href="#"><?php echo $data->titulo; ?></a>
-						</h4>
-						<p class="card-text"><?php echo $data->recursoDesc; ?>
-						</p>
-					</div> <!-- cierra el card body-->
-					<div class="card-footer recurso">
-						<a href="<?php echo base_url()."recurso/view/".$data->idRecurso; ?>"
-						 class="btn btn-success">Ver Recurso</a>
-					</div> <!-- cierrala clase recurso -->
-				</div> <!-- cierrala clase card h-100 -->
+			<div class="card h-100">
+						<div class="single-post post-style-1">
+
+							<div class="blog-image"><img src="<?php echo base_url()."assets/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
+
+							<a class="avatar" href="#"><img src="<?php echo base_url()."assets/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
+
+							<div class="blog-info">
+
+								<h4 class="title"><a href="#"><b><?php echo $data->titulo; ?></b></a></h4>
+
+								<ul class="post-footer">
+									<li><a href="#"><i class="ion-heart"></i>57</a></li>
+									<li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
+									<li><a href="#"><i class="ion-eye"></i>138</a></li>
+								</ul>
+
+							</div><!-- blog-info -->
+						</div><!-- single-post -->
+					</div><!-- card -->
+
 			</div> <!-- cierrala clase area -->
 		</div>
 		<?php
              } else {
                  ?>
 		<div class="col-md-<?php echo 12/$porFila?> area">
+			
 			<div class="card h-100">
-				<!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
-				<div class="card-body">
-					<h4 class="card-title">
-						<a href="#"><?php echo $data->titulo; ?></a>
-					</h4>
-					<p class="card-text"><?php echo $data->recursoDesc; ?>
-					</p>
-				</div> <!-- cierra el card body-->
-				<div class="card-footer recurso">
-					<a href="<?php echo base_url()."recurso/view/".$data->idRecurso; ?>"
-					 class="btn btn-success">Ver Recurso</a>
-				</div> <!-- cierrala clase recurso -->
-			</div> <!-- cierrala clase card h-100 -->
+						<div class="single-post post-style-1">
+
+							<div class="blog-image"><img src="<?php echo base_url()."assets/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
+
+							<a class="avatar" href="#"><img src="<?php echo base_url()."assets/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
+
+							<div class="blog-info">
+
+								<h4 class="title"><a href="#"><b><?php echo $data->titulo; ?></b></a></h4>
+
+								<ul class="post-footer">
+									<li><a href="#"><i class="ion-heart"></i>57</a></li>
+									<li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
+									<li><a href="#"><i class="ion-eye"></i>138</a></li>
+								</ul>
+
+							</div><!-- blog-info -->
+						</div><!-- single-post -->
+					</div><!-- card -->
+
 		</div> <!-- cierrala clase area --> <?php
              }
              $i++;
@@ -221,6 +259,8 @@
 	<!-- cierra col-md-9 -->
 	<!-- Pagination -->
 
+</div>
+</section>
 </div>
 
 <!-- cierra el row -->
