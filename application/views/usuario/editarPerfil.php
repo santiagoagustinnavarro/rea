@@ -14,6 +14,12 @@
 				<div class="col-md-6">
 					<h2>Datos Personales</h2>
 		  			</br>
+					<div class="form-group">
+  	  	  				<input type="file" class="form-control" id="imagen" name="imagen">
+						<a href="#">
+							<button type="submit" class="btn btn-success">Actualizar Imagen</button>
+						</a>
+					</div>
 			  		<div class="form-group">
 						<label class="label" for="nombreUsuario">Nombre de Usuario</label>
   	  	  				<input disabled type="text" class="form-control" id="nombreUsuario" placeholder="Nombre Usuario" name="nombreUsuario" minlength="6" maxlength="15" 
@@ -69,9 +75,7 @@
 							</a>
 						</div>
 						<div class="form-group col-md-2">
-							<a href="#">
-								<button type="submit" class="btn btn-success">Actualizar</button>
-							</a>
+							<button type="submit" class="btn btn-success">Actualizar</button>
 						</div>
 						<div class="form-group col-md-2">
 							<a>
