@@ -15,10 +15,7 @@
 					<h2>Datos Personales</h2>
 		  			</br>
 					<div class="form-group">
-  	  	  				<input type="file" class="form-control" id="imagen" name="imagen">
-						<a href="#">
-							<button type="submit" class="btn btn-success">Actualizar Imagen</button>
-						</a>
+  	  	  				<input type="file" id="imagen" name="imagen">
 					</div>
 			  		<div class="form-group">
 						<label class="label" for="nombreUsuario">Nombre de Usuario</label>

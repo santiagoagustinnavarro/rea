@@ -8,11 +8,8 @@ class Login extends CI_Controller
     {
            parent::__construct();
 
-        $this->load->library('session');
-
-     
-       
-
+		$this->load->library('session');
+		
         if (!isset($this->session->iniciada)) {
             $this->session->set_userdata(['iniciada'=>false]);
            
@@ -67,7 +64,7 @@ class Login extends CI_Controller
         'apellido'=> $user["apellido"],
         'dni'=>$user["dni"],
         'email'=> $user["email"],
-        'domicilio'=> $user["domicilio"],
+        'estudio'=> $user["estudio"],
         'nombreUsuario'=>$this->input->post('nombreUsuario'),
         'clave'=>$this->input->post('clave'),
         'permisos'=>$permisos,
