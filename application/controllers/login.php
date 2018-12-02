@@ -26,7 +26,7 @@ class Login extends CI_Controller
                 } else {
                     $this->cargarSession($existe);
                     $this->load->view("header", ["title" => "Home"]);
-                    $this->load->view('home');
+                    $this->load->view('inicio/home');
                     $this->load->view("footer");
                 }
             } else {
