@@ -149,4 +149,99 @@ class Recurso extends CI_Controller
         }
         return $recursos;
     }
+    /** Esta funcion es la encargada de subir los recursos con sus respectivos archivos */
+	public function subirRecurso()
+	{  
+		$this->load->model("Tema_model");
+		$this->load->model("Categoria_model");
+		$this->load->model("Nivel_model");
+		$niveles=$this->Nivel_model->get_all_nivel();
+		$tema=[];
+        $categoria=$this->Categoria_model->get_all_categoria();
+        if(count($_GET)>0){//Recibio datos del ajax
+            if ($this->input->get("categoria")!="") {
+                $tema=$this->Tema_model->get_all_tema($this->input->get("categoria"));
+            }
+        }
+        if (count($_POST)>0) {//Recibio los datos del formulario
+            
+            $categoriaRecibida=$this->input->post("categoria");
+			$nombreRec=$this->input->post("nombre");
+            $desc=$this->input->post("textarea");
+            $archivos=$_FILES["archivo"];
+            $nivelesRecibidos=$this->input->post("niveles");
+            $temaRecibido=$this->input->post("tema");
+            if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
+				$params=['nombreRecurso'=>$nombreRec,'arrArc'=>$archivos["name"],'descripcion'=>$desc,'arrTmp'=>$archivos["tmp_name"],'categoria'=>$categoriaRecibida,'niveles'=>$nivelesRecibidos,'tema'=>$temaRecibido];
+				$recurso=$this->subida($params);
+                if ($recurso) {
+                    $this->load->view("header", ["title" => "Subir Recurso"]);
+                    $this->load->view('recurso/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-success text-center'><h4>".'Recurso subido con exito'."</h4></div>",'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
+                    $this->load->view("footer");
+                }else{
+                    
+                }
+            } else {
+				// Error falta completar alguno de los campos 
+                $this->load->view("header", ["title" => "Subir Recurso"]);
+                $this->load->view('recurso/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-danger text-center'><h4>".'Faltan completar campos'."</h4></div>",'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
+                $this->load->view("footer");
+            }
+        } else {
+			// Si no subio ningun archivo, muestra vista del subir archivo
+            $this->load->view("header", ["title" => "Subir Recurso","scripts"=>["subirRecurso.js"]]);
+            $this->load->view('recurso/subirRecurso',['categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
+            $this->load->view("footer");
+        }
+	}
+	/** La funcion es llamada por subirArchivo, con esta funcion se cargan los archivos del recurso */
+    private function subida($parametros)
+    {
+        $recurso=array("nombreTema"=>$parametros["tema"],"nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$parametros["nombreRecurso"],"descripcion"=>$parametros['descripcion']);
+		$idRecurso=$this->Recurso_model->add_recurso($recurso);	
+		if ($idRecurso>0) {
+			$res=true;
+			$categoria=$parametros['categoria'];
+			$tema=$parametros['tema'];
+			$niveles=$parametros['niveles'];
+            $archivos=$parametros['arrArc'];
+            $this->load->model("Poseenivel_model");
+            foreach($niveles as $unNivel){
+                $this->Poseenivel_model->add_poseenivel(["idRecurso"=>$idRecurso,"nombreNivel"=>$unNivel]);
+            }
+			/* TERMINAR LA FUNCION NIVEL, Y FILTRAR TEMA Y CATEGORIA
+			if($tema=='selected'){
+				$temaSel=$this->Tema_model->add_tema($params);
+			}
+			if($categoria=='selected'){
+				$catSel=$this->Categoria_model->add_categoria($params);
+			}
+			foreach($niveles as $nivel){
+				if($nivel=='checked'){
+					$param=$nivel['idRecurso']
+					$arrNivel=$this->Nivel_model->add_nivel($param);
+				}
+            }*/
+            
+            foreach ($archivos as $etiqueta=>$valor) {
+				$ruta="./assets/upload/";
+				$idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
+			}
+			for ($i=0;$i<(count($parametros['arrTmp']));$i++) {
+				$arch=$ruta.basename($archivos[$i]);
+				move_uploaded_file($parametros['arrTmp'][$i],$arch);
+			}	
+        } else {
+            $res=false;
+        }
+        
+        
+        return $res;
+	} 
+	
+	/** Esta funcion descarga los archivos del recurso NO FUNCIONA TODAVIA*/
+	public function download(){
+		$data= file_get_contents('./assets/upload/'.$nombreRec);
+		force_download($nombreRec,$data);
+	}
 }

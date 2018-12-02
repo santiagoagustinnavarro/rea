@@ -1,23 +1,18 @@
+
 <div class="container py-5">
 	<div class="col-md-6 mx-auto">
 		<div class="container" id="transparencia">
 		<?php
-        if (isset($nroToken)) {
-            $_POST["nroToken"]=$nroToken;
-        }
-			
-            
+      
             ?> 
-  			<form id="formulario" method="post" action="<?php echo base_url()."usuario"?>/actualizarClave<?php echo "/".$nombreUsuario;?>">
+  			<form id="formulario" method="post">
 			<?php 
-			
 			if(isset($mensaje)){ 
 			echo $mensaje;
 			}
 			?> 
 			  <h1>Reestablecer Contraseña</h1>
                 </br>
-		<?php if(isset($nroToken)){?><input type="hidden" name="nroToken" id="nroToken" value="<?php echo $nroToken;?>"><?php }?>
   		  		<div class="form-group">
 					<label class="label" for="clave"><i class="fa fa-lock"></i> Contraseña</label>
       				<input type="password" class="form-control" id="clave" placeholder="Ingrese contraseña" name="clave" minlength="8" maxlength="15" required>

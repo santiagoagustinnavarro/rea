@@ -11,7 +11,7 @@ class Inicio extends CI_Controller {
 	}
 	function index(){
 		$this->load->view("header",["title"=>"Inicio","scripts"=>array("script.js")]);
-		$this->load->view("home3");
+		$this->load->view("inicio/home");
 		$this->load->view("footer");
 	}
 }

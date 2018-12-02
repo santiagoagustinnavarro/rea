@@ -1,7 +1,7 @@
 <div class="container py-5">
 	<div class="col-md-6 mx-auto">
 		<div class="container" id="transparencia">
-           <?php echo form_open("login/recuperarclave",array("method"=>'get'));?> 
+           <?php echo form_open("recuperarcuenta/index",array("method"=>'get'));?> 
   			
 			<?php 
 			if(isset($mensaje)){

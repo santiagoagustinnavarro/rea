@@ -20,7 +20,7 @@ class TokenRecupera_model extends CI_Model
     */
     public function add_tokenrecupera($params)
     {
-        $this->db->insert('tokenrecupera', $params);
-        return $this->db->insert_id();
+       return $this->db->insert('tokenrecupera', $params);
+        //return $this->db->insert_id();
     }
 }
