@@ -1,7 +1,7 @@
 <?php
 
 
-echo form_open("comentario/generarComentario/1",["method"=>"post"]);
+echo form_open("comentario/generarComentario/".$idRecurso,["method"=>"post"]);
 ?>
 <div class="form-group">
 <label for="descripcion">Ingrese su comentario</label>

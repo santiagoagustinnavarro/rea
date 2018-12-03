@@ -64,7 +64,6 @@ class Recurso extends CI_Controller
                 $filtros="";
             }
         }
-        
         $this->load->helper('url');
         $this->load->library("pagination");
         //Comienza la configuracion para la paginacion de los recursos
@@ -166,32 +165,43 @@ class Recurso extends CI_Controller
         if (count($_POST)>0) {//Recibio los datos del formulario
             
             $categoriaRecibida=$this->input->post("categoria");
-			$nombreRec=$this->input->post("nombre");
+            $nombreRec=$this->input->post("nombre");
             $desc=$this->input->post("textarea");
             $archivos=$_FILES["archivo"];
-            $nivelesRecibidos=$this->input->post("niveles");
-            $temaRecibido=$this->input->post("tema");
-            if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
-				$params=['nombreRecurso'=>$nombreRec,'arrArc'=>$archivos["name"],'descripcion'=>$desc,'arrTmp'=>$archivos["tmp_name"],'categoria'=>$categoriaRecibida,'niveles'=>$nivelesRecibidos,'tema'=>$temaRecibido];
-				$recurso=$this->subida($params);
-                if ($recurso) {
-                    $this->load->view("header", ["title" => "Subir Recurso"]);
-                    $this->load->view('recurso/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-success text-center'><h4>".'Recurso subido con exito'."</h4></div>",'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
+            $total=0;
+            foreach ($archivos["size"] as $size) {
+                $total=$total+$size;
+            }
+            if (($total/1024)<6144) {
+                $nivelesRecibidos=$this->input->post("niveles");
+                $temaRecibido=$this->input->post("tema");
+                if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
+                    $params=['nombreRecurso'=>$nombreRec,'arrArc'=>$archivos["name"],'descripcion'=>$desc,'arrTmp'=>$archivos["tmp_name"],'categoria'=>$categoriaRecibida,'niveles'=>$nivelesRecibidos,'tema'=>$temaRecibido];
+                    $recurso=$this->subida($params);
+                    if ($recurso) {
+                        $this->load->view("header", ["title" => "Subir Recurso","scripts"=>["subirRecurso.js"]]);
+                        $this->load->view('recurso/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-success text-center'><h4>".'Recurso subido con exito'."</h4></div>",'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
+                        $this->load->view("footer");
+                    } else {
+                    }
+                } else {
+                    // Error falta completar alguno de los campos
+                    $this->load->view("header", ["title" => "Subir Recurso","scripts"=>["subirRecurso.js"]]);
+                    $this->load->view('recurso/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-danger text-center'><h4>".'Faltan completar campos'."</h4></div>",'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
                     $this->load->view("footer");
-                }else{
-                    
                 }
             } else {
-				// Error falta completar alguno de los campos 
-                $this->load->view("header", ["title" => "Subir Recurso"]);
-                $this->load->view('recurso/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-danger text-center'><h4>".'Faltan completar campos'."</h4></div>",'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
+                //Se ah excedido el tamaño de los archivos (6MB)
+                $this->load->view("header", ["title" => "Subir Recurso","scripts"=>["subirRecurso.js"]]);
+                $this->load->view('recurso/subirRecurso', ['mensaje'=>"<div class='col-md-12 alert alert-danger text-center'><h4>".'Tamaño excedido'."</h4></div>",'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
                 $this->load->view("footer");
             }
-        } else {
-			// Si no subio ningun archivo, muestra vista del subir archivo
+        }else{
+            // Si no subio ningun archivo, muestra vista del subir archivo
             $this->load->view("header", ["title" => "Subir Recurso","scripts"=>["subirRecurso.js"]]);
-            $this->load->view('recurso/subirRecurso',['categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
-            $this->load->view("footer");
+                $this->load->view('recurso/subirRecurso', ['categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
+                $this->load->view("footer");
+            
         }
 	}
 	/** La funcion es llamada por subirArchivo, con esta funcion se cargan los archivos del recurso */
@@ -243,5 +253,7 @@ class Recurso extends CI_Controller
 	public function download(){
 		$data= file_get_contents('./assets/upload/'.$nombreRec);
 		force_download($nombreRec,$data);
-	}
+    }
+    
+    
 }

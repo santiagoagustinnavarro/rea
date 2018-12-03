@@ -34,7 +34,7 @@ class Recurso_model extends CI_Model
         return $recursos;
     }
     public function row_count($filtros="")
-    {   
+    {       $this->db->distinct(); 
         if ($filtros!="") {
 
             $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
@@ -70,19 +70,14 @@ class Recurso_model extends CI_Model
             
            
         }
-        $this->db->distinct("r.idRecurso");
-      
         return $this->db->count_all_results();
-
-       
-        
     }
     
 
     public function fetch_recurso($limit, $start, $filtros="")
-    {   
+    {       $this->db->distinct(); 
         if ($filtros!="") {
-         
+     
             $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
             $this->db->from("recurso as r");
             $this->db->join("tema as t", "t.nombre=r.nombreTema");
@@ -116,7 +111,7 @@ class Recurso_model extends CI_Model
             $this->db->from("recurso as r");
            
         }
-        $this->db->distinct("r.idRecurso"); 
+      
         $this->db->limit($limit, $start);
         $query= $this->db->get();
       
