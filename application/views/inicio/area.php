@@ -107,11 +107,11 @@
 
 							<div class="blog-image"><img src="<?php echo base_url()."assets/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
 
-							<a class="avatar" href="#"><img src="<?php echo base_url()."assets/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
+							<a class="avatar" ><img src="<?php echo base_url()."assets/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
 
 							<div class="blog-info">
 
-								<h4 class="title"><a href="#"><b><?php echo $data->titulo; ?></b></a></h4>
+								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b></a></h4>
 
 								<ul class="post-footer">
 									
@@ -134,18 +134,12 @@
 
 							<div class="blog-image"><img src="<?php echo base_url()."assets/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
 
-							<a class="avatar" href="#"><img src="<?php echo base_url()."assets/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
-
+							<a class="avatar" ><img src="<?php echo base_url()."assets/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
 							<div class="blog-info">
-
-								<h4 class="title"><a href="#"><b><?php echo $data->titulo; ?></b></a></h4>
-
-								<ul class="post-footer">
-								
-									<li class="estrellas"></li><li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
-									
+								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b></a></h4>
+								<ul class="post-footer">			
+									<li class="estrellas"></li><li><a href="#"><i class="ion-chatbubble"></i>6</a></li>		
 								</ul>
-
 							</div><!-- blog-info -->
 						</div><!-- single-post -->
 					</div><!-- card -->
@@ -160,25 +154,16 @@
 			<div class="col-md-<?php echo 12/$porFila?> area">
 			<div class="card h-100">
 						<div class="single-post post-style-1">
-
 							<div class="blog-image"><img src="<?php echo base_url()."assets/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
-
-							<a class="avatar" href="#"><img src="<?php echo base_url()."assets/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
-
+							<a class="avatar" ><img src="<?php echo base_url()."assets/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
 							<div class="blog-info">
-
-								<h4 class="title"><a href="#"><b><?php echo $data->titulo; ?></b></a></h4>
-
-								<ul class="post-footer">
-									
+								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b></a></h4>
+								<ul class="post-footer">				
 									<li class="estrellas"></li><li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
-									
 								</ul>
-
 							</div><!-- blog-info -->
 						</div><!-- single-post -->
 					</div><!-- card -->
-
 			</div> <!-- cierrala clase area --><?php
              } elseif ($i==count($results)) {//Ultimo elemento
             ?>
@@ -186,53 +171,34 @@
 			<div class="col-md-<?php echo 12/$porFila?> area">
 			<div class="card h-100">
 						<div class="single-post post-style-1">
-
 							<div class="blog-image"><img src="<?php echo base_url()."assets/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
-
-							<a class="avatar" href="#"><img src="<?php echo base_url()."assets/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
-
+							<a class="avatar" ><img src="<?php echo base_url()."assets/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
 							<div class="blog-info">
-
-								<h4 class="title"><a href="#"><b><?php echo $data->titulo; ?></b></a></h4>
-
+								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b></a></h4>
 								<ul class="post-footer">
-									
-									<li class="estrellas"></li><li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
-									
+									<li class="estrellas"></li><li><a href="#"><i class="ion-chatbubble"></i>6</a></li>	
 								</ul>
-
 							</div><!-- blog-info -->
 						</div><!-- single-post -->
 					</div><!-- card -->
-
 			</div> <!-- cierrala clase area -->
 		</div>
 		<?php
              } else {
                  ?>
 		<div class="col-md-<?php echo 12/$porFila?> area">
-			
 			<div class="card h-100">
 						<div class="single-post post-style-1">
-
 							<div class="blog-image"><img src="<?php echo base_url()."assets/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
-
-							<a class="avatar" href="#"><img src="<?php echo base_url()."assets/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
-
+							<a class="avatar" ><img src="<?php echo base_url()."assets/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
 							<div class="blog-info">
-
-								<h4 class="title"><a href="#"><b><?php echo $data->titulo; ?></b></a></h4>
-
+								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b></a></h4>
 								<ul class="post-footer">
-									
 									<li class="estrellas"></li><li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
-									
 								</ul>
-
 							</div><!-- blog-info -->
 						</div><!-- single-post -->
 					</div><!-- card -->
-
 		</div> <!-- cierrala clase area --> <?php
              }
              $i++;
@@ -243,10 +209,7 @@
 	 	<div class="offset-md-5"><?php echo $links; ?>
 	 	</div>
  	</div>
-  <?php
-	 
-		?> </div><?php	 
-	?>
+  </div>
 
 	 
 	
