@@ -38,11 +38,14 @@ class Recurso_model extends CI_Model
         if ($filtros!="") {
 
             $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
-            $this->db->from("recurso as r");         
+            $this->db->from("recurso as r");
             $this->db->join("tema as t", "t.nombre=r.nombreTema");
-            $this->db->join("categoria as c", "c.nombre=t.nombreCategoria");
+            $this->db->join("tenercategoria tc", "tc.nombreTema=t.nombre");
+            $this->db->join("categoria as c", "tc.nombreCategoria=c.nombre");
             $this->db->join("poseenivel as p", "p.idRecurso=r.idRecurso");
             $this->db->join("nivel as n", "n.nombre=p.nombreNivel");
+            
+            
             
             if (count($filtros["niveles"])>0) {
                 $sql="(";
@@ -78,21 +81,25 @@ class Recurso_model extends CI_Model
     {       $this->db->distinct(); 
         if ($filtros!="") {
      
-            $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
+            $this->db->select("c.nombre,r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
             $this->db->from("recurso as r");
             $this->db->join("tema as t", "t.nombre=r.nombreTema");
-            $this->db->join("categoria as c", "c.nombre=t.nombreCategoria");
+            $this->db->join("tenercategoria tc", "tc.nombreTema=t.nombre");
+            $this->db->join("categoria as c", "tc.nombreCategoria=c.nombre");
             $this->db->join("poseenivel as p", "p.idRecurso=r.idRecurso");
             $this->db->join("nivel as n", "n.nombre=p.nombreNivel");
             
             
             if ($filtros["tema"]!="") {
                 $this->db->where(array("t.nombre"=>$filtros["tema"]));
-            }
-            if($filtros["categoria"]!=""){
-                $this->db->where(array("c.nombre"=>$filtros["categoria"]));
                 
-               }
+            }
+                if($filtros["categoria"]!=""){
+                    $this->db->where(array("c.nombre"=>$filtros["categoria"]));
+                    
+                   }
+            
+            
                if (count($filtros["niveles"])>0) {
                 $sql="(";
                 foreach ($filtros["niveles"] as $unNivel) {
@@ -115,7 +122,7 @@ class Recurso_model extends CI_Model
         $this->db->limit($limit, $start);
         $query= $this->db->get();
       
-      //      echo $this->db->last_query();
+           // echo $this->db->last_query();
         
          
         if ($query->num_rows() > 0) {

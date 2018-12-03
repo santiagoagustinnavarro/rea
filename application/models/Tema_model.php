@@ -25,11 +25,13 @@ class Tema_model extends CI_Model
     public function get_all_tema($nombreCat="")
     {
         if ($nombreCat!="") {
-            $this->db->select("*");
+            $this->db->select("tema.nombre");
             $this->db->from("tema");
-            $this->db->where(["nombreCategoria"=>$nombreCat]);
+            $this->db->join("tenercategoria","tenercategoria.nombreTema=tema.nombre");
+            $this->db->join("categoria","tenercategoria.nombreCategoria=categoria.nombre");
+            $this->db->where(["tenercategoria.nombreCategoria"=>$nombreCat]);
             return $this->db->get()->result_array();
-            echo $this->db->last_query(); 
+            //echo $this->db->last_query(); 
         } else {
             $this->db->order_by('nombre', 'desc');
             return $this->db->get('tema')->result_array();

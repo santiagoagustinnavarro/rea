@@ -103,18 +103,26 @@ INSERT INTO `nivel`(`nombre`,`descripcion`) VALUES
 -- -----------------------------------------------------
 -- Insercion en Categoria`
 -- -----------------------------------------------------
-INSERT INTO `categoria`(`nombre`) VALUES 
-("Base de datos"),
-("Programacion estructural"),
-("Programacion orientada a objetos");
+INSERT INTO `categoria`(`nombre`,`descripcion`) VALUES 
+("Base de datos","Paradigma de BD"),
+("Programacion estructural","Programacion basica en secuencia"),
+("Programacion orientada a objetos","Paradigma orientado a objetos ");
 -- -----------------------------------------------------
 -- Insercion en Tema`
 -- -----------------------------------------------------
-INSERT INTO `tema`(`nombre`,`nombreCategoria`) VALUES 
+INSERT INTO `tema`(`nombre`,`descripcion`) VALUES 
+("Mysql","Lenguaje de BD"),
+("MongoDB","Lenguaje de BD"),
+("Java","Lenguaje de programacion"),
+("Php","Lenguaje de programacion");
+-- -----------------------------------------------------
+-- Insercion en TenerCategoria`
+-- -----------------------------------------------------
+INSERT INTO `tenercategoria`(`nombreTema`,`nombreCategoria`) VALUES 
 ("Mysql","Base de datos"),
 ("MongoDB","Base de datos"),
 ("Java","Programacion estructural"),
-("Php","Programacion orientada a objetos");
+("Php","Programacion estructural");
 
 -- ----------------------------------------
 -- -----------------------------------------------------
