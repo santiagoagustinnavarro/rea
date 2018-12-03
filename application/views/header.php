@@ -1,184 +1,264 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="icon" type="image/png" href="<?php echo base_url()?>assets/estilo/imagenes/favicon.png" sizes="16x25"/>
+	<meta name="viewport" content="width=device-width" charset="utf-8" />
+	<link rel="icon" type="image/png" href="<?php echo base_url()?>assets/imagenes/favicon.png" sizes="16x25"/>
 	<title>
 		<?php echo $title; ?>
 	</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="<?php echo base_url()?>assets/estilo/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo base_url()?>assets/estilo/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="<?php echo base_url()?>assets/estilo/Ionicons/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo base_url()?>assets/estilo/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<?php echo base_url()?>assets/estilo/dist/css/skins/_all-skins.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/estilo/dist/css/skins/skin-blue.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/estilo/css/estilo.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/estilo.css" />
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/validacion.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
 	<?php
-	if (isset($scripts)) { //Invocacion de scripts propios
+if (isset($scripts)) { //Invocacion de scripts propios
     foreach ($scripts as $unScript) {
-      echo "<script type=\"text/javascript\" src=\"" . base_url() . "assets/estilo/js/" . $unScript . "\"></script>";
+        echo "<script type=\"text/javascript\" src=\"" . base_url() . "assets/js/" . $unScript . "\"></script>";
     }
-	}
-	if (isset($styles)) { //Invocacion de estilos propios
+}
+if (isset($styles)) { //Invocacion de estilos propios
     foreach ($styles as $unStyle) {
-      echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . base_url() . "assets/estilo/css/" . $unStyle . "\" />";
+        echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . base_url() . "assets/css/" . $unStyle . "\" />";
     }
-	}
-	?>
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+}
+?>
 </head>
-<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-<body class="hold-transition skin-blue layout-top-nav">
-<div class="wrapper">
-  <header class="main-header">
-    <nav class="navbar navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-				<a href="<?php echo base_url(); ?>inicio"><img src="<?php echo base_url()?>assets/estilo/imagenes/logo3.png" id="logo" class="navbar-brand" alt="Logo REA"></a>
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-            <i class="fa fa-bars"></i>
-          </button>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="<?php echo base_url(); ?>inicio">Inicio<span class="sr-only"></span></a></li>
-            <li><a href="<?php echo base_url(); ?>recurso/listar">Area</a></li>
-            <li><a href="<?php echo base_url(); ?>contacto">Contactenos</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Añadir Categoria <span class="caret"></span></a>
-              <ul class="dropdown-menu" id="desplegable" role="menu">
-                <li><a href="#">Agregar Categoria</a></li>
-                <li><a href="#">Agregar Tema</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-        <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav">
-            <!-- Messages: style can be found in dropdown.less-->
-            <li class="dropdown messages-menu">
-              <!-- Menu toggle button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-envelope-o"></i>
-                <span class="label label-success">4</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">You have 4 messages</li>
-                <li>
-                  <!-- inner menu: contains the messages -->
-                  <ul class="menu">
-                    <li><!-- start message -->
-                      <a href="#">
-                        <div class="pull-left">
-                          <!-- User Image -->
-                          <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                        </div>
-                        <!-- Message title and timestamp -->
-                        <h4>
-                          Support Team
-                          <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                        </h4>
-                        <!-- The message -->
-                        <p>Why not buy a new awesome theme?</p>
-                      </a>
-                    </li>
-                    <!-- end message -->
-                  </ul>
-                  <!-- /.menu -->
-                </li>
-                <li class="footer"><a href="#">See All Messages</a></li>
-              </ul>
-            </li>
-            <!-- /.messages-menu -->
+<body>
+	<!-- Barra de Menú -->
+	<?php
+	
+	
+		
+	
+	if (!$this->session->iniciada) {
+    ?>
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
+		<div class="container-fluid">
+			<a href="<?php echo base_url(); ?>inicio"><img class="navbar-brand" src="<?php echo base_url(); ?>assets/imagenes/logo3.png"
+				alt="Logo REA" id="logo"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			 aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>inicio" class="nav-link text-secondary"
+						 alt="inicio">
+							<i class="fa fa-home"></i> Inicio
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>recurso/listar" class="nav-link text-secondary"
+						 alt="area">
+							<i class="fa fa-files-o"></i> Área
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary"
+						 alt="contactenos">
+							<i class="fa fa-envelope"></i> Contactenos
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>login" class="nav-link" alt="iniciar sesion">
+							<button class="btn btn-outline-success">
+								<i class="fa fa-sign-in"></i> Iniciar Sesión
+							</button>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<?php
+	} else {
+        if ($this->session->rol == 'administrador de usuarios') {
+    ?>
+	<!-- Administrador de Usuarios -->
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
+		<div class="container-fluid">
+			<a href="<?php echo base_url(); ?>inicio"><img class="navbar-brand" src="<?php echo base_url(); ?>assets/imagenes/logo3.png"
+				alt="Logo REA" id="logo"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			 aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>inicio" class="nav-link text-secondary"
+						alt="inicio">
+							<i class="fa fa-home"></i> Inicio
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>recurso/listar" class="nav-link text-secondary"
+						alt="area">
+							<i class="fa fa-files-o"></i> Área
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary"
+						alt="contactenos">
+							<i class="fa fa-envelope"></i> Contactenos
+						</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="<?php echo base_url(); ?>contacto"
+						id="navbardrop" data-toggle="dropdown">
+							<i class="fa fa-user-circle"></i> <?php echo $this->session->nombreUsuario; ?>
+						</a>
+						<div class="dropdown-menu" id="desplegable">
+							<a class="dropdown-item" href="<?php echo base_url()."usuario/editarPerfil"?>">
+								<i class="fa fa-pencil"></i> Editar Perfil
+							</a>
+							<a class="dropdown-item " href="<?php echo base_url()."usuario"?>">
+								<i class="fa fa-users"></i> Administrar Usuarios
+							</a>
+							<a class="dropdown-item" href="<?php echo base_url()."usuario/eliminarCuenta"?>">
+								<i class="fa fa-trash"></i> Eliminar Cuenta
+							</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>login/cerrarSession" class="nav-link"
+						alt="cerrar sesion">
+							<button class="btn btn-outline-danger">
+								<i class="fa fa-sign-out"></i> Cerrar Sesión
+							</button>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<?php
+        } elseif ($this->session->rol == 'administrador de recursos') {
+	?>
+	<!-- Administrador de Recursos -->		
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
+		<div class="container-fluid">
+			<a href="<?php echo base_url(); ?>inicio"><img class="navbar-brand" src="<?php echo base_url(); ?>assets/imagenes/logo3.png"
+				 alt="Logo REA" id="logo"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			 aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>inicio" class="nav-link text-secondary"
+						 alt="inicio">
+							<i class="fa fa-home"></i> Inicio
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>recurso/listar" class="nav-link text-secondary"
+						 alt="area">
+							<i class="fa fa-files-o"></i> Área
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary"
+						 alt="contactenos">
+							<i class="fa fa-envelope"></i> Contactenos
+						</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="<?php echo base_url(); ?>contacto"
+						 id="navbardrop" data-toggle="dropdown">
+							<i class="fa fa-user-circle-o"></i> <?php echo $this->session->nombreUsuario; ?>
+						</a>
+						<div class="dropdown-menu" id="desplegable">
+							<a class="dropdown-item" href="<?php echo base_url()."usuario/editarPerfil"?>">
+								<i class="fa fa-pencil"></i> Editar Perfil
+							</a>
+							<a class="dropdown-item" href="<?php echo base_url()."recurso"?>">
+								<i class="fa fa-pencil-square-o"></i> Administrar Recursos
+							</a>
+							<a class="dropdown-item" href="<?php echo base_url()."usuario/eliminarCuenta"?>">
+								<i class="fa fa-trash"></i> Eliminar Cuenta
+							</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>login/cerrarSession" class="nav-link"
+						 alt="cerrar sesion">
+							<button class="btn btn-outline-danger">
+								<i class="fa fa-sign-out"></i> Cerrar Sesión
+							</button>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-            <!-- Notifications Menu -->
-            <li class="dropdown notifications-menu">
-              <!-- Menu toggle button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-bell-o"></i>
-                <span class="label label-warning">10</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">You have 10 notifications</li>
-                <li>
-                  <!-- Inner Menu: contains the notifications -->
-                  <ul class="menu">
-                    <li><!-- start notification -->
-                      <a href="#">
-                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                      </a>
-                    </li>
-                    <!-- end notification -->
-                  </ul>
-                </li>
-                <li class="footer"><a href="#">View all</a></li>
-              </ul>
-            </li>
-            <!-- User Account Menu -->
-            <li class="dropdown user user-menu">
-              <!-- Menu Toggle Button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <!-- The user image in the navbar-->
-                <img src="<?php echo base_url()?>assets/estilo/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">Nombre Usuario</span>
-              </a>
-              <ul class="dropdown-menu">
-                <!-- The user image in the menu -->
-                <li class="user-header">
-                  <img src="<?php echo base_url()?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-									<p>Nombre Usuario
-                  	<small>Rol Usuario</small>
-                	</p>
-								</li>
-                <!-- Menu Footer-->
-                <li class="user-footer">
-                  <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
-									</div>
-                  <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Cerrar Sesion</a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <!-- /.navbar-custom-menu -->
-      </div>
-      <!-- /.container-fluid -->
-    </nav>
-  </header>
-  <!-- Full Width Column -->
-  <div class="content-wrapper">
-    <div class="container">
-      <!-- Main content -->
-      <section class="content">
-<script src="<?php echo base_url()?>assets/estilo/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="<?php echo base_url()?>assets/estilo/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="<?php echo base_url()?>assets/estilo/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="<?php echo base_url()?>assets/estilo//fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo base_url()?>assets/estilo/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url()?>assets/estilo/dist/js/demo.js"></script>
+	<?php
+        } elseif ($this->session->rol == 'profesor') {
+            ?>
+	<!-- Profesor -->
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="menu">
+		<div class="container-fluid">
+			<a href="<?php echo base_url(); ?>inicio"><img class="navbar-brand" src="<?php echo base_url(); ?>assets/imagenes/logo3.png"
+				 alt="Logo REA" id="logo"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			 aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>inicio" class="nav-link text-secondary"
+						 alt="inicio">
+							<i class="fa fa-home"></i> Inicio
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>recurso/listar" class="nav-link text-secondary"
+						 alt="area">
+							<i class="fa fa-files-o"></i> Área
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>contacto" class="nav-link text-secondary"
+						 alt="contactenos">
+							<i class="fa fa-envelope"></i> Contactenos
+						</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="<?php echo base_url(); ?>contacto"
+						 id="navbardrop" data-toggle="dropdown">
+							<i class="fa fa-user"></i> <?php echo $this->session->nombreUsuario; ?>
+						</a>
+						<div class="dropdown-menu" id="desplegable">
+							<a class="dropdown-item" href="<?php echo base_url()."usuario/editarPerfil"?>">
+								<i class="fa fa-pencil"></i> Editar Perfil
+							</a>
+							<a class="dropdown-item " href="<?php echo base_url()."recurso/subirRecurso"?>">
+								<i class="fa fa-file-text"></i> Subir Recurso
+							</a>
+							<a class="dropdown-item" href="<?php echo base_url()."usuario/eliminarCuenta"?>">
+								<i class="fa fa-trash"></i> Eliminar Cuenta
+							</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a href="<?php echo base_url(); ?>login/cerrarSession" class="nav-link" alt="cerrar sesion">
+							<button class="btn btn-outline-danger">
+								<i class="fa fa-sign-out"></i> Cerrar Sesión
+							</button>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<?php
+        }
+    }
+?>	
+<div class="container-fluid" id="cuerpo">
