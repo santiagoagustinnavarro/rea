@@ -1,0 +1,57 @@
+/* Estilo de la pagina con Bootstrap y CSS */
+/** ######################## HEADER/MENU ############################# */
+/* Tamaño de la imagen del logo */
+body{
+	text-align: center;
+}
+#logo{
+	width: 60px; 
+	height: 45px;
+}
+/** Tiene un fonde de color gris claro */
+#desplegable{
+	background:#1e93b1;
+}
+/** Tamaño de la letra en mediano, y negrita normal */
+#desplegable a{
+	font-weight: normal;
+	font-size: medium;
+	color: white;
+}
+/** Tamaño de la letra en mediano, y negrita normal, fondo gris oscuro y color de la letra blanco */
+#desplegable a:hover{
+	font-weight: normal;
+	font-size: medium;
+	background: #ffffff;
+	color: #1e97cf;
+}
+/** alto y ancho del video position relativa y un 12% para centrarlo */
+#carousel{
+	width: 95%;
+	height: 65%;
+	position: relative;
+	left: 3%;
+}
+/** A las clases de tipo recurso se añade un fondo de color blanco */
+.recurso {
+	background:white;
+	padding:3%;
+}
+/** Todos los input de la clase form-group se centran */
+.form-group input {
+	text-align: center;
+}
+/* Indica en que numero de pagina y el tipo de cantidad de paginas que hay */
+.pagination {
+	margin-bottom: 15px;
+}
+/** ############################## PIE DE PAGINA ################################### */
+/** flex-end me situa el footer al final de la pagina, width toma el 100% de la pagina*/
+#footer{
+	align-self: flex-end;
+	padding: 1%;
+	background:#1871bb;
+	color: #ffffff;
+	width:100%;
+	font-family:sans-serif;
+}
