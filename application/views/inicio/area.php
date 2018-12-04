@@ -209,11 +209,7 @@
 	 	<div class="offset-md-5"><?php echo $links; ?>
 	 	</div>
  	</div>
-  </div>
-
-	 
-	
-	
+  </div>	
 	</div>
 	<?php
  }//Fin funcion
