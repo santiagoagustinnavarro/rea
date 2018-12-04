@@ -1,5 +1,5 @@
 
-<?php  $recurso=$unRecurso[0]; ?>
+<?php  $recurso=$unRecurso[0];?>
 <div class="container-fluid py-4">
 	<div class="mx-auto">
 		<div id="transparencia">
@@ -13,7 +13,7 @@
 				<div class="row">
 					
 					<div class="card-footer text-center">
-						<a download href=<?php echo base_url()."assets/upload/".$unArchivo["nombre"];?> class="btn btn-success"><i class="fa fa-download"></i> Descargar </a><?php echo $unArchivo["nombre"];?>
+						<a download href=<?php echo base_url()."assets/upload/".$recurso["nombreUsuario"]."/".$recurso["idRecurso"]."/".$unArchivo["nombre"];?> class="btn btn-success"><i class="fa fa-download"></i> Descargar </a><?php echo $unArchivo["nombre"];?>
 					</div>
 				</div>
 				<?php }?>

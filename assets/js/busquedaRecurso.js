@@ -4,6 +4,7 @@ function actualizarTema(){
     var categoria;
     var busqueda;
     checkbox=[];
+    
     if($("input[type=checkbox]:checked").length>0){
         $("input[type=checkbox]:checked").each(function(){
             checkbox.push($(this).val());
@@ -23,8 +24,8 @@ function actualizarTema(){
         });  
 }
 $(document).ready(function(){
-    
-
+   
+    $(".estrellas").starrr();
     
     $("input[type=checkbox]").change(function(){
         checkbox=[];
@@ -84,15 +85,15 @@ $(document).ready(function(){
                 $(".col-md-9").replaceWith($(".col-md-9", response));
                 $("#tema").replaceWith($("#tema", response));
                 $(".estrellas").starrr();
+                
                
               
             }
         }); 
+      
     });
-    $(".estrellas").starrr();
-    $(".estrellas").click(function(){
-    alert("me clickeaste che")
-    })
+  
+    
   
 
   
