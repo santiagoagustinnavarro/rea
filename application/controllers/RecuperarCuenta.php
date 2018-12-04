@@ -122,10 +122,10 @@ class RecuperarCuenta extends CI_Controller
         $mail->IsSMTP();
         $mail->CharSet="UTF-8";
         $mail->SMTPSecure = 'tls';
-        $mail->Host = 'smtp.gmail.com';
-        $mail->Port = 587;
-        $mail->Username = 'santiago.navarro@est.fi.uncoma.edu.ar';
-        $mail->Password = '38365920s';
+        $mail->Host = 'smtp.live.com';
+        $mail->Port = 465;
+        $mail->Username = 'ely-06nqn@hotmail.com';
+        $mail->Password = 'caroytamy';
         $mail->SMTPAuth = true;
         $mail->FromName = "Full Name";
         //To address and name
@@ -133,7 +133,7 @@ class RecuperarCuenta extends CI_Controller
         //$mail->addAddress("recepient1@example.com"); //Recipient name is optional
 
         //Address to which recipient will reply
-        $mail->addReplyTo("santiago.navarro@est.fi.uncoma.edu.ar", "Reply");
+        $mail->addReplyTo("ely-06nqn@hotmail.com", "Reply");
 
         //Send HTML or Plain Text email
         $mail->isHTML(true);
