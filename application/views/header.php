@@ -269,6 +269,7 @@
         <!-- /.navbar-custom-menu -->
       </div>
 		<?php
+    	} elseif ($this->session->rol == 'profesor') {
     ?>
 			<nav class="navbar navbar-static-top">
       <div class="container">
@@ -283,13 +284,6 @@
             <li><a href="<?php echo base_url(); ?>inicio">Inicio<span class="sr-only"></span></a></li>
             <li><a href="<?php echo base_url(); ?>recurso/listar">Area</a></li>
             <li><a href="<?php echo base_url(); ?>contacto">Contactenos</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Añadir Categoria <span class="caret"></span></a>
-              <ul class="dropdown-menu" id="desplegable" role="menu">
-                <li><a href="#">Agregar Categoria</a></li>
-                <li><a href="#">Agregar Tema</a></li>
-              </ul>
-            </li>
           </ul>
         </div>
         <!-- /.navbar-collapse -->
