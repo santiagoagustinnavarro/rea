@@ -1,7 +1,7 @@
 <!-- Container fluid -->
 <div class="container-fluid">
 	<br />
-	<h1 class="titulo text-secondary">Contenido</h1>
+	<h1 class="titulo text-secondary">Recursos</h1>
 	<div class="row">
 		<div class="col-lg-3">
 			<!-- Aca comienza las busquedas -->

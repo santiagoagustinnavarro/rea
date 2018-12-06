@@ -1,6 +1,5 @@
 			</section> <!-- /.content -->
   </div> <!-- /.content-wrapper -->
-
 <!-- jQuery 3 -->
 <!-- Footer -->
 <footer id="footer">

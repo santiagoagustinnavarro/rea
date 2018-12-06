@@ -268,10 +268,7 @@
         </div>
         <!-- /.navbar-custom-menu -->
       </div>
-      <!-- /.container-fluid -->
-    </nav>
 		<?php
-      } elseif ($this->session->rol == 'profesor') {
     ?>
 			<nav class="navbar navbar-static-top">
       <div class="container">
@@ -395,10 +392,7 @@
 	<?php
   	}
   ?>
- 
   </header>
-  
-  
   <!-- Full Width Column -->
   <div class="content-wrapper">
       <!-- Main content -->
