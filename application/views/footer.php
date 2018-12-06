@@ -1,9 +1,7 @@
 			</section> <!-- /.content -->
-  	</div> <!-- /.container -->
   </div> <!-- /.content-wrapper -->
 </div> <!-- ./wrapper -->
 <!-- jQuery 3 -->
-
 <!-- Footer -->
 <footer id="footer">
   <div class="container">

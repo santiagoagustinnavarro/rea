@@ -4,6 +4,9 @@
 body{
 	text-align: center;
 }
+#navbar-collapse{
+	font-size: larger;
+}
 #logo{
 	width: 60px; 
 	height: 45px;
@@ -31,6 +34,14 @@ body{
 	height: 65%;
 	position: relative;
 	left: 3%;
+}
+#contacto{
+	margin-top:6%;
+}
+#registro{
+	margin-top:5%;
+	padding: 3%;
+	background: #ffffffcb;
 }
 /** A las clases de tipo recurso se añade un fondo de color blanco */
 .recurso {
