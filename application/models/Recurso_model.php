@@ -37,7 +37,7 @@ class Recurso_model extends CI_Model
     {       $this->db->distinct(); 
         if ($filtros!="") {
 
-            $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
+            $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
             $this->db->from("recurso as r");
             $this->db->join("tema as t", "t.nombre=r.nombreTema");
             $this->db->join("tenercategoria tc", "tc.nombreTema=t.nombre");
@@ -68,7 +68,7 @@ class Recurso_model extends CI_Model
             
         } else {
            
-            $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario",false);
+            $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.nombreUsuario as nombreUsuario",false);
             $this->db->from("recurso as r");
             
            
@@ -81,7 +81,7 @@ class Recurso_model extends CI_Model
     {       $this->db->distinct(); 
         if ($filtros!="") {
      
-            $this->db->select("c.nombre,r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
+            $this->db->select("c.nombre,r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
             $this->db->from("recurso as r");
             $this->db->join("tema as t", "t.nombre=r.nombreTema");
             $this->db->join("tenercategoria tc", "tc.nombreTema=t.nombre");
@@ -114,7 +114,7 @@ class Recurso_model extends CI_Model
             
         } else {
           
-                 $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.validado as validado,r.nombreUsuario as nombreUsuario",false);
+                 $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.nombreUsuario as nombreUsuario",false);
             $this->db->from("recurso as r");
            
         }
