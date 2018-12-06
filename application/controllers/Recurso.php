@@ -49,18 +49,18 @@ class Recurso extends CI_Controller
     public function listar()
     {
         $this->load->model("Tema_model");
-        $this->load->model("Nivel_model");
+		$this->load->model("Nivel_model");
         $this->load->model("Categoria_model");
         $data["temas"]=array();
         $filtros=$_POST;//Array con los filtros de categoria,tema,niveles y el filtrado de la busqueda
         if (count($filtros)<=0) {//No se han recibido filtros
             $filtros="";
         } else {//Se han recibido filtros
-            if ($filtros["categoria"]!="") {
+            if($filtros["categoria"]!=""){
                 $data["temas"]=$this->Tema_model->get_all_tema($filtros["categoria"]);//Para el select de temas
             }
             $filtros['niveles']=json_decode($filtros["niveles"]);//Decodificamos el array de niveles
-            if (count($filtros["niveles"])<=0 && $filtros["categoria"]=="" && $filtros["busqueda"]=="") {//Los filtros estan vacios(nada seleccionado)
+            if(count($filtros["niveles"])<=0 && $filtros["categoria"]=="" && $filtros["busqueda"]==""){//Los filtros estan vacios(nada seleccionado)
                 $filtros="";
             }
         }
@@ -106,7 +106,7 @@ class Recurso extends CI_Controller
     {
         $unRecurso=$this->listarConArchivos("", $idRecurso);
         $this->load->view("header", ["title"=>"Un recurso"]);
-        $this->load->view("recurso/view", ["unRecurso"=>$unRecurso]);
+        $this->load->view("area/recurso", ["unRecurso"=>$unRecurso]);
         $this->load->view("footer");
     }
     private function listarConArchivos($usuario="", $idRecurso="")
@@ -148,44 +148,16 @@ class Recurso extends CI_Controller
         }
         return $recursos;
     }
-    public function misRecursos()
-    {
-        $recursos=$this->listarConArchivos($this->session->nombreUsuario);
-        $this->load->library('table');
-        $this->table->set_heading('Recurso', 'Archivos');
-        foreach($recursos as $unRecurso){
-            $cad="";
-           foreach($unRecurso["archivos"] as $unaColArch){
-                $cad.=$unaColArch["nombre"]." , ";
-           }
-           $this->table->add_row($unRecurso["titulo"], $cad);
-        }
-        $table= $this->table->generate();
-       
-        
-        
-       
-       
-           
-           
-
-            
-        
-      
-        $this->load->view("header", ["title" => "Mis recursos"]);
-        $this->load->view('recurso/misrecursos', ["recursos"=>$table]);
-        $this->load->view("footer");
-    }
     /** Esta funcion es la encargada de subir los recursos con sus respectivos archivos */
-    public function subirRecurso()
-    {
-        $this->load->model("Tema_model");
-        $this->load->model("Categoria_model");
-        $this->load->model("Nivel_model");
-        $niveles=$this->Nivel_model->get_all_nivel();
-        $tema=[];
+	public function subirRecurso()
+	{  
+		$this->load->model("Tema_model");
+		$this->load->model("Categoria_model");
+		$this->load->model("Nivel_model");
+		$niveles=$this->Nivel_model->get_all_nivel();
+		$tema=[];
         $categoria=$this->Categoria_model->get_all_categoria();
-        if (count($_GET)>0) {//Recibio datos del ajax
+        if(count($_GET)>0){//Recibio datos del ajax
             if ($this->input->get("categoria")!="") {
                 $tema=$this->Tema_model->get_all_tema($this->input->get("categoria"));
             }
@@ -224,58 +196,51 @@ class Recurso extends CI_Controller
                 $this->load->view('recurso/subirRecurso', ['mensaje'=>"<div class='col-md-12 alert alert-danger text-center'><h4>".'Tamaño excedido'."</h4></div>",'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
                 $this->load->view("footer");
             }
-        } else {
+        }else{
             // Si no subio ningun archivo, muestra vista del subir archivo
             $this->load->view("header", ["title" => "Subir Recurso","scripts"=>["subirRecurso.js"]]);
-            $this->load->view('recurso/subirRecurso', ['categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
-            $this->load->view("footer");
+                $this->load->view('recurso/subirRecurso', ['categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
+                $this->load->view("footer");
+            
         }
-    }
-    /** La funcion es llamada por subirArchivo, con esta funcion se cargan los archivos del recurso */
+	}
+	/** La funcion es llamada por subirArchivo, con esta funcion se cargan los archivos del recurso */
     private function subida($parametros)
     {
         $recurso=array("nombreTema"=>$parametros["tema"],"nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$parametros["nombreRecurso"],"descripcion"=>$parametros['descripcion']);
-        $idRecurso=$this->Recurso_model->add_recurso($recurso);
-        if ($idRecurso>0) {
-            $res=true;
-            $categoria=$parametros['categoria'];
-            $tema=$parametros['tema'];
-            $niveles=$parametros['niveles'];
+		$idRecurso=$this->Recurso_model->add_recurso($recurso);	
+		if ($idRecurso>0) {
+			$res=true;
+			$categoria=$parametros['categoria'];
+			$tema=$parametros['tema'];
+			$niveles=$parametros['niveles'];
             $archivos=$parametros['arrArc'];
             $this->load->model("Poseenivel_model");
-            foreach ($niveles as $unNivel) {
+            foreach($niveles as $unNivel){
                 $this->Poseenivel_model->add_poseenivel(["idRecurso"=>$idRecurso,"nombreNivel"=>$unNivel]);
             }
-            /* TERMINAR LA FUNCION NIVEL, Y FILTRAR TEMA Y CATEGORIA
-            if($tema=='selected'){
-                $temaSel=$this->Tema_model->add_tema($params);
-            }
-            if($categoria=='selected'){
-                $catSel=$this->Categoria_model->add_categoria($params);
-            }
-            foreach($niveles as $nivel){
-                if($nivel=='checked'){
-                    $param=$nivel['idRecurso']
-                    $arrNivel=$this->Nivel_model->add_nivel($param);
-                }
+			/* TERMINAR LA FUNCION NIVEL, Y FILTRAR TEMA Y CATEGORIA
+			if($tema=='selected'){
+				$temaSel=$this->Tema_model->add_tema($params);
+			}
+			if($categoria=='selected'){
+				$catSel=$this->Categoria_model->add_categoria($params);
+			}
+			foreach($niveles as $nivel){
+				if($nivel=='checked'){
+					$param=$nivel['idRecurso']
+					$arrNivel=$this->Nivel_model->add_nivel($param);
+				}
             }*/
             
             foreach ($archivos as $etiqueta=>$valor) {
-                $rutas=["./assets/upload/","./assets/upload/".$this->session->nombreUsuario,"./assets/upload/".$this->session->nombreUsuario."/".$idRecurso."/"];
-                $ruta="./assets/upload/".$this->session->nombreUsuario."/".$idRecurso."/";
-               foreach($rutas as $unaRuta){
-                if(!is_dir($unaRuta)){
-                    mkdir($unaRuta, 0777, true);
-                }
-               }
-              
-               
-                $idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
-            }
-            for ($i=0;$i<(count($parametros['arrTmp']));$i++) {
-                $arch=$ruta.basename($archivos[$i]);
-                move_uploaded_file($parametros['arrTmp'][$i], $arch);
-            }
+				$ruta="./assets/upload/";
+				$idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
+			}
+			for ($i=0;$i<(count($parametros['arrTmp']));$i++) {
+				$arch=$ruta.basename($archivos[$i]);
+				move_uploaded_file($parametros['arrTmp'][$i],$arch);
+			}	
         } else {
             $res=false;
         }

@@ -35,17 +35,23 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>assets/estilo/dist/js/demo.js"></script>
 	<?php
-if (isset($scripts)) { //Invocacion de scripts propios
+	if (isset($scripts)) { //Invocacion de scripts propios
     foreach ($scripts as $unScript) {
-        echo "<script type=\"text/javascript\" src=\"" . base_url() . "assets/js/" . $unScript . "\"></script>";
+      echo "<script type=\"text/javascript\" src=\"" . base_url() . "assets/estilo/js/" . $unScript . "\"></script>";
     }
-}
-if (isset($styles)) { //Invocacion de estilos propios
+	}
+	if (isset($styles)) { //Invocacion de estilos propios
     foreach ($styles as $unStyle) {
-        echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . base_url() . "assets/css/" . $unStyle . "\" />";
+      echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . base_url() . "assets/estilo/css/" . $unStyle . "\" />";
     }
-}
-?>
+	}
+	?>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
