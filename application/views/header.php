@@ -55,7 +55,6 @@
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
-
   <header class="main-header">
 	<?php
 		if (!$this->session->iniciada) {
@@ -100,18 +99,6 @@
             <li><a href="<?php echo base_url(); ?>inicio" alt="Inicio">Inicio</a></li>
             <li><a href="<?php echo base_url(); ?>recurso/listar" alt="Area">Area</a></li>
             <li><a href="<?php echo base_url(); ?>contacto" alt="Contactenos">Contactenos</a></li>
-						<li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Añadir Categoria <span class="caret"></span></a>
-              <ul class="dropdown-menu" id="desplegable" role="menu">
-                <li><a href="#">Agregar Categoria</a></li>
-                <li><a href="#">Agregar Tema</a></li>
-              </ul>
-            </li>
-						<li>
-							<a class="btn btn-danger" href="<?php echo base_url(); ?>login/cerrarSession">
-							Cerrar Sesión
-							</a>
-						</li>
         	</ul>
         </div> <!-- /.navbar-collapse -->
             <!-- User Account Menu -->
@@ -137,15 +124,13 @@
                     <a href="#" class="btn btn-default btn-flat">Perfil</a>
 									</div>
                   <div class="pull-right">
-                    <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-default btn-flat">Cerrar Sesion</a>
+                    <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-danger btn-flat">Cerrar Sesion</a>
                   </div>
                 </li>
-              
             </li>
           </ul>
         </div>
         <!-- /.navbar-custom-menu -->
-      
       <!-- /.container-fluid -->
     </nav>
 		<?php
@@ -159,9 +144,9 @@
           </button>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+        <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?php echo base_url(); ?>inicio">Inicio<span class="sr-only"></span></a></li>
+            <li><a href="<?php echo base_url(); ?>inicio">Inicio</span></a></li>
             <li><a href="<?php echo base_url(); ?>recurso/listar">Area</a></li>
             <li><a href="<?php echo base_url(); ?>contacto">Contactenos</a></li>
             <li class="dropdown">
@@ -172,47 +157,10 @@
               </ul>
             </li>
           </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+        </div> <!-- /.navbar-collapse -->
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
-            <!-- Messages: style can be found in dropdown.less-->
-            <li class="dropdown messages-menu">
-              <!-- Menu toggle button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-envelope-o"></i>
-                <span class="label label-success">4</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">You have 4 messages</li>
-                <li>
-                  <!-- inner menu: contains the messages -->
-                  <ul class="menu">
-                    <li><!-- start message -->
-                      <a href="#">
-                        <div class="pull-left">
-                          <!-- User Image -->
-                          <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                        </div>
-                        <!-- Message title and timestamp -->
-                        <h4>
-                          Support Team
-                          <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                        </h4>
-                        <!-- The message -->
-                        <p>Why not buy a new awesome theme?</p>
-                      </a>
-                    </li>
-                    <!-- end message -->
-                  </ul>
-                  <!-- /.menu -->
-                </li>
-                <li class="footer"><a href="#">See All Messages</a></li>
-              </ul>
-            </li>
-            <!-- /.messages-menu -->
-
             <!-- Notifications Menu -->
             <li class="dropdown notifications-menu">
               <!-- Menu toggle button -->
@@ -271,7 +219,7 @@
 		<?php
     	} elseif ($this->session->rol == 'profesor') {
     ?>
-			<nav class="navbar navbar-static-top">
+		<nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -279,78 +227,12 @@
           </button>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+        <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?php echo base_url(); ?>inicio">Inicio<span class="sr-only"></span></a></li>
-            <li><a href="<?php echo base_url(); ?>recurso/listar">Area</a></li>
-            <li><a href="<?php echo base_url(); ?>contacto">Contactenos</a></li>
-          </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-        <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav">
-            <!-- Messages: style can be found in dropdown.less-->
-            <li class="dropdown messages-menu">
-              <!-- Menu toggle button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-envelope-o"></i>
-                <span class="label label-success">4</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">You have 4 messages</li>
-                <li>
-                  <!-- inner menu: contains the messages -->
-                  <ul class="menu">
-                    <li><!-- start message -->
-                      <a href="#">
-                        <div class="pull-left">
-                          <!-- User Image -->
-                          <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                        </div>
-                        <!-- Message title and timestamp -->
-                        <h4>
-                          Support Team
-                          <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                        </h4>
-                        <!-- The message -->
-                        <p>Why not buy a new awesome theme?</p>
-                      </a>
-                    </li>
-                    <!-- end message -->
-                  </ul>
-                  <!-- /.menu -->
-                </li>
-                <li class="footer"><a href="#">See All Messages</a></li>
-              </ul>
-            </li>
-            <!-- /.messages-menu -->
-
-            <!-- Notifications Menu -->
-            <li class="dropdown notifications-menu">
-              <!-- Menu toggle button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-bell-o"></i>
-                <span class="label label-warning">10</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">You have 10 notifications</li>
-                <li>
-                  <!-- Inner Menu: contains the notifications -->
-                  <ul class="menu">
-                    <li><!-- start notification -->
-                      <a href="#">
-                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                      </a>
-                    </li>
-                    <!-- end notification -->
-                  </ul>
-                </li>
-                <li class="footer"><a href="#">View all</a></li>
-              </ul>
-            </li>
-            <!-- User Account Menu -->
-            <li class="dropdown user user-menu">
+            <li><a href="<?php echo base_url(); ?>inicio" alt="Inicio">Inicio</a></li>
+            <li><a href="<?php echo base_url(); ?>recurso/listar" alt="Area">Area</a></li>
+            <li><a href="<?php echo base_url(); ?>contacto" alt="Contactenos">Contactenos</a></li>
+						<li class="dropdown user user-menu">
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
@@ -369,17 +251,16 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                    <a href="#" class="btn btn-primary btn-flat">Perfil</a>
 									</div>
                   <div class="pull-right">
-                    <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-default btn-flat">Cerrar Sesion</a>
+                    <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-danger btn-flat">Cerrar Sesion</a>
                   </div>
                 </li>
               </ul>
             </li>
-      </ul>
-        </div>
-        <!-- /.navbar-custom-menu -->
+        	</ul>
+        </div> <!-- /.navbar-custom-menu -->
       </div>
       <!-- /.container-fluid -->
     </nav>
