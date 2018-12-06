@@ -23,12 +23,25 @@ class Login extends CI_Controller
                 $verEstado["nombreEstadoUsuario"]=strtolower($verEstado["nombreEstadoUsuario"]);
                 if ($verEstado["nombreEstadoUsuario"] != "alta") {
                     $mensaje = '<div class="alert alert-info text-center"><h4>'."El usuario se encuentra en estado ".$verEstado["nombreEstadoUsuario"].'</h4></div>';
-                } else {
-                    $this->cargarSession($existe);
-                    $this->load->view("header", ["title" => "Home"]);
-                    $this->load->view('inicio/home');
-                    $this->load->view("footer");
-                }
+				}else{
+					/** HACER FUNCIONAR LA VISTA INICIO */
+					if($this->session->rol == 'administrador de usuarios') {
+						$this->cargarSession($existe);
+						$this->load->view("header", ["title" => "Home"]);
+						$this->load->view('usuario/index');
+						$this->load->view("footer");
+					}elseif($this->session->rol == 'administrador de recursos'){
+						$this->cargarSession($existe);
+						$this->load->view("header", ["title" => "Home"]);
+						$this->load->view('Recurso/index');
+						$this->load->view("footer");
+					}else{
+						$this->cargarSession($existe);
+                    	$this->load->view("header", ["title" => "Home"]);
+                	    $this->load->view('inicio/home');
+						$this->load->view("footer");
+					}
+				}
             } else {
                 $mensaje = '<div class="alert alert-danger text-center"><h4>'."Usuario o Contraseña incorrectos".'</h4></div>';
             }
@@ -40,19 +53,17 @@ class Login extends CI_Controller
                 $this->load->view('logeo/login');
             }
             $this->load->view("footer");
-        }
-       
-        
-    }
+        }  
+	}
+	
     public function cerrarSession()
     {
         $this->session->sess_destroy();
         redirect('login');
-    }
-
+	}
+	
     private function cargarSession($user)
     {
-        
         $rol = $this->Tienerol_model->get_tienerol($this->input->post('nombreUsuario'));
         $permisos = array();
         $petPermisos = $this->Contienepermiso_model->get_all_contienepermiso(array("nombreRol" => $rol["nombreRol"]));
@@ -73,6 +84,4 @@ class Login extends CI_Controller
         );
          $this->session->set_userdata($datos);
     }
-    
-   
 }
