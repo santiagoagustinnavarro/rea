@@ -89,7 +89,7 @@ class Recurso extends CI_Controller
         $config['num_tag_open'] = '<li class="page-item">';
         $config['num_tag_close'] = '</li>';
         $config["base_url"] = base_url()."recurso/listar";//Lugar en el que se cargaran los recursos
-        $config["per_page"] = 2;//Numero de elementos por pagina
+        $config["per_page"] = 9;//Numero de elementos por pagina
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;//Si el numero en la uri(3ra posicion) no existe por defecto sera el 0
         $config["total_rows"] = $this->Recurso_model->row_count($filtros);//LLamamos al modelo que nos brindara el total de filas
         $config["uri_segment"] = 3;//Ubicacion de la uri en la cual aparecera el numero de pagina
@@ -98,7 +98,7 @@ class Recurso extends CI_Controller
         $data["links"] = $this->pagination->create_links();//Generamos los links de las paginaciones
         $data["categoria"]=$this->Categoria_model->get_all_categoria();//Para el select de categorias
         $data["niveles"]=$this->Nivel_model->get_all_nivel();//Para el select de niveles
-        $this->load->view('header', ["title"=>'Recursos',"scripts"=>["busquedaRecurso.js"],"styles"=>["responsive.css","ionicons.css"]]);
+        $this->load->view('header', ["title"=>'Recursos',"scripts"=>["busquedaRecurso.js","starrr.js"],"styles"=>["styles.css","responsive.css"]]);
         $this->load->view('inicio/area',$data);
         $this->load->view('footer');
     }

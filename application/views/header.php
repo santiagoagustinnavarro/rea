@@ -3,25 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="icon" type="image/png" href="<?php echo base_url()?>assets/estilo/imagenes/favicon.png" sizes="16x25"/>
+	<link rel="icon" type="image/png" href="<?php echo base_url();?>assets/estilo/imagenes/favicon.png" sizes="16x25"/>
 	<title>
 		<?php echo $title; ?>
 	</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="<?php echo base_url()?>assets/estilo/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/estilo/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo base_url()?>assets/estilo/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/estilo/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="<?php echo base_url()?>assets/estilo/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/estilo/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo base_url()?>assets/estilo/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/estilo/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<?php echo base_url()?>assets/estilo/dist/css/skins/_all-skins.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/estilo/dist/css/skins/skin-blue.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/estilo/css/estilo.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/estilo/dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/estilo/dist/css/skins/skin-blue.min.css">
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/estilo/css/estilo.css">
+  <script src="<?php echo base_url();?>assets/estilo/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="<?php echo base_url();?>assets/estilo/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="<?php echo base_url();?>assets/estilo/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="<?php echo base_url();?>assets/estilo/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo base_url();?>assets/estilo/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo base_url();?>assets/estilo/dist/js/demo.js"></script>
 	<?php
 	if (isset($scripts)) { //Invocacion de scripts propios
     foreach ($scripts as $unScript) {
@@ -43,7 +55,7 @@
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
-<div class="wrapper">
+
   <header class="main-header">
 	<?php
 		if (!$this->session->iniciada) {
@@ -69,7 +81,7 @@
         	</ul>
         </div>
         <!-- /.navbar-custom-menu -->
-      </div>
+    </div>
       <!-- /.container-fluid -->
     </nav>
 		<?php
@@ -107,14 +119,14 @@
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <img src="<?php echo base_url()?>assets/estilo/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs">Nombre Usuario</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
                 <li class="user-header">
-                  <img src="<?php echo base_url()?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 									<p>Nombre Usuario
                   	<small>Rol Usuario</small>
                 	</p>
@@ -128,18 +140,18 @@
                     <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-default btn-flat">Cerrar Sesion</a>
                   </div>
                 </li>
-              </ul>
+              
             </li>
           </ul>
         </div>
         <!-- /.navbar-custom-menu -->
-      </div>
+      
       <!-- /.container-fluid -->
     </nav>
 		<?php
 			} elseif ($this->session->rol == 'administrador de recursos') {
     ?>
-		nav class="navbar navbar-static-top">
+		<nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -166,14 +178,14 @@
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <img src="<?php echo base_url()?>assets/estilo/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs">Nombre Usuario</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
                 <li class="user-header">
-                  <img src="<?php echo base_url()?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 									<p>Nombre Usuario
                   	<small>Rol Usuario</small>
                 	</p>
@@ -187,16 +199,13 @@
                     <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-default btn-flat">Cerrar Sesion</a>
                   </div>
                 </li>
-              </ul>
+              
             </li>
           </ul>
         </div>
         <!-- /.navbar-custom-menu -->
       </div>
-      <!-- /.container-fluid -->
-    </nav>
 		<?php
-      } elseif ($this->session->rol == 'profesor') {
     ?>
 			<nav class="navbar navbar-static-top">
       <div class="container">
@@ -240,7 +249,7 @@
                       <a href="#">
                         <div class="pull-left">
                           <!-- User Image -->
-                          <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                          <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                         </div>
                         <!-- Message title and timestamp -->
                         <h4>
@@ -288,14 +297,14 @@
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <img src="<?php echo base_url()?>assets/estilo/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs">Nombre Usuario</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
                 <li class="user-header">
-                  <img src="<?php echo base_url()?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 									<p>Nombre Usuario
                   	<small>Rol Usuario</small>
                 	</p>
@@ -311,7 +320,7 @@
                 </li>
               </ul>
             </li>
-          </ul>
+          
         </div>
         <!-- /.navbar-custom-menu -->
       </div>
@@ -319,20 +328,10 @@
     </nav>
 	<?php
   	}
-	?>
+  ?>
   </header>
   <!-- Full Width Column -->
   <div class="content-wrapper">
       <!-- Main content -->
       <section class="content">
-<script src="<?php echo base_url()?>assets/estilo/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="<?php echo base_url()?>assets/estilo/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="<?php echo base_url()?>assets/estilo/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="<?php echo base_url()?>assets/estilo//fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo base_url()?>assets/estilo/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url()?>assets/estilo/dist/js/demo.js"></script>
+
