@@ -9,18 +9,27 @@ class Usuario_model extends CI_Model
     public function __construct()
         {
         parent::__construct();
+       
     }
-    
+    function get_all_usuario_count()
+    {
+        $this->db->join("tenerestadousuario","tenerestadousuario.nombreUsuario=usuario.nombreUsuario");
+        $this->db->join("tienerol","tienerol.nombreUsuario=usuario.nombreUsuario");
+        $this->db->get_where('usuario',array('tenerestadousuario.fechaFin'=>null,'tienerol.fechaFin'=>null));
+        return $this->db->count_all_results();
+    }
     /*
      * Get usuario by nombreUsuario
      */
     public function get_usuario($nombreUsuario, $params=array())
-    {
+    {$this->db->join("tenerestadousuario","tenerestadousuario.nombreUsuario=usuario.nombreUsuario");
+        $this->db->join("tienerol","tienerol.nombreUsuario=usuario.nombreUsuario");
+        $this->db->order_by('usuario.nombreUsuario', 'desc');
         if (count($params)>0) {
-            $params['nombreUsuario']=$nombreUsuario;
+            $params['usuario.nombreUsuario']=$nombreUsuario;
             $user=$this->db->get_where('usuario', $params)->row_array();
         } else {
-            $user= $this->db->get_where('usuario', array('nombreUsuario'=>$nombreUsuario))->row_array();
+            $user= $this->db->get_where('usuario', array('usuario.nombreUsuario'=>$nombreUsuario,'tenerestadousuario.fechaFin'=>null,'tienerol.fechaFin'=>null))->row_array();
            
         }
         return $user;
@@ -29,12 +38,17 @@ class Usuario_model extends CI_Model
     /*
      * Get all usuario
      */
-    public function get_all_usuario()
-    {
-        $this->db->order_by('nombreUsuario', 'desc');
-        return $this->db->get('usuario')->result_array();
+    function get_all_usuario($params = array())
+    {   $this->db->join("tenerestadousuario","tenerestadousuario.nombreUsuario=usuario.nombreUsuario");
+        $this->db->join("tienerol","tienerol.nombreUsuario=usuario.nombreUsuario");
+        $this->db->order_by('usuario.nombreUsuario', 'desc');
+        if(isset($params) && !empty($params))
+        {
+            $this->db->limit($params['limit'], $params['offset']);
+        }
+       return $this->db->get_where('usuario',array('tenerestadousuario.fechaFin'=>null,'tienerol.fechaFin'=>null))->result_array();
+       // return $this->db->get('usuario')->result_array();
     }
-        
     /*
      * function to add new usuario
      */
