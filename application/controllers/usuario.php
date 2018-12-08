@@ -11,20 +11,30 @@ class Usuario extends CI_Controller
         parent::__construct();
         $this->load->helper('url');
         $this->load->library("session");
+        $this->load->helper("form");
+        $this->load->model("EstadoUsuario_model");
+        $this->load->model("TieneRol_model");
+        $this->load->model("TenerEstadoUsuario_model");
+        $this->load->library("pagination");
     }
-    
+
+   
     /*
-     * Lista a los usuarios(Admin usuario)
-     */
+      * Listado de usuarios
+      */
     public function index()
     {
-		$usuario = $this->Usuario_model->get_all_usuario();		
-        $this->load->view("header", ["title" => "Administrar usuarios"]);
-        $this->load->view('usuario/index', ['usuario' => $usuario]);
+        $params['limit'] = RECORDS_PER_PAGE;
+        $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+        $config = $this->config->item('pagination');
+        $config['base_url'] = site_url('usuario/index?');
+        $config['total_rows'] = $this->Usuario_model->get_all_usuario_count();
+        $this->pagination->initialize($config);
+        $data['usuario'] = $this->Usuario_model->get_all_usuario($params);
+        $this->load->view('header', array("title"=>"Lista de"));
+        $this->load->view('usuario/index', $data);
         $this->load->view("footer");
     }
-    
-   
 
     private function verificarToken($nroToken, $nombreUsuario)
     {
@@ -87,47 +97,61 @@ class Usuario extends CI_Controller
     /*
      * Editando a el estado y el rol del usuario
      */
+    /*
+     * Editing a usuario
+     */
     public function edit($nombreUsuario)
     {
         // check if the usuario exists before trying to edit it
         $data['usuario'] = $this->Usuario_model->get_usuario($nombreUsuario);
+        
         if (isset($data['usuario']['nombreUsuario'])) {
-            if (isset($_POST) && count($_POST) > 0) {
-                $estadoActual=$this->input->post('estadoActual');
-                $rolActual=$this->input->post('rolActual');
-                $rolNuevo=$this->input->post('nuevoRol');
-                $estadoNuevo = $this->input->post('nuevoEstado');
-                $datosEstado=['tabla'=>'EstadoUsuario','antiguo'=>$estadoActual,'nuevo'=>$estadoNuevo,'nombreUsuario'=>$nombreUsuario];
-                $datosRol=['tabla'=>'Rol','antiguo'=>$rolActual,'nuevo'=>$rolNuevo,'nombreUsuario'=>$nombreUsuario];
-                $actualizarEstado=$this->actualizar($datosEstado);
-                if (!$actualizarEstado) {
-                    $this->load->view("header", ["title" => "Editar Usuario"]);
-                    $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'<div class="offset-md-4 col-md-4 alert alert-info text-center"><h4>'.'Intente actualizar los datos en unos instantes'.'</h4></div>']);
+            $this->load->library('form_validation');
+            if (!$this->input->post('roles') ||  !$this->input->post('estados')) {
+                $this->form_validation->set_rules('clave', 'Clave', 'required|max_length[70]');
+                $this->form_validation->set_rules('dni', 'Dni', 'integer');
+                $this->form_validation->set_rules('apellido', 'Apellido', 'required|max_length[30]');
+                $this->form_validation->set_rules('nombre', 'Nombre', 'required|max_length[30]');
+                $this->form_validation->set_rules('estudio', 'Estudio', 'required|max_length[50]');
+                $this->form_validation->set_rules('email', 'Email', 'required|max_length[50]|valid_email');
+                if ($this->form_validation->run()) {//Cambiamos datos especificos
+                    $params = array(
+                    'clave' => $this->input->post('clave'),
+                    'dni' => $this->input->post('dni'),
+                    'apellido' => $this->input->post('apellido'),
+                    'nombre' => $this->input->post('nombre'),
+                    'estudio' => $this->input->post('estudio'),
+                    'email' => $this->input->post('email'),
+                    
+                );
+                    $this->Usuario_model->update_usuario($nombreUsuario, $params);
+                    redirect('usuario/index');
+                } else {
+                    $this->load->view('header', array("title"=>"Editar usuario"));
+                    $this->load->view('usuario/edit', $data);
                     $this->load->view("footer");
-                } elseif ($rolActual && $rolNuevo!="") {//Solo actualizaremos el rol si se pudo actualizar el estado para no generar conflictos
-                        $actualizarRol=$this->actualizar($datosRol);
-                        if (!$actualizarEstado) {
-                            $this->load->view("header", ["title" => "Editar Usuario"]);
-                            $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'<div class="offset-md-4 col-md-4 alert alert-info text-center"><h4>'.'Intente actualizar el rol en unos instantes'.'</h4></div>']);
-                            $this->load->view("footer");
-                        }
-                    $this->load->view("header", ["title" => "Editar Usuario"]);
-                    $this->load->view('usuario/edit', ['usuario'=>$data['usuario'],'mensaje'=>'<div class="offset-md-4 col-md-4 alert alert-success text-center"><h4>'.'Datos actualizados'.'</h4></div>']);
-                    $this->load->view("footer");
-                }else{
-                    $this->mailAlta($nombreUsuario,$data["usuario"]["email"]);
-                    redirect("usuario");
                 }
-            } else {
-                $this->load->view("header", ["title" => "Editar Usuario"]);
-                $this->load->view('usuario/edit', ['usuario'=>$data['usuario']]);
-                $this->load->view("footer");
+            } else {//Cambiamos rol y estado
+                
+                $rol=$this->input->post('roles');
+                $estado= $this->input->post('estados');
+                if(strtolower($estado)=="alta"){
+                    if($this->mailAlta($nombreUsuario,$this->input->post('email'))){
+                        ?> <script>alert("enviado");</script><?php
+                    }
+                }
+                $this->TieneRol_model->update_tienerol(array("fechaFin"=>date("Y-m-d")),array("nombreUsuario"=>$nombreUsuario,"fechaFin"=>null));
+                $this->TieneRol_model->add_tienerol(array("fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"nombreUsuario"=>$nombreUsuario,"nombreRol"=>$rol));
+            $this->TenerEstadoUsuario_model->update_tenerEstadoUsuario(array("fechaFin"=>date("Y-m-d")),array("nombreUsuario"=>$nombreUsuario,"fechaFin"=>null));
+            $this->TenerEstadoUsuario_model->add_tenerEstadoUsuario(array("fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"nombreUsuario"=>$nombreUsuario,"nombreEstadoUsuario"=>$estado));    
+            redirect('usuario/index');
             }
         } else {
             show_error('The usuario you are trying to edit does not exist.');
         }
     }
-    private function mailAlta($nombreUsuario,$email){
+    private function mailAlta($nombreUsuario, $email)
+    {
         $config['protocol'] = 'sendmail';
         $config['mailpath'] = "\"D:\\xampp\\sendmail\\sendmail.exe\" -t";
         $config['charset'] = 'iso-8859-1';
@@ -136,9 +160,9 @@ class Usuario extends CI_Controller
         $this->email->from('reanotreply@gmail.com', 'Programacionnet');
         $this->email->subject('Test Email (TEXT)');
         $this->email->to($email);
-        $this->email->message('Bienvenido a la plataforma Rea su usuario ah sido dado de alta ingrese su usario y contraseña en '.base_url().'login ');
+        $this->email->message('Bienvenido por cambio a la plataforma Rea su usuario ah sido dado de alta ingrese su usario y contraseña en '.base_url().'login ');
+        echo "<span class='fa fa-spinner fa-spin'></span>";
         if ($this->email->send()) {
-
             $res=true;
         } else {
             $res=false;
@@ -242,7 +266,6 @@ class Usuario extends CI_Controller
     }
     private function actualizarSesion($datos)
     {
-       
         $_SESSION["nombre"]=$datos["nombre"];
         $_SESSION["apellido"]=$datos["apellido"];
         $_SESSION["domicilio"]=$datos["domicilio"];
@@ -292,6 +315,5 @@ class Usuario extends CI_Controller
          } else {
              show_error('El usuario no existe');
          } */
-	}
-	
+    }
 }

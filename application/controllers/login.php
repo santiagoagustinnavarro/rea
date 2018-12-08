@@ -17,7 +17,7 @@ class Login extends CI_Controller
     public function index()
     {
         if ($this->input->post('nombreUsuario') && $this->input->post('clave')) {
-            $existe = $this->Usuario_model->get_usuario($this->input->post('nombreUsuario'), array("clave" => hash('sha224', $this->input->post('clave'))));
+            $existe = $this->Usuario_model->get_usuario($this->input->post('nombreUsuario'), array("usuario.clave" => hash('sha224', $this->input->post('clave'))));
             if (!is_null($existe)) {
                 $verEstado = $this->TenerEstadoUsuario_model->get_tenerEstadoUsuario($this->input->post('nombreUsuario'));
                 $verEstado["nombreEstadoUsuario"]=strtolower($verEstado["nombreEstadoUsuario"]);
