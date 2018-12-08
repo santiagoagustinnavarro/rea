@@ -13,7 +13,7 @@ body{
 }
 /** Tiene un fonde de color gris claro */
 #desplegable{
-	background:#1e93b1;
+	background:#1489a7;
 	text-align: center;
 }
 /** Tamaño de la letra en mediano, y negrita normal */
@@ -62,7 +62,6 @@ body{
 /** ############################## PIE DE PAGINA ################################### */
 /** flex-end me situa el footer al final de la pagina, width toma el 100% de la pagina*/
 #footer{
-	align-self: flex-end;
 	padding: 1%;
 	background:#1871bb;
 	color: #ffffff;
