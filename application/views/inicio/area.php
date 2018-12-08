@@ -111,7 +111,7 @@
 
 							<div class="blog-info">
 
-								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span><?php if($data->validado){?>Recurso validado<?php }?></span></a></h4>
+								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span></a></h4>
 
 								<ul class="post-footer">
 									
@@ -136,7 +136,7 @@
 
 							<a class="avatar" ><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
 							<div class="blog-info">
-								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span><?php if($data->validado){?>Recurso validado<?php }?></span></a></h4>
+								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span></a></h4>
 								<ul class="post-footer">			
 									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>		
 								</ul>
@@ -157,7 +157,7 @@
 							<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
 							<a class="avatar" ><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
 							<div class="blog-info">
-								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span><?php if($data->validado){?>Recurso validado<?php }?></span></a></h4>
+								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span></a></h4>
 								<ul class="post-footer">				
 									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>
 								</ul>
@@ -174,7 +174,7 @@
 							<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
 							<a class="avatar" ><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
 							<div class="blog-info">
-								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span><?php if($data->validado){?>Recurso validado<?php }?></span></a></h4>
+								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span></a></h4>
 								<ul class="post-footer">
 									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>	
 								</ul>
@@ -192,7 +192,7 @@
 							<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
 							<a class="avatar" ><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
 							<div class="blog-info">
-								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span><?php if($data->validado){?>Recurso validado<?php }?></span><span>Recurso validado</span></a></h4>
+								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span><span>Recurso validado</span></a></h4>
 								<ul class="post-footer">
 									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>
 								</ul>
