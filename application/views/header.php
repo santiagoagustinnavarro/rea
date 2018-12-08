@@ -66,7 +66,6 @@
             <i class="fa fa-bars"></i>
           </button>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="<?php echo base_url(); ?>inicio" alt="Inicio">Inicio</a></li>
@@ -78,31 +77,25 @@
 							</a>
 						</li>
         	</ul>
-        </div>
-        <!-- /.navbar-custom-menu -->
-    </div>
-      <!-- /.container-fluid -->
+        </div> <!-- /.navbar-custom-menu -->
+    	</div> <!-- /.container -->
     </nav>
 		<?php
 			} elseif ($this->session->rol == 'administrador de usuarios') {
     ?>
 		<nav class="navbar navbar-static-top">
-      <div class="container">
+			<div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?php echo base_url(); ?>inicio" alt="Inicio">Inicio</a></li>
+						<li><a href="<?php echo base_url()."usuario"?>" alt="Inicio">Inicio</a></li>
             <li><a href="<?php echo base_url(); ?>recurso/listar" alt="Area">Area</a></li>
             <li><a href="<?php echo base_url(); ?>contacto" alt="Contactenos">Contactenos</a></li>
-        	</ul>
-        </div> <!-- /.navbar-collapse -->
-            <!-- User Account Menu -->
-            <li class="dropdown user user-menu">
+						<li class="dropdown user user-menu">
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
@@ -112,80 +105,50 @@
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
-                <li class="user-header">
+								<li class="user-header">
                   <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 									<p>Nombre Usuario
-                  	<small>Rol Usuario</small>
+                  	<small>Rol Administrador de Usuarios</small>
                 	</p>
-								</li>
+								</li>  
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                    <a href="<?php echo base_url()."usuario/editarPerfil"?>" class="btn btn-primary btn-flat">Perfil</a>
 									</div>
                   <div class="pull-right">
                     <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-danger btn-flat">Cerrar Sesion</a>
                   </div>
                 </li>
+              </ul>
             </li>
-          </ul>
-        </div>
-        <!-- /.navbar-custom-menu -->
-      <!-- /.container-fluid -->
-    </nav>
+        	</ul>
+        </div> <!-- /.navbar-custom-menu -->
+      </div> <!-- /.container -->
+  	</nav><!-- /.navbar-custom-menu -->    
 		<?php
 			} elseif ($this->session->rol == 'administrador de recursos') {
     ?>
-	<nav class="navbar navbar-static-top">
-      <div class="container">
+		<nav class="navbar navbar-static-top">
+		<div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?php echo base_url(); ?>inicio">Inicio</span></a></li>
-            <li><a href="<?php echo base_url(); ?>recurso/listar">Area</a></li>
-            <li><a href="<?php echo base_url(); ?>contacto">Contactenos</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Añadir Categoria <span class="caret"></span></a>
-              <ul class="dropdown-menu" id="desplegable" role="menu">
-                <li><a href="#">Agregar Categoria</a></li>
-                <li><a href="#">Agregar Tema</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div> <!-- /.navbar-collapse -->
-        <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav">
-            <!-- Notifications Menu -->
-            <li class="dropdown notifications-menu">
-              <!-- Menu toggle button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-bell-o"></i>
-                <span class="label label-warning">10</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">You have 10 notifications</li>
-                <li>
-                  <!-- Inner Menu: contains the notifications -->
-                  <ul class="menu">
-                    <li><!-- start notification -->
-                      <a href="#">
-                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                      </a>
-                    </li>
-                    <!-- end notification -->
-                  </ul>
-                </li>
-                <li class="footer"><a href="#">View all</a></li>
-              </ul>
-            </li>
-            <!-- User Account Menu -->
-            <li class="dropdown user user-menu">
+            <li><a href="<?php echo base_url()."recurso"?>" alt="Inicio">Inicio</a></li>
+            <li><a href="<?php echo base_url(); ?>recurso/listar" alt="Area">Area</a></li>
+            <li><a href="<?php echo base_url(); ?>contacto" alt="Contactenos">Contactenos</a></li>
+						<li class="dropdown">
+        			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Agregar Seccion <span class="caret"></span></a>
+        			<ul class="dropdown-menu" id="desplegable">
+          			<li><a href="#">Agregar Categoria</a></li>
+          			<li><a href="#">Agregar Tema</a></li>
+        			</ul>
+      			</li>
+						<li class="dropdown user user-menu">
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
@@ -198,24 +161,24 @@
                 <li class="user-header">
                   <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 									<p>Nombre Usuario
-                  	<small>Rol Usuario</small>
+                  	<small>Rol Administrador de Recursos</small>
                 	</p>
 								</li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                    <a href="<?php echo base_url()."usuario/editarPerfil"?>" class="btn btn-primary btn-flat">Perfil</a>
 									</div>
                   <div class="pull-right">
-                    <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-default btn-flat">Cerrar Sesion</a>
+                    <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-danger btn-flat">Cerrar Sesion</a>
                   </div>
                 </li>
               </ul>
             </li>
-      </ul>
-        </div>
-        <!-- /.navbar-custom-menu -->
-      </div>
+        	</ul>
+        </div> <!-- /.navbar-custom-menu -->
+      </div> <!-- /.container -->
+  	</nav><!-- /.navbar-custom-menu -->
 		<?php
     	} elseif ($this->session->rol == 'profesor') {
     ?>
@@ -226,7 +189,6 @@
             <i class="fa fa-bars"></i>
           </button>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="<?php echo base_url(); ?>inicio" alt="Inicio">Inicio</a></li>
@@ -245,13 +207,13 @@
                 <li class="user-header">
                   <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 									<p>Nombre Usuario
-                  	<small>Rol Usuario</small>
+                  	<small>Rol Profesor</small>
                 	</p>
 								</li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="#" class="btn btn-primary btn-flat">Perfil</a>
+                    <a href="<?php echo base_url()."usuario/editarPerfil"?>" class="btn btn-primary btn-flat">Perfil</a>
 									</div>
                   <div class="pull-right">
                     <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-danger btn-flat">Cerrar Sesion</a>
@@ -261,8 +223,7 @@
             </li>
         	</ul>
         </div> <!-- /.navbar-custom-menu -->
-      </div>
-      <!-- /.container-fluid -->
+      </div> <!-- /.container -->
     </nav>
 	<?php
   	}

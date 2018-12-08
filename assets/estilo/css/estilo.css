@@ -14,6 +14,7 @@ body{
 /** Tiene un fonde de color gris claro */
 #desplegable{
 	background:#1e93b1;
+	text-align: center;
 }
 /** Tamaño de la letra en mediano, y negrita normal */
 #desplegable a{
