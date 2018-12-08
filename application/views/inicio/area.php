@@ -3,7 +3,7 @@
 	<br />
 	<h1 class="titulo text-secondary">Recursos</h1>
 	<div class="row">
-		<div class="col-lg-3">
+		<div class="col-md-3">
 			<!-- Aca comienza las busquedas -->
 			<div class="col-my-3">
 				<!-- Search Widget -->
@@ -55,7 +55,7 @@
 						<h5 class="card-header text-center">Año de Enseñanza</h5>
 						<div class="card-body">
 							<div class="row">
-								<div class="col-lg-6">
+								<div class="col-md-6">
 									<ul class="list-unstyled mb-0 text-center">
 										<?php
                                      		foreach ($niveles as $unNivel) {
@@ -74,9 +74,9 @@
 
 				</div> <!-- Cierra card md-3 -->
 			</div> <!-- cierra el col-my-3 -->
-		</div> <!-- cierra el col-lg-3 -->
+		</div> <!-- cierra el col-md-3 -->
 	
-	<div class="col-lg-9">
+	<div class="col-md-9">
 		<?php
          if (count($results)>0) {
              generarFilas($results, $links, 3);
@@ -101,7 +101,7 @@
      foreach ($results as $data) {
          if (count($results)==1) {//Solo tiene un elemento ?>
 		<div class="row">
-			<div class="col-lg-<?php echo 12/$porFila?> area">
+			<div class="col-md-<?php echo 12/$porFila?> area">
 			<div class="card h-100">
 						<div class="single-post post-style-1">
 
@@ -128,7 +128,7 @@
 		<?php
          } else {
              if ($i%$porFila==0 && $i!=1 && $i!=count($results)) {//Ultimo elemento de la fila?>
-		<div class="col-lg-<?php echo 12/$porFila?> area">
+		<div class="col-md-<?php echo 12/$porFila?> area">
 		<div class="card h-100">
 						<div class="single-post post-style-1">
 
@@ -151,7 +151,7 @@
              } elseif ($i==1) {//Primer elemento
             ?>
 		<div class="row">
-			<div class="col-lg-<?php echo 12/$porFila?> area">
+			<div class="col-md-<?php echo 12/$porFila?> area">
 			<div class="card h-100">
 						<div class="single-post post-style-1">
 							<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
@@ -168,7 +168,7 @@
              } elseif ($i==count($results)) {//Ultimo elemento
             ?>
 
-			<div class="col-lg-<?php echo 12/$porFila?> area">
+			<div class="col-md-<?php echo 12/$porFila?> area">
 			<div class="card h-100">
 						<div class="single-post post-style-1">
 							<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
@@ -186,7 +186,7 @@
 		<?php
              } else {
                  ?>
-		<div class="col-lg-<?php echo 12/$porFila?> area">
+		<div class="col-md-<?php echo 12/$porFila?> area">
 			<div class="card h-100">
 						<div class="single-post post-style-1">
 							<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
@@ -217,12 +217,12 @@
  
  <!--Div container -->
  </section>
-</div><!--col-lg-9 -->
+</div><!--col-md-9 -->
  
  </div><!--Div row -->
  </div><!--Div container-fluid -->
 
-	<!-- cierra col-lg-9 -->
+	<!-- cierra col-md-9 -->
 	<!-- Pagination -->
 
 
