@@ -36,9 +36,11 @@ body{
 	position: relative;
 	left: 3%;
 }
+/** Se le aplica un margen a la parte superior de 6% */
 #contacto{
 	margin-top:6%;
 }
+/** Se le aplica un margen superior 5% y un relleno de 3% y color de fondo blanco */
 #registro{
 	margin-top:5%;
 	padding: 3%;

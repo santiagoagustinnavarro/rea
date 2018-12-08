@@ -1,67 +1,78 @@
 <?php
 	if ($this->session->iniciada) {
 ?>
-<div class="container py-4">
-	<?php
-		if(isset($mensaje)){
-			echo $mensaje;
-		}	
-	?>
-	<div class="container-fluid">
-  		<form id="formulario" method="post" action="editarPerfil" onsubmit="return validarPerfil();">
+<div class="box box-primary">
+	<br/>
+	<div class="col-md-1">
+		<a href="<?php echo base_url()."usuario/eliminarCuenta"?>">
+			<button type="button" class="btn btn-danger">Eliminar Cuenta</button>
+		</a>
+	</div>
+	<div class="container">
+		<?php
+			if(isset($mensaje)){
+				echo $mensaje;
+			}	
+		?>
+  		<form id="formulario" method="post" action="editarPerfil" value="<?php echo $_SESSION["nombreUsuario"];?>" enctype="multipart/form-data" onsubmit="return validarPerfil();">
 		  	<h1>Editar Perfil</h1>
-			<div id="transparencia" class="row">
+			<div class="row">
+				<div class="col-md-6">
+					<h2>Foto de Perfil</h2>
+					<br/>
+					<div class="form-group">
+						<div class="form-control">
+							<input type="file" name="foto" id="foto">
+						</div>
+					</div>
+					<?php  
+       					if ($_SESSION["foto"]=="") { ?>
+          					<img style="border:2px solid #eaeaea;border-radius:50%;" src="<?php echo base_url()?>assets/estilo/imagenes/user-default.png" width="128">
+       				<?php
+       					}else { 
+       				?>
+	    					<img style="border:2px solid #eaeaea;border-radius:50%;" src="<?php echo base_url()?>assets/estilo/imagenes/fotoPerfil/<?php echo $_SESSION['foto']; ?>" width="128">
+       				<?php
+          			}
+       				?>
+					<h2>Actualizar Contraseña</h2>
+					<br/>
+					<div class="form-group">
+  						<input type="password" class="form-control" id="clave" placeholder="Contraseña Antigua" name="clave" minlength="8" maxlength="15">
+					</div>
+					<div class="form-group">
+      					<input type="password" class="form-control" id="clave1" placeholder="Nueva Contraseña" name="clave1" minlength="8" maxlength="15">
+					</div>
+					<div class="form-group">
+    					<input type="password" class="form-control" id="clave2" placeholder="Confirmar Contraseña" name="clave2" minlength="8" maxlength="15">
+					</div>
+				</div>
 				<div class="col-md-6">
 					<h2>Datos Personales</h2>
-		  			</br>
-					<div class="form-group">
-  	  	  				<input type="file" id="imagen" name="imagen">
-					</div>
+		  			<br/>
 			  		<div class="form-group">
-						<label class="label" for="nombreUsuario">Nombre de Usuario</label>
   	  	  				<input disabled type="text" class="form-control" id="nombreUsuario" placeholder="Nombre Usuario" name="nombreUsuario" minlength="6" maxlength="15" 
 						value="<?php echo $_SESSION["nombreUsuario"];?>" required >		
 					</div>
     				<div class="form-group">
-						<label class="label" for="nombre">Nombre</label>
 						<input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" minlength="3" maxlength="25"
 						value="<?php echo $_SESSION["nombre"];?>" required>
 					</div>
 					<div class="form-group">
-						<label class="label" for="apellido">Apellido</label>
 						<input type="text" class="form-control" id="apellido" placeholder="Apellido" name="apellido" minlength="4" maxlength="30"
 						value="<?php echo $_SESSION["apellido"];?>" required>
 					</div>
 					<div class="form-group">
-						<label class="label" for="estudio">Terciario o Universidad</label>
 						<input type="text" class="form-control" id="estudio" placeholder="Terciario o Universidad" minlength="6" maxlength="35"
 						value="<?php echo $_SESSION["estudio"];?>" name="estudio">
 					</div>
 					<div class="form-group">
-						<label class="label" for="dni">Numero de Documento</label>
 						<input type="text" class="form-control" id="dni" placeholder="Numero de Documento" minlength="7" maxlength="12"
 						value="<?php echo $_SESSION["dni"];?>" name="dni">
 					</div>
 					<div class="form-group">
-						<label class="label" for="email">Correo Electronico</label>
-						<input type="email" class="form-control" id="email" placeholder="Correo@ejemplo.com" name="email" minlength="10" maxlength="40"
+						<input type="email" class="form-control" id="email" placeholder="Correo Electronico" name="email" minlength="10" maxlength="40"
 						value="<?php echo $_SESSION["email"];?>" required>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<h2>Actualizar Contraseña</h2>
-					</br>
-					<div class="form-group">
-						<label class="label" for="clave">Contraseña Antigua</label>
-  						<input type="password" class="form-control" id="clave" placeholder="Ingrese Contraseña" name="clave" minlength="8" maxlength="15">
-					</div>
-					<div class="form-group">
-						<label class="label" for="clave1">Nueva Contraseña</label>
-      					<input type="password" class="form-control" id="clave1" placeholder="Nueva Contraseña" name="clave1" minlength="8" maxlength="15">
-					</div>
-					<div class="form-group">
-						<label class="label" for="clave">Confirmar Contraseña</label>
-    					<input type="password" class="form-control" id="clave2" placeholder="Reingrese Contraseña" name="clave2" minlength="8" maxlength="15">
 					</div>
 				</div>
 				<div class="col-md-12">
