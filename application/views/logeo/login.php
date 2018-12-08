@@ -22,7 +22,7 @@
         	<span class="glyphicon glyphicon-user form-control-feedback"></span>
       	</div>
       	<div class="form-group has-feedback">
-		  <input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña" minlength="8" maxlength="15">
+		    <input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña" minlength="8" maxlength="15">
         	<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 		</div>
 		<div class="form-group">
