@@ -53,8 +53,8 @@ class Usuario extends CI_Controller
                 'dni' => $this->input->post('dni'),
                 'apellido' => $this->input->post('apellido'),
                 'nombre' => $this->input->post('nombre'),
-                'domicilio' => $this->input->post('domicilio'),
-                'email' => $this->input->post('email'),
+                'estudio' => $this->input->post('estudio'),
+				'email' => $this->input->post('email'),
                 'nombreUsuario' => $this->input->post('nombreUsuario'),
             );
             $insercion = $this->Usuario_model->add_usuario($params);
@@ -204,7 +204,8 @@ class Usuario extends CI_Controller
             $apellido=$this->input->post("apellido");
             $domicilio=$this->input->post("domicilio");
             $dni=$this->input->post("dni");
-            $email=$this->input->post("email");
+			$email=$this->input->post("email");
+			$foto=$this->input->post("foto");
             $clave=$this->input->post("clave");
             $claveNueva=$this->input->post("clave1");
             $claveNuevaRep=$this->input->post("clave2");
@@ -245,7 +246,8 @@ class Usuario extends CI_Controller
         $_SESSION["nombre"]=$datos["nombre"];
         $_SESSION["apellido"]=$datos["apellido"];
         $_SESSION["domicilio"]=$datos["domicilio"];
-        $_SESSION["dni"]=$datos["dni"];
+		$_SESSION["dni"]=$datos["dni"];
+		$_SESSION["foto"]=$datos["foto"];
         $_SESSION["email"]=$datos["email"];
         $_SESSION["clave"]=$datos["clave"];
     }

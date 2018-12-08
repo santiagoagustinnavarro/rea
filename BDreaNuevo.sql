@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `nombre` VARCHAR(30) NOT NULL,
   `estudio` VARCHAR(50) NOT NULL,
   `email` VARCHAR(50) NOT NULL,
+	`foto` VARCHAR(30),
   PRIMARY KEY (`nombreUsuario`))
 ENGINE = InnoDB;
 
