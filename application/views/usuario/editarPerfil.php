@@ -27,11 +27,11 @@
 					</div>
 					<?php  
        					if ($_SESSION["foto"]=="") { ?>
-          					<img style="border:2px solid #eaeaea;border-radius:50%;" src="<?php echo base_url()?>assets/estilo/imagenes/user-default.png" width="128">
+          					<img style="border:2px solid #eaeaea;border-radius:50%;" src="<?php echo base_url()?>assets/upload/fotoPerfil/user-default.png" width="128">
        				<?php
        					}else { 
        				?>
-	    					<img style="border:2px solid #eaeaea;border-radius:50%;" src="<?php echo base_url()?>assets/estilo/imagenes/fotoPerfil/<?php echo $_SESSION['foto']; ?>" width="128">
+	    				<img style="border:2px solid #eaeaea;border-radius:50%;" src="<?php echo base_url()?>assets/upload/fotoPerfil/<?php echo $_SESSION['foto']; ?>" width="128">
        				<?php
           			}
        				?>
@@ -87,7 +87,7 @@
 						</div>
 						<div class="form-group col-md-2">
 							<a>
-								<button type="reset" class="btn btn-info">Limpiar</button>
+								<button type="reset" class="btn btn-primary">Limpiar</button>
 							</a>
 						</div>
 					</div>	
