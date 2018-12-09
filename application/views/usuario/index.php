@@ -2,7 +2,6 @@
 <table class="table table-striped table-bordered">
     <tr>
 		<th>NombreUsuario</th>
-	
 		<th>Dni</th>
 		<th>Apellido</th>
 		<th>Nombre</th>
@@ -42,4 +41,9 @@
 </table>
 <div class="pull-right">
     <?php echo $this->pagination->create_links(); ?>    
-	</div><?php }else{echo "no tiene permisos";}?>
+</div>
+	<?php 
+	}else{
+		echo "no tiene permisos";
+	}
+	?>

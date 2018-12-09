@@ -15,8 +15,8 @@ class Usuario_model extends CI_Model
     {
         $this->db->join("tenerestadousuario","tenerestadousuario.nombreUsuario=usuario.nombreUsuario");
         $this->db->join("tienerol","tienerol.nombreUsuario=usuario.nombreUsuario");
-        $this->db->get_where('usuario',array('tenerestadousuario.fechaFin'=>null,'tienerol.fechaFin'=>null));
-        return $this->db->count_all_results();
+        $results=$this->db->get_where('usuario',array('tenerestadousuario.fechaFin'=>null,'tienerol.fechaFin'=>null))->result_array();; 
+        return count($results);
     }
     /*
      * Get usuario by nombreUsuario
