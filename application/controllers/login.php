@@ -25,16 +25,15 @@ class Login extends CI_Controller
                     $mensaje = '<div class="alert alert-info text-center"><h4>'."El usuario se encuentra en estado ".$verEstado["nombreEstadoUsuario"].'</h4></div>';
 				}else{
                     $this->cargarSession($existe);
+
 					/** HACER FUNCIONAR LA VISTA INICIO */
 					if(strtolower($this->session->rol) == 'administrador de usuarios') {
 						redirect('usuario/index');
-					}elseif($this->session->rol == 'administrador de recursos'){
-						
+					}elseif(strtolower($this->session->rol) == 'administrador de recursos'){
 						$this->load->view("header", ["title" => "Home"]);
 						$this->load->view('Recurso/index');
-						$this->load->view("footer");
+                        $this->load->view("footer");
 					}else{
-						
                     	$this->load->view("header", ["title" => "Home"]);
                 	    $this->load->view('inicio/home');
 						$this->load->view("footer");
@@ -42,14 +41,14 @@ class Login extends CI_Controller
 				}
             } else {
                 $mensaje = '<div class="alert alert-danger text-center"><h4>'."Usuario o Contraseña incorrectos".'</h4></div>';
+                $this->load->view("header",["title"=>"Login"]);
+                $this->load->view('logeo/login',["mensaje" => $mensaje]);
+                $this->load->view("footer");
+
             }
         } else {
             $this->load->view("header", ["title" => "Login"]);
-            if (isset($mensaje)) {
-                $this->load->view('logeo/login',["mensaje" => $mensaje]);
-            }else{
-                $this->load->view('logeo/login');
-            }
+            $this->load->view('logeo/login');
             $this->load->view("footer");
         }  
 	}
