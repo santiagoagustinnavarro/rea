@@ -1,7 +1,4 @@
-<div class="pull-right">
-	<a href="<?php echo site_url('usuario/edit'); ?>" class="btn btn-success">Add</a> 
-</div>
-
+<?php if(strtolower($this->session->rol)=="administrador de usuarios"){?>
 <table class="table table-striped table-bordered">
     <tr>
 		<th>NombreUsuario</th>
@@ -45,4 +42,4 @@
 </table>
 <div class="pull-right">
     <?php echo $this->pagination->create_links(); ?>    
-</div>
+	</div><?php }else{echo "no tiene permisos";}?>
