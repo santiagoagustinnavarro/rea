@@ -28,11 +28,10 @@ class Login extends CI_Controller
 
 					/** HACER FUNCIONAR LA VISTA INICIO */
 					if(strtolower($this->session->rol) == 'administrador de usuarios') {
-						redirect('usuario/index');
+						redirect('Usuario/index');
 					}elseif(strtolower($this->session->rol) == 'administrador de recursos'){
-						$this->load->view("header", ["title" => "Home"]);
-						$this->load->view('Recurso/index');
-                        $this->load->view("footer");
+						
+						redirect('Recurso/index');
 					}else{
                     	$this->load->view("header", ["title" => "Home"]);
                 	    $this->load->view('inicio/home');
