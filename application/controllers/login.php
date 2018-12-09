@@ -76,7 +76,8 @@ class Login extends CI_Controller
         'clave'=>$this->input->post('clave'),
         'permisos'=>$permisos,
         'rol'=>strtolower($rol['nombreRol']),
-        'iniciada'=>true
+        'iniciada'=>true,
+        'foto'=>$user["foto"]
         );
          $this->session->set_userdata($datos);
     }

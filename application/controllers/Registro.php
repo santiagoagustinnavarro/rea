@@ -11,7 +11,7 @@ class Registro extends CI_Controller{
                 'dni' => $this->input->post('dni'),
                 'apellido' => $this->input->post('apellido'),
                 'nombre' => $this->input->post('nombre'),
-                'domicilio' => $this->input->post('domicilio'),
+                'estudio' => $this->input->post('estudio'),
                 'email' => $this->input->post('email'),
                 'nombreUsuario' => $this->input->post('nombreUsuario'),
             );

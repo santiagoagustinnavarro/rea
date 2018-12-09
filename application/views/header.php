@@ -201,13 +201,13 @@
                 <!-- The user image in the navbar-->
                 <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">Nombre Usuario</span>
+                <span class="hidden-xs"><?php echo $this->session->nombreUsuario;?></span>
               </a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu dropdown-menu-right">
                 <!-- The user image in the menu -->
                 <li class="user-header">
                   <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-									<p>Nombre Usuario
+									<p><?php echo $this->session->nombreUsuario;?>
                   	<small>Rol Profesor</small>
                 	</p>
 								</li>
