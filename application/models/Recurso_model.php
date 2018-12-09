@@ -10,28 +10,35 @@ class Recurso_model extends CI_Model
     public function __construct()
     {
         parent::__construct();
+        $this->load->library("session");
+        $this->load->library("pagination");
     }
     
-    /*
-     * Get recurso by nombre
-     */
-    public function get_recurso($idRecurso)
-    {
-        return $this->db->get_where('recurso', array('nombre'=>$nombre))->row_array();
+    function get_recurso($idRecurso)
+    { $this->db->join("tenerestadorecurso","tenerestadorecurso.idRecurso=recurso.idRecurso");
+      
+        $this->db->join("usuario","usuario.nombreUsuario=recurso.nombreUsuario");
+        return $this->db->get_where('recurso',array('recurso.idRecurso'=>$idRecurso))->row_array();
     }
+    
         
     /*
      * Get all recurso
      */
     public function get_all_recurso($filters="")
     {
-        $this->db->join('archivo', 'archivo.idRecurso = recurso.idRecurso');
-        if ($filters!="") {
-            $this->db->where($filters);
-        }
-        $this->db->order_by('recurso.idrecurso', 'desc');
-        $recursos=$this->db->get('recurso')->result_array();
-        return $recursos;
+        $this->db->join("tenerestadorecurso","tenerestadorecurso.idRecurso=recurso.idRecurso");
+      
+        $this->db->join("usuario","usuario.nombreUsuario=recurso.nombreUsuario");
+        $results=$this->db->get_where('recurso',array('tenerestadorecurso.fechaFin'=>null))->result_array();; 
+      
+        return $results;
+    }
+    function get_all_recurso_count()
+    {$this->db->join("usuario","usuario.nombreUsuario=recurso.nombreUsuario");
+        $this->db->join("tenerestadorecurso","tenerestadorecurso.idRecurso=recurso.idRecurso");
+        $results=$this->db->get_where('recurso',array('tenerestadorecurso.fechaFin'=>null))->result_array();; 
+        return count($results);
     }
     public function row_count($filtros="")
     {       $this->db->distinct(); 
