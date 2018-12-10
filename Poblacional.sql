@@ -119,10 +119,10 @@ INSERT INTO `tenercategoria`(`nombreTema`,`nombreCategoria`) VALUES
 -- -----------------------------------------------------
 -- Insercion en Recurso`
 -- -----------------------------------------------------
---INSERT INTO `recurso`(`idRecurso`,`titulo`,`descripcion`,`nombreUsuario`,`nombreTema`) VALUES 
---(1,"Programando usando Mysql","Enseñanza de metodos educativos para programar BD en el lenguaje mysql","profesor","Mysql"),
---(2,"Programando en Java","Enseñanza de nivel basico de java de forma secuencial","profesor","Java"),
---(3,"Programando usando Php Poo","Enseñanza de metodos educativos para programar en paradigma de objetos en PHP","profesor","Php");
+-- INSERT INTO `recurso`(`idRecurso`,`titulo`,`descripcion`,`nombreUsuario`,`nombreTema`) VALUES 
+-- (1,"Programando usando Mysql","Enseñanza de metodos educativos para programar BD en el lenguaje mysql","profesor","Mysql"),
+-- (2,"Programando en Java","Enseñanza de nivel basico de java de forma secuencial","profesor","Java"),
+-- (3,"Programando usando Php Poo","Enseñanza de metodos educativos para programar en paradigma de objetos en PHP","profesor","Php");
 
 
 -- ----------------------------------------
@@ -140,10 +140,10 @@ INSERT INTO `poseeNivel`(`nombreNivel`,`idRecurso`) VALUES
 -- -----------------------------------------------------
 -- Insercion en archivo`
 -- -----------------------------------------------------
---INSERT INTO `archivo`(`nombre`,`ruta`,`idRecurso`) VALUES 
---("1erParcial.pdf","assets/upload/1erParcial.pdf",1),
---("1erParcial.pdf","assets/upload/1erParcial.pdf",2),
---("1erParcial.pdf","assets/upload/1erParcial.pdf",3);
+-- INSERT INTO `archivo`(`nombre`,`ruta`,`idRecurso`) VALUES 
+-- ("1erParcial.pdf","assets/upload/1erParcial.pdf",1),
+-- ("1erParcial.pdf","assets/upload/1erParcial.pdf",2),
+-- ("1erParcial.pdf","assets/upload/1erParcial.pdf",3);
 
 -- ----------------------------------------
 -- -----------------------------------------------------
