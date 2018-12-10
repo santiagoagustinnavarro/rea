@@ -33,17 +33,38 @@
             $estados=$this->Estadorecurso_model->get_all_estadorecurso();
             
             foreach ($estados as $unEstado) {
-                $arrEstado[$unEstado["nombre"]]= $unEstado["nombre"];
+                $arrEstado[ucwords($unEstado["nombre"])]= ucwords($unEstado["nombre"]);
             }
-          
+         
             
-            echo form_dropdown('estados', $arrEstado, array($recurso['nombreEstadoRecurso']), "class=form-control");
+            echo form_dropdown('estados', $arrEstado, array($recurso['nombreEstadoRecurso']),"class=form-control");
 
         ?>
 
 
 
 	</div>
+</div>
+<div class="form-group">
+<label class="col-md-4 control-label" for="validado">Validar</label>
+<div class="col-md-1">
+
+<?php 
+$validado=$recurso["validado"];
+if($validado){
+	echo "Si\n";
+	echo form_radio("validado","1",true,["class"=>"fom-control"]);
+	echo "No\n";
+echo form_radio("validado","0",false,["class"=>"fom-control"]);
+}else{
+
+	echo "Si\n";
+echo form_radio("validado","1",false,["class"=>"fom-control"]);
+echo "No\n";
+echo form_radio("validado","0",true,["class"=>"fom-control"]);
+}
+?>
+</div>
 </div>
 
 
