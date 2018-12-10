@@ -251,7 +251,6 @@ class Recurso extends CI_Controller
                 $archivo=array();//vaciamos los datos del archivo para proximas cargas
                 $anterior=$actual;//Cambiamos de recurso por lo cual ahora este sera el anterior
             }
-            print_r($recursos);
         }
         return $recursos;
     }
