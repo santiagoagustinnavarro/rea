@@ -154,9 +154,9 @@ class Recurso_model extends CI_Model
     /*
      * function to update recurso
      */
-    public function update_recurso($nombre, $params)
+    public function update_recurso($idRecurso, $params)
     {
-        $this->db->where('nombre', $nombre);
+        $this->db->where('idRecurso', $idRecurso);
         return $this->db->update('recurso', $params);
     }
     

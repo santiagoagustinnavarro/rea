@@ -24,7 +24,7 @@ class Recurso extends CI_Controller
         {
             
             $this->load->library('form_validation');
-            if (!$this->input->post('estados')){
+            if (!$this->input->post('estados') && !$this->input->post('validado')){
 			$this->form_validation->set_rules('titulo','Titulo','required|max_length[30]');
 			$this->form_validation->set_rules('descripcion','Descripcion','required|max_length[80]');
 			$this->form_validation->set_rules('nombreUsuario','NombreUsuario','required|max_length[30]');
@@ -47,7 +47,8 @@ class Recurso extends CI_Controller
               $this->load->view("header",["title"=>"Editar Recurso"]);
                 $this->load->view('recurso/edit',$data);
                 $this->load->view("footer");
-            }}else{
+            }
+        }elseif($this->input->post('estados')){
                 $estado= $this->input->post('estados');
                 if(strtolower($estado)=="alta"){
                     if($this->mailAlta($this->input->post('nombreUsuario'),$this->input->post('email'))){
@@ -58,6 +59,9 @@ class Recurso extends CI_Controller
                 $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>$this->input->post("estados"),"fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"idRecurso"=>$idRecurso));
             
             redirect('recurso/index');
+            }else{
+                $this->Recurso_model->update_recurso($idRecurso,array("validado"=>$this->input->post("validado")));
+                redirect('recurso/index');
             }
         }
         else
