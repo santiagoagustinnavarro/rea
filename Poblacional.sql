@@ -49,8 +49,8 @@ INSERT INTO `estadousuario`(`nombre`, `descripcion`) VALUES
 -- -----------------------------------------------------
 
 INSERT INTO `usuario`(`nombreUsuario`,`clave`,`dni`,`apellido`,`nombre`,`estudio`,`email`) VALUES 
-("adminRecurso","7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1","38365920","navarro","santiago","universidad del comahue","santiagonavarro@outlook.com.ar"),
-("adminUser","7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1","38044872","barramuño","elizabeth","universidad tecnologica Nacional","ely-06nqn@hotmail.com"),
+("adminRecurso","7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1","38365920","navarro","santiago","universidad del comahue","santiago.navarro@est.fi.uncoma.edu.ar"),
+("adminUser","7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1","38044872","barramuño","elizabeth","universidad tecnologica Nacional","santiagonavarro@outlook.com.ar"),
 ("profesor","7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1","12345678","alfonso","luis","universidad del comahue","ely-06nqn@hotmail.com");
 
 -- -----------------------------------------------------
@@ -129,13 +129,13 @@ INSERT INTO `tenercategoria`(`nombreTema`,`nombreCategoria`) VALUES
 -- -----------------------------------------------------
 -- Insercion en poseeNivel`
 -- -----------------------------------------------------
-INSERT INTO `poseeNivel`(`nombreNivel`,`idRecurso`) VALUES 
-("1º Año",1),
-("2º Año",1),
-("3º Año",1),
-("4º Año",2),
-("5º Año",2),
-("6º Año",3);
+-- INSERT INTO `poseeNivel`(`nombreNivel`,`idRecurso`) VALUES 
+-- ("1º Año",1),
+-- ("2º Año",1),
+-- ("3º Año",1),
+-- ("4º Año",2),
+-- ("5º Año",2),
+-- ("6º Año",3);
 -- ----------------------------------------
 -- -----------------------------------------------------
 -- Insercion en archivo`
