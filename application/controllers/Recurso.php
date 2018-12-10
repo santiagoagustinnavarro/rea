@@ -88,7 +88,7 @@ class Recurso extends CI_Controller
         $this->email->from('reanotreply@gmail.com', 'Programacionnet');
         $this->email->subject('Test Email (TEXT)');
         $this->email->to($email);
-        $this->email->message('Su recurso ah sido dado de alta felicitaciones ');
+        $this->email->message('Su recurso ah sido dado de alta felicitaciones');
         echo "<span class='fa fa-spinner fa-spin'></span>";
         if ($this->email->send()) {
             $res=true;
