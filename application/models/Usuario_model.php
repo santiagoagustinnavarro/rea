@@ -21,17 +21,24 @@ class Usuario_model extends CI_Model
     /*
      * Get usuario by nombreUsuario
      */
-    public function get_usuario($nombreUsuario, $params=array())
+    public function get_usuario($nombreUsuario="", $params=array())
     {$this->db->join("tenerestadousuario","tenerestadousuario.nombreUsuario=usuario.nombreUsuario");
         $this->db->join("tienerol","tienerol.nombreUsuario=usuario.nombreUsuario");
         $this->db->order_by('usuario.nombreUsuario', 'desc');
-        if (count($params)>0) {
+        if (count($params)>0 && $nombreUsuario!="") {
             $params['usuario.nombreUsuario']=$nombreUsuario;
+            $params["tenerestadousuario.fechaFin"]=null;
+            $params["tienerol.fechaFin"]=null;
             $user=$this->db->get_where('usuario', $params)->row_array();
-        } else {
+        } elseif($nombreUsuario=="") {
+            $params["tenerestadousuario.fechaFin"]=null;
+            $params["tienerol.fechaFin"]=null;
+            $user=$this->db->get_where('usuario', $params)->row_array();
+        }else{
             $user= $this->db->get_where('usuario', array('usuario.nombreUsuario'=>$nombreUsuario,'tenerestadousuario.fechaFin'=>null,'tienerol.fechaFin'=>null))->row_array();
            
         }
+       
         return $user;
     }
         
