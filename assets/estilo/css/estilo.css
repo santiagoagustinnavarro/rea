@@ -32,7 +32,7 @@ body{
 /** alto y ancho del video position relativa y un 12% para centrarlo */
 #carousel{
 	width: 95%;
-	height: 65%;
+	height: 55%;
 	position: relative;
 	left: 3%;
 }
