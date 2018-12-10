@@ -17,7 +17,8 @@ if (isset($unRecurso[0])) {
 			?>
 			<div class="col-md-3">
 				<div class="card-footer text-center">
-					<a download href=<?php echo base_url()."assets/upload/".$recurso["nombreUsuario"]."/".$recurso["idRecurso"]."/".$unArchivo["nombre"];?> class="btn btn-success"><i class="fa fa-download"></i> Descargar </a><?php echo $unArchivo["nombre"];?>
+					<?php echo $unArchivo["nombre"];?> <br/>
+					<a download href=<?php echo base_url()."assets/upload/".$recurso["nombreUsuario"]."/".$recurso["idRecurso"]."/".$unArchivo["nombre"];?> class="btn btn-success"><i class="fa fa-download"></i> Descargar </a>
 				</div>
 			</div>
 			<?php 
