@@ -53,7 +53,6 @@ class Recurso extends CI_Controller
     
         // check if the recurso exists before trying to edit it
             $data['recurso'] = $this->Recurso_model->get_recurso($idRecurso);
-        
             if (isset($data['recurso']['idRecurso'])) {
                 $this->load->library('form_validation');
                 if (!$this->input->post('estados') && !$this->input->post('validado')) {
@@ -66,10 +65,8 @@ class Recurso extends CI_Controller
                     'titulo' => $this->input->post('titulo'),
                     'descripcion' => $this->input->post('descripcion'),
                     'nombreUsuario' => $this->input->post('nombreUsuario'),
-                    'nombreTema' => $this->input->post('nombreTema'),
-                    
+                    'nombreTema' => $this->input->post('nombreTema'),  
                 );
-
                         $this->Recurso_model->update_recurso($idRecurso, $params);
                         redirect('recurso/index');
                     } else {
@@ -103,7 +100,6 @@ class Recurso extends CI_Controller
                     }
                     $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
                     $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>$this->input->post("estados"),"fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"idRecurso"=>$idRecurso));
-            
                     redirect('recurso/index');
                 } else {
                     $this->Recurso_model->update_recurso($idRecurso, array("validado"=>$this->input->post("validado")));
@@ -134,7 +130,6 @@ class Recurso extends CI_Controller
         return $res;
     }
     // check if the rol exists before trying to edit it
-      
     /*
       * Listado de usuarios
       */
@@ -156,8 +151,8 @@ class Recurso extends CI_Controller
         }
     }
     /**
-     * Funcion encargada de listar todos los recursos(con paginacion)
-     */
+    * Funcion encargada de listar todos los recursos(con paginacion)
+    */
     public function listar()
     {
         $this->load->model("Tema_model");
@@ -232,7 +227,6 @@ class Recurso extends CI_Controller
         }
         $anterior=-1;//Esta variable hara referencia al recurso anterior en el array
         
-
         for ($i=0;$i<count($recursos);$i++) {
             $actual=$recursos[$i]["idRecurso"];//Recurso en el que estoy situado
             if ($actual==$anterior) {//El anterior y el actual son el mismo recurso
@@ -346,7 +340,6 @@ class Recurso extends CI_Controller
                     $arrNivel=$this->Nivel_model->add_nivel($param);
                 }
             }*/
-            
             foreach ($archivos as $etiqueta=>$valor) {
                 $ruta="./assets/upload/";
                 $idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
@@ -358,8 +351,6 @@ class Recurso extends CI_Controller
         } else {
             $res=false;
         }
-        
-        
         return $res;
     }
 }

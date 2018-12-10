@@ -4,24 +4,26 @@
 	<h1 class="titulo text-secondary">Recursos</h1>
 	<div class="row">
 		<div class="col-md-3">
-			<!-- Aca comienza las busquedas -->
-			<div class="col-my-3">
+		<div class="box box-success col-md-10">
+		<br/>
 				<!-- Search Widget -->
-				<div class="card md-3">
-					<h5 class="card-header text-center">Buscar</h5>
-					<div class="card-body">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Buscar por ...">
+			<div class="card md-4">
+				<h4 class="card-header text-center">Buscar</h4>
+				<div class="card-body">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Buscar por ...">
 							<span class="input-group-btn">
 								<button class="btn btn-success" type="button"><i class="fa fa-search"></i></button>
 							</span>
 						</div> <!-- Cierra input-group -->
 					</div> <!-- Cierra card-body -->
+					<br/>
 					<!-- Categories Widget -->
-					<div class="card my-4">
-						<h5 class="card-header text-center">Categoria</h5>
+					<div class="card my-3">
+						<h4 class="card-header text-center">Categoria</h4>
 						<div class="card-body">
 							<div class="row">
+							<div class="col-md-12">
 								<select class="form-control text-center" id="categoria" name="categoria">
 									<option value="" selected>Elija una opcion</option>
 									<?php 
@@ -31,14 +33,17 @@
 									}?>
 									</option>
 								</select>
+								</div>
 							</div> <!-- cierra la clase row -->
 						</div> <!-- cierra el card-body -->
 					</div> <!-- cierra el card my-4 -->
 					<!-- Side Widget -->
-					<div class="card my-4">
-						<h5 class="card-header text-center">Tema</h5>
+					<br/>
+					<div class="card my-3">
+						<h4 class="card-header text-center">Tema</h4>
 						<div class="card-body">
 							<div class="row">
+								<div class="col-md-12">
 								<select class="form-control text-center" id="tema" name="tema" onchange="actualizarTema();">
 									<option value="" selected>Elija una opcion
 										<?php 
@@ -48,14 +53,16 @@
 										}?>
 									</option>
 								</select>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="card my-4">
-						<h5 class="card-header text-center">Año de Enseñanza</h5>
+					<br/>
+					<div class="card my-3">
+						<h4 class="card-header text-center">Año de Enseñanza</h4>
 						<div class="card-body">
 							<div class="row">
-								<div class="col-md-6">
+								<div class="col-md-offset-3 col-md-6">
 									<ul class="list-unstyled mb-0 text-center">
 										<?php
                                      		foreach ($niveles as $unNivel) {
@@ -67,13 +74,14 @@
 										<?php
                                      }?>
 									</ul>
+									<br/>
 								</div> <!-- cierra el col -->
 							</div> <!-- cierra el row -->
 						</div> <!-- cierra el card body -->
 					</div> <!-- cierra el card my-4 -->
 				</div> <!-- Cierra card md-3 -->
-			</div> <!-- cierra el col-my-3 -->
-		</div> <!-- cierra el col-md-3 -->
+			</div> <!-- cierra el col-md-3 -->
+		</div>
 		<div class="col-md-9">
 		<?php
         if (count($results)>0) {
