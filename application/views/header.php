@@ -103,7 +103,7 @@
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs"><?php echo $this->session->nombreUsuario;?></span>
               </a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu dropdown-menu-right">
                 <!-- The user image in the menu -->
 								<li class="user-header">
                   <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
@@ -143,7 +143,7 @@
             <li><a href="<?php echo base_url(); ?>contacto" alt="Contactenos">Contactenos</a></li>
 						<li class="dropdown">
         			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Agregar Seccion <span class="caret"></span></a>
-        			<ul class="dropdown-menu" id="desplegable">
+        			<ul class="dropdown-menu dropdown-menu-right" id="desplegable">
           			<li><a href="#">Agregar Categoria</a></li>
           			<li><a href="#">Agregar Tema</a></li>
         			</ul>
@@ -156,7 +156,7 @@
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs"><?php echo $this->session->nombreUsuario;?></span>
               </a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu dropdown-menu-right">
                 <!-- The user image in the menu -->
                 <li class="user-header">
                   <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">

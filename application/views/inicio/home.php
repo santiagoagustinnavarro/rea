@@ -1,3 +1,4 @@
+<?php if(strtolower($this->session->rol=="profesor")){?>
 <div class="col">
     <!-- /.box-header -->
   <div class="box-body">
@@ -96,3 +97,8 @@
 	</div> <!-- cierre del row -->
 </div> <!-- cierre del container -->
 </div> <!-- container final -->
+<?php 
+}elseif(strtolower($this->session->rol=="administrador de usuarios")){
+	redirect("usuario");
+}elseif(strtolower($this->session->rol=="administrador de recursos")){
+	redirect("recurso");}
