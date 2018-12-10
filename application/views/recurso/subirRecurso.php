@@ -6,7 +6,7 @@
 			if(isset($mensaje)){
 				echo $mensaje;
 			} 
-			/** FALTA EL VALUE EN EL TEXTAREA */?>
+			?>
 			<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/nicEdit.js"></script> <script type="text/javascript">
 				//<![CDATA[
         		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
