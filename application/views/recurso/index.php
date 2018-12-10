@@ -1,3 +1,4 @@
+<br/>
 <div class="box box-info" id="listarRecurso">
 	<h1>Lista de Recursos</h1><br/>
 <table class="table table-striped table-bordered text-center">
@@ -30,7 +31,7 @@
 		}?></td>
 		<td>
             <a href="<?php echo site_url('recurso/edit/'.$r['idRecurso']); ?>" class="btn btn-success btn-md"><span class="glyphicon glyphicon-edit"></span></a> 
-            <a href="<?php echo site_url('recurso/remove/'.$r['idRecurso']); ?>" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a>
+            <a href="<?php echo site_url('recurso/verRecurso/'.$r['idRecurso']); ?>" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-eye-open"></span></a>
         </td>
     </tr>
 	<?php } ?>
