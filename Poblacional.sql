@@ -51,7 +51,7 @@ INSERT INTO `estadousuario`(`nombre`, `descripcion`) VALUES
 INSERT INTO `usuario`(`nombreUsuario`,`clave`,`dni`,`apellido`,`nombre`,`estudio`,`email`) VALUES 
 ("adminRecurso","7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1","38365920","navarro","santiago","universidad del comahue","santiagonavarro@outlook.com.ar"),
 ("adminUser","7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1","38044872","barramuño","elizabeth","universidad tecnologica Nacional","ely-06nqn@hotmail.com"),
-("profesor","7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1","12345678","alfonso","luis","universidad del comahue","ely-06nqn@hotmail.com"),
+("profesor","7e6a4309ddf6e8866679f61ace4f621b0e3455ebac2e831a60f13cd1","12345678","alfonso","luis","universidad del comahue","ely-06nqn@hotmail.com");
 
 -- -----------------------------------------------------
 -- Insercion en `tenerEstadoUsuario`
@@ -60,7 +60,7 @@ INSERT INTO `usuario`(`nombreUsuario`,`clave`,`dni`,`apellido`,`nombre`,`estudio
 INSERT INTO `tenerEstadoUsuario`(`nombreUsuario`,`nombreEstadoUsuario`, `fechaInicio`,`hora`) VALUES 
 ("adminRecurso","Alta","2018-10-28","17:48:01"),
 ("adminUser","Alta","2018-10-28","17:48:02"),
-("profesor","Alta","2018-10-28","17:48:03"),
+("profesor","Alta","2018-10-28","17:48:03");
 
 
 -- -----------------------------------------------------
@@ -70,7 +70,7 @@ INSERT INTO `tenerEstadoUsuario`(`nombreUsuario`,`nombreEstadoUsuario`, `fechaIn
 INSERT INTO `tieneRol`(`nombreUsuario`,`nombreRol`, `fechaInicio`) VALUES 
 ("adminRecurso","Administrador de Recursos","2018-10-28"),
 ("adminUser","Administrador de Usuarios","2018-10-28"),
-("profesor","Profesor","2018-10-28"),
+("profesor","Profesor","2018-10-28");
 
 -- -----------------------------------------------------
 -- Insercion en estadoToken`
