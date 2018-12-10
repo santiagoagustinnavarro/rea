@@ -3,34 +3,28 @@
 <table class="table table-striped table-bordered text-center">
     <tr>
 		<th>Titulo</th>
-		<th>Descripcion</th>
 		<th>Nombre del Usuario</th>
 		<th>Nombre del Tema</th>
 		<th>Estado</th>
+		<th>Validar</th>
 		<th>Actualizar/Eliminar</th>
     </tr>
 	<?php foreach($recurso as $r){ ?>
     <tr>
 		<td><?php echo $r['titulo']; ?></td>
-		<td><?php echo $r['descripcion']; ?></td>
 		<td><?php echo $r['nombreUsuario']; ?></td>
 		<td><?php echo $r['nombreTema']; ?></td>
 		<td><?php if(strtolower($r['nombreEstadoRecurso'])!="alta"){
-			
 			echo form_open('recurso/edit/'.$r['idRecurso'],array("method"=>'post'),array("estados"=>"Alta",'email'=>$r["email"]));
 			echo form_submit("envio","Dar alta",array("class"=>"btn btn-success"));
 			echo form_close();
-			
 		}else{
 			echo $r['nombreEstadoRecurso'];
 		}?></td>
 		<td><?php if(($r['validado'])==0){
-		
-		
 			echo form_open('recurso/edit/'.$r['idRecurso'],array("method"=>'post'),array("validado"=>1,'email'=>$r["email"]));
 			echo form_submit("envio","Validar",array("class"=>"btn btn-success"));
 			echo form_close();
-		
 		}else{
 			?><i class="fa fa-check"></i><?php
 		}?></td>

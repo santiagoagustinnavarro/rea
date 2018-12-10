@@ -31,13 +31,11 @@ class Registro extends CI_Controller{
                         $insercionEstado = $this->TenerEstadoUsuario_model->add_tenerEstadoUsuario($datosEstado);
                         $insercionProfesor = $this->Tienerol_model->add_tienerol($datosRol);
                         $this->load->view("header", ["title" => "Registro"]);
-                        $this->load->view('logeo/registrarse', array("mensaje" => '<div class="alert alert-success text-center"><h4>'."Se ah registrado correctamente espere a que un administrador valide su cuenta".'</h4></div>'));
+                        $this->load->view('logeo/registrarse', array("mensaje" => '<div class="col-md-offset-2 col-md-8 alert alert-success text-center"><h4>'."Se ha registrado correctamente espere a que un administrador valide su cuenta".'</h4></div>'));
                         $this->load->view("footer");
                 }
             }else{
-              
-               
-                    $this->load->view("header", ["title" => "Registro"]);
+                $this->load->view("header", ["title" => "Registro"]);
                 $this->load->view('logeo/registrarse', array("mensaje" => '<div class="col-md-offset-3 col-md-6 alert alert-info text-center"><h4>'."El email  ya existe ".'</h4></div>'));
                 $this->load->view("footer");}
             }else{ 
@@ -50,12 +48,8 @@ class Registro extends CI_Controller{
                     $this->load->view("header", ["title" => "Registro"]);
                 $this->load->view('logeo/registrarse', array("mensaje" => '<div class="col-md-offset-3 col-md-6 alert alert-info text-center"><h4>'."El usuario ya existe".'</h4></div>'));
                 $this->load->view("footer");
-                }
-                
+                }   
             }
-          
-           
-          
             // redirect('usuario/index');
         } else {
             $this->load->view("header", ["title" => "Registro","scripts"=>["validacion.js"]]);
