@@ -16,68 +16,67 @@ class Recurso extends CI_Controller
     * Editing a recurso
     */
     function edit($idRecurso)
-    {   
-        // check if the recurso exists before trying to edit it
-        $data['recurso'] = $this->Recurso_model->get_recurso($idRecurso);
+    {   if(strtolower($this->session->rol)!="administrador de recursos"){
         
-        if(isset($data['recurso']['idRecurso']))
-        {
-            
-            $this->load->library('form_validation');
-            if (!$this->input->post('estados') && !$this->input->post('validado')){
-			$this->form_validation->set_rules('titulo','Titulo','required|max_length[30]');
-			$this->form_validation->set_rules('descripcion','Descripcion','required|max_length[80]');
-			$this->form_validation->set_rules('nombreUsuario','NombreUsuario','required|max_length[30]');
-			$this->form_validation->set_rules('nombreTema','NombreTema','required|max_length[50]');
-		
-			if($this->form_validation->run())     
-            {   
-                $params = array(
-					'titulo' => $this->input->post('titulo'),
-					'descripcion' => $this->input->post('descripcion'),
-					'nombreUsuario' => $this->input->post('nombreUsuario'),
+        echo "Acceso prohibido";
+    }else{
+    
+        // check if the recurso exists before trying to edit it
+            $data['recurso'] = $this->Recurso_model->get_recurso($idRecurso);
+        
+            if (isset($data['recurso']['idRecurso'])) {
+                $this->load->library('form_validation');
+                if (!$this->input->post('estados') && !$this->input->post('validado')) {
+                    $this->form_validation->set_rules('titulo', 'Titulo', 'required|max_length[30]');
+                    $this->form_validation->set_rules('descripcion', 'Descripcion', 'required|max_length[80]');
+                    $this->form_validation->set_rules('nombreUsuario', 'NombreUsuario', 'required|max_length[30]');
+                    $this->form_validation->set_rules('nombreTema', 'NombreTema', 'required|max_length[50]');
+                    if ($this->form_validation->run()) {
+                        $params = array(
+                    'titulo' => $this->input->post('titulo'),
+                    'descripcion' => $this->input->post('descripcion'),
+                    'nombreUsuario' => $this->input->post('nombreUsuario'),
                     'nombreTema' => $this->input->post('nombreTema'),
                     
                 );
 
-                $this->Recurso_model->update_recurso($idRecurso,$params);            
-                redirect('recurso/index');
-            }
-            else
-            {
-              $this->load->view("header",["title"=>"Editar Recurso"]);
-                $this->load->view('recurso/edit',$data);
-                $this->load->view("footer");
-            }
-        }elseif($this->input->post('estados')!="" && $this->input->post('validado')!=""){
-            $estado= $this->input->post('estados');
-            if(strtolower($estado)=="alta"){
-                if($this->mailAlta($this->input->post('nombreUsuario'),$this->input->post('email'))){
-                    ?> <script>alert("enviado");</script><?php
-                }
-            }
-            $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")),array("idRecurso"=>$idRecurso,"fechaFin"=>null));
-            $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>$this->input->post("estados"),"fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"idRecurso"=>$idRecurso));
-            $this->Recurso_model->update_recurso($idRecurso,array("validado"=>(int) $this->input->post("validado")));
-             redirect('recurso/index');
-        }elseif($this->input->post('estados')!=""){
-                $estado= $this->input->post('estados');
-                if(strtolower($estado)=="alta"){
-                    if($this->mailAlta($this->input->post('nombreUsuario'),$this->input->post('email'))){
-                        ?> <script>alert("enviado");</script><?php
+                        $this->Recurso_model->update_recurso($idRecurso, $params);
+                        redirect('recurso/index');
+                    } else {
+                        $this->load->view("header", ["title"=>"Editar Recurso"]);
+                        $this->load->view('recurso/edit', $data);
+                        $this->load->view("footer");
                     }
-                }
-                $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")),array("idRecurso"=>$idRecurso,"fechaFin"=>null));
-                $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>$this->input->post("estados"),"fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"idRecurso"=>$idRecurso));
+                } elseif ($this->input->post('estados')!="" && $this->input->post('validado')!="") {
+                    $estado= $this->input->post('estados');
+                    if (strtolower($estado)=="alta") {
+                        if ($this->mailAlta($this->input->post('nombreUsuario'), $this->input->post('email'))) {
+                            ?> <script>alert("enviado");</script><?php
+                        }
+                    }
+                    $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
+                    $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>$this->input->post("estados"),"fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"idRecurso"=>$idRecurso));
+                    $this->Recurso_model->update_recurso($idRecurso, array("validado"=>(int) $this->input->post("validado")));
+                    redirect('recurso/index');
+                } elseif ($this->input->post('estados')!="") {
+                    $estado= $this->input->post('estados');
+                    if (strtolower($estado)=="alta") {
+                        if ($this->mailAlta($this->input->post('nombreUsuario'), $this->input->post('email'))) {
+                            ?> <script>alert("enviado");</script><?php
+                        }
+                    }
+                    $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
+                    $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>$this->input->post("estados"),"fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"idRecurso"=>$idRecurso));
             
-            redirect('recurso/index');
-            }else{
-                $this->Recurso_model->update_recurso($idRecurso,array("validado"=>$this->input->post("validado")));
-                redirect('recurso/index');
+                    redirect('recurso/index');
+                } else {
+                    $this->Recurso_model->update_recurso($idRecurso, array("validado"=>$this->input->post("validado")));
+                    redirect('recurso/index');
+                }
+            } else {
+                show_error('The recurso you are trying to edit does not exist.');
             }
         }
-        else
-            show_error('The recurso you are trying to edit does not exist.');
     } 
     private function mailAlta($nombreUsuario, $email)
     {
@@ -104,17 +103,21 @@ class Recurso extends CI_Controller
       * Listado de usuarios
       */
       public function index()
-      {
-          $params['limit'] = RECORDS_PER_PAGE;
-          $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
-          $config = $this->config->item('pagination');
-          $config['base_url'] = site_url('usuario/index?');
-          $config['total_rows'] = $this->Recurso_model->get_all_recurso_count();
-          $this->pagination->initialize($config);
-          $data['recurso'] = $this->Recurso_model->get_all_recurso($params);
-          $this->load->view('header', array("title"=>"Lista de Recursos"));
-          $this->load->view('recurso/index', $data);
-          $this->load->view("footer");
+      {if(strtolower($this->session->rol)!="administrador de recursos"){
+        
+        echo "Acceso prohibido";
+    }else{
+            $params['limit'] = RECORDS_PER_PAGE;
+            $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+            $config = $this->config->item('pagination');
+            $config['base_url'] = site_url('usuario/index?');
+            $config['total_rows'] = $this->Recurso_model->get_all_recurso_count();
+            $this->pagination->initialize($config);
+            $data['recurso'] = $this->Recurso_model->get_all_recurso($params);
+            $this->load->view('header', array("title"=>"Lista de Recursos"));
+            $this->load->view('recurso/index', $data);
+            $this->load->view("footer");
+        }
       }
     /**
      * Funcion encargada de listar todos los recursos(con paginacion)
