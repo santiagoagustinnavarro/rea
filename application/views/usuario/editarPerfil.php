@@ -9,18 +9,21 @@
 		</a>
 	</div>
 	<div class="container">
-		<?php
-			if(isset($mensaje)){
-				echo $mensaje;
-			}	
-		?>
   		<form id="formulario" method="post" action="editarPerfil" value="<?php echo $_SESSION["nombreUsuario"];?>" enctype="multipart/form-data" onsubmit="return validarPerfil();">
 		  	<h1>Editar Perfil</h1>
+			<div class="row">
+			<div class="col-md-12">
+			<?php
+				if(isset($mensaje)){
+					echo $mensaje;
+				}	
+			?>
+			</div>
+			</div>
 			<div class="row">
 				<div class="col-md-6">
 					<h2>Foto de Perfil</h2>
 					<br/>
-					
 					<?php  
        					if ($_SESSION["foto"]=="") { ?>
           					<img style="border:2px solid #eaeaea;border-radius:50%;" src="<?php echo base_url()?>assets/upload/fotoPerfil/user-default.png" width="128">
@@ -46,6 +49,24 @@
 					</div>
 					<div class="form-group">
     					<input type="password" class="form-control" id="clave2" placeholder="Confirmar Contraseña" name="clave2" minlength="8" maxlength="15">
+					</div>
+					<br/>
+					<div class="col-md-12">
+						<div class="row">	
+							<div class="form-group offset-md-3 col-md-4">
+								<a href="<?php echo base_url()?>inicio">
+									<button type="button" name="no" id="no" class="btn btn-danger">Cancelar</button>
+								</a>
+							</div>
+							<div class="form-group col-md-4">
+								<button type="submit" class="btn btn-success">Actualizar</button>
+							</div>
+							<div class="form-group col-md-4">
+								<a>
+									<button type="reset" class="btn btn-primary">Limpiar</button>
+								</a>
+							</div>
+						</div>	
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -75,24 +96,6 @@
 						<input type="email" class="form-control" id="email" placeholder="Correo Electronico" name="email" minlength="10" maxlength="40"
 						value="<?php echo $_SESSION["email"];?>" required>
 					</div>
-					<br/>
-					<div class="col-md-12">
-					<div class="row">	
-						<div class="form-group offset-md-3 col-md-4">
-							<a href="<?php echo base_url()?>inicio">
-								<button type="button" name="no" id="no" class="btn btn-danger">Cancelar</button>
-							</a>
-						</div>
-						<div class="form-group col-md-4">
-							<button type="submit" class="btn btn-success">Actualizar</button>
-						</div>
-						<div class="form-group col-md-4">
-							<a>
-								<button type="reset" class="btn btn-primary">Limpiar</button>
-							</a>
-						</div>
-					</div>	
-				</div>
 				</div>		
 			</div>	
 		</form>
