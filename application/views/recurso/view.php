@@ -1,4 +1,8 @@
-<?php  $recurso=$unRecurso[0];?>
+<?php
+if (isset($unRecurso[0])) {
+    $recurso=$unRecurso[0];
+
+?>
 <div class="container py-4">
 	<div class="box box-info">
 		<div>
@@ -19,3 +23,4 @@
 		</div>
 	</div>
 </div>
+<?php }else{echo "No existe el recurso";} ?>
