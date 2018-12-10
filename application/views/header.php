@@ -101,23 +101,23 @@
                 <!-- The user image in the navbar-->
                 <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">Nombre Usuario</span>
+                <span class="hidden-xs"><?php echo $this->session->nombreUsuario;?></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
 								<li class="user-header">
                   <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-									<p>Nombre Usuario
-                  	<small>Rol Administrador de Usuarios</small>
+									<p><?php echo $this->session->nombreUsuario;?>
+                  	<small>Administrador de Usuarios</small>
                 	</p>
 								</li>  
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="<?php echo base_url()."usuario/editarPerfil"?>" class="btn btn-primary btn-flat">Perfil</a>
+                    <a href="<?php echo base_url()."usuario/editarPerfil"?>" class="btn btn-primary">Perfil</a>
 									</div>
                   <div class="pull-right">
-                    <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-danger btn-flat">Cerrar Sesion</a>
+                    <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-danger">Cerrar Sesion</a>
                   </div>
                 </li>
               </ul>
@@ -154,14 +154,14 @@
                 <!-- The user image in the navbar-->
                 <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">Nombre Usuario</span>
+                <span class="hidden-xs"><?php echo $this->session->nombreUsuario;?></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
                 <li class="user-header">
                   <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-									<p>Nombre Usuario
-                  	<small>Rol Administrador de Recursos</small>
+									<p><?php echo $this->session->nombreUsuario;?>
+                  	<small>Administrador de Recursos</small>
                 	</p>
 								</li>
                 <!-- Menu Footer-->
@@ -208,7 +208,7 @@
                 <li class="user-header">
                   <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 									<p><?php echo $this->session->nombreUsuario;?>
-                  	<small>Rol Profesor</small>
+										<small>Profesor</small>
                 	</p>
 								</li>
                 <!-- Menu Footer-->
