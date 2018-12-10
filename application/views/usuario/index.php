@@ -19,8 +19,7 @@
 		<td><?php echo $u['apellido']; ?></td>
 		<td><?php echo $u['estudio']; ?></td>	
 		<td><?php echo $u['email']; ?></td>
-		<td><?php 
-		if(strtolower($u['nombreEstadoUsuario'])=="pendiente"){
+		<td><?php if(strtolower($u['nombreEstadoUsuario'])=="pendiente"){
 			echo form_open('usuario/edit/'.$u['nombreUsuario'],array("method"=>'post'),array("estados"=>"Alta","roles"=>$u['nombreRol'],'email'=>$u["email"]));
 			echo form_submit("envio","Dar alta",array("class"=>"btn btn-success"));
 			echo form_close();

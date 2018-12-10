@@ -70,7 +70,8 @@
 						<textarea class="form-control" name="textarea" id="textarea" rows="8"></textarea>
 					</div>
 				</div>
-				<div class="form-group" id="boton">
+				<br/>
+				<div class="form-group pull-right">
 					<button type="submit" name="form" id="form" class="btn btn-success">Enviar</button>
 				</div>
 			</form>
