@@ -99,14 +99,29 @@
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <img src="<?php 
+                 if($this->session->foto!=""){
+                  echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/fotoPerfil.png";
+                }else{
+                  echo base_url()."assets/upload/fotoPerfil/user-default.png";
+                  
+                }
+                  ?>
+                  " class="user-image" alt="User Image"/>
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs"><?php echo $this->session->nombreUsuario;?></span>
               </a>
               <ul class="dropdown-menu dropdown-menu-right">
                 <!-- The user image in the menu -->
 								<li class="user-header">
-                  <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <img src="<?php 
+                 if($this->session->foto!=""){
+                  echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/fotoPerfil.png";
+                }else{
+                  echo base_url()."assets/upload/fotoPerfil/user-default.png";
+                  
+                }
+                  ?>" class="img-circle" alt="User Image">
 									<p><?php echo $this->session->nombreUsuario;?>
                   	<small>Administrador de Usuarios</small>
                 	</p>
@@ -152,14 +167,28 @@
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <img src="
+                <?php 
+                if($this->session->foto!=""){
+                  echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/fotoPerfil.png";
+                }else{   
+                  echo base_url()."assets/upload/fotoPerfil/user-default.png";
+                }  
+                ?> " class="user-image" alt="User Image"/>
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs"><?php echo $this->session->nombreUsuario;?></span>
               </a>
               <ul class="dropdown-menu dropdown-menu-right">
                 <!-- The user image in the menu -->
                 <li class="user-header">
-                  <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <img src="
+                  <?php 
+                    if($this->session->foto!=""){    
+                      echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/fotoPerfil.png";
+                    }else{
+                      echo base_url()."assets/upload/fotoPerfil/user-default.png";   
+                    }
+                  ?>" class="img-circle" alt="User Image">
 									<p><?php echo $this->session->nombreUsuario;?>
                   	<small>Administrador de Recursos</small>
                 	</p>
@@ -199,14 +228,28 @@
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <img src="
+                <?php 
+                if($this->session->foto!=""){
+                  echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/fotoPerfil.png";
+                }else{
+                 echo base_url()."assets/upload/fotoPerfil/user-default.png";
+                 }
+                 ?>" class="user-image" alt="User Image"/>
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs"><?php echo $this->session->nombreUsuario;?></span>
               </a>
               <ul class="dropdown-menu dropdown-menu-right">
                 <!-- The user image in the menu -->
                 <li class="user-header">
-                  <img src="<?php echo base_url();?>assets/estilo/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <img src="
+                  <?php 
+                    if($this->session->foto!=""){
+                      echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/fotoPerfil.png";
+                    }else{
+                      echo base_url()."assets/upload/fotoPerfil/user-default.png";
+                    }
+                  ?>" class="img-circle" alt="User Image">
 									<p><?php echo $this->session->nombreUsuario;?>
 										<small>Profesor</small>
                 	</p>
