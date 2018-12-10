@@ -1,10 +1,10 @@
 <?php if(strtolower($this->session->rol)=="administrador de usuarios"){?>
 <br/>
-<div class="box box-info" id="subirRecurso">
+<div class="box box-info" id="listarUsuario">
 	<h1>Lista de Usuarios</h1><br/>
 <table class="table table-striped table-bordered text-center">
     <tr>
-		<th>NombreUsuario</th>
+		<th>Nombre de Usuario</th>
 		<th>Nombre</th>
 		<th>Apellido</th>
 		<th>Terciario/Universidad</th>
@@ -36,6 +36,7 @@
     </tr>
 	<?php } } ?>
 </table>
+<br/>
 <div class="pull-right">
     <?php echo $this->pagination->create_links(); ?>    
 </div>

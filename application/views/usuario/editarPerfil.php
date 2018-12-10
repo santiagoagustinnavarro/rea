@@ -31,7 +31,7 @@
        				<?php
           			}
        				?>
-					   <div class="form-group">
+					   <div class="form-group"> <br/>
 						<div class="form-control">
 							<input type="file" name="foto" id="foto">
 						</div>
@@ -75,23 +75,24 @@
 						<input type="email" class="form-control" id="email" placeholder="Correo Electronico" name="email" minlength="10" maxlength="40"
 						value="<?php echo $_SESSION["email"];?>" required>
 					</div>
-				</div>
-				<div class="col-md-12">
+					<br/>
+					<div class="col-md-12">
 					<div class="row">	
-						<div class="form-group offset-md-3 col-md-2">
+						<div class="form-group offset-md-3 col-md-4">
 							<a href="<?php echo base_url()?>inicio">
 								<button type="button" name="no" id="no" class="btn btn-danger">Cancelar</button>
 							</a>
 						</div>
-						<div class="form-group col-md-2">
+						<div class="form-group col-md-4">
 							<button type="submit" class="btn btn-success">Actualizar</button>
 						</div>
-						<div class="form-group col-md-2">
+						<div class="form-group col-md-4">
 							<a>
 								<button type="reset" class="btn btn-primary">Limpiar</button>
 							</a>
 						</div>
 					</div>	
+				</div>
 				</div>		
 			</div>	
 		</form>

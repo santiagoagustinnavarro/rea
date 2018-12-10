@@ -31,11 +31,7 @@ class Usuario extends CI_Controller
         $config['total_rows'] = $this->Usuario_model->get_all_usuario_count();
         $this->pagination->initialize($config);
         $data['usuario'] = $this->Usuario_model->get_all_usuario($params);
-<<<<<<< HEAD
         $this->load->view('header', array("title"=>"Lista de Usuario"));
-=======
-        $this->load->view('header', array("title"=>"Lista de usuarios"));
->>>>>>> 803161e73da21ff40e19d3c531e0e1c8436d2259
         $this->load->view('usuario/index', $data);
         $this->load->view("footer");
     }
