@@ -1,12 +1,13 @@
-<div class="container">
+
+<div class="container box box-info">
 	<div class="col-md-offset-1 col-md-10">
-		<div class="box box-info" id="subirRecurso">
+	
 			<h1>Subir Recurso</h1><br/>
-			<?php
+			<div class="col-md-offset-3 col-md-6"><?php
 			if(isset($mensaje)){
 				echo $mensaje;
 			} 
-			?>
+			?></div>
 			<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/nicEdit.js"></script> <script type="text/javascript">
 				//<![CDATA[
         		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
@@ -64,17 +65,17 @@
 						?>
 					</ul>
 				</div>
-				<div class="form-group col-md-offset-1 col-md-10">
+				<div class="form-group col-md-offset-2 col-md-8">
 					<h4><i class="fa fa-pencil-square-o"></i> Descripcion</h4>
 					<div>
 						<textarea class="form-control" name="textarea" id="textarea" rows="8"></textarea>
 					</div>
 				</div>
 				<br/>
-				<div class="form-group pull-right">
+				<div class="form-group col-md-offset-2 col-md-8 ">
 					<button type="submit" name="form" id="form" class="btn btn-success">Enviar</button>
 				</div>
 			</form>
-		</div> <!-- Cierre de la clase box box-info -->
+		
 	</div> <!-- Cierre de la clase col -->
 </div> <!-- Cierre de la clase container -->

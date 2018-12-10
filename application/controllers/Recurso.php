@@ -288,7 +288,7 @@ class Recurso extends CI_Controller
         $idRecurso=$this->Recurso_model->add_recurso($recurso);	
         
 		if ($idRecurso>0) {
-            $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>"pendiente","hora"=>date("H:i:s"),"fechaInicio"=>date("Y-m-d"),"idRecurso"=>$idRecurso));
+            $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>"alta","hora"=>date("H:i:s"),"fechaInicio"=>date("Y-m-d"),"idRecurso"=>$idRecurso));
 			$res=true;
 			$categoria=$parametros['categoria'];
 			$tema=$parametros['tema'];

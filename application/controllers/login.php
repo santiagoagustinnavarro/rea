@@ -23,6 +23,10 @@ class Login extends CI_Controller
                 $verEstado["nombreEstadoUsuario"]=strtolower($verEstado["nombreEstadoUsuario"]);
                 if ($verEstado["nombreEstadoUsuario"] != "alta") {
                     $mensaje = '<div class="alert alert-info text-center"><h4>'."El usuario se encuentra en estado ".$verEstado["nombreEstadoUsuario"].'</h4></div>';
+                    $this->load->view("header",["title"=>"Login"]);
+                    $this->load->view('logeo/login',["mensaje" => $mensaje]);
+                    $this->load->view("footer");
+    
 				}else{
                     $this->cargarSession($existe);
 
