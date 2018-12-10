@@ -20,11 +20,7 @@
 				<div class="col-md-6">
 					<h2>Foto de Perfil</h2>
 					<br/>
-					<div class="form-group">
-						<div class="form-control">
-							<input type="file" name="foto" id="foto">
-						</div>
-					</div>
+					
 					<?php  
        					if ($_SESSION["foto"]=="") { ?>
           					<img style="border:2px solid #eaeaea;border-radius:50%;" src="<?php echo base_url()?>assets/upload/fotoPerfil/user-default.png" width="128">
@@ -35,6 +31,11 @@
        				<?php
           			}
        				?>
+					   <div class="form-group">
+						<div class="form-control">
+							<input type="file" name="foto" id="foto">
+						</div>
+					</div>
 					<h2>Actualizar Contraseña</h2>
 					<br/>
 					<div class="form-group">

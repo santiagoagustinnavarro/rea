@@ -8,41 +8,98 @@ class Recurso extends CI_Controller
     {
         parent::__construct();
         $this->load->library("session");
+        $this->load->model("Estadorecurso_model");
+        $this->load->model("Tenerestadorecurso_model");
     }
 
     /*
     * Editing a recurso
     */
-    public function edit($recursos)
-    {
-        foreach ($recursos as $idRecurso) {
-            $data['recurso'] = $this->Recurso_model->get_recurso($idRecurso);
+    function edit($idRecurso)
+    {   
+        // check if the recurso exists before trying to edit it
+        $data['recurso'] = $this->Recurso_model->get_recurso($idRecurso);
         
-            if (isset($data['recurso']['idRecurso'])) {
-                if (isset($_POST) && count($_POST) > 0) {
-                    $params = array(
-                        'validado' => 1,
-                    );
-                    $this->Recurso_model->update_recurso($idRecurso, $params);
-                    redirect('rol/index');
-                } else {
-                    $data['_view'] = 'rol/edit';
-                    $this->load->view('layouts/main', $data);
+        if(isset($data['recurso']['idRecurso']))
+        {
+            
+            $this->load->library('form_validation');
+            if (!$this->input->post('estados')){
+			$this->form_validation->set_rules('titulo','Titulo','required|max_length[30]');
+			$this->form_validation->set_rules('descripcion','Descripcion','required|max_length[80]');
+			$this->form_validation->set_rules('nombreUsuario','NombreUsuario','required|max_length[30]');
+			$this->form_validation->set_rules('nombreTema','NombreTema','required|max_length[50]');
+		
+			if($this->form_validation->run())     
+            {   
+                $params = array(
+					'titulo' => $this->input->post('titulo'),
+					'descripcion' => $this->input->post('descripcion'),
+					'nombreUsuario' => $this->input->post('nombreUsuario'),
+					'nombreTema' => $this->input->post('nombreTema'),
+                );
+
+                $this->Recurso_model->update_recurso($idRecurso,$params);            
+                redirect('recurso/index');
+            }
+            else
+            {
+              $this->load->view("header",["title"=>"Editar Recurso"]);
+                $this->load->view('recurso/edit',$data);
+                $this->load->view("footer");
+            }}else{
+                $estado= $this->input->post('estados');
+                if(strtolower($estado)=="alta"){
+                    if($this->mailAlta($this->input->post('nombreUsuario'),$this->input->post('email'))){
+                        ?> <script>alert("enviado");</script><?php
+                    }
                 }
-            } else {
-                show_error('The rol you are trying to edit does not exist.');
+                $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")),array("idRecurso"=>$idRecurso,"fechaFin"=>null));
+                $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>$this->input->post("estados"),"fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"idRecurso"=>$idRecurso));
+            
+            redirect('recurso/index');
             }
         }
+        else
+            show_error('The recurso you are trying to edit does not exist.');
+    } 
+    private function mailAlta($nombreUsuario, $email)
+    {
+        $config['protocol'] = 'sendmail';
+        $config['mailpath'] = "\"D:\\xampp\\sendmail\\sendmail.exe\" -t";
+        $config['charset'] = 'iso-8859-1';
+        $config['wordwrap'] = true;
+        $this->email->initialize($config);
+        $this->email->from('reanotreply@gmail.com', 'Programacionnet');
+        $this->email->subject('Test Email (TEXT)');
+        $this->email->to($email);
+        $this->email->message('Su recurso ah sido dado de alta felicitaciones ');
+        echo "<span class='fa fa-spinner fa-spin'></span>";
+        if ($this->email->send()) {
+            $res=true;
+        } else {
+            $res=false;
+        }
+        return $res;
     }
     // check if the rol exists before trying to edit it
       
-    public function index()
-    {
-        $recursos = $this->listarConArchivos();
-        $this->load->view("header", ["title" => "Administrar usuarios"]);
-        $this->load->view('recurso/index', ['recursos' => $recursos]);
-        $this->load->view("footer");
-    }
+    /*
+      * Listado de usuarios
+      */
+      public function index()
+      {
+          $params['limit'] = RECORDS_PER_PAGE;
+          $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+          $config = $this->config->item('pagination');
+          $config['base_url'] = site_url('usuario/index?');
+          $config['total_rows'] = $this->Recurso_model->get_all_recurso_count();
+          $this->pagination->initialize($config);
+          $data['recurso'] = $this->Recurso_model->get_all_recurso($params);
+          $this->load->view('header', array("title"=>"Lista de usuarios"));
+          $this->load->view('recurso/index', $data);
+          $this->load->view("footer");
+      }
     /**
      * Funcion encargada de listar todos los recursos(con paginacion)
      */
@@ -153,7 +210,8 @@ class Recurso extends CI_Controller
 	{  
 		$this->load->model("Tema_model");
 		$this->load->model("Categoria_model");
-		$this->load->model("Nivel_model");
+        $this->load->model("Nivel_model");
+        $this->load->model("Tenerestadorecurso_model");
 		$niveles=$this->Nivel_model->get_all_nivel();
 		$tema=[];
         $categoria=$this->Categoria_model->get_all_categoria();
@@ -208,8 +266,10 @@ class Recurso extends CI_Controller
     private function subida($parametros)
     {
         $recurso=array("nombreTema"=>$parametros["tema"],"nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$parametros["nombreRecurso"],"descripcion"=>$parametros['descripcion']);
-		$idRecurso=$this->Recurso_model->add_recurso($recurso);	
+        $idRecurso=$this->Recurso_model->add_recurso($recurso);	
+        
 		if ($idRecurso>0) {
+            $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>"pendiente","hora"=>date("H:i:s"),"fechaInicio"=>date("Y-m-d"),"idRecurso"=>$idRecurso));
 			$res=true;
 			$categoria=$parametros['categoria'];
 			$tema=$parametros['tema'];

@@ -38,6 +38,10 @@
 </table>
 <div class="pull-right">
     <?php echo $this->pagination->create_links(); ?>    
-</div><?php }else{echo "No tiene permisos";}?>
-<br/>
+</div>
+	<?php 
+	}else{
+		echo "No tiene permisos";
+	}
+	?>
 </div>

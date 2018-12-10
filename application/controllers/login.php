@@ -24,19 +24,15 @@ class Login extends CI_Controller
                 if ($verEstado["nombreEstadoUsuario"] != "alta") {
                     $mensaje = '<div class="alert alert-info text-center"><h4>'."El usuario se encuentra en estado ".$verEstado["nombreEstadoUsuario"].'</h4></div>';
 				}else{
+                    $this->cargarSession($existe);
+
 					/** HACER FUNCIONAR LA VISTA INICIO */
-					if($this->session->rol == 'administrador de usuarios') {
-						$this->cargarSession($existe);
-						$this->load->view("header", ["title" => "Home"]);
-						$this->load->view('usuario/index');
-						$this->load->view("footer");
-					}elseif($this->session->rol == 'administrador de recursos'){
-						$this->cargarSession($existe);
-						$this->load->view("header", ["title" => "Home"]);
-						$this->load->view('Recurso/index');
-						$this->load->view("footer");
+					if(strtolower($this->session->rol) == 'administrador de usuarios') {
+						redirect('Usuario/index');
+					}elseif(strtolower($this->session->rol) == 'administrador de recursos'){
+						
+						redirect('Recurso/index');
 					}else{
-						$this->cargarSession($existe);
                     	$this->load->view("header", ["title" => "Home"]);
                 	    $this->load->view('inicio/home');
 						$this->load->view("footer");
@@ -44,14 +40,14 @@ class Login extends CI_Controller
 				}
             } else {
                 $mensaje = '<div class="alert alert-danger text-center"><h4>'."Usuario o Contraseña incorrectos".'</h4></div>';
+                $this->load->view("header",["title"=>"Login"]);
+                $this->load->view('logeo/login',["mensaje" => $mensaje]);
+                $this->load->view("footer");
+
             }
         } else {
             $this->load->view("header", ["title" => "Login"]);
-            if (isset($mensaje)) {
-                $this->load->view('logeo/login',["mensaje" => $mensaje]);
-            }else{
-                $this->load->view('logeo/login');
-            }
+            $this->load->view('logeo/login');
             $this->load->view("footer");
         }  
 	}
@@ -80,7 +76,8 @@ class Login extends CI_Controller
         'clave'=>$this->input->post('clave'),
         'permisos'=>$permisos,
         'rol'=>strtolower($rol['nombreRol']),
-        'iniciada'=>true
+        'iniciada'=>true,
+        'foto'=>$user["foto"]
         );
          $this->session->set_userdata($datos);
     }

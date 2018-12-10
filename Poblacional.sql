@@ -128,10 +128,10 @@ INSERT INTO `tenercategoria`(`nombreTema`,`nombreCategoria`) VALUES
 -- -----------------------------------------------------
 -- Insercion en Recurso`
 -- -----------------------------------------------------
-INSERT INTO `recurso`(`idRecurso`,`titulo`,`descripcion`,`nombreUsuario`,`nombreTema`) VALUES 
-(1,"Programando usando Mysql","Enseñanza de metodos educativos para programar BD en el lenguaje mysql","profesor","Mysql"),
-(2,"Programando en Java","Enseñanza de nivel basico de java de forma secuencial","profesor","Java"),
-(3,"Programando usando Php Poo","Enseñanza de metodos educativos para programar en paradigma de objetos en PHP","profesor","Php");
+--INSERT INTO `recurso`(`idRecurso`,`titulo`,`descripcion`,`nombreUsuario`,`nombreTema`) VALUES 
+--(1,"Programando usando Mysql","Enseñanza de metodos educativos para programar BD en el lenguaje mysql","profesor","Mysql"),
+--(2,"Programando en Java","Enseñanza de nivel basico de java de forma secuencial","profesor","Java"),
+--(3,"Programando usando Php Poo","Enseñanza de metodos educativos para programar en paradigma de objetos en PHP","profesor","Php");
 
 
 -- ----------------------------------------
@@ -154,6 +154,14 @@ INSERT INTO `archivo`(`nombre`,`ruta`,`idRecurso`) VALUES
 ("1erParcial.pdf","assets/upload/1erParcial.pdf",2),
 ("1erParcial.pdf","assets/upload/1erParcial.pdf",3);
 
+-- ----------------------------------------
+-- -----------------------------------------------------
+-- Insercion en estadorecurso`
+-- -----------------------------------------------------
+INSERT INTO `estadorecurso`(`nombre`,`descripcion`) VALUES 
+("alta","El recurso esta en estado de alta"),
+("validado","El recurso esta dado de alta y validado"),
+("baja","El recurso esta dado de baja");
 -- Generamos el evento para el vencimiento de los tokens--------
 CREATE EVENT vencertoken
 ON SCHEDULE EVERY 1 DAY DO 
