@@ -1,4 +1,4 @@
-<?php if(strtolower($this->session->rol=="profesor")){?>
+<?php if(!$this->session->iniciada ||strtolower($this->session->rol=="profesor")){?>
 <div class="col">
     <!-- /.box-header -->
   <div class="box-body">
