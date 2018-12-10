@@ -26,13 +26,24 @@ class Recurso_model extends CI_Model
     /*
      * Get all recurso
      */
-    public function get_all_recurso($filters="")
-    {
+    public function get_all_recurso($filters=array())
+    {  if(isset($filters['limit']) && isset($filters['offset']))
+        {
+            $this->db->limit($filters['limit'], $filters['offset']);
+            unset($filters['limit']);
+            unset($filters['offset']);
+            $this->db->select("recurso.idRecurso,recurso.titulo,usuario.nombreUsuario,recurso.descripcion,recurso.validado,usuario.email,tenerestadorecurso.nombreEstadoRecurso,recurso.nombreTema");
+        }else{
+            $this->db->select("archivo.nombre as nombreDelUsuario,recurso.idRecurso,archivo.idArchivo,archivo.nombre,archivo.ruta,recurso.titulo,usuario.nombreUsuario,recurso.descripcion,recurso.validado,usuario.email,tenerestadorecurso.nombreEstadoRecurso,recurso.nombreTema");
+            $this->db->join("archivo","archivo.idRecurso=recurso.idRecurso");
+        }
+       
+        
         $this->db->join("tenerestadorecurso","tenerestadorecurso.idRecurso=recurso.idRecurso");
-      
+        
         $this->db->join("usuario","usuario.nombreUsuario=recurso.nombreUsuario");
-        $results=$this->db->get_where('recurso',array('tenerestadorecurso.fechaFin'=>null))->result_array();; 
-      
+        $filters["tenerestadorecurso.fechaFin"]=null;
+        $results=$this->db->get_where('recurso',$filters)->result_array();; 
         return $results;
     }
     function get_all_recurso_count()

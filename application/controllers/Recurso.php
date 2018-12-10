@@ -141,7 +141,7 @@ class Recurso extends CI_Controller
             $params['limit'] = RECORDS_PER_PAGE;
             $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
             $config = $this->config->item('pagination');
-            $config['base_url'] = site_url('usuario/index?');
+            $config['base_url'] = site_url('recurso/index?');
             $config['total_rows'] = $this->Recurso_model->get_all_recurso_count();
             $this->pagination->initialize($config);
             $data['recurso'] = $this->Recurso_model->get_all_recurso($params);
@@ -213,7 +213,7 @@ class Recurso extends CI_Controller
     {
         $unRecurso=$this->listarConArchivos("", $idRecurso);
         $this->load->view("header", ["title"=>"Un recurso"]);
-        $this->load->view("area/recurso", ["unRecurso"=>$unRecurso]);
+        $this->load->view("recurso/view", ["unRecurso"=>$unRecurso]);
         $this->load->view("footer");
     }
     private function listarConArchivos($usuario="", $idRecurso="")
@@ -251,6 +251,7 @@ class Recurso extends CI_Controller
                 $archivo=array();//vaciamos los datos del archivo para proximas cargas
                 $anterior=$actual;//Cambiamos de recurso por lo cual ahora este sera el anterior
             }
+            print_r($recursos);
         }
         return $recursos;
     }
