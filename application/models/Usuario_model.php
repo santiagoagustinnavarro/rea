@@ -12,11 +12,11 @@ class Usuario_model extends CI_Model
        
     }
     function get_all_usuario_count()
-    {
+    {   $this->db->from('usuario');
         $this->db->join("tenerestadousuario","tenerestadousuario.nombreUsuario=usuario.nombreUsuario");
         $this->db->join("tienerol","tienerol.nombreUsuario=usuario.nombreUsuario");
-        $results=$this->db->get_where('usuario',array('tenerestadousuario.fechaFin'=>null,'tienerol.fechaFin'=>null))->result_array();; 
-        return count($results);
+        $results=$this->db->where(array('tienerol.nombreRol'=>'profesor','tenerestadousuario.fechaFin'=>null,'tienerol.fechaFin'=>null)); 
+        return ($this->db->count_all_results());
     }
     /*
      * Get usuario by nombreUsuario
@@ -52,6 +52,7 @@ class Usuario_model extends CI_Model
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);
+            $this->db->where(array('tienerol.nombreRol'=>'profesor'));
         }
        return $this->db->get_where('usuario',array('tenerestadousuario.fechaFin'=>null,'tienerol.fechaFin'=>null))->result_array();
        // return $this->db->get('usuario')->result_array();
