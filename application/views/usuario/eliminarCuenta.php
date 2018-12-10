@@ -13,7 +13,7 @@
 				<a href="<?php echo base_url()?>usuario/eliminarCuenta/<?php echo $_SESSION["nombreUsuario"];?>">
 					<button type="button" name="si" id="si" class="btn btn-success">Si</button>
 				</a>
-				<a href="<?php echo base_url()?>inicio">
+				<a href="<?php echo base_url()?>usuario/editarPerfil">
 					<button type="button" name="no" id="no" class="btn btn-danger">No</button>
 				</a>
 			</div> <!-- Cierre del clase id boton -->

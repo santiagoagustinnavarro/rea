@@ -112,7 +112,7 @@ class Recurso extends CI_Controller
           $config['total_rows'] = $this->Recurso_model->get_all_recurso_count();
           $this->pagination->initialize($config);
           $data['recurso'] = $this->Recurso_model->get_all_recurso($params);
-          $this->load->view('header', array("title"=>"Lista de usuarios"));
+          $this->load->view('header', array("title"=>"Lista de Recursos"));
           $this->load->view('recurso/index', $data);
           $this->load->view("footer");
       }

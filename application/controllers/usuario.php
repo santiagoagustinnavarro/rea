@@ -20,8 +20,8 @@ class Usuario extends CI_Controller
 
    
     /*
-      * Listado de usuarios
-      */
+      * Lista a los usuarios que son de rol profesor
+    */
     public function index()
     {
         $params['limit'] = RECORDS_PER_PAGE;
@@ -31,7 +31,7 @@ class Usuario extends CI_Controller
         $config['total_rows'] = $this->Usuario_model->get_all_usuario_count();
         $this->pagination->initialize($config);
         $data['usuario'] = $this->Usuario_model->get_all_usuario($params);
-        $this->load->view('header', array("title"=>"Lista de usuarios"));
+        $this->load->view('header', array("title"=>"Lista de Usuario"));
         $this->load->view('usuario/index', $data);
         $this->load->view("footer");
     }
