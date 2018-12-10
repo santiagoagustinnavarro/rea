@@ -18,7 +18,8 @@ class Recurso_model extends CI_Model
     { $this->db->join("tenerestadorecurso","tenerestadorecurso.idRecurso=recurso.idRecurso");
       
         $this->db->join("usuario","usuario.nombreUsuario=recurso.nombreUsuario");
-        return $this->db->get_where('recurso',array('recurso.idRecurso'=>$idRecurso))->row_array();
+       return  $this->db->get_where('recurso',array('recurso.idRecurso'=>$idRecurso,'tenerestadorecurso.fechaFin'=>null))->row_array();
+        
     }
     
         
@@ -157,7 +158,10 @@ class Recurso_model extends CI_Model
     public function update_recurso($idRecurso, $params)
     {
         $this->db->where('idRecurso', $idRecurso);
-        return $this->db->update('recurso', $params);
+     
+        return  $this->db->update('recurso', $params);
+        
+
     }
     
     /*

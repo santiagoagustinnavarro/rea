@@ -29,14 +29,15 @@
 		}else{
 			echo $r['nombreEstadoRecurso'];
 		}?></td>
-		<td><?php if(!($r['validado'])){
-			
+		<td><?php if(($r['validado'])==0){
+		
+		
 			echo form_open('recurso/edit/'.$r['idRecurso'],array("method"=>'post'),array("validado"=>1,'email'=>$r["email"]));
 			echo form_submit("envio","Validar",array("class"=>"btn btn-success"));
 			echo form_close();
-			echo $r["validado"];
+		
 		}else{
-			?><i class="fas fa-check"></i><?php
+			?><i class="fa fa-check"></i><?php
 		}?></td>
 		<td>
             <a href="<?php echo site_url('recurso/edit/'.$r['idRecurso']); ?>" class="btn btn-info btn-xs">Edit</a> 

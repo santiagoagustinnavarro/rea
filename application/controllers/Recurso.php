@@ -36,7 +36,8 @@ class Recurso extends CI_Controller
 					'titulo' => $this->input->post('titulo'),
 					'descripcion' => $this->input->post('descripcion'),
 					'nombreUsuario' => $this->input->post('nombreUsuario'),
-					'nombreTema' => $this->input->post('nombreTema'),
+                    'nombreTema' => $this->input->post('nombreTema'),
+                    
                 );
 
                 $this->Recurso_model->update_recurso($idRecurso,$params);            
@@ -48,7 +49,18 @@ class Recurso extends CI_Controller
                 $this->load->view('recurso/edit',$data);
                 $this->load->view("footer");
             }
-        }elseif($this->input->post('estados')){
+        }elseif($this->input->post('estados')!="" && $this->input->post('validado')!=""){
+            $estado= $this->input->post('estados');
+            if(strtolower($estado)=="alta"){
+                if($this->mailAlta($this->input->post('nombreUsuario'),$this->input->post('email'))){
+                    ?> <script>alert("enviado");</script><?php
+                }
+            }
+            $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")),array("idRecurso"=>$idRecurso,"fechaFin"=>null));
+            $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>$this->input->post("estados"),"fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"idRecurso"=>$idRecurso));
+            $this->Recurso_model->update_recurso($idRecurso,array("validado"=>(int) $this->input->post("validado")));
+             redirect('recurso/index');
+        }elseif($this->input->post('estados')!=""){
                 $estado= $this->input->post('estados');
                 if(strtolower($estado)=="alta"){
                     if($this->mailAlta($this->input->post('nombreUsuario'),$this->input->post('email'))){
