@@ -1,13 +1,13 @@
-
 <div class="container box box-info">
 	<div class="col-md-offset-1 col-md-10">
-	
-			<h1>Subir Recurso</h1><br/>
-			<div class="col-md-offset-3 col-md-6"><?php
+			<h1>Subir Recurso</h1>
+			<div class="col-md-offset-3 col-md-6">
+			<?php
 			if(isset($mensaje)){
 				echo $mensaje;
 			} 
-			?></div>
+			?>
+			</div>
 			<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/nicEdit.js"></script> <script type="text/javascript">
 				//<![CDATA[
         		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
