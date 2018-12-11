@@ -20,7 +20,7 @@
 			echo form_submit("envio","Dar alta",array("class"=>"btn btn-success"));
 			echo form_close();
 		}else{
-			echo $r['nombreEstadoRecurso'];
+			echo ucwords($r['nombreEstadoRecurso']);
 		}?></td>
 		<td><?php if(($r['validado'])==0){
 			echo form_open('recurso/edit/'.$r['idRecurso'],array("method"=>'post'),array("validado"=>1,'email'=>$r["email"]));
