@@ -30,7 +30,7 @@
        				<?php
        					}else { 
        				?>
-	    				<img style="border:2px solid #eaeaea;border-radius:50%;" src="<?php echo base_url()?>assets/upload/fotoPerfil/<?php echo $_SESSION['foto']; ?>" width="128">
+	    				<img style="border:2px solid #eaeaea;border-radius:50%;" src="<?php echo base_url()?>assets/upload/fotoPerfil/<?php echo $this->session->nombreUsuario."/".$_SESSION['foto']; ?>" width="128">
        				<?php
           			}
        				?>

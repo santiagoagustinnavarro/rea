@@ -223,32 +223,69 @@ class Usuario extends CI_Controller
     {
         $cant=count($_POST);
         if ($cant>0) {//Se enviaron datos desde el formulario
+print_r($_FILES);
             $nombUser=$this->input->post("nombreUsuario");
+            $nombUser=$this->session->nombreUsuario;
             $nombre=$this->input->post("nombre");
             $apellido=$this->input->post("apellido");
             $domicilio=$this->input->post("domicilio");
             $dni=$this->input->post("dni");
 			$email=$this->input->post("email");
-			$foto=$this->input->post("foto");
+            $foto=$_FILES["foto"];  
+            $estudio=$this->input->post("estudio");
             $clave=$this->input->post("clave");
             $claveNueva=$this->input->post("clave1");
             $claveNuevaRep=$this->input->post("clave2");
+            $rutas=["./assets/upload/","./assets/upload/fotoPerfil","./assets/upload/fotoPerfil/".$this->session->nombreUsuario];
+            foreach ($rutas as $unaRuta) {
+                if (!is_dir($unaRuta)) {
+                    mkdir($unaRuta, 0777, true);
+                }
+            } 
+            move_uploaded_file($foto['tmp_name'],"./assets/upload/fotoPerfil/".$this->session->nombreUsuario."/".$foto["name"]);     
             $usuarioBuscado=$this->Usuario_model->get_usuario($nombUser);
             if ($usuarioBuscado!=null) {
-                if (hash('sha224', $clave)==$usuarioBuscado["clave"]) {
-                    $datos=["nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>$clave];
-                    $res=$this->Usuario_model->update_usuario($nombUser, array("nombre"=>$nombre,"apellido"=>$apellido,"domicilio"=>$domicilio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224', $this->input->post('clave'))));
-                    if ($res) {
-                        $this->actualizarSesion($datos);
+                $existeMail=$this->Usuario_model->get_usuario("",array("usuario.email"=>$this->input->post("email")));
+                if (hash('sha224', $clave)==$usuarioBuscado["clave"] && ($existeMail==null || $email==$this->session->email) ) {
+                    if($claveNueva!="" && $claveNueva==$claveNuevaRep){
+                        $datos=["foto"=>$foto["name"],"nombre"=>$nombre,"apellido"=>$apellido,"estudio"=>$estudio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224',$claveNueva)];
+                        $res=$this->Usuario_model->update_usuario($nombUser, $datos);//Estaba por aca
+                        if ($res) {
+                            echo "papa";
+                            $this->actualizarSesion($datos);
+                            $this->load->view("header", ["title" => "Editar Perfil"]);
+                            $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-success text-center"><h4>'.'Datos Actualizados Correctamente'.'</h4></div>']);
+                            $this->load->view("footer");
+                        } else {
+                           
+                            $this->load->view("header", ["title" => "Editar Perfil"]);
+                            $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Error al tratar de cargar los datos'.'</h4></div>']);
+                            $this->load->view("footer");
+                        }
+                    }elseif($claveNueva!=$claveNuevaRep){
                         $this->load->view("header", ["title" => "Editar Perfil"]);
-                        $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-success text-center"><h4>'.'Datos Actualizados Correctamente'.'</h4></div>']);
+                        $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Las claves no coinciden'.'</h4></div>']);
                         $this->load->view("footer");
-                    } else {
-                        $this->load->view("header", ["title" => "Editar Perfil"]);
-                        $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Error al tratar de cargar los datos'.'</h4></div>']);
-                        $this->load->view("footer");
+                    }else{
+                        $datos=["foto"=>$foto["name"],"nombre"=>$nombre,"apellido"=>$apellido,"estudio"=>$estudio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224',$clave)];
+                        $res=$this->Usuario_model->update_usuario($nombUser, $datos);//Estaba por aca
+                    
+                        if ($res) {
+                            $this->actualizarSesion($datos);
+                            $this->load->view("header", ["title" => "Editar Perfil"]);
+                            $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-success text-center"><h4>'.'Datos Actualizados Correctamente'.'</h4></div>']);
+                            $this->load->view("footer");
+                        } else {
+                            $this->load->view("header", ["title" => "Editar Perfil"]);
+                            $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Error al tratar de cargar los datos'.'</h4></div>']);
+                            $this->load->view("footer");
+                        }
                     }
-                } else {
+                } elseif($existeMail!=null) {
+                    $this->load->view("header", ["title" => "Editar Perfil"]);
+                    $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'El email ya existe'.'</h4></div>']);
+                    $this->load->view("footer");
+                }else{
                     $this->load->view("header", ["title" => "Editar Perfil"]);
                     $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'La clave actual es invalida'.'</h4></div>']);
                     $this->load->view("footer");
@@ -268,11 +305,12 @@ class Usuario extends CI_Controller
     {
         $_SESSION["nombre"]=$datos["nombre"];
         $_SESSION["apellido"]=$datos["apellido"];
-        $_SESSION["domicilio"]=$datos["domicilio"];
+        $_SESSION["estudio"]=$datos["estudio"];
 		$_SESSION["dni"]=$datos["dni"];
 		$_SESSION["foto"]=$datos["foto"];
         $_SESSION["email"]=$datos["email"];
         $_SESSION["clave"]=$datos["clave"];
+      
     }
     /*
      * Eliminar un usuario
