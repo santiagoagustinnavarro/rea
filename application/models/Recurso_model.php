@@ -97,16 +97,17 @@ class Recurso_model extends CI_Model
     
 
     public function fetch_recurso($limit, $start, $filtros="")
-    {       $this->db->distinct(); 
-        if ($filtros!="") {
-     
-            $this->db->select("r.validado,c.nombre,r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
+	{       $this->db->distinct();
+		$this->db->select("r.validado,c.nombre,r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
             $this->db->from("recurso as r");
             $this->db->join("tema as t", "t.nombre=r.nombreTema");
             $this->db->join("tenercategoria tc", "tc.nombreTema=t.nombre");
             $this->db->join("categoria as c", "tc.nombreCategoria=c.nombre");
             $this->db->join("poseenivel as p", "p.idRecurso=r.idRecurso");
-            $this->db->join("nivel as n", "n.nombre=p.nombreNivel");
+            $this->db->join("nivel as n", "n.nombre=p.nombreNivel"); 
+        if ($filtros!="") {
+     
+            
             
             
             if ($filtros["tema"]!="") {
@@ -133,8 +134,7 @@ class Recurso_model extends CI_Model
             
         } else {
           
-                 $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.nombreUsuario as nombreUsuario",false);
-            $this->db->from("recurso as r");
+                 
            
         }
       
