@@ -20,7 +20,7 @@ class Contacto extends CI_Controller
             $envio=$this->enviarMail($email,$asunto,$mensaje);
             if($envio){
                 $this->load->view("header", ["title"=>"Contacto"]);
-                $this->load->view('inicio/contacto', ["mensaje"=>"<div class=\"alert-success\">Enviado correctamente le responderemos lo antes posible</div>"]);
+                $this->load->view('inicio/contacto', ["mensaje"=>"<div class=\"alert alert-success\">Enviado correctamente le responderemos lo antes posible</div>"]);
                 $this->load->view("footer");
             }
         } else {
