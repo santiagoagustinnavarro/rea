@@ -48,7 +48,7 @@
 				<div class="form-group col-md-offset-2 col-md-8">
 					<h4><i class="fa fa-upload"></i> Seleccione Archivo/s</h4><br/>
 					<div class="form-control">
-						<input type="file" id="archivo[]" name="archivo[]" multiple="">
+						<input required type="file" id="archivo[]" name="archivo[]" multiple="">
 					</div>
 				</div>
 				<div class="form-group col-md-offset-2 col-md-8">
