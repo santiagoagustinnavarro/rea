@@ -57,7 +57,7 @@
 <body class="hold-transition skin-blue layout-top-nav">
   <header class="main-header">
 	<?php
-  print_r($_SESSION);
+
 		if (!$this->session->iniciada) {
 	?>
 		<nav class="navbar navbar-static-top">
