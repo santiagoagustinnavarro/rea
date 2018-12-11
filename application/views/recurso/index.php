@@ -31,7 +31,8 @@
 		}?></td>
 		<td>
             <a href="<?php echo site_url('recurso/edit/'.$r['idRecurso']); ?>" class="btn btn-success btn-md"><span class="glyphicon glyphicon-edit"></span></a> 
-            <a href="<?php echo site_url('recurso/verRecurso/'.$r['idRecurso']); ?>" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-eye-open"></span></a>
+            <a href="<?php echo site_url('recurso/view/'.$r['idRecurso']); ?>" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-eye-open"></span></a>
+			<?php //<a href="<?php echo site_url('recurso/delete/'.$r['idRecurso']); " class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a>?>
         </td>
     </tr>
 	<?php } ?>

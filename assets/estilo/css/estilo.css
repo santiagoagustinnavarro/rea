@@ -11,6 +11,10 @@ body{
 	width: 60px; 
 	height: 45px;
 }
+#icono{
+	width: 20%; 
+	height: 20%;
+}
 /** Tiene un fonde de color gris claro */
 #desplegable{
 	background:#1489a7;
@@ -35,6 +39,10 @@ body{
 	height: 55%;
 	position: relative;
 	left: 3%;
+}
+#logo{
+	height:50px;
+	width: 90px;
 }
 /** Se le aplica un margen a la parte superior de 6% */
 #contacto{
