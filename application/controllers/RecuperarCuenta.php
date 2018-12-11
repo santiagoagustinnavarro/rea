@@ -21,7 +21,7 @@ class RecuperarCuenta extends CI_Controller
                 $user=$this->Usuario_model->get_usuario($nombreUsuario);
                 if ($user!=null) {//Si el usuario existe generamos el token
                     $token= $this->generarToken($user);
-                    $mensaje="<h1>Recuperacion de cuenta</h1><br/><a href=\"".base_url()."logeo/recuperarcuenta/actualizarclave/".$nombreUsuario."/".$token."\">Click aqui para cambiar su clave</a>";
+                    $mensaje="<h1>Recuperacion de cuenta</h1><br/><a href=\"".base_url()."recuperarcuenta/actualizarclave/".$nombreUsuario."/".$token."\">Click aqui para cambiar su clave</a>";
                     $envio= $this->enviarMail($user["email"], "Recuperacion de usuario", $mensaje);
                     if ($envio) {
                         $this->load->view("header", array("title"=>"Mail enviado"));
@@ -53,17 +53,17 @@ class RecuperarCuenta extends CI_Controller
                         $this->load->view("logeo/recuperarcuenta/cambiarclave", ["nroToken"=>$token,"mensaje"=>'<div class="alert alert-success text-center"><h4>'."Clave actualizada con exito".'</h4></div>',"nombreUsuario"=>$nombreUsuario]);
                         $this->load->view("footer");
                     }else{
-                        $this->load->view("header", array("title"=>"Clave actualizada"));
+                        $this->load->view("header", array("title"=>"Actualizar clave"));
                         $this->load->view("logeo/recuperarcuenta/cambiarclave", ["nroToken"=>$token,"mensaje"=>'<div class="alert alert-warning text-center"><h4>'."Las claves no coinciden".'</h4></div>',"nombreUsuario"=>$nombreUsuario]);
                         $this->load->view("footer");
                     }
                 } else {
-                    $this->load->view("header", array("title"=>"Clave actualizada"));
+                    $this->load->view("header", array("title"=>"Actualizar clave"));
                     $this->load->view("logeo/recuperarcuenta/cambiarclave");
                     $this->load->view("footer");
                 }
             } else {
-                $this->load->view("header", array("title"=>"Clave actualizada"));
+                $this->load->view("header", array("title"=>"No permitido"));
                 $this->load->view("logeo/recuperarcuenta/cambiarclave", ["mensaje"=>'<div class="alert alert-warning text-center"><h4>'."Vuelva a solicitar la recuperacion de la cuenta".'</h4></div>',"nroToken"=>$token,"nombreUsuario"=>$nombreUsuario]);
                 $this->load->view("footer");
             }

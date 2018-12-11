@@ -3,6 +3,11 @@
 	<div class="col-md-offset-2 col-md-8">
 		<div class="box box-info" id="contacto">
 			<h1><b></b>Contacto</h1><br/>
+			<?php if(isset($mensaje)){
+				echo $mensaje;
+			}?>
+			<br/>
+			<br/>
     	    <div class="box-header">
         	    <i class="fa fa-envelope"></i>
         		<h3 class="box-title">Envienos un Email</h3>
