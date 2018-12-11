@@ -257,7 +257,7 @@
                 <li class="user-header">
                   <img src="
                   <?php 
-                    if($this->session->foto!=""){
+                    if($this->session->foto==""){
                       echo base_url()."assets/upload/fotoPerfil/user-default.png";
                     }else{
                       echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/".$this->session->foto;

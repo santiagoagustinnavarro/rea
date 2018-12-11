@@ -236,6 +236,7 @@ print_r($_FILES);
             $clave=$this->input->post("clave");
             $claveNueva=$this->input->post("clave1");
             $claveNuevaRep=$this->input->post("clave2");
+            
             $rutas=["./assets/upload/","./assets/upload/fotoPerfil","./assets/upload/fotoPerfil/".$this->session->nombreUsuario];
             foreach ($rutas as $unaRuta) {
                 if (!is_dir($unaRuta)) {
