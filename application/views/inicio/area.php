@@ -109,7 +109,10 @@
 							<br/>
 							<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
 							<div class="blog-info">
-								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span></a></h4>
+								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span>
+								<?php if($data->validado==1){
+									echo '<i class="fa fa-check-circle-o"></i>';
+								} ?></a></h4>
 								<ul class="post-footer">
 									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>
 								</ul>
@@ -130,7 +133,10 @@
 							<br/>
 							<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
 							<div class="blog-info">
-								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span></a></h4>
+								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span>
+								<?php if($data->validado==1){
+									echo '<i class="fa fa-check-circle-o"></i>';
+								} ?></a></h4>
 								<ul class="post-footer">			
 									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>		
 								</ul>
@@ -152,14 +158,17 @@
 							<br/>
 							<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
 							<div class="blog-info">
-								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span></a></h4>
+								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span>
+								<?php if($data->validado==1){
+									echo '<i class="fa fa-check-circle-o"></i>';
+								} ?></a></h4>
 								<ul class="post-footer">				
 									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>
 								</ul>
 							</div><!--cierra la clase blog-info -->
 						</div><!--cierra la clase single-post -->
 					</div><!--cierra la clase card -->
-			</div> <!-- cierra la clase area -->
+				</div> <!-- cierra la clase area -->
 			<?php
             	} elseif ($i==count($results)) {//Ultimo elemento
             ?>
@@ -171,7 +180,10 @@
 							<br/>
 							<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
 							<div class="blog-info">
-								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span></a></h4>
+								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span>
+								<?php if($data->validado==1){
+									echo '<i class="fa fa-check-circle-o"></i>';
+								} ?></a></h4>
 								<ul class="post-footer">
 									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>	
 								</ul>

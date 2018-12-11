@@ -136,8 +136,7 @@ class Recurso_model extends CI_Model
             
         } else {
           
-                 $this->db->select("u.foto,r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.nombreUsuario as nombreUsuario",false);
-           
+                 
            
         }
       
