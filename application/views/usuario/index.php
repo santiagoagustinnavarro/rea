@@ -10,7 +10,7 @@
 		<th>Terciario/Universidad</th>
 		<th>Email</th>
 		<th>Estado</th>
-		<th>Actualizar/Eliminar</th>
+		<th>Actualizar</th>
     </tr>
 	<?php foreach($usuario as $u){if(strtolower($u['nombreRol'])=="profesor"){ ?>
     <tr>
@@ -30,7 +30,6 @@
 		</td>
 		<td>
             <a href="<?php echo site_url('usuario/edit/'.$u['nombreUsuario']); ?>" class="btn btn-success btn-md"><span class="glyphicon glyphicon-edit"></span></a> 
-            <a href="<?php echo site_url('usuario/remove/'.$u['nombreUsuario']); ?>" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a>
         </td>
     </tr>
 	<?php } } ?>
