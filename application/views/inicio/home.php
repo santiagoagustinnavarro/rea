@@ -43,60 +43,7 @@
     </div>
   </div> <!-- /.box-body -->
 </div> <!-- /.col -->
-<div class="container">
-	<h3 class="my-4 text-center">Recursos mejor valorados</h3>
-	<div class="row">
-  		<div class="col-md-3">
-			<a href="#">
-				<img class="img-fluid" src="http://placehold.it/260x150" alt="">	
-    		</a>
-			<div class="card-body recurso">
-				<h4 class="card-title">Card title</h4>
-    			<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
-    		</div>
-			<div class="card-footer recurso">
-				<a href="#" class="btn btn-primary">Ingresar al Recurso</a>
-			</div>
-  		</div> <!-- cierra el primer recurso -->
-  		<div class="col-md-3">
-    		<a href="#">
-  				<img class="img-fluid" src="http://placehold.it/260x150" alt="">
-		  	</a>
-				<div class="card-body recurso">
-      		<h4 class="card-title">Card title</h4>
-    			<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
-				</div>
-			<div class="card-footer recurso">
-				<a href="#" class="btn btn-primary">Ingresar al Recurso</a>
-			</div>
-  		</div> <!-- cierra el segundo recurso -->
-  		<div class="col-md-3">
-    		<a href="#">
-				<img class="img-fluid" src="http://placehold.it/260x150" alt="">
-	  		</a>
-			<div class="card-body recurso">
-    			<h4 class="card-title">Card title</h4>
-    			<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
-			</div>
-			<div class="card-footer recurso">
-				<a href="#" class="btn btn-primary">Ingresar al Recurso</a>
-    		</div>
-		</div> <!-- cierra el tercer recurso -->
-		<div class="col-md-3">
-  			<a href="#">
-				<img class="img-fluid" src="http://placehold.it/260x150" alt="">
-			</a>
-			<div class="card-body recurso">
-      		<h4 class="card-title">Card title</h4>
-    			<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
-			</div>
-			<div class="card-footer recurso">
-				<a href="#" class="btn btn-primary">Ingresar al Recurso</a>
-    		</div>
-  		</div> <!-- cierra el cuarto recurso -->
-	</div> <!-- cierre del row -->
-</div> <!-- cierre del container -->
-</div> <!-- container final -->
+
 <?php 
 }elseif(strtolower($this->session->rol=="administrador de usuarios")){
 	redirect("usuario");
