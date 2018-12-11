@@ -17,7 +17,7 @@
 		<form id="contacto" action="subirrecurso" onsubmit="return subirrecurso($(this));" method="post" enctype="multipart/form-data">
 				<div class="form-group col-md-offset-2 col-md-8">
 					<h4><i class="fa fa-file-text-o"></i> Nombre del Recurso</h4>
-					<input type="text" class="form-control" id="nombre" placeholder="Ingrese el Nombre" name="nombre" minlength="2" maxlength="30">
+					<input type="text" class="form-control" id="nombre" placeholder="Ingrese el Nombre" name="nombre" minlength="2" maxlength="50">
 				</div>
 				<div class="form-group col-md-offset-2 col-md-8">
 					<h4><i class="fa fa-caret-down"></i> Seleccione una Categoria</h4>

@@ -30,7 +30,7 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group has-feedback">
-						<input type="text" class="form-control" id="estudio" minlength="6" maxlength="35" placeholder="Terciario o Universidad (*)" name="estudio">
+						<input type="text" class="form-control" id="estudio" minlength="4" maxlength="40" placeholder="Terciario o Universidad (*)" name="estudio">
     		    		<span class="glyphicon glyphicon-book form-control-feedback"></span>
 					</div>
 				</div>
