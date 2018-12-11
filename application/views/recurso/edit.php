@@ -32,7 +32,7 @@
             			foreach ($estados as $unEstado) {
                 			$arrEstado[ucwords($unEstado["nombre"])]= ucwords($unEstado["nombre"]);
             			}
-            			echo form_dropdown('estados', $arrEstado, array($recurso['nombreEstadoRecurso']),"class=form-control");
+            			echo form_dropdown('estados', $arrEstado, array(ucwords($recurso['nombreEstadoRecurso'])),"class=form-control");
         			?>
 				</div>
 			</div>
