@@ -105,7 +105,9 @@
 					<div class="card h-100">
 						<div class="single-post post-style-1">
 							<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
-							<a class="avatar" ><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
+							<a class="avatar" ><img src="<?php if($data->foto==""){echo base_url()."assets/upload/fotoPerfil/user-default.png";}else{echo base_url()."assets/upload/fotoPerfil/".$data->nombreUsuario."/".$data->foto;} ?>" alt="Profile Image"></a>
+							<br/>
+							<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
 							<div class="blog-info">
 								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span></a></h4>
 								<ul class="post-footer">
@@ -124,7 +126,9 @@
 				<div class="card h-100">
 					<div class="single-post post-style-1">
 						<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
-							<a class="avatar" ><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
+							<a class="avatar" ><img src="<?php if($data->foto==""){echo base_url()."assets/upload/fotoPerfil/user-default.png";}else{echo base_url()."assets/upload/fotoPerfil/".$data->nombreUsuario."/".$data->foto;} ?>" alt="Profile Image"></a>
+							<br/>
+							<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
 							<div class="blog-info">
 								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span></a></h4>
 								<ul class="post-footer">			
@@ -144,7 +148,9 @@
 					<div class="card h-100">
 						<div class="single-post post-style-1">
 							<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
-							<a class="avatar" ><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
+							<a class="avatar" ><img src="<?php if($data->foto==""){echo base_url()."assets/upload/fotoPerfil/user-default.png";}else{echo base_url()."assets/upload/fotoPerfil/".$data->nombreUsuario."/".$data->foto;} ?>" alt="Profile Image"></a>
+							<br/>
+							<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
 							<div class="blog-info">
 								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span></a></h4>
 								<ul class="post-footer">				
@@ -161,7 +167,9 @@
 				<div class="card h-100">
 						<div class="single-post post-style-1">
 							<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
-							<a class="avatar" ><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
+							<a class="avatar" ><img src="<?php if($data->foto==""){echo base_url()."assets/upload/fotoPerfil/user-default.png";}else{echo base_url()."assets/upload/fotoPerfil/".$data->nombreUsuario."/".$data->foto;} ?>" alt="Profile Image"></a>
+							<br/>
+							<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
 							<div class="blog-info">
 								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span></a></h4>
 								<ul class="post-footer">
@@ -179,7 +187,9 @@
 				<div class="card h-100">
 						<div class="single-post post-style-1">
 							<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
-							<a class="avatar" ><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/icons8-team-355979.jpg" alt="Profile Image"></a>
+							<a class="avatar" ><img src="<?php if($data->foto==""){echo base_url()."assets/upload/fotoPerfil/user-default.png";}else{echo base_url()."assets/upload/fotoPerfil/".$data->nombreUsuario."/".$data->foto;} ?>" alt="Profile Image"></a>
+							<br/>
+							<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
 							<div class="blog-info">
 								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span>
 								<?php if($data->validado==1){

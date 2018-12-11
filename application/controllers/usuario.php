@@ -236,7 +236,7 @@ print_r($_FILES);
             $clave=$this->input->post("clave");
             $claveNueva=$this->input->post("clave1");
             $claveNuevaRep=$this->input->post("clave2");
-            
+
             $rutas=["./assets/upload/","./assets/upload/fotoPerfil","./assets/upload/fotoPerfil/".$this->session->nombreUsuario];
             foreach ($rutas as $unaRuta) {
                 if (!is_dir($unaRuta)) {
@@ -249,10 +249,16 @@ print_r($_FILES);
                 $existeMail=$this->Usuario_model->get_usuario("",array("usuario.email"=>$this->input->post("email")));
                 if (hash('sha224', $clave)==$usuarioBuscado["clave"] && ($existeMail==null || $email==$this->session->email) ) {
                     if($claveNueva!="" && $claveNueva==$claveNuevaRep){
-                        $datos=["foto"=>$foto["name"],"nombre"=>$nombre,"apellido"=>$apellido,"estudio"=>$estudio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224',$claveNueva)];
+                        if($foto["name"]==""){
+                            $imagen=$this->session->foto;
+                        }else{
+                            $imagen=$foto["name"];
+                        }
+                        $datos=["foto"=>$imagen,"nombre"=>$nombre,"apellido"=>$apellido,"estudio"=>$estudio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224',$claveNueva)];
                         $res=$this->Usuario_model->update_usuario($nombUser, $datos);//Estaba por aca
+                        
                         if ($res) {
-                            echo "papa";
+                           
                             $this->actualizarSesion($datos);
                             $this->load->view("header", ["title" => "Editar Perfil"]);
                             $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-success text-center"><h4>'.'Datos Actualizados Correctamente'.'</h4></div>']);
@@ -268,7 +274,12 @@ print_r($_FILES);
                         $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Las claves no coinciden'.'</h4></div>']);
                         $this->load->view("footer");
                     }else{
-                        $datos=["foto"=>$foto["name"],"nombre"=>$nombre,"apellido"=>$apellido,"estudio"=>$estudio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224',$clave)];
+                        if($foto["name"]==""){
+                            $imagen=$this->session->foto;
+                        }else{
+                            $imagen=$foto["name"];
+                        }
+                        $datos=["foto"=>$imagen,"nombre"=>$nombre,"apellido"=>$apellido,"estudio"=>$estudio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224',$clave)];
                         $res=$this->Usuario_model->update_usuario($nombUser, $datos);//Estaba por aca
                     
                         if ($res) {

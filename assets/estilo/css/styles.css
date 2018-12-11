@@ -52,11 +52,11 @@ button:focus, button:active, button:hover{ text-decoration: none; color: #498BF9
 
 .single-post .post-footer{ position: absolute; bottom: 0; left: 0; right: 0; text-align: center; }
 
-.single-post .post-footer > li{ width: 33.33%; display: inline-block; border-right: 1px solid #fff; background: #EDF3F3; }
+.single-post .post-footer > li{ display: inline-block; border-right: 1px solid #fff; background: #EDF3F3; }
 
-.single-post .post-footer > li:first-child{ float: left; }
+.single-post .post-footer > li:first-child{ float: left; width:60%;}
 
-.single-post .post-footer > li:last-child{ border: 0px; float: right; }
+.single-post .post-footer > li:last-child{ border: 0px; float: right;width:40%; }
 
 .single-post .post-footer > li > a{ line-height: 45px;  }
 
