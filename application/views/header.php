@@ -57,6 +57,7 @@
 <body class="hold-transition skin-blue layout-top-nav">
   <header class="main-header">
 	<?php
+  print_r($_SESSION);
 		if (!$this->session->iniciada) {
 	?>
 		<nav class="navbar navbar-static-top">
@@ -100,10 +101,10 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
                 <img src="<?php 
-                 if($this->session->foto!=""){
-                  echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/fotoPerfil.png";
-                }else{
+                 if($this->session->foto==""){
                   echo base_url()."assets/upload/fotoPerfil/user-default.png";
+                }else{
+                  echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/".$this->session->foto;
                   
                 }
                   ?>
@@ -115,10 +116,10 @@
                 <!-- The user image in the menu -->
 								<li class="user-header">
                   <img src="<?php 
-                 if($this->session->foto!=""){
-                  echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/fotoPerfil.png";
-                }else{
+                 if($this->session->foto==""){
                   echo base_url()."assets/upload/fotoPerfil/user-default.png";
+                }else{
+                  echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/".$this->session->foto;
                   
                 }
                   ?>" class="img-circle" alt="User Image">
@@ -169,10 +170,10 @@
                 <!-- The user image in the navbar-->
                 <img src="
                 <?php 
-                if($this->session->foto!=""){
-                  echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/fotoPerfil.png";
-                }else{   
+                if($this->session->foto==""){
                   echo base_url()."assets/upload/fotoPerfil/user-default.png";
+                }else{   
+                  echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/".$this->session->foto;
                 }  
                 ?> " class="user-image" alt="User Image"/>
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -183,10 +184,10 @@
                 <li class="user-header">
                   <img src="
                   <?php 
-                    if($this->session->foto!=""){    
-                      echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/fotoPerfil.png";
+                    if($this->session->foto==""){    
+                      echo base_url()."assets/upload/fotoPerfil/user-default.png";
                     }else{
-                      echo base_url()."assets/upload/fotoPerfil/user-default.png";   
+                      echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/".$this->session->foto;   
                     }
                   ?>" class="img-circle" alt="User Image">
 									<p><?php echo $this->session->nombreUsuario;?>
@@ -230,10 +231,10 @@
                 <!-- The user image in the navbar-->
                 <img src="
                 <?php 
-                if($this->session->foto!=""){
-                  echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/fotoPerfil.png";
+                if($this->session->foto==""){
+                  echo base_url()."assets/upload/fotoPerfil/user-default.png";
                 }else{
-                 echo base_url()."assets/upload/fotoPerfil/user-default.png";
+                 echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/".$this->session->foto;
                  }
                  ?>" class="user-image" alt="User Image"/>
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -245,9 +246,9 @@
                   <img src="
                   <?php 
                     if($this->session->foto!=""){
-                      echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/fotoPerfil.png";
-                    }else{
                       echo base_url()."assets/upload/fotoPerfil/user-default.png";
+                    }else{
+                      echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/".$this->session->foto;
                     }
                   ?>" class="img-circle" alt="User Image">
 									<p><?php echo $this->session->nombreUsuario;?>

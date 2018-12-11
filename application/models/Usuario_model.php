@@ -76,7 +76,9 @@ class Usuario_model extends CI_Model
     public function update_usuario($nombreUsuario, $params)
     {
         $this->db->where('nombreUsuario', $nombreUsuario);
+        
         return $this->db->update('usuario', $params);
+        
     }
     
     /*
