@@ -65,7 +65,7 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
-        </div>
+				</div>
         <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="<?php echo base_url(); ?>inicio" alt="Inicio">Inicio</a></li>
@@ -77,7 +77,11 @@
 							</a>
 						</li>
         	</ul>
-        </div> <!-- /.navbar-custom-menu -->
+				</div> <!-- /.navbar-custom-menu -->
+				<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+					<a href="<?php echo base_url(); ?>inicio"><img src="<?php echo base_url(); ?>assets/estilo/imagenes/logo3.png"
+				 alt="Logo REA" id="logo"></a>
+				</div>
     	</div> <!-- /.container -->
     </nav>
 		<?php
@@ -89,7 +93,7 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
-        </div>
+				</div>
         <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
           <ul class="nav navbar-nav">
 						<li><a href="<?php echo base_url()."usuario"?>" alt="Inicio">Inicio</a></li>
@@ -104,7 +108,6 @@
                   echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/fotoPerfil.png";
                 }else{
                   echo base_url()."assets/upload/fotoPerfil/user-default.png";
-                  
                 }
                   ?>
                   " class="user-image" alt="User Image"/>
@@ -138,7 +141,11 @@
               </ul>
             </li>
         	</ul>
-        </div> <!-- /.navbar-custom-menu -->
+				</div> <!-- /.navbar-custom-menu -->
+				<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+					<a href="<?php echo base_url(); ?>inicio"><img src="<?php echo base_url(); ?>assets/estilo/imagenes/logo3.png"
+				 alt="Logo REA" id="logo"></a>
+				</div>
       </div> <!-- /.container -->
   	</nav><!-- /.navbar-custom-menu -->    
 		<?php
@@ -150,7 +157,7 @@
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
-        </div>
+				</div>
         <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="<?php echo base_url()."recurso"?>" alt="Inicio">Inicio</a></li>
@@ -205,7 +212,11 @@
               </ul>
             </li>
         	</ul>
-        </div> <!-- /.navbar-custom-menu -->
+				</div> <!-- /.navbar-custom-menu -->
+				<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+					<a href="<?php echo base_url(); ?>inicio"><img src="<?php echo base_url(); ?>assets/estilo/imagenes/logo3.png"
+				 alt="Logo REA" id="logo"></a>
+				</div>
       </div> <!-- /.container -->
   	</nav><!-- /.navbar-custom-menu -->
 		<?php
@@ -217,7 +228,7 @@
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
-        </div>
+				</div>
         <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="<?php echo base_url(); ?>inicio" alt="Inicio">Inicio</a></li>
@@ -266,7 +277,11 @@
               </ul>
             </li>
         	</ul>
-        </div> <!-- /.navbar-custom-menu -->
+				</div> <!-- /.navbar-custom-menu -->
+				<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+					<a href="<?php echo base_url(); ?>inicio"><img src="<?php echo base_url(); ?>assets/estilo/imagenes/logo3.png"
+				 alt="Logo REA" id="logo"></a>
+				</div>
       </div> <!-- /.container -->
     </nav>
 	<?php

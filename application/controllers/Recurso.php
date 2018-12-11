@@ -212,7 +212,7 @@ class Recurso extends CI_Controller
     public function view($idRecurso)
     {
         $unRecurso=$this->listarConArchivos("", $idRecurso);
-        $this->load->view("header", ["title"=>"Un recurso"]);
+        $this->load->view("header", ["title"=>"Ver Recurso"]);
         $this->load->view("recurso/view", ["unRecurso"=>$unRecurso]);
         $this->load->view("footer");
     }
