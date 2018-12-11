@@ -28,19 +28,16 @@ class Recurso extends CI_Controller
                     'descripcion' => $this->input->post('descripcion'),
                     'nombreUsuario' => $this->input->post('nombreUsuario'),
                     'nombreTema' => $this->input->post('nombreTema'),
-                    
                 );
                 $this->Recurso_model->update_recurso($idRecurso, $params);
             } else {
-                
-              
-            $this->load->view("header",["title"=>"Modificar recurso"]);
-                $this->load->view("recurso/editar_recurso",$data);
+                $this->load->view("header", ["title"=>"Modificar recurso"]);
+                $this->load->view("recurso/editar_recurso", $data);
                 $this->load->view("footer");
             }
         } else {
-        show_error('The recurso you are trying to edit does not exist.');
-    }
+            show_error('The recurso you are trying to edit does not exist.');
+        }
     }
     /*
     * Editing a recurso
@@ -65,8 +62,8 @@ class Recurso extends CI_Controller
                     'titulo' => $this->input->post('titulo'),
                     'descripcion' => $this->input->post('descripcion'),
                     'nombreUsuario' => $this->input->post('nombreUsuario'),
-                    'nombreTema' => $this->input->post('nombreTema'),  
-                );
+                    'nombreTema' => $this->input->post('nombreTema'),
+                    );
                         $this->Recurso_model->update_recurso($idRecurso, $params);
                         redirect('recurso/index');
                     } else {
@@ -79,9 +76,9 @@ class Recurso extends CI_Controller
                     if (strtolower($estado)=="alta") {
                         if ($this->mailAlta($this->input->post('nombreUsuario'), $this->input->post('email'))) {
                             ?>
-<script>
-    alert("enviado");
-</script><?php
+							<script>
+    							alert("enviado");
+							</script><?php
                         }
                     }
                     $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
@@ -93,9 +90,9 @@ class Recurso extends CI_Controller
                     if (strtolower($estado)=="alta") {
                         if ($this->mailAlta($this->input->post('nombreUsuario'), $this->input->post('email'))) {
                             ?>
-<script>
-    alert("enviado");
-</script><?php
+							<script>
+    							alert("enviado");
+							</script><?php
                         }
                     }
                     $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
@@ -347,7 +344,7 @@ class Recurso extends CI_Controller
                     if (!is_dir($unaRuta)) {
                         mkdir($unaRuta, 0777, true);
                     }
-                } 
+                }
                 $idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
             }
             for ($i=0;$i<(count($parametros['arrTmp']));$i++) {
@@ -357,8 +354,29 @@ class Recurso extends CI_Controller
         } else {
             $res=false;
         }
-        
-        
         return $res;
+    }
+    /** Lista todas las caterias de la base de datos */
+    public function listarCategoria()
+    {
+		$this->load->model("Tema_model");
+		$this->load->model("Categoria_model");
+		print_r($_POST);
+		if(count($_POST)>0){
+			$categoria=$this->Tema_model->get_all_categoria();
+			$tema=$this->Tema_model->get_all_tema();
+			if ($_POST["categoria"]!="") {
+				$data["temas"]=$this->Tema_model->get_all_tema($_POST["categoria"]);
+			}else{
+				echo "<input type='text'>";
+			}
+			$this->load->view("header", ["title"=>"Agregar Sesion"]);
+        	$this->load->view("recurso/agregarCategoria");
+        	$this->load->view("footer");
+		}else{
+			$this->load->view("header", ["title"=>"Agregar Sesion"]);
+        	$this->load->view("recurso/agregarCategoria",["mensaje"=>"<div class='col-md-8 alert alert-danger text-center'><h4>".'Error'."</h4></div>"]);
+        	$this->load->view("footer");
+		}
     }
 }

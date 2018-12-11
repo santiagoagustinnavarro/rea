@@ -1,19 +1,20 @@
+<br/>
 <div class="container box box-info">
 	<div class="col-md-offset-1 col-md-10">
-			<h1>Subir Recurso</h1>
-			<div class="col-md-offset-3 col-md-6">
-			<?php
-			if(isset($mensaje)){
-				echo $mensaje;
-			} 
-			?>
-			</div>
+		<h1>Subir Recurso</h1>
+		<div class="col-md-offset-3 col-md-6">
+		<?php
+		if(isset($mensaje)){
+			echo $mensaje;
+		} 
+		?>
+		</div>
 			<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/nicEdit.js"></script> <script type="text/javascript">
 				//<![CDATA[
         		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
   				//]]>
 			</script>
-			<form id="contacto" action="subirrecurso" onsubmit="return subirrecurso($(this));" method="post" enctype="multipart/form-data">
+		<form id="contacto" action="subirrecurso" onsubmit="return subirrecurso($(this));" method="post" enctype="multipart/form-data">
 				<div class="form-group col-md-offset-2 col-md-8">
 					<h4><i class="fa fa-file-text-o"></i> Nombre del Recurso</h4>
 					<input type="text" class="form-control" id="nombre" placeholder="Ingrese el Nombre" name="nombre" minlength="2" maxlength="30">
@@ -75,7 +76,6 @@
 				<div class="form-group col-md-offset-2 col-md-8 ">
 					<button type="submit" name="form" id="form" class="btn btn-success">Enviar</button>
 				</div>
-			</form>
-		
+		</form>
 	</div> <!-- Cierre de la clase col -->
 </div> <!-- Cierre de la clase container -->
