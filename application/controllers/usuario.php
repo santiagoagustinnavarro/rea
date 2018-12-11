@@ -223,7 +223,6 @@ class Usuario extends CI_Controller
     {
         $cant=count($_POST);
         if ($cant>0) {//Se enviaron datos desde el formulario
-print_r($_FILES);
             $nombUser=$this->input->post("nombreUsuario");
             $nombUser=$this->session->nombreUsuario;
             $nombre=$this->input->post("nombre");
