@@ -341,7 +341,13 @@ class Recurso extends CI_Controller
                 }
             }*/
             foreach ($archivos as $etiqueta=>$valor) {
-                $ruta="./assets/upload/";
+                $rutas=["./assets/upload/","./assets/upload/".$this->session->nombreUsuario,"./assets/upload/".$this->session->nombreUsuario."/".$idRecurso."/"];
+                $ruta="./assets/upload/".$this->session->nombreUsuario."/".$idRecurso."/";
+                foreach ($rutas as $unaRuta) {
+                    if (!is_dir($unaRuta)) {
+                        mkdir($unaRuta, 0777, true);
+                    }
+                } 
                 $idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
             }
             for ($i=0;$i<(count($parametros['arrTmp']));$i++) {
@@ -351,6 +357,8 @@ class Recurso extends CI_Controller
         } else {
             $res=false;
         }
+        
+        
         return $res;
     }
 }
