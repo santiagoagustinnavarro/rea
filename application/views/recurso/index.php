@@ -8,7 +8,7 @@
 		<th>Nombre del Tema</th>
 		<th>Estado</th>
 		<th>Validar</th>
-		<th>Actualizar/Eliminar</th>
+		<th>Actualizar/Ver Recurso</th>
     </tr>
 	<?php foreach($recurso as $r){ ?>
     <tr>
