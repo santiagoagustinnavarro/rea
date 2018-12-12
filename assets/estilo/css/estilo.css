@@ -33,10 +33,7 @@ body{
 	background: #ffffff;
 	color: #1e97cf;
 }
-#logo{
-	height:50px;
-	width: 90px;
-}
+
 /** Se le aplica un margen a la parte superior de 6% */
 #contacto{
 	margin-top:6%;

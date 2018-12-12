@@ -51,8 +51,8 @@
             		<div class="box-header with-border">
             			<h3 class="box-title">Recursos mejor valorados</h3>
             			<div class="box-tools pull-right">
-                			<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                			</button>
+                			<!-- <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                			</button> -->
     	          		</div>
         	    	</div><!-- /.box-header -->
             		<div class="box-body">
@@ -61,8 +61,9 @@
                 	  			<div class="product-img">
                     				<img src="dist/img/default-50x50.gif" alt="Product Image">
                   				</div>
+								<br/>
                   				<div class="product-info">
-                    				<a href="javascript:void(0)" class="product-title">Samsung TV
+                    				<a href="javascript:void(0)" class="product-title">Samsung TV</a>
                 	    			<span class="product-description">
                     	      			Samsung 32" 1080p 60Hz LED Smart HDTV.
                         			</span>
@@ -72,8 +73,9 @@
                   				<div class="product-img">
                     				<img src="dist/img/default-50x50.gif" alt="Product Image">
                   				</div>
+								  <br/>
                   				<div class="product-info">
-                    				<a href="javascript:void(0)" class="product-title">Bicycle
+                    				<a href="javascript:void(0)" class="product-title">Bicycle</a>
                    	 				<span class="product-description">
                     	      			26" Mongoose Dolomite Men's 7-speed, Navy Blue.
                     	    		</span>
@@ -83,6 +85,7 @@
         	          			<div class="product-img">
             	        			<img src="dist/img/default-50x50.gif" alt="Product Image">
             	      			</div>
+								  <br/>
             	      			<div class="product-info">
                 	    			<a href="javascript:void(0)" class="product-title">Xbox One</a>
                     				<span class="product-description">
@@ -94,6 +97,7 @@
                   				<div class="product-img">
             	        			<img src="dist/img/default-50x50.gif" alt="Product Image">
                 	  			</div>
+								  <br/>
                   				<div class="product-info">
                    					<a href="javascript:void(0)" class="product-title">PlayStation 4</a>
                     				<span class="product-description">

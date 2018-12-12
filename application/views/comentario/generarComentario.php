@@ -2,7 +2,6 @@
 echo form_open("comentario/generarComentario/".$idRecurso,["method"=>"post"]);
 ?>
 <!-- Chat box 
-<div class="box box-info">
 <div class="form-group">
 <label for="descripcion">Comentarios</label>
 <textarea type="textarea" class="form-control offset-lg-4 col-lg-5" name="descripcion" id="descripcion"></textarea>

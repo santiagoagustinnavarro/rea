@@ -57,32 +57,29 @@
 <body class="hold-transition skin-blue layout-top-nav">
   <header class="main-header">
 	<?php
-
 		if (!$this->session->iniciada) {
 	?>
 		<nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-            <i class="fa fa-bars"></i>
-          </button>
+					<a href="<?php echo base_url(); ?>inicio"><img src="<?php echo base_url(); ?>assets/estilo/imagenes/logo3.png"
+					alt="Logo REA" id="logo"></a>
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+        		<i class="fa fa-bars"></i>
+      		</button> 
 				</div>
         <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?php echo base_url(); ?>inicio" alt="Inicio">Inicio</a></li>
-            <li><a href="<?php echo base_url(); ?>recurso/listar" alt="Area">Area</a></li>
-            <li><a href="<?php echo base_url(); ?>contacto" alt="Contactenos">Contactenos</a></li>
+            <li><a href="<?php echo base_url(); ?>inicio">Inicio</a></li>
+            <li><a href="<?php echo base_url(); ?>recurso/listar">Area</a></li>
+            <li><a href="<?php echo base_url(); ?>contacto">Contactenos</a></li>
 						<li>
-							<a class="btn btn-success" href="<?php echo base_url(); ?>login" alt="iniciar sesion" value="">
+							<a class="btn btn-success" href="<?php echo base_url(); ?>login">
 								Iniciar Sesión
 							</a>
 						</li>
         	</ul>
 				</div> <!-- /.navbar-custom-menu -->
-				<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-					<a href="<?php echo base_url(); ?>inicio"><img src="<?php echo base_url(); ?>assets/estilo/imagenes/logo3.png"
-				 alt="Logo REA" id="logo"></a>
-				</div>
     	</div> <!-- /.container -->
     </nav>
 		<?php
@@ -91,6 +88,8 @@
 		<nav class="navbar navbar-static-top">
 			<div class="container">
         <div class="navbar-header">
+					<a href="<?php echo base_url(); ?>inicio"><img src="<?php echo base_url(); ?>assets/estilo/imagenes/logo3.png"
+					alt="Logo REA" id="logo"></a>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -144,10 +143,6 @@
             </li>
         	</ul>
 				</div> <!-- /.navbar-custom-menu -->
-				<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-					<a href="<?php echo base_url(); ?>inicio"><img src="<?php echo base_url(); ?>assets/estilo/imagenes/logo3.png"
-				 alt="Logo REA" id="logo"></a>
-				</div>
       </div> <!-- /.container -->
   	</nav><!-- /.navbar-custom-menu -->    
 		<?php
@@ -156,6 +151,8 @@
 		<nav class="navbar navbar-static-top">
 		<div class="container">
         <div class="navbar-header">
+					<a href="<?php echo base_url(); ?>inicio"><img src="<?php echo base_url(); ?>assets/estilo/imagenes/logo3.png"
+					alt="Logo REA" id="logo"></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -209,10 +206,6 @@
             </li>
         	</ul>
 				</div> <!-- /.navbar-custom-menu -->
-				<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-					<a href="<?php echo base_url(); ?>inicio"><img src="<?php echo base_url(); ?>assets/estilo/imagenes/logo3.png"
-				 alt="Logo REA" id="logo"></a>
-				</div>
       </div> <!-- /.container -->
   	</nav><!-- /.navbar-custom-menu -->
 		<?php
@@ -221,6 +214,8 @@
 		<nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
+					<a href="<?php echo base_url(); ?>inicio"><img src="<?php echo base_url(); ?>assets/estilo/imagenes/logo3.png"
+					alt="Logo REA" id="logo"></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -274,10 +269,6 @@
             </li>
         	</ul>
 				</div> <!-- /.navbar-custom-menu -->
-				<div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-					<a href="<?php echo base_url(); ?>inicio"><img src="<?php echo base_url(); ?>assets/estilo/imagenes/logo3.png"
-				 alt="Logo REA" id="logo"></a>
-				</div>
       </div> <!-- /.container -->
     </nav>
 	<?php
