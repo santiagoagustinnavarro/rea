@@ -49,6 +49,12 @@ body{
 	background:white;
 	padding:3%;
 }
+.espacio{
+	padding: 3%;
+}
+#chat-box{
+	text-align: left;
+}
 /** Todos los input de la clase form-group se centran */
 .form-group input {
 	text-align: center;
