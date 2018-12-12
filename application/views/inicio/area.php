@@ -113,9 +113,9 @@
 								<?php if($data->validado==1){
 									echo '<i class="fa fa-check-circle-o"></i>';
 								} ?></a></h4>
-								<ul class="post-footer">
+								<!--<ul class="post-footer">
 									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>
-								</ul>
+								</ul>-->
 							</div><!-- blog-info -->
 						</div><!-- single-post -->
 					</div><!-- card -->
@@ -137,9 +137,10 @@
 								<?php if($data->validado==1){
 									echo '<i class="fa fa-check-circle-o"></i>';
 								} ?></a></h4>
-								<ul class="post-footer">			
+								<?php echo $data->nombreNivel;?>
+								<!--<ul class="post-footer">			
 									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>		
-								</ul>
+								</ul>-->
 							</div><!-- blog-info -->
 						</div><!-- single-post -->
 					</div><!-- card -->
@@ -162,9 +163,9 @@
 								<?php if($data->validado==1){
 									echo '<i class="fa fa-check-circle-o"></i>';
 								} ?></a></h4>
-								<ul class="post-footer">				
+								<!--<ul class="post-footer">				
 									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>
-								</ul>
+								</ul>-->
 							</div><!--cierra la clase blog-info -->
 						</div><!--cierra la clase single-post -->
 					</div><!--cierra la clase card -->
@@ -184,9 +185,9 @@
 								<?php if($data->validado==1){
 									echo '<i class="fa fa-check-circle-o"></i>';
 								} ?></a></h4>
-								<ul class="post-footer">
+								<!--<ul class="post-footer">
 									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>	
-								</ul>
+								</ul>-->
 							</div><!--cierra la clase blog-info -->
 						</div><!--cierra la clase single-post -->
 					</div><!--cierra la clase card -->
@@ -207,9 +208,9 @@
 								<?php if($data->validado==1){
 									echo '<i class="fa fa-check-circle-o"></i>';
 								} ?></a></h4>
-								<ul class="post-footer">
+								<!--<ul class="post-footer">
 									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>
-								</ul>
+								</ul>-->
 							</div><!--cierra la clase blog-info -->
 						</div><!--cierra la clase single-post -->
 					</div><!--cierra la clase card -->

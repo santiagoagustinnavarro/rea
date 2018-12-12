@@ -76,9 +76,9 @@ class Recurso extends CI_Controller
                     if (strtolower($estado)=="alta") {
                         if ($this->mailAlta($this->input->post('nombreUsuario'), $this->input->post('email'))) {
                             ?>
-							<script>
-    							alert("enviado");
-							</script><?php
+<script>
+    alert("enviado");
+</script><?php
                         }
                     }
                     $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
@@ -90,9 +90,9 @@ class Recurso extends CI_Controller
                     if (strtolower($estado)=="alta") {
                         if ($this->mailAlta($this->input->post('nombreUsuario'), $this->input->post('email'))) {
                             ?>
-							<script>
-    							alert("enviado");
-							</script><?php
+<script>
+    alert("enviado");
+</script><?php
                         }
                     }
                     $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
@@ -357,20 +357,68 @@ class Recurso extends CI_Controller
         return $res;
     }
     /** Lista todas las caterias de la base de datos */
-    public function listarCategoria()
+    public function agregarSeccion()
     {
-		$this->load->model("Tema_model");
-		$this->load->model("Categoria_model");
-        $categoria=$this->Categoria_model->get_all_categoria();
-		if(count($_POST)>0){
+        $this->load->model("Tenercategoria_model");
+        $this->load->library('form_validation');
+        $this->load->model("Tema_model");
+        $this->load->model("Categoria_model");
+        $categoria=$this->Categoria_model->get_all_categoria();//Obtenemos todas las categorias
+        $this->form_validation->set_rules('nuevoTema', 'nombre del tema', 'required');//Campo de tema requerido
+        if ($this->input->post("categoria")=="") {
+            //Cuando el usuario no selecciono ninguna opcion de categoria hacemos requerido el campo de nueva categoria
+            $this->form_validation->set_rules('nuevaCategoria', 'nombre de categoria', 'required', array('required'=>"Debe seleccionar una categoria o ingresar una"));
+        }
+        if ($this->form_validation->run() == false) {//Si no se cumplen las validaciones del formulario
+            $this->load->view("header", ["title"=>"Agregar Seccion","scripts"=>["agregarCat.js"]]);
+            $this->load->view("recurso/agregarSeccion", ['categorias'=>$categoria,'temas'=>array()]);
+            $this->load->view("footer");
+        } else {//Se cumplen las validaciones del formulario
+            ///////////////////Añadimos el tema///////////////////////////////////
+            $existeTema=$this->Tema_model->get_tema($this->input->post("nuevoTema"));
+            if ($existeTema==null) {//Si el tema existe lo añadimos sino no hacemos nada con el tema
+                if ($this->input->post("descNuevoTema")=="") {//No dio descripcion del tema
+                    $this->Tema_model->add_tema(array("nombre"=>$this->input->post("nuevoTema")));
+                } else {//Dio descripcion del tema
+                    $this->Tema_model->add_tema(array("nombre"=>$this->input->post("nuevoTema"),"descripcion"=>$this->input->post("descNuevoTema")));
+                }
+            }
+            ////////////////////Añadimos la categoria///////////////////////////////////////////
+            if ($this->input->post("categoria")=="") {
+                $existeCat=$this->Categoria_model->get_categoria($this->input->post("nuevaCategoria"));
+                if ($existeCat==null) {//La categoria no existe
+                    if ($this->input->post("descNuevaCategoria")=="") {//No dio descripcion de la categoria
+                        $this->Categoria_model->add_categoria(array("nombre"=>$this->input->post("nuevaCategoria")));
+                    } else {//Dio descripcion de la categoria
+                        $this->Categoria_model->add_categoria(array("nombre"=>$this->input->post("nuevaCategoria"),"descripcion"=>$this->input->post("descNuevaCategoria")));
+                    }
+                    $this->Tenercategoria_model->add_tenercategoria(array("nombreCategoria"=>$this->input->post("nuevaCategoria"),"nombreTema"=>$this->input->post("nuevoTema")));    
+                } else {
+                    $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat.js"]]);
+                    $this->load->view("recurso/agregarSeccion", ['mensaje'=>'La categoria ya existe','categorias'=>$categoria,'temas'=>array()]);
+                    $this->load->view("footer");
+                }
+                ////////////////////Añadimos a la tabla de vinculacion/////////////////////////////////// 
+            } else {//Selecciono una categoria ya existente
+                $existeTenerCat=$this->Tenercategoria_model->get_tenercategoria($this->input->post("nuevoTema"), $this->input->post("categoria"));
+                if ($existeTenerCat==null) {
+                    $this->Tenercategoria_model->add_tenercategoria(array("nombreCategoria"=>$this->input->post("categoria"),"nombreTema"=>$this->input->post("nuevoTema")));
+                    $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat.js"]]);
+                    $this->load->view("recurso/agregarSeccion", ['mensaje'=>'Agregado con exito','categorias'=>$categoria,'temas'=>array()]);
+                    $this->load->view("footer");
+                } else {
+                    $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat.js"]]);
+                    $this->load->view("recurso/agregarSeccion", ['mensaje'=>'El tema ya se encuentra vinculado a la categoria','categorias'=>$categoria,'temas'=>array()]);
+                    $this->load->view("footer");
+                }
+            }
+           
+        }
+        if (count($_GET)>0) {//Caso ajax
             $tema=$this->Tema_model->get_all_tema($this->input->post("seleccionado"));
-			$this->load->view("header", ["title"=>"Agregar Sesion","scripts"=>["agregarCat.js"]]);
-        	$this->load->view("recurso/agregarCategoria",["categorias"=>$categoria,"temas"=>$tema]);
-        	$this->load->view("footer");
-		}else{
-			$this->load->view("header", ["title"=>"Agregar Sesion","scripts"=>["agregarCat.js"]]);
-        	$this->load->view("recurso/agregarCategoria",["mensaje"=>"<div class='col-md-8 alert alert-danger text-center'><h4>".'Error'."</h4></div>",'categorias'=>$categoria,'temas'=>array()]);
-        	$this->load->view("footer");
-		}
+            $this->load->view("header", ["title"=>"Agregar Seccion","scripts"=>["agregarCat.js"]]);
+            $this->load->view("recurso/agregarSeccion", ["categorias"=>$categoria,"temas"=>$tema]);
+            $this->load->view("footer");
+        }
     }
 }
