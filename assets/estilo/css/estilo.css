@@ -33,13 +33,6 @@ body{
 	background: #ffffff;
 	color: #1e97cf;
 }
-/** alto y ancho del video position relativa y un 12% para centrarlo */
-#carousel{
-	width: 95%;
-	height: 55%;
-	position: relative;
-	left: 3%;
-}
 #logo{
 	height:50px;
 	width: 90px;
