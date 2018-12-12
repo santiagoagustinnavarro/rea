@@ -3,6 +3,7 @@
 	<div class="container box box-info">
 		<h1>Agregar Secciones</h1>
 		<h3>Seleccione una Categoria</h3>
+		<?php echo form_open()?>
 		<div class="form-group col-md-offset-2 col-md-8">
 			<select class="form-control text-center" id="categoria" name="categoria">
 				<option value="" selected>Agregar Categoria</option>
@@ -22,10 +23,19 @@
 				?>
 				<option value="<?php echo $tema["nombre"]; ?>"><?php echo $tema["nombre"];?>
 				</option>
+				
 				<?php
 				}
 				?>
 			</select>
+			<br>	
+			<div class="form-group">
+			<?php 
+			echo form_submit("envio","Agregar","class=\"btn btn-success\"");
+			echo form_close();
+			
+			?>
+			</div>
 			<br/>
 		</div>
 	</div>

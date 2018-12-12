@@ -361,18 +361,15 @@ class Recurso extends CI_Controller
     {
 		$this->load->model("Tema_model");
 		$this->load->model("Categoria_model");
-        print_r($_POST);
         $categoria=$this->Categoria_model->get_all_categoria();
-		$tema=$this->Tema_model->get_all_tema();
 		if(count($_POST)>0){
-			
-            
-			$this->load->view("header", ["title"=>"Agregar Sesion"]);
-        	$this->load->view("recurso/agregarCategoria");
+            $tema=$this->Tema_model->get_all_tema($this->input->post("seleccionado"));
+			$this->load->view("header", ["title"=>"Agregar Sesion","scripts"=>["agregarCat.js"]]);
+        	$this->load->view("recurso/agregarCategoria",["categorias"=>$categoria,"temas"=>$tema]);
         	$this->load->view("footer");
 		}else{
-			$this->load->view("header", ["title"=>"Agregar Sesion"]);
-        	$this->load->view("recurso/agregarCategoria",["mensaje"=>"<div class='col-md-8 alert alert-danger text-center'><h4>".'Error'."</h4></div>",'categorias'=>$categoria,'temas'=>$tema]);
+			$this->load->view("header", ["title"=>"Agregar Sesion","scripts"=>["agregarCat.js"]]);
+        	$this->load->view("recurso/agregarCategoria",["mensaje"=>"<div class='col-md-8 alert alert-danger text-center'><h4>".'Error'."</h4></div>",'categorias'=>$categoria,'temas'=>array()]);
         	$this->load->view("footer");
 		}
     }

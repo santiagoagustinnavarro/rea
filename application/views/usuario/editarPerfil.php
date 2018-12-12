@@ -42,7 +42,8 @@
 					<h2>Actualizar Contraseña</h2>
 					<br/>
 					<div class="form-group">
-  						<input type="password" class="form-control" id="clave" placeholder="Contraseña Antigua" name="clave" minlength="8" maxlength="15">
+					
+  						<input type="password" required class="form-control" id="clave" placeholder="Contraseña Actual" name="clave" minlength="8" maxlength="15">
 					</div>
 					<div class="form-group">
       					<input type="password" class="form-control" id="clave1" placeholder="Nueva Contraseña" name="clave1" minlength="8" maxlength="15">
