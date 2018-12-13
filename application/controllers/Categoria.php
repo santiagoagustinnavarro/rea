@@ -43,6 +43,9 @@ class Categoria extends CI_Controller
                         $this->Categoria_model->add_categoria(array("nombre"=>$this->input->post("nuevaCategoria"),"descripcion"=>$this->input->post("descNuevaCategoria")));
                     }
                     $this->Tenercategoria_model->add_tenercategoria(array("nombreCategoria"=>$this->input->post("nuevaCategoria"),"nombreTema"=>$this->input->post("nuevoTema")));
+                    $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat.js"]]);
+                    $this->load->view("categoria/add", ['mensaje'=>'Agregado con exito','categorias'=>$categoria,'temas'=>array()]);
+                    $this->load->view("footer");
                 } else {
                     $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat.js"]]);
                     $this->load->view("categoria/add", ['mensaje'=>'La categoria ya existe','categorias'=>$categoria,'temas'=>array()]);
@@ -116,6 +119,7 @@ class Categoria extends CI_Controller
 			if($this->form_validation->run())     
             {   
                 $params = array(
+                    'nombre' => $this->input->post('nombre'),
 					'descripcion' => $this->input->post('descripcion'),
                 );
 

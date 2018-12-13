@@ -22,7 +22,7 @@ class Tema_model extends CI_Model
     /*
      * Get all tema
      */
-    public function get_all_tema($nombreCat="")
+    public function get_all_tema($nombreCat="",$params = array())
     {
         if ($nombreCat!="") {
             $this->db->select("tema.nombre");
@@ -33,9 +33,21 @@ class Tema_model extends CI_Model
             return $this->db->get()->result_array();
             //echo $this->db->last_query(); 
         } else {
+            if(isset($params) && !empty($params))
+            {
+                $this->db->limit($params['limit'], $params['offset']);
+            }
             $this->db->order_by('nombre', 'desc');
             return $this->db->get('tema')->result_array();
         }
+    }
+     /*
+     * Get all tema count
+     */
+    function get_all_tema_count()
+    {
+        $this->db->from('tema');
+        return $this->db->count_all_results();
     }
         
     /*

@@ -4,16 +4,16 @@
 
 <table class="table table-striped table-bordered">
     <tr>
-		<th>Nombre</th>
-		<th>Descripcion</th>
+		<th>NombreTema</th>
+		<th>NombreCategoria</th>
 		<th>Actions</th>
     </tr>
-	<?php foreach($categoria as $c){ ?>
+	<?php foreach($tenercategoria as $t){ ?>
     <tr>
-		<td><?php echo $c['nombre']; ?></td>
-		<td><?php echo $c['descripcion']; ?></td>
+		<td><?php echo $t['nombreTema']; ?></td>
+		<td><?php echo $t['nombreCategoria']; ?></td>
 		<td>
-            <a href="<?php echo site_url('categoria/edit/'.$c['nombre']); ?>" class="btn btn-info btn-xs">Edit</a> 
+            <a href="<?php echo site_url('tema/edit/'.$t['nombreTema'].'/'.$t['nombreCategoria']); ?>" class="btn btn-info btn-xs">Edit</a> 
            
         </td>
     </tr>

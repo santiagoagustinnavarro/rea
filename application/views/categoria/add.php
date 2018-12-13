@@ -22,7 +22,7 @@
 				
 			</select>
 			<br/>
-			<br/><input type="text"  class="form-control" id="nuevaCategoria" placeholder="ingrese el nombre de la nueva categoria" name="nuevaCategoria">
+			<br/><input type="text"  value="<?php echo set_value('nuevaCategoria')?>" class="form-control" id="nuevaCategoria" placeholder="ingrese el nombre de la nueva categoria" name="nuevaCategoria">
 			<?php echo form_error('nuevaCategoria'); ?>
 			<br/><textarea rows="6" class="form-control" id="descNuevaCategoria" placeholder="ingrese una descripcion de la nueva categoria" name="descNuevaCategoria"></textarea>
 			<h3>Ingrese un nuevo tema</h3>

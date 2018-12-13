@@ -16,7 +16,7 @@ class Tenercategoria_model extends CI_Model
      */
     function get_tenercategoria($nombreTema,$nombreCat)
     {
-        return $this->db->get_where('tenerCategoria',array('nombreTema'=>$nombreTema,'nombreCategoria'))->row_array();
+        return $this->db->get_where('tenerCategoria',array('nombreTema'=>$nombreTema,'nombreCategoria'=>$nombreCat))->row_array();
     }
     
     /*
@@ -53,9 +53,10 @@ class Tenercategoria_model extends CI_Model
     /*
      * function to update tenercategoria
      */
-    function update_tenercategoria($nombreTema,$params)
+    function update_tenercategoria($nombreTema,$nombreCategoria,$params)
     {
         $this->db->where('nombreTema',$nombreTema);
+        $this->db->where('nombreCategoria',$nombreCategoria);
         return $this->db->update('tenerCategoria',$params);
     }
     

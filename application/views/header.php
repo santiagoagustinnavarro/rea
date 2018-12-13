@@ -163,6 +163,7 @@
             <li><a href="<?php echo base_url(); ?>recurso/listar" alt="Area">Area</a></li>
             <li><a href="<?php echo base_url(); ?>contacto" alt="Contactenos">Contactenos</a></li>
           	<li><a href="<?php echo base_url(); ?>categoria/add">Agregar Seccion</a></li> 
+            <li><a href="<?php echo base_url(); ?>tema">Editar temas</a></li>
 						<li class="dropdown user user-menu">
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
