@@ -54,6 +54,7 @@ body{
 }
 #chat-box{
 	text-align: left;
+	font-size:normal;
 }
 /** Todos los input de la clase form-group se centran */
 .form-group input {

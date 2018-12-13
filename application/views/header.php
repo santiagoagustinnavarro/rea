@@ -162,8 +162,16 @@
             <li><a href="<?php echo base_url()."recurso"?>" alt="Inicio">Inicio</a></li>
             <li><a href="<?php echo base_url(); ?>recurso/listar" alt="Area">Area</a></li>
             <li><a href="<?php echo base_url(); ?>contacto" alt="Contactenos">Contactenos</a></li>
-          	<li><a href="<?php echo base_url(); ?>categoria/add">Agregar Seccion</a></li> 
-            <li><a href="<?php echo base_url(); ?>tema">Editar temas</a></li>
+						<li class="dropdown">
+        			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Agregar Seccion
+        				<span class="caret"></span>
+							</a>
+        				<ul class="dropdown-menu" id="desplegable">
+									<li><a href="<?php echo base_url(); ?>categoria/add">Añadir Secciones</a></li> 
+									<li><a href="<?php echo base_url(); ?>categoria">Editar Categoria</a></li>
+          				<li><a href="<?php echo base_url(); ?>tema">Editar Temas</a></li>
+        				</ul>
+      			</li>
 						<li class="dropdown user user-menu">
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
