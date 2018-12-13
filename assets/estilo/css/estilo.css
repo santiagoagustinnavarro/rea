@@ -33,17 +33,7 @@ body{
 	background: #ffffff;
 	color: #1e97cf;
 }
-/** alto y ancho del video position relativa y un 12% para centrarlo */
-#carousel{
-	width: 95%;
-	height: 55%;
-	position: relative;
-	left: 3%;
-}
-#logo{
-	height:50px;
-	width: 90px;
-}
+
 /** Se le aplica un margen a la parte superior de 6% */
 #contacto{
 	margin-top:6%;
@@ -58,6 +48,12 @@ body{
 .recurso {
 	background:white;
 	padding:3%;
+}
+.espacio{
+	padding: 3%;
+}
+#chat-box{
+	text-align: left;
 }
 /** Todos los input de la clase form-group se centran */
 .form-group input {

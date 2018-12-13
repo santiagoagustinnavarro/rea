@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-3">
 		<div class="box box-success col-md-10">
-		<br/>
+			<br/>
 				<!-- Search Widget -->
 			<div class="card md-4">
 				<h4 class="card-header text-center">Buscar</h4>
@@ -83,153 +83,152 @@
 			</div> <!-- cierra el col-md-3 -->
 		</div>
 		<div class="col-md-9">
-		<?php
-        if (count($results)>0) {
-            generarFilas($results, $links, 3);
-        }
-        ?>
-		<?php
-        /**
-         * Esta funcion genera las filas de los recursos donde $porFila sera la cantidad a mostrar por filas
-         * $results es el array de recursos
-         */
- 		function generarFilas($results, $links, $porFila)
- 		{
-     	?>
-		<section class="blog-area section">
-		<?php $i=1;
-     		foreach ($results as $data) {
-        		if (count($results)==1) {//Solo tiene un elemento ?>
-			<div class="row">
-				<div class="col-md-<?php echo 12/$porFila?> area">
-					<div class="card h-100">
-						<div class="single-post post-style-1">
-							<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
-							<a class="avatar" ><img src="<?php if($data->foto==""){echo base_url()."assets/upload/fotoPerfil/user-default.png";}else{echo base_url()."assets/upload/fotoPerfil/".$data->nombreUsuario."/".$data->foto;} ?>" alt="Profile Image"></a>
-							<br/>
-							<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
-							<div class="blog-info">
-								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span>
-								<?php if($data->validado==1){
-									echo '<i class="fa fa-check-circle-o"></i>';
-								} ?></a></h4>
-								<!--<ul class="post-footer">
-									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>
-								</ul>-->
-							</div><!-- blog-info -->
-						</div><!-- single-post -->
-					</div><!-- card -->
-				</div> <!-- cierrala clase area -->
-			</div>
-		<?php
-         } else {
-			 if ($i%$porFila==0 && $i!=1 && $i!=count($results)) {//Ultimo elemento de la fila
-		?>
-			<div class="col-md-<?php echo 12/$porFila?> area">
-				<div class="card h-100">
-					<div class="single-post post-style-1">
-						<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
-							<a class="avatar" ><img src="<?php if($data->foto==""){echo base_url()."assets/upload/fotoPerfil/user-default.png";}else{echo base_url()."assets/upload/fotoPerfil/".$data->nombreUsuario."/".$data->foto;} ?>" alt="Profile Image"></a>
-							<br/>
-							<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
-							<div class="blog-info">
-								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span>
-								<?php if($data->validado==1){
-									echo '<i class="fa fa-check-circle-o"></i>';
-								} ?></a></h4>
-								<?php echo $data->nombreNivel;?>
-								<!--<ul class="post-footer">			
-									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>		
-								</ul>-->
-							</div><!-- blog-info -->
-						</div><!-- single-post -->
-					</div><!-- card -->
-				</div> <!-- cierrala clase area -->
-			</div>
-			<div class="row">
 			<?php
-            	} elseif ($i==1) {//Primer elemento
-        	?>
-			<div class="row">
-				<div class="col-md-<?php echo 12/$porFila?> area">
-					<div class="card h-100">
-						<div class="single-post post-style-1">
-							<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
-							<a class="avatar" ><img src="<?php if($data->foto==""){echo base_url()."assets/upload/fotoPerfil/user-default.png";}else{echo base_url()."assets/upload/fotoPerfil/".$data->nombreUsuario."/".$data->foto;} ?>" alt="Profile Image"></a>
-							<br/>
-							<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
-							<div class="blog-info">
-								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span>
-								<?php if($data->validado==1){
-									echo '<i class="fa fa-check-circle-o"></i>';
-								} ?></a></h4>
-								<!--<ul class="post-footer">				
-									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>
-								</ul>-->
-							</div><!--cierra la clase blog-info -->
-						</div><!--cierra la clase single-post -->
-					</div><!--cierra la clase card -->
-				</div> <!-- cierra la clase area -->
+	        if (count($results)>0) {
+    	        generarFilas($results, $links, 3);
+    	    }
+    	    ?>
 			<?php
-            	} elseif ($i==count($results)) {//Ultimo elemento
-            ?>
-			<div class="col-md-<?php echo 12/$porFila?> area">
-				<div class="card h-100">
-						<div class="single-post post-style-1">
-							<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
-							<a class="avatar" ><img src="<?php if($data->foto==""){echo base_url()."assets/upload/fotoPerfil/user-default.png";}else{echo base_url()."assets/upload/fotoPerfil/".$data->nombreUsuario."/".$data->foto;} ?>" alt="Profile Image"></a>
-							<br/>
-							<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
-							<div class="blog-info">
-								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span>
-								<?php if($data->validado==1){
-									echo '<i class="fa fa-check-circle-o"></i>';
-								} ?></a></h4>
-								<!--<ul class="post-footer">
-									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>	
-								</ul>-->
-							</div><!--cierra la clase blog-info -->
-						</div><!--cierra la clase single-post -->
-					</div><!--cierra la clase card -->
-				</div> <!-- cierra la clase area -->
-			</div>
-			<?php
-            	} else {
-            ?>
-			<div class="col-md-<?php echo 12/$porFila?> area">
-				<div class="card h-100">
-						<div class="single-post post-style-1">
-							<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
-							<a class="avatar" ><img src="<?php if($data->foto==""){echo base_url()."assets/upload/fotoPerfil/user-default.png";}else{echo base_url()."assets/upload/fotoPerfil/".$data->nombreUsuario."/".$data->foto;} ?>" alt="Profile Image"></a>
-							<br/>
-							<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
-							<div class="blog-info">
-								<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span>
-								<?php if($data->validado==1){
-									echo '<i class="fa fa-check-circle-o"></i>';
-								} ?></a></h4>
-								<!--<ul class="post-footer">
-									<li class="estrellas"></li><li><a href="<?php echo base_url();?>comentario/generarcomentario/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>
-								</ul>-->
-							</div><!--cierra la clase blog-info -->
-						</div><!--cierra la clase single-post -->
-					</div><!--cierra la clase card -->
-				</div> <!-- cierra la clase area --> 
+        	/**
+         	* Esta funcion genera las filas de los recursos donde $porFila sera la cantidad a mostrar por filas
+         	* $results es el array de recursos
+         	*/
+ 			function generarFilas($results, $links, $porFila)
+ 			{
+     		?>
+			<section class="blog-area section">
+				<?php $i=1;
+     			foreach ($results as $data) {
+        			if (count($results)==1) {//Solo tiene un elemento ?>
+				<div class="row">
+					<div class="col-md-<?php echo 12/$porFila?> area">
+						<div class="card h-100">
+							<div class="single-post post-style-1">
+								<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
+								<a class="avatar" ><img src="<?php if($data->foto==""){echo base_url()."assets/upload/fotoPerfil/user-default.png";}else{echo base_url()."assets/upload/fotoPerfil/".$data->nombreUsuario."/".$data->foto;} ?>" alt="Profile Image"></a>
+								<br/>
+								<strong><?php echo "Autor: ".$data->nombreUsuario; ?></strong>
+								<div class="blog-info">
+									<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span>
+									<?php if($data->validado==1){
+										echo '<i class="fa fa-check-circle-o"></i>';
+									} ?></a></h4>
+									<ul class="post-footer">
+										<li class="estrellas"></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>12</a></li>
+									</ul>
+								</div><!-- blog-info -->
+							</div><!-- single-post -->
+						</div><!-- card -->
+					</div> <!-- cierrala clase area -->
+				</div>
 				<?php
-             		}
-             		$i++;
-         		}//Fin else
-	 		}//Fin foreach
-	 	?>
-		<div class="row">
-	 		<div class="offset-md-5"><?php echo $links; ?>
-	 		</div>
- 		</div>	
-	<?php
- 		}//Fin funcion
- 	?>
-	<!--Div container -->
-</section>
-</div><!--col-md-9 -->
-</div><!--Div row -->
-</div><!--Div container-fluid -->
+        		} else {
+					if ($i%$porFila==0 && $i!=1 && $i!=count($results)) {//Ultimo elemento de la fila
+				?>
+				<div class="col-md-<?php echo 12/$porFila?> area">
+					<div class="card h-100">
+						<div class="single-post post-style-1">
+							<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
+								<a class="avatar" ><img src="<?php if($data->foto==""){echo base_url()."assets/upload/fotoPerfil/user-default.png";}else{echo base_url()."assets/upload/fotoPerfil/".$data->nombreUsuario."/".$data->foto;} ?>" alt="Profile Image"></a>
+								<br/>
+								<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
+								<div class="blog-info">
+									<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span>
+									<?php if($data->validado==1){
+										echo '<i class="fa fa-check-circle-o"></i>';
+									} ?></a></h4>
+									<ul class="post-footer">			
+										<li class="estrellas"></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>		
+									</ul>
+								</div><!-- blog-info -->
+							</div><!-- single-post -->
+						</div><!-- card -->
+					</div> <!-- cierrala clase area -->
+				</div>
+				<div class="row">
+				<?php
+        	    	} elseif ($i==1) {//Primer elemento
+        		?>
+				<div class="row">
+					<div class="col-md-<?php echo 12/$porFila?> area">
+						<div class="card h-100">
+							<div class="single-post post-style-1">
+								<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
+									<a class="avatar" ><img src="<?php if($data->foto==""){echo base_url()."assets/upload/fotoPerfil/user-default.png";}else{echo base_url()."assets/upload/fotoPerfil/".$data->nombreUsuario."/".$data->foto;} ?>" alt="Profile Image"></a>
+									<br/>
+									<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
+									<div class="blog-info">
+										<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span>
+										<?php if($data->validado==1){
+											echo '<i class="fa fa-check-circle-o"></i>';
+										} ?></a></h4>
+										<ul class="post-footer">				
+											<li class="estrellas"></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>
+										</ul>
+									</div><!--cierra la clase blog-info -->
+								</div><!--cierra la clase single-post -->
+							</div><!--cierra la clase card -->
+						</div> <!-- cierra la clase area -->
+						<?php
+            				} elseif ($i==count($results)) {//Ultimo elemento
+            			?>
+						<div class="col-md-<?php echo 12/$porFila?> area">
+							<div class="card h-100">
+								<div class="single-post post-style-1">
+									<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
+										<a class="avatar" ><img src="<?php if($data->foto==""){echo base_url()."assets/upload/fotoPerfil/user-default.png";}else{echo base_url()."assets/upload/fotoPerfil/".$data->nombreUsuario."/".$data->foto;} ?>" alt="Profile Image"></a>
+										<br/>
+										<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
+										<div class="blog-info">
+											<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span>
+												<?php if($data->validado==1){
+												echo '<i class="fa fa-check-circle-o"></i>';
+												} ?></a>
+											</h4>
+											<ul class="post-footer">
+												<li class="estrellas"></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>	
+											</ul>
+										</div><!--cierra la clase blog-info -->
+									</div><!--cierra la clase single-post -->
+								</div><!--cierra la clase card -->
+							</div> <!-- cierra la clase area -->
+						</div>
+							<?php
+            					} else {
+            				?>
+						<div class="col-md-<?php echo 12/$porFila?> area">
+							<div class="card h-100">
+								<div class="single-post post-style-1">
+									<div class="blog-image"><img src="<?php echo base_url()."assets/estilo/"; ?>imagenes/marion-michele-330691.jpg" alt="Blog Image"></div>
+										<a class="avatar" ><img src="<?php if($data->foto==""){echo base_url()."assets/upload/fotoPerfil/user-default.png";}else{echo base_url()."assets/upload/fotoPerfil/".$data->nombreUsuario."/".$data->foto;} ?>" alt="Profile Image"></a>
+										<br/>
+										<strong><?php echo "Autor:".$data->nombreUsuario; ?></strong>
+										<div class="blog-info">
+											<h4 class="title"><a href="<?php echo "view/".$data->idRecurso; ?>"><b><?php echo $data->titulo; ?></b><span></span>
+											<?php if($data->validado==1){
+												echo '<i class="fa fa-check-circle-o"></i>';
+											} ?></a></h4>
+											<ul class="post-footer">
+												<li class="estrellas"></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i>6</a></li>
+											</ul>
+										</div><!--cierra la clase blog-info -->
+									</div><!--cierra la clase single-post -->
+								</div><!--cierra la clase card -->
+							</div> <!-- cierra la clase area --> 
+							<?php
+             					}
+             					$i++;
+         						}//Fin else
+	 						}//Fin foreach
+	 						?>
+							<div class="row">
+	 							<div class="offset-md-5"><?php echo $links; ?>
+	 						</div>
+ 						</div>	
+						<?php
+ 							}//Fin funcion
+ 						?> <!--div container -->
+			</section>
+		</div><!--col-md-9 -->
+	</div><!--div row -->
+</div><!--div container-fluid -->
