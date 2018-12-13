@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `Rea`.`recurso` (
     FOREIGN KEY (`nombreTema`)
     REFERENCES `Rea`.`tema` (`nombre`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -346,12 +346,12 @@ CREATE TABLE IF NOT EXISTS `Rea`.`tenerCategoria` (
     FOREIGN KEY (`nombreTema`)
     REFERENCES `Rea`.`tema` (`nombre`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_tenerCategoria_categoria1`
     FOREIGN KEY (`nombreCategoria`)
     REFERENCES `Rea`.`categoria` (`nombre`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 

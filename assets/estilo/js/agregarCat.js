@@ -1,4 +1,9 @@
+
 $(document).ready(function(){
+    if($("#categoria").val()!=""){
+        $("#nuevaCategoria").hide();
+        $("#descNuevaCategoria").hide();
+    }
     $("#categoria").change(function(){
         if($("#categoria").val()!=""){
             $("#nuevaCategoria").hide();

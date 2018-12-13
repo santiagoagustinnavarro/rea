@@ -18,7 +18,14 @@ class Categoria_model extends CI_Model
     {
         return $this->db->get_where('categoria', array('nombre'=>$nombre))->row_array();
     }
-        
+         /*
+     * Get all categoria count
+     */
+    function get_all_categoria_count()
+    {
+        $this->db->from('categoria');
+        return $this->db->count_all_results();
+    }
     /*
      * Get all Categoria
      */
