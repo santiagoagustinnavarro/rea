@@ -21,7 +21,7 @@
 				</div>
 				<div class="form-group col-md-offset-2 col-md-8">
 					<h4><i class="fa fa-caret-down"></i> Seleccione una Categoria</h4>
-					<select class="form-control text-center" id="categoria" name="categoria">
+					<select required class="form-control text-center" id="categoria" name="categoria">
 					<option value="" selected>Elija una categoria</option>
 						<?php 
 							foreach ($categoria as $unCat) {
@@ -33,7 +33,7 @@
 				</div>
 				<div class="form-group col-md-offset-2 col-md-8">
 					<h4><i class="fa fa-caret-down"></i> Seleccione un Tema</h4>
-					<select class="form-control text-center" id="tema" name="tema">
+					<select required class="form-control text-center" id="tema" name="tema">
 						<option value="" selected>Elija un tema</option>
 						<?php 
 							foreach ($tema as $unTema) {

@@ -17,7 +17,7 @@ function actualizarTema(){
             data: {'tema': $("#tema").val(),'niveles':JSON.stringify(checkbox),'busqueda':busqueda,'categoria':categoria},
             dataType: "html",
             success: function(response) {
-                $(".col-md-9").replaceWith($(".col-md-9",response));
+                $(".col-md-9").html($(".col-md-9",response).children());
                 $(".estrellas").starrr();
             }
         });  
@@ -41,7 +41,7 @@ $(document).ready(function(){
                 data: {'tema':$("#tema").val(),'niveles':JSON.stringify(checkbox),'busqueda':busqueda,'categoria':categoria},
                 dataType: "html",
                 success: function(response) {
-                    $(".col-md-9").replaceWith($(".col-md-9", response));
+                    $(".col-md-9").html($(".col-md-9", response).children());
                     $(".estrellas").starrr();
                 }
             }); 
@@ -61,7 +61,7 @@ $(document).ready(function(){
                 data: {'tema':$("#tema").val(),'niveles':JSON.stringify(checkbox),'busqueda':busqueda,'categoria':categoria},
                 dataType: "html",
                 success: function(response) {
-                    $(".col-md-9").replaceWith($(".col-md-9", response));
+                    $(".col-md-9").html($(".col-md-9", response).children());
                     $(".estrellas").starrr();
                 }
             }); 
@@ -81,8 +81,8 @@ $(document).ready(function(){
             data: {'tema':$("#tema").val(),'niveles':JSON.stringify(checkbox),'busqueda':busqueda,'categoria':categoria},
             dataType: "html",
             success: function(response) {
-                $(".col-md-9").replaceWith($(".col-md-9", response));
-                $("#tema").replaceWith($("#tema", response));
+                $(".col-md-9").html($(".col-md-9", response).children());
+                $("#tema").html($("#tema", response).children());
                 $(".estrellas").starrr();
                
               
