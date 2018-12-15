@@ -28,7 +28,7 @@ class Tema extends CI_Controller
         $this->pagination->initialize($config);
 
         $data['tenercategoria'] = $this->Tenercategoria_model->get_all_tenercategoria($params);
-        $this->load->view("header", ["title"=>"Editar tema"]);
+        $this->load->view("header", ["title"=>"Temas"]);
         $this->load->view('tema/index', $data);
         $this->load->view("footer");
     }
@@ -83,20 +83,19 @@ class Tema extends CI_Controller
                         redirect('tema/index');
                     } else {
                         $data["mensaje"]="Ya existe esta entrada";
-                        $this->load->view("header", ["title"=>"Editar tema"]);
+                        $this->load->view("header", ["title"=>"Editar Tema"]);
                         $this->load->view('tema/edit', $data);
                         $this->load->view("footer");
                     }
                     
-                    
                 } else {
                    
-                    $this->load->view("header", ["title"=>"Editar tema"]);
+                    $this->load->view("header", ["title"=>"Editar Tema"]);
                     $this->load->view('tema/edit', $data);
                     $this->load->view("footer");
                 }
             } else {
-                $this->load->view("header", ["title"=>"Editar tema"]);
+                $this->load->view("header", ["title"=>"Editar Tema"]);
                 $this->load->view('tema/edit', $data);
                 $this->load->view("footer");
             }

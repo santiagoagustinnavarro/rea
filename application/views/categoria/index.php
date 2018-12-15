@@ -1,4 +1,4 @@
-<div class="box box-info">
+<div class="box box-primary">
 <h1>Listado de Categorias</h1><br/>
 <table class="table table-striped table-bordered text-center">
     <tr>

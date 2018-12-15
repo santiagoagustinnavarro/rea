@@ -1,5 +1,5 @@
 <br/>
-<div class="box box-info" id="listarRecurso">
+<div class="box box-primary" id="listarRecurso">
 	<h1>Lista de Recursos</h1><br/>
 <table class="table table-striped table-bordered text-center">
     <tr>

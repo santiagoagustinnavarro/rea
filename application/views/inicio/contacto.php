@@ -1,7 +1,7 @@
 <!--VISTA DE CONTACTO -->
 <div class="container">
 	<div class="col-md-offset-2 col-md-8">
-		<div class="box box-info" id="contacto">
+		<div class="box box-primary" id="contacto">
 			<h1><b></b>Contacto</h1><br/>
 			<?php if(isset($mensaje)){
 				echo $mensaje;

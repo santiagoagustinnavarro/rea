@@ -1,7 +1,7 @@
 <div class="container">
 	<br/>
 	<div class="col-md-offset-3 col-md-6">
-		<div class="box box-info" id="reestablecerClave">
+		<div class="box box-primary" id="reestablecerClave">
 			<div class="register-box-body">
   				<form id="formulario" method="post">
 					<?php 
@@ -24,6 +24,6 @@
 					</div>
 				</form>
 			</div> <!-- Cierre del register-box-body -->
-		</div> <!-- Cierre de la clase box box-info -->
-	</div> <!-- Cierre de la clase box box-info -->	
+		</div> <!-- Cierre de la clase box box-primary -->
+	</div> <!-- Cierre de la clase col-md-6 -->
 </div> <!-- Cierre del container final -->
