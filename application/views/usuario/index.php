@@ -1,6 +1,6 @@
 <?php if(strtolower($this->session->rol)=="administrador de usuarios"){?>
 <br/>
-<div class="box box-info" id="listarUsuario">
+<div class="box box-primary" id="listarUsuario">
 	<h1>Lista de Usuarios</h1><br/>
 <table class="table table-striped table-bordered text-center">
     <tr>

@@ -2,7 +2,7 @@
 <div class="container">
 	<div class="col-md-offset-2 col-md-8">
 		<br/>
-		<div class="box box-info" id="editUser">
+		<div class="box box-primary" id="editUser">
 				<h1>Editar Usuario</h1><br/>
 			<div class="form-group">
 					<label for="usuario" class="col-md-4 control-label">Usuario</label>

@@ -2,7 +2,7 @@
 <div class="container">
 	<div class="col-md-offset-2 col-md-8">
 		<br/>
-		<div class="box box-info" id="editRec">
+		<div class="box box-primary" id="editRec">
 			<h1>Editar Recurso</h1><br/>	
 			<div class="form-group">
 					<label for="recurso" class="col-md-4 control-label">Recurso</label>

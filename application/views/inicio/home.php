@@ -4,7 +4,7 @@
   		<br/>
 		<div class="row">
 			<div class="col-md-9">
-				<div class="carousel slide" data-ride="carousel">
+				<div class="carousel slide" data-ride="carousel" id="carousel">
 					<div class="carousel-inner" id="carousel">
 							<!-- El carrusel de imagenes -->
   						<ol class="carousel-indicators">
@@ -33,15 +33,15 @@
 						<div class="item">
     						<img class="d-block w-100" src="<?php echo base_url(); ?>assets/estilo/imagenes/6.png" alt="Se puede descargar, comentar, valorar y intercambiar informacion">
     					</div> <!-- cierra la imagen 6 de carousel -->
-							<!-- anterior -->
-						<a class="left carousel-control" href="#carousel" data-slide="prev">
-							<span class="fa fa-angle-left"></span>
-						</a>
-							<!-- siguiente -->
-						<a class="right carousel-control" href="#carousel" data-slide="next">
-							<span class="fa fa-angle-right"></span>
-    					</a>
 					</div> <!-- cierra las imagenes de carousel -->
+						<!-- anterior -->
+					<a class="left carousel-control" href="#carousel" data-slide="prev">
+						<span class="fa fa-angle-left"></span>
+					</a>
+						<!-- siguiente -->
+					<a class="right carousel-control" href="#carousel" data-slide="next">
+						<span class="fa fa-angle-right"></span>
+    				</a> <!-- cierra de carousel-slide -->
 				</div>
 			</div> <!-- /.col-md-8 -->
 			<br/>

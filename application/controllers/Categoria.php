@@ -99,8 +99,6 @@ class Categoria extends CI_Controller
         $this->load->view("footer");
     }
 
-    
-
     /*
      * Editing a categoria
      */

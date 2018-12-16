@@ -1,7 +1,7 @@
 <div class="container">
 	<br/>
 	<div class="col-md-offset-3 col-md-6">
-		<div class="box box-info" id="recuperarClave">
+		<div class="box box-primary" id="recuperarClave">
 			<div class="register-box-body">
            		<?php echo form_open("recuperarcuenta/index",array("method"=>'get'));?> 
 				<?php 
@@ -22,6 +22,6 @@
 				</div>
 			    <?php echo form_close();?> 
 			</div> <!-- Cierre del register-box-body -->
-		</div> <!-- Cierre de la clase box box-info -->
+		</div> <!-- Cierre de la clase box box-primary -->
 	</div> <!-- Cierre de la clase col -->
 </div> <!-- Cierre del container final -->
