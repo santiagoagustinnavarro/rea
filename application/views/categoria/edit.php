@@ -10,7 +10,7 @@
 		</div>
 		<label for="descripcion" class="col-md-4 control-label">Descripcion</label>
 		<div class="col-md-8">
-		<input type="text" name="descripcion" value="<?php echo ($this->input->post('descripcion') ? $this->input->post('descripcion') : $categoria['descripcion']); ?>" class="form-control" id="descripcion" />
+		<textarea name="descripcion" rows="6" class="form-control" id="descripcion" ><?php echo ($this->input->post('descripcion') ? $this->input->post('descripcion') : $categoria['descripcion']); ?></textarea>
 		<span class="text-danger"><?php echo form_error('descripcion');?></span>
 		</div>
 	</div>
