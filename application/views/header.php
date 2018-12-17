@@ -75,7 +75,7 @@
 			</ul>
     	<ul class="nav navbar-nav navbar-right">
     	  <li>
-					<div class="btn btn-success" id="logeo"><a href="<?php echo base_url(); ?>login">Iniciar Sesión</a></div>
+					<div class="btn btn-success logeo"><a href="<?php echo base_url(); ?>login">Iniciar Sesión</a></div>
 				</li>
     	</ul>
 		</div> <!-- /.navbar-custom-menu -->
@@ -131,10 +131,10 @@
               	<!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo base_url()."usuario/editarPerfil"?>" class="btn btn-primary">Perfil</a>
+									<div class="btn btn-primary logeo"><a href="<?php echo base_url()."usuario/editarPerfil"?>">Perfil</a></div>
 								</div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-danger">Cerrar Sesion</a>
+									<div class="btn btn-danger logeo"><a href="<?php echo base_url(); ?>login/cerrarSession">Cerrar Sesión</a></div>
                 </div>
               </li>
           </ul>
@@ -202,14 +202,14 @@
             		</p>
 						</li>
           	  <!-- Menu Footer-->
-          	<li class="user-footer">
-            	<div class="pull-left">
-              	<a href="<?php echo base_url()."usuario/editarPerfil"?>" class="btn btn-primary btn-flat">Perfil</a>
+						<li class="user-footer">
+              <div class="pull-left">
+								<div class="btn btn-primary logeo"><a href="<?php echo base_url()."usuario/editarPerfil"?>">Perfil</a></div>
 							</div>
-      	      <div class="pull-right">
-        	      <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-danger btn-flat">Cerrar Sesion</a>
-          	  </div>
-         	 </li>
+              <div class="pull-right">
+								<div class="btn btn-danger logeo"><a href="<?php echo base_url(); ?>login/cerrarSession">Cerrar Sesión</a></div>
+              </div>
+            </li>
         	</ul>
       	</li>
     	</ul>
@@ -266,12 +266,12 @@
     	      	</p>
 						</li>
               <!-- Menu Footer-->
-            <li class="user-footer">
+						<li class="user-footer">
               <div class="pull-left">
-                <a href="<?php echo base_url()."usuario/editarPerfil"?>" class="btn btn-primary btn-flat">Perfil</a>
+								<div class="btn btn-primary logeo"><a href="<?php echo base_url()."usuario/editarPerfil"?>">Perfil</a></div>
 							</div>
               <div class="pull-right">
-                <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-danger btn-flat">Cerrar Sesion</a>
+								<div class="btn btn-danger logeo"><a href="<?php echo base_url(); ?>login/cerrarSession">Cerrar Sesión</a></div>
               </div>
             </li>
           </ul>
@@ -329,12 +329,12 @@
         	    	</p>
 							</li>  
               	<!-- Menu Footer-->
-              <li class="user-footer">
+							<li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo base_url()."usuario/editarPerfil"?>" class="btn btn-primary">Perfil</a>
+									<div class="btn btn-primary logeo"><a href="<?php echo base_url()."usuario/editarPerfil"?>">Perfil</a></div>
 								</div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-danger">Cerrar Sesion</a>
+									<div class="btn btn-danger logeo"><a href="<?php echo base_url(); ?>login/cerrarSession">Cerrar Sesión</a></div>
                 </div>
               </li>
           </ul>

@@ -7,10 +7,10 @@ body{
 #myNavbar{
 	font-size: larger;
 }
-#logeo{
+.logeo{
 margin-top: 3%;
 }
-#logeo a{
+.logeo a{
 	color:white;
 	font-size: medium;
 }
