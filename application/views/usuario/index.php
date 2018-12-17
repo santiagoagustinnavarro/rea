@@ -2,6 +2,7 @@
 <br/>
 <div class="box box-primary" id="listarUsuario">
 	<h1>Lista de Usuarios</h1><br/>
+<div class="table-responsive">
 <table class="table table-striped table-bordered text-center">
     <tr>
 		<th>Nombre de Usuario</th>
@@ -43,4 +44,5 @@
 		echo "No tiene permisos";
 	}
 	?>
+</div>
 </div>
