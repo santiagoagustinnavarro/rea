@@ -72,12 +72,10 @@
 				<li><a href="<?php echo base_url(); ?>inicio">Inicio</a></li>
         <li><a href="<?php echo base_url(); ?>recurso/listar">Area</a></li>
         <li><a href="<?php echo base_url(); ?>contacto">Contactenos</a></li>
-    	</ul>
+			</ul>
     	<ul class="nav navbar-nav navbar-right">
     	  <li>
-					<a class="btn btn-success" href="<?php echo base_url(); ?>login">
-						Iniciar Sesión
-					</a>	
+					<div class="btn btn-success" id="logeo"><a href="<?php echo base_url(); ?>login">Iniciar Sesión</a></div>
 				</li>
     	</ul>
 		</div> <!-- /.navbar-custom-menu -->
@@ -282,6 +280,69 @@
 		</div> <!-- /.navbar-custom-menu -->
   </div> <!-- /.container fluid-->
 </nav> <!-- /.navbar-custom-menu -->	
+<?php
+		} elseif ($this->session->rol == 'super administrador') {
+		// TERMINAR DE MODIFICAR
+?>
+<nav class="navbar navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<i class="fa fa-bars"></i>
+      </button>
+			<a class="navbar-brand" href="<?php echo base_url(); ?>inicio">Rea</a>
+    </div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+    	<ul class="nav navbar-nav">
+				<li><a href="<?php echo base_url(); ?>inicio">Inicio</a></li>
+        <li><a href="<?php echo base_url(); ?>recurso/listar">Area</a></li>
+				<li><a href="<?php echo base_url(); ?>contacto">Contactenos</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown user user-menu">
+          	<!-- Menu Toggle Button -->
+        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <!-- The user image in the navbar-->
+          	<img src="<?php 
+            	if($this->session->foto==""){
+            	  echo base_url()."assets/upload/fotoPerfil/user-default.png";
+      	      }else{
+        	      echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/".$this->session->foto;
+          	  }
+         	 	?>
+          	" class="user-image" alt="User Image"/>
+        	  	<!-- hidden-xs hides the username on small devices so only the image appears. -->
+            <span class="hidden-xs"><?php echo $this->session->nombreUsuario;?></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <!-- The user image in the menu -->
+						<li class="user-header">
+              <img src="<?php 
+  	           	if($this->session->foto==""){
+                	echo base_url()."assets/upload/fotoPerfil/user-default.png";
+              	}else{
+              	  echo base_url()."assets/upload/fotoPerfil/".$this->session->nombreUsuario."/".$this->session->foto;
+              	}
+                ?>" class="img-circle" alt="User Image">
+								<p><?php echo $this->session->nombreUsuario;?>
+          	    	<small>Super Administrador</small>
+        	    	</p>
+							</li>  
+              	<!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="<?php echo base_url()."usuario/editarPerfil"?>" class="btn btn-primary">Perfil</a>
+								</div>
+                <div class="pull-right">
+                  <a href="<?php echo base_url(); ?>login/cerrarSession" class="btn btn-danger">Cerrar Sesion</a>
+                </div>
+              </li>
+          </ul>
+        </li>
+    	</ul>
+		</div> <!-- /.navbar-custom-menu -->
+  </div> <!-- /.container -->
+</nav><!-- /.navbar-custom-menu -->    
 	<?php
   	}
   ?>

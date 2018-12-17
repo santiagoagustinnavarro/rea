@@ -7,6 +7,13 @@ body{
 #myNavbar{
 	font-size: larger;
 }
+#logeo{
+margin-top: 3%;
+}
+#logeo a{
+	color:white;
+	font-size: medium;
+}
 #logo{
 	width: 60px; 
 	height: 45px;
