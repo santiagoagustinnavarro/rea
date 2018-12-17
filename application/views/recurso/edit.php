@@ -1,9 +1,15 @@
 <?php  echo form_open('recurso/edit/'.$recurso['idRecurso'], array("class"=>"form-horizontal","method"=>"post"),array("nombreUsuario"=>$recurso["nombreUsuario"],"email"=>$recurso["email"])); ?>
 <div class="container">
+<div class="col-md-12">
 	<div class="col-md-offset-2 col-md-8">
 		<br/>
 		<div class="box box-primary" id="editRec">
-			<h1>Editar Recurso</h1><br/>	
+			<br/>
+			<div class="col-md-1">
+				<div class="btn btn-success"><a href="<?php echo base_url();?>recurso"><i class="fa fa-reply boton"></i></a></div>
+			</div>
+			<h1>Editar Recurso</h1>
+			<br/>
 			<div class="form-group">
 					<label for="recurso" class="col-md-4 control-label">Recurso</label>
 				<div class="col-md-6">
@@ -64,4 +70,5 @@
 			<br/>
 		</div>
 	</div>
+</div>
 </div>

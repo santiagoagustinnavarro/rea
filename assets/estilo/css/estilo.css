@@ -7,8 +7,11 @@ body{
 #myNavbar{
 	font-size: larger;
 }
+.boton{
+	color:white;
+}
 .logeo{
-margin-top: 3%;
+	margin-top: 3%;
 }
 .logeo a{
 	color:white;

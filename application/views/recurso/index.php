@@ -1,6 +1,7 @@
 <br/>
 <div class="box box-primary" id="listarRecurso">
 	<h1>Lista de Recursos</h1><br/>
+<div class="table-responsive">
 <table class="table table-striped table-bordered text-center">
     <tr>
 		<th>Titulo</th>
@@ -36,6 +37,7 @@
     </tr>
 	<?php } ?>
 </table>
+</div>
 <br/>
 <div class="pull-right">
     <?php echo $this->pagination->create_links(); ?>    

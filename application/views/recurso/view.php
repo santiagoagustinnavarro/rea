@@ -5,6 +5,18 @@ if (isset($unRecurso[0])) {
 <div class="container">
 	<br/>
 	<div class="box box-primary col-md-10">
+		<br/>
+		<?php
+			if($this->session->rol == 'administrador de recursos'){
+				echo'<div class="col-md-1">
+					 <div class="btn btn-success"><a href='.base_url().'recurso><i class="fa fa-reply boton"></i></a></div>
+					 </div>';
+			}else{
+				echo'<div class="col-md-1">
+				<div class="btn btn-success"><a href='.base_url().'recurso/listar><i class="fa fa-reply boton"></i></a></div>
+				</div>';
+			}
+		?>
 		<h1 class="titulo"><?php echo $recurso["titulo"];?></h1><br/>
 		<div class="descripcion">
 			<h3>Descripcion</h3>
