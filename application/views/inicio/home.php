@@ -108,7 +108,7 @@
               			</ul>
             		</div> <!-- /.box-body -->
             		<div class="box-footer text-center">
-              			<a href="javascript:void(0)" class="uppercase">View All Products</a>
+              			<a href="<?php echo base_url()?>recurso/listar" class="uppercase">Todos los Recursos</a>
             		</div> <!-- /.box-footer -->
         	  	</div> <!-- /.box -->
         	</div> <!-- /.col-md-4 -->
