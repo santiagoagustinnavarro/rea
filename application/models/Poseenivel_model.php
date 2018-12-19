@@ -14,9 +14,9 @@ class Poseenivel_model extends CI_Model
     /*
      * Get poseenivel by idRecurso
      */
-    function get_poseenivel($idRecurso)
+    function get_poseenivel($idRecurso,$nombreNivel)
     {
-        return $this->db->get_where('poseeNivel',array('idRecurso'=>$idRecurso))->row_array();
+        return $this->db->get_where('poseeNivel',array('idRecurso'=>$idRecurso,'nombreNivel'=>$nombreNivel))->row_array();
     }
     
     /*
@@ -62,8 +62,8 @@ class Poseenivel_model extends CI_Model
     /*
      * function to delete poseenivel
      */
-    function delete_poseenivel($idRecurso)
+    function delete_poseenivel($idRecurso,$nombreNivel)
     {
-        return $this->db->delete('poseeNivel',array('idRecurso'=>$idRecurso));
+        return $this->db->delete('poseeNivel',array('idRecurso'=>$idRecurso,'nombreNivel'=>$nombreNivel));
     }
 }
