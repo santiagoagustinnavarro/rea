@@ -1,13 +1,10 @@
-
-	
-
+<br/>
 <?php if(isset($mensaje)){
 	echo $mensaje;
 }?>
-<br/>
 <div class="container box box-info">
-		<h1>Agregar Seccion</h1>
-		<h3>Seleccione una Categoria</h3>
+	<h1>Agregar Seccion</h1>
+	<h3>Seleccione una Categoria</h3>
 		<?php echo form_open("recurso/agregarSeccion")?>
 		<div class="form-group col-md-offset-2 col-md-8">
 			<select class="form-control text-center" id="categoria" name="categoria">
@@ -36,11 +33,7 @@
 				<?php
 				}
 				?>
-				
-				
 			</select>
-			
-			
 			<input type="text" value="<?php echo set_value('nuevoTema'); ?>"  id="nuevoTema" name="nuevoTema" class="form-control" placeholder="ingrese el nombre del nuevo tema" >
 			<?php echo form_error('nuevoTema'); ?>
 			<br/><textarea rows="6" class="form-control" id="descNuevoTema" placeholder="ingrese una descripcion del tema" name="descNuevoTema"></textarea>

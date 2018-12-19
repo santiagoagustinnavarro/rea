@@ -30,11 +30,9 @@ jQuery.extend(jQuery.expr[":"],
 		<table class="table table-bordered text-center" id="tabla">
 			<thead>
 				<tr><th class="titulo" colspan="7"><h1>Lista de Usuarios</h1></th></tr>
-				<tr><th colspan="3" id="filtro">
+				<tr><th colspan="2" id="filtro">
 				<form id="buscar" method="post" action="<?php echo base_url()?>/application/controllers/usuario/buscar">
-					<div class="col-md-6">
-                    	<input type="text" class="form-control" id="busqueda" placeholder="Buscar por ..." />
-                	</div>
+                    <input type="text" class="form-control" id="busqueda" placeholder="Buscar por ..." />
 				</form>
 				</th></tr>
 				<tr>
@@ -69,11 +67,12 @@ jQuery.extend(jQuery.expr[":"],
 						<?php echo $u['email']; ?>
 					</td>
 					<td>
-						<?php $estado=$this->TenerEstadoUsuario_model->get_tenerestadousuario($u['nombreUsuario']);
-        			    	if(strtolower($estado["nombreEstadoUsuario"])=="pendiente"){
-								echo form_open("usuario/edit/".$u['nombreUsuario'],array("method"=>'post'),array("estadoActual"=>"Pendiente","nuevoEstado"=>"Alta"));?>	<button type="submit" class="btn btn-success"> Dar alta</button> <?php echo form_close();
+						<?php if(strtolower($u['nombreEstadoUsuario'])=="pendiente"){
+								echo form_open('usuario/edit/'.$u['nombreUsuario'],array("method"=>'post'),array("estados"=>"Alta","roles"=>$u['nombreRol'],'email'=>$u["email"]));
+								echo form_submit("envio","Dar alta",array("class"=>"btn btn-success"));
+								echo form_close();
 							}else{
-								echo $estado["nombreEstadoUsuario"];
+								echo $u['nombreEstadoUsuario'];
 							}
 						?>
 					</td>

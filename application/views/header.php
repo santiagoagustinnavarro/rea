@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="<?php echo base_url();?>assets/estilo/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/estilo/Ionicons/css/ionicons.min.css">
+	<!-- DataTables -->
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/estilo//datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/estilo/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -26,12 +28,27 @@
   <script src="<?php echo base_url();?>assets/estilo/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url();?>assets/estilo/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="<?php echo base_url();?>assets/estilo/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url();?>assets/estilo/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- SlimScroll -->
 <script src="<?php echo base_url();?>assets/estilo/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="<?php echo base_url();?>assets/estilo/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url();?>assets/estilo/dist/js/adminlte.min.js"></script>
+<script>
+  $(function () {
+    $('#example1').DataTable(){
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>assets/estilo/dist/js/demo.js"></script>
 	<?php
