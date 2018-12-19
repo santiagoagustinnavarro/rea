@@ -10,28 +10,93 @@ class Recurso extends CI_Controller
         $this->load->library("session");
         $this->load->model("Estadorecurso_model");
         $this->load->model("Tenerestadorecurso_model");
+        $this->load->model("Nivel_model");
+    
     }
     public function editar_recurso($idRecurso)
-    {
-        $data['recurso'] = $this->Recurso_model->get_recurso($idRecurso);
+    {  $this->load->model("Categoria_model");
+        $this->load->model("Tema_model");
+        $this->load->model("Poseenivel_model");
+        $this->load->library('form_validation');
+       
+        $data['recurso'] = $this->Recurso_model->get_recurso($idRecurso);//Obtenemos el recurso
         if (isset($data['recurso']['idRecurso'])) {
-            $this->load->library('form_validation');
-              
-            $this->form_validation->set_rules('titulo', 'Titulo', 'required|max_length[30]');
-            $this->form_validation->set_rules('descripcion', 'Descripcion', 'required|max_length[80]');
-            $this->form_validation->set_rules('nombreUsuario', 'NombreUsuario', 'required|max_length[30]');
-            $this->form_validation->set_rules('nombreTema', 'NombreTema', 'required|max_length[50]');
-    
-            if ($this->form_validation->run()) {
-                $params = array(
-                    'titulo' => $this->input->post('titulo'),
-                    'descripcion' => $this->input->post('descripcion'),
-                    'nombreUsuario' => $this->input->post('nombreUsuario'),
-                    'nombreTema' => $this->input->post('nombreTema'),
-                );
-                $this->Recurso_model->update_recurso($idRecurso, $params);
+            $tema=[];//Vacio en la primera carga(Sin seleccion de categoria)
+            $categoria=$this->Categoria_model->get_all_categoria();//Para listar las categorias
+            if (count($_GET)>0) {//Recibio datos del ajax
+                if ($this->input->get("categoria")!="") {//AJAX segun categoria solicitada
+                    $tema=$this->Tema_model->get_all_tema($this->input->get("categoria"));//Para listar los temas de la categoria      
+                }
+            }
+            $data["tema"]=$tema;//Mandamos los temas a la vista
+            $data["categoria"]=$categoria;//Mandamos los temas a la vista 
+            $data["archivos"]=$this->Archivo_model->get_all_archivo("
+            archivo.idRecurso =$idRecurso");
+             $data["nivelesSelect"]=$this->Nivel_model->get_all_nivel("EXISTS (SELECT nombreNivel
+             FROM poseenivel
+            WHERE poseenivel.idRecurso =$idRecurso and poseenivel.nombreNivel=nombre)");
+            $data["niveles"]=$this->Nivel_model->get_all_nivel();
+            if (count($_POST)>0){
+                
+                    $aRemover=$this->input->post("removerArchivo");
+                    if ($aRemover!="") {
+                        foreach ($aRemover as $unArchivo) {//Eliminamos los archivos solicitados
+                            $this->Archivo_model->delete_archivo($unArchivo);
+                        }
+                    }
+                
+                $update=array("nombreCategoria"=>$this->input->post("categoria"),"nombreTema"=>$this->input->post("tema"),"titulo"=>$this->input->post("nombre"),"descripcion"=>$this->input->post("descripcion"));
+                $this->Recurso_model->update_recurso($data['recurso']['idRecurso'],$update);
+                $nivelesRemovidos=$this->input->post("removerNivel");
+                if (isset($nivelesRemovidos)!="") {
+                    foreach ($nivelesRemovidos as $unNivel) {
+                        if ($this->Poseenivel_model->get_poseenivel($data['recurso']['idRecurso'], $unNivel)!=null) {//Que exista lo que desmarco sino lo salteamos
+                            $this->Poseenivel_model->delete_poseenivel($data['recurso']['idRecurso'], $unNivel);
+                        }
+                    }
+                }
+                $niveles=$this->input->post("niveles");
+                foreach($niveles as $unNivel){
+                    if($this->Poseenivel_model->get_poseenivel($data['recurso']['idRecurso'],$unNivel)==null){
+                        $this->Poseenivel_model->add_poseenivel(array("idRecurso"=>$data['recurso']['idRecurso'],"nombreNivel"=>$unNivel));
+                    }
+                   
+                }
+
+    $data["mensaje"]="<div class=\"alert alert-info\"> Recurso actualizado</div>";
+    $archivos=$_FILES["archivo"];
+   
+    if(($archivos["name"][0]!="")){
+        $params=['arrArc'=>$archivos["name"],'arrTmp'=>$archivos["tmp_name"]];
+        $archs=$params["arrArc"];
+        foreach ($archs as  $etiqueta=>$valor) {
+            $rutas=["./assets/upload/","./assets/upload/".$this->session->nombreUsuario,"./assets/upload/".$this->session->nombreUsuario."/".$idRecurso."/"];
+            $ruta="./assets/upload/".$this->session->nombreUsuario."/".$idRecurso."/";
+            foreach ($rutas as $unaRuta) {
+                if (!is_dir($unaRuta)) {
+                    mkdir($unaRuta, 0777, true);
+                }
+            }
+            $idArchivo=$this->Archivo_model->add_archivo(array("nombre"=>$valor,"ruta"=>$ruta,"idRecurso"=>$idRecurso));
+        }
+        for ($i=0;$i<(count($params['arrTmp']));$i++) {
+            $arch=$ruta.basename($archs[$i]);
+            move_uploaded_file($params['arrTmp'][$i], $arch);
+        }
+    }
+    $data["tema"]=$tema;//Mandamos los temas a la vista
+    $data["categoria"]=$categoria;//Mandamos los temas a la vista 
+    $data["archivos"]=$this->Archivo_model->get_all_archivo("
+    archivo.idRecurso =$idRecurso");
+     $data["nivelesSelect"]=$this->Nivel_model->get_all_nivel("EXISTS (SELECT nombreNivel
+     FROM poseenivel
+    WHERE poseenivel.idRecurso =$idRecurso and poseenivel.nombreNivel=nombre)");
+    $data["niveles"]=$this->Nivel_model->get_all_nivel();
+  $this->load->view("header", ["title"=>"Modificar recurso","scripts"=>["jquery-ui/jquery-ui.min.js","editar_recurso.js"]]);
+                $this->load->view("recurso/editar_recurso", $data);
+                $this->load->view("footer");
             } else {
-                $this->load->view("header", ["title"=>"Modificar recurso"]);
+                $this->load->view("header", ["title"=>"Modificar recurso","scripts"=>["jquery-ui/jquery-ui.min.js","editar_recurso.js"]]);
                 $this->load->view("recurso/editar_recurso", $data);
                 $this->load->view("footer");
             }
@@ -39,73 +104,70 @@ class Recurso extends CI_Controller
             show_error('The recurso you are trying to edit does not exist.');
         }
     }
+   
     /*
     * Editing a recurso
     */
     public function edit($idRecurso)
     {
-        if (strtolower($this->session->rol)!="administrador de recursos") {
-            echo "Acceso prohibido";
-        } else {
+      if (strtolower($this->session->rol=="administrador de recursos")) {
     
         // check if the recurso exists before trying to edit it
-            $data['recurso'] = $this->Recurso_model->get_recurso($idRecurso);
-            if (isset($data['recurso']['idRecurso'])) {
-                $this->load->library('form_validation');
-                if (!$this->input->post('estados') && !$this->input->post('validado')) {
-                    $this->form_validation->set_rules('titulo', 'Titulo', 'required|max_length[30]');
-                    $this->form_validation->set_rules('descripcion', 'Descripcion', 'required|max_length[80]');
-                    $this->form_validation->set_rules('nombreUsuario', 'NombreUsuario', 'required|max_length[30]');
-                    $this->form_validation->set_rules('nombreTema', 'NombreTema', 'required|max_length[50]');
-                    if ($this->form_validation->run()) {
-                        $params = array(
+          $data['recurso'] = $this->Recurso_model->get_recurso($idRecurso);
+          if (isset($data['recurso']['idRecurso'])) {
+              $this->load->library('form_validation');
+              if (!$this->input->post('estados') && !$this->input->post('validado')) {
+                  $this->form_validation->set_rules('titulo', 'Titulo', 'required|max_length[30]');
+                  $this->form_validation->set_rules('descripcion', 'Descripcion', 'required|max_length[80]');
+                  $this->form_validation->set_rules('nombreUsuario', 'NombreUsuario', 'required|max_length[30]');
+                  $this->form_validation->set_rules('nombreTema', 'NombreTema', 'required|max_length[50]');
+                  if ($this->form_validation->run()) {
+                      $params = array(
                     'titulo' => $this->input->post('titulo'),
                     'descripcion' => $this->input->post('descripcion'),
                     'nombreUsuario' => $this->input->post('nombreUsuario'),
                     'nombreTema' => $this->input->post('nombreTema'),
                     );
-                        $this->Recurso_model->update_recurso($idRecurso, $params);
-                        redirect('recurso/index');
-                    } else {
-                        $this->load->view("header", ["title"=>"Editar Recurso"]);
-                        $this->load->view('recurso/edit', $data);
-                        $this->load->view("footer");
-                    }
-                } elseif ($this->input->post('estados')!="" && $this->input->post('validado')!="") {
-                    $estado= $this->input->post('estados');
-                    if (strtolower($estado)=="alta") {
-                        if ($this->mailAlta($this->input->post('nombreUsuario'), $this->input->post('email'))) {
-                            ?>
-<script>
-    alert("enviado");
-</script><?php
-                        }
-                    }
-                    $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
-                    $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>$this->input->post("estados"),"fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"idRecurso"=>$idRecurso));
-                    $this->Recurso_model->update_recurso($idRecurso, array("validado"=>(int) $this->input->post("validado")));
-                    redirect('recurso/index');
-                } elseif ($this->input->post('estados')!="") {
-                    $estado= $this->input->post('estados');
-                    if (strtolower($estado)=="alta") {
-                        if ($this->mailAlta($this->input->post('nombreUsuario'), $this->input->post('email'))) {
-                            ?>
-<script>
-    alert("enviado");
-</script><?php
-                        }
-                    }
-                    $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
-                    $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>$this->input->post("estados"),"fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"idRecurso"=>$idRecurso));
-                    redirect('recurso/index');
-                } else {
-                    $this->Recurso_model->update_recurso($idRecurso, array("validado"=>$this->input->post("validado")));
-                    redirect('recurso/index');
-                }
-            } else {
-                show_error('The recurso you are trying to edit does not exist.');
-            }
-        }
+                      $this->Recurso_model->update_recurso($idRecurso, $params);
+                      redirect('recurso/index');
+                  } else {
+                      $this->load->view("header", ["title"=>"Editar Recurso"]);
+                      $this->load->view('recurso/edit', $data);
+                      $this->load->view("footer");
+                  }
+              } elseif ($this->input->post('estados')!="" && $this->input->post('validado')!="") {
+                  $estado= $this->input->post('estados');
+                  if (strtolower($estado)=="alta") {
+                      if ($this->mailAlta($this->input->post('nombreUsuario'), $this->input->post('email'))) {
+                          ?>
+<?php
+                      }
+                  }
+                  $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
+                  $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>$this->input->post("estados"),"fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"idRecurso"=>$idRecurso));
+                  $this->Recurso_model->update_recurso($idRecurso, array("validado"=>(int) $this->input->post("validado")));
+                  redirect('recurso/index');
+              } elseif ($this->input->post('estados')!="") {
+                  $estado= $this->input->post('estados');
+                  if (strtolower($estado)=="alta") {
+                      if ($this->mailAlta($this->input->post('nombreUsuario'), $this->input->post('email'))) {
+                          ?>
+<?php
+                      }
+                  }
+                  $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
+                  $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>$this->input->post("estados"),"fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"idRecurso"=>$idRecurso));
+                  redirect('recurso/index');
+              } else {
+                  $this->Recurso_model->update_recurso($idRecurso, array("validado"=>$this->input->post("validado")));
+                  redirect('recurso/index');
+              }
+          } else {
+              show_error('The recurso you are trying to edit does not exist.');
+          }
+      }else{
+        echo "No tiene permisos";
+    }
     }
     private function mailAlta($nombreUsuario, $email)
     {
@@ -209,9 +271,13 @@ class Recurso extends CI_Controller
     public function view($idRecurso)
     {
         $unRecurso=$this->listarConArchivos("", $idRecurso);
-        $this->load->view("header", ["title"=>"Ver Recurso"]);
-        $this->load->view("recurso/view", ["unRecurso"=>$unRecurso]);
-        $this->load->view("footer");
+        if ($unRecurso[0]["nombreUsuario"]==$this->session->nombreUsuario) {
+            redirect("recurso/edit/".$idRecurso);
+        } else {
+            $this->load->view("header", ["title"=>"Ver Recurso"]);
+            $this->load->view("recurso/view", ["unRecurso"=>$unRecurso]);
+            $this->load->view("footer");
+        }
     }
     private function listarConArchivos($usuario="", $idRecurso="")
     {
@@ -249,6 +315,7 @@ class Recurso extends CI_Controller
                 $anterior=$actual;//Cambiamos de recurso por lo cual ahora este sera el anterior
             }
         }
+        
         return $recursos;
     }
     /** Esta funcion es la encargada de subir los recursos con sus respectivos archivos */
@@ -310,7 +377,7 @@ class Recurso extends CI_Controller
     /** La funcion es llamada por subirArchivo, con esta funcion se cargan los archivos del recurso */
     private function subida($parametros)
     {
-        $recurso=array("nombreTema"=>$parametros["tema"],"nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$parametros["nombreRecurso"],"descripcion"=>$parametros['descripcion']);
+        $recurso=array("nombreCategoria"=>$parametros["categoria"],"nombreTema"=>$parametros["tema"],"nombreUsuario"=>$_SESSION["nombreUsuario"],"titulo"=>$parametros["nombreRecurso"],"descripcion"=>$parametros['descripcion']);
         $idRecurso=$this->Recurso_model->add_recurso($recurso);
         
         if ($idRecurso>0) {
@@ -356,6 +423,7 @@ class Recurso extends CI_Controller
         }
         return $res;
     }
+    
     /** Lista todas las caterias de la base de datos */
     public function agregarSeccion()
     {
@@ -392,13 +460,13 @@ class Recurso extends CI_Controller
                     } else {//Dio descripcion de la categoria
                         $this->Categoria_model->add_categoria(array("nombre"=>$this->input->post("nuevaCategoria"),"descripcion"=>$this->input->post("descNuevaCategoria")));
                     }
-                    $this->Tenercategoria_model->add_tenercategoria(array("nombreCategoria"=>$this->input->post("nuevaCategoria"),"nombreTema"=>$this->input->post("nuevoTema")));    
+                    $this->Tenercategoria_model->add_tenercategoria(array("nombreCategoria"=>$this->input->post("nuevaCategoria"),"nombreTema"=>$this->input->post("nuevoTema")));
                 } else {
                     $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat.js"]]);
                     $this->load->view("recurso/agregarSeccion", ['mensaje'=>'La categoria ya existe','categorias'=>$categoria,'temas'=>array()]);
                     $this->load->view("footer");
                 }
-                ////////////////////Añadimos a la tabla de vinculacion/////////////////////////////////// 
+                ////////////////////Añadimos a la tabla de vinculacion///////////////////////////////////
             } else {//Selecciono una categoria ya existente
                 $existeTenerCat=$this->Tenercategoria_model->get_tenercategoria($this->input->post("nuevoTema"), $this->input->post("categoria"));
                 if ($existeTenerCat==null) {
@@ -412,7 +480,6 @@ class Recurso extends CI_Controller
                     $this->load->view("footer");
                 }
             }
-           
         }
         if (count($_GET)>0) {//Caso ajax
             $tema=$this->Tema_model->get_all_tema($this->input->post("seleccionado"));

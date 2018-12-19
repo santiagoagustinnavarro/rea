@@ -22,8 +22,9 @@ class Nivel_model extends CI_Model
     /*
      * Get all nivel
      */
-    public function get_all_nivel()
-    {
+    public function get_all_nivel($params=array())
+    
+    {   $this->db->where($params);
         $this->db->order_by('nombre', 'asc');
         return $this->db->get('nivel')->result_array();
     }

@@ -13,28 +13,28 @@ class Archivo_model extends CI_Model
     }
     
     /*
-     * Get estadousuario by nombre
+     * Get archivo by idArchivo
      */
-    public function get_recurso($nombre)
+    public function get_archivo($idArchivo)
     {
-        return $this->db->get_where('recurso', array('nombre'=>$nombre))->row_array();
+        return $this->db->get_where('archivo', array('idArchivo'=>$idArchivo))->row_array();
     }
         
     /*
-     * Get all estadousuario
+     * Get all archivo
      */
-    public function get_all_recurso($filters="")
+    public function get_all_archivo($filters=array())
     {
-        if ($filters!="") {
+      
             $this->db->where($filters);
-        }
+        
 
         $this->db->order_by('idArchivo', 'asc');
-        return $this->db->get('recurso')->result_array();
+        return $this->db->get('archivo')->result_array();
     }
         
     /*
-     * function to add new estadousuario
+     * function to add new archivo
      */
     public function add_archivo($params)
     {
@@ -43,19 +43,19 @@ class Archivo_model extends CI_Model
     }
     
     /*
-     * function to update estadousuario
+     * function to update archivo
      */
-    public function update_estadousuario($nombre,$params)
+    public function update_archivo($idArchivo,$params)
     {
-        $this->db->where('nombre', $nombre);
-        return $this->db->update('estadoUsuario', $params);
+        $this->db->where('idArchivo', $idArchivo);
+        return $this->db->update('archivo', $params);
     }
     
     /*
-     * function to delete estadousuario
+     * function to delete archivo
      */
-    public function delete_estadousuario($nombre)
+    public function delete_archivo($idArchivo)
     {
-        return $this->db->delete('estadoUsuario', array('nombre'=>$nombre));
+        return $this->db->delete('archivo', array('idArchivo'=>$idArchivo));
     }
 }
