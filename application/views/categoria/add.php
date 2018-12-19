@@ -4,7 +4,7 @@
 <br/>
 <div class="container">
 	<div class="col-md-offset-1 col-md-10">
-		<div class="col-md-10 box box-info">	
+		<div class="col-md-10 box box-primary">	
 			<h1>Añadir Seccion</h1>
 			<h3>Seleccione una Categoria</h3>
 			<?php echo form_open("categoria/add")?>

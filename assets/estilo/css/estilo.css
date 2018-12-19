@@ -4,8 +4,19 @@
 body{
 	text-align: center;
 }
-#navbar-collapse{
+#myNavbar{
 	font-size: larger;
+}
+.logeo{
+	margin-top: 3%;
+	font-size: medium;
+	color:white;
+}
+.logeo a{
+	color:white;
+}
+.logeo a:hover{
+	color:white;
 }
 #logo{
 	width: 60px; 
@@ -17,7 +28,7 @@ body{
 }
 /** Tiene un fonde de color gris claro */
 #desplegable{
-	background:#1489a7;
+	background:#14809b;
 	text-align: center;
 }
 /** Tamaño de la letra en mediano, y negrita normal */
@@ -31,7 +42,7 @@ body{
 	font-weight: normal;
 	font-size: medium;
 	background: #ffffff;
-	color: #1e97cf;
+	color: #1e79cf;
 }
 
 /** Se le aplica un margen a la parte superior de 6% */

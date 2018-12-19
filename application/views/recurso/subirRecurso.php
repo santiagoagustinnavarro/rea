@@ -1,5 +1,5 @@
 <br/>
-<div class="container box box-info">
+<div class="container box box-primary">
 	<div class="col-md-offset-1 col-md-10">
 		<h1>Subir Recurso</h1>
 		<div class="col-md-offset-3 col-md-6">
