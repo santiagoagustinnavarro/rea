@@ -7,15 +7,16 @@ body{
 #myNavbar{
 	font-size: larger;
 }
-.boton{
-	color:white;
-}
 .logeo{
 	margin-top: 3%;
+	font-size: medium;
+	color:white;
 }
 .logeo a{
 	color:white;
-	font-size: medium;
+}
+.logeo a:hover{
+	color:white;
 }
 #logo{
 	width: 60px; 

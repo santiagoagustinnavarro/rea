@@ -29,8 +29,8 @@ jQuery.extend(jQuery.expr[":"],
 	<div class="table-responsive">
 		<table class="table table-bordered text-center" id="tabla">
 			<thead>
-				<tr><th class="titulo" colspan="6"><h1>Lista de Usuarios</h1></th></tr>
-				<tr><th colspan="4" id="filtro">
+				<tr><th class="titulo" colspan="7"><h1>Lista de Usuarios</h1></th></tr>
+				<tr><th colspan="3" id="filtro">
 				<form id="buscar" method="post" action="<?php echo base_url()?>/application/controllers/usuario/buscar">
 					<div class="col-md-6">
                     	<input type="text" class="form-control" id="busqueda" placeholder="Buscar por ..." />

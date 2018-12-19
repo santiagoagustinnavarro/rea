@@ -26,8 +26,8 @@ jQuery.extend(jQuery.expr[":"],
 		<table class="table table-striped table-bordered text-center" id="tabla">
 			<thead>
 				<tr><th class="titulo" colspan="6"><h1>Lista de Recursos</h1></th></tr>
-				<tr><th colspan="4" id="filtro">
-				<div class="col-md-6">
+				<tr><th colspan="2" id="filtro">
+				<div class="col-md-8">
         	        <input type="text" class="form-control" id="busqueda" placeholder="Buscar por ..." />
                 </div>
 				</th></tr>
