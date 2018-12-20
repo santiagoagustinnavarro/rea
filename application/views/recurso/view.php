@@ -14,13 +14,16 @@ if (isset($unRecurso[0])) {
 
 <script type="text/javascript">
 $(document).ready(function(){
-<?php if($usuario!=$recurso["nombreUsuario"]){
+<?php 
+if($usuario!=$recurso["nombreUsuario"]){
+	
     ?>	$(".estrellas").starrr();
 	var i=1;
 	$(".estrellas > a").each(function(){
 		$(this).attr("id","star-"+i);
 		i++;
 	});
+	
 	$(".estrellas > a").click(function(){
 		var valor=$(this).attr("id").substring((($(this).attr("id").indexOf("-"))+1))
 		$.ajax({
@@ -30,7 +33,7 @@ $(document).ready(function(){
 			},
 			method:"get",
 		})
-	}
+	})
 	<?php }?>
 	$("#envio").click(function(){
 	$( "#dialog-confirm" ).dialog({
@@ -82,7 +85,7 @@ $(document).ready(function(){
 				<img src="<?php echo base_url(); ?>assets/estilo/imagenes/iconext.png"
 				 alt="Icono" id="icono"><br/>
 					<?php echo $unArchivo["nombre"];?><br/>
-					<a download href=<?php echo base_url()."assets/upload/".$recurso["nombreUsuario"]."/".$recurso["idRecurso"]."/".$unArchivo["nombre"];?> class="btn btn-success"><i class="fa fa-download"></i> Descargar </a>
+					<a download href= "<?php echo base_url()."assets/upload/".$recurso["nombreUsuario"]."/".$recurso["idRecurso"]."/".$unArchivo["nombre"];?>" class="btn btn-success"><i class="fa fa-download"></i> Descargar </a>
 				</div>
 			</div>
 			<?php 
@@ -90,7 +93,7 @@ $(document).ready(function(){
 			?>	
 		</div>
 		<div class="espacio"></div>
-			<a download href=<?php echo base_url()."assets/upload/".$recurso["nombreUsuario"]."/".$recurso["idRecurso"]."/".$unArchivo["nombre"];?> class="btn btn-success"><i class="fa fa-download"></i> Descargar Recurso</a>
+			<a download href= "<?php echo base_url()."assets/upload/".$recurso["nombreUsuario"]."/".$recurso["idRecurso"]."/".$unArchivo["nombre"];?>" class="btn btn-success"><i class="fa fa-download"></i> Descargar Recurso</a>
 		<div class="espacio"></div>
 		<?php if($iniciada){
             ?><div class="estrellas"></div><?php
