@@ -10,8 +10,10 @@ if (isset($unRecurso[0])) {
 #actions > form{
 	float:right;
 }
+.estrellas{
+	font-size: x-large;
+}
 </style>
-
 <script type="text/javascript">
 $(document).ready(function(){
 <?php 
@@ -93,6 +95,7 @@ if($usuario!=$recurso["nombreUsuario"]){
 		</div>
 		<div class="espacio"></div>
 			<a download href= <?php echo base_url()."assets/upload/".$recurso["nombreUsuario"]."/".$recurso["idRecurso"]."/".$unArchivo["nombre"];?> class="btn btn-success"><i class="fa fa-download"></i> Descargar Recurso</a>
+			<br/><br/>
 			<?php if($iniciada){
             ?><div class="estrellas"></div>
 			<?php
