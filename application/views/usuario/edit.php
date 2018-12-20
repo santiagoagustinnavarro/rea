@@ -4,7 +4,7 @@
 	<div class="container box box-primary">
 		<br/>
 			<div class="col-md-1">
-				<div class="btn btn-success"><a href="<?php echo base_url();?>usuario"><i class="fa fa-reply boton"></i></a></div>
+				<div class="btn btn-success logeo"><a href="<?php echo base_url();?>usuario"><i class="fa fa-reply"></i></a></div>
 			</div>
 			<br/>
 		<div>

@@ -43,11 +43,11 @@ $(document).ready(function(){
 		<?php
 			if($this->session->rol == 'administrador de recursos'){
 				echo'<div class="col-md-1">
-					 <div class="btn btn-success"><a href='.base_url().'recurso><i class="fa fa-reply boton"></i></a></div>
+					 <div class="btn btn-success logeo"><a href='.base_url().'recurso><i class="fa fa-reply"></i></a></div>
 					 </div>';
 			}else{
 				echo'<div class="col-md-1">
-				<div class="btn btn-success"><a href='.base_url().'recurso/listar><i class="fa fa-reply boton"></i></a></div>
+				<div class="btn btn-success logeo"><a href='.base_url().'recurso/listar><i class="fa fa-reply"></i></a></div>
 				</div>';
 			}
 		?>

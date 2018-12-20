@@ -44,11 +44,11 @@ class Categoria extends CI_Controller
                     }
                     $this->Tenercategoria_model->add_tenercategoria(array("nombreCategoria"=>$this->input->post("nuevaCategoria"),"nombreTema"=>$this->input->post("nuevoTema")));
                     $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat.js"]]);
-                    $this->load->view("categoria/add", ['mensaje'=>'Agregado con exito','categorias'=>$categoria,'temas'=>array()]);
+                    $this->load->view("categoria/add", ['mensaje'=>'<div class="alert alert-success col-md-offset-3 col-md-6 text-center"><h4>'.'Agregado con exito'.'</h4></div>','categorias'=>$categoria,'temas'=>array()]);
                     $this->load->view("footer");
                 } else {
                     $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat.js"]]);
-                    $this->load->view("categoria/add", ['mensaje'=>'La categoria ya existe','categorias'=>$categoria,'temas'=>array()]);
+                    $this->load->view("categoria/add", ['mensaje'=>'<div class="alert alert-danger col-md-offset-3 col-md-6 text-center"><h4>'.'La categoria ya existe'.'</h4></div>','categorias'=>$categoria,'temas'=>array()]);
                     $this->load->view("footer");
                 }
                 ////////////////////Añadimos a la tabla de vinculacion///////////////////////////////////
@@ -57,11 +57,11 @@ class Categoria extends CI_Controller
                 if ($existeTenerCat==null) {
                     $this->Tenercategoria_model->add_tenercategoria(array("nombreCategoria"=>$this->input->post("categoria"),"nombreTema"=>$this->input->post("nuevoTema")));
                     $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat.js"]]);
-                    $this->load->view("categoria/add", ['mensaje'=>'Agregado con exito','categorias'=>$categoria,'temas'=>array()]);
+                    $this->load->view("categoria/add", ['mensaje'=>'<div class="alert alert-success col-md-offset-3 col-md-6 text-center"><h4>'.'Agregado con exito'.'</h4></div>','categorias'=>$categoria,'temas'=>array()]);
                     $this->load->view("footer");
                 } else {
                     $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat.js"]]);
-                    $this->load->view("categoria/add", ['mensaje'=>'El tema ya se encuentra vinculado a la categoria','categorias'=>$categoria,'temas'=>array()]);
+                    $this->load->view("categoria/add", ['mensaje'=>'<div class="alert alert-danger col-md-offset-3 col-md-6 text-center"><h4>'.'El tema ya se encuentra vinculado a la categoria'.'</h4></div>','categorias'=>$categoria,'temas'=>array()]);
                     $this->load->view("footer");
                 }
             }
