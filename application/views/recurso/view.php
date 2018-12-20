@@ -57,18 +57,19 @@ if($usuario!=$recurso["nombreUsuario"]){
 <div class="container">
 	<br/>
 	<div class="box box-primary col-md-10">
-		<br/>
-		<?php
-			if($this->session->rol == 'administrador de recursos'){
-				echo'<div class="col-md-1">
-					 <div class="btn btn-success logeo"><a href='.base_url().'recurso><i class="fa fa-reply"></i></a></div>
-					 </div>';
-			}else{
-				echo'<div class="col-md-1">
-				<div class="btn btn-success logeo"><a href='.base_url().'recurso/listar><i class="fa fa-reply"></i></a></div>
+	<br/>
+	<?php
+		if($this->session->rol == 'administrador de recursos'){
+			echo'<div class="col-md-1">
+				 <div class="btn btn-success logeo"><a href='.base_url().'recurso><i class="fa fa-reply"></i></a></div>
 				</div>';
-			}
-		?>
+		}else{
+			echo'<div class="col-md-1">
+			<div class="btn btn-success logeo"><a href='.base_url().'recurso/listar><i class="fa fa-reply"></i></a></div>
+			</div>';
+		}
+	?>
+		<br/>
 		<h1 class="titulo"><?php echo $recurso["titulo"];?></h1><br/>
 		<?php if($edicion){?> <div id="actions"><a href="<?php echo base_url()."recurso/editar_recurso/".$recurso["idRecurso"];?>"><button class="fa fa-pencil btn btn-primary"></button></a><?php echo form_open("recurso/view/".$recurso["idRecurso"],array("id"=>"edicion"));?><input type="hidden" name="eliminar" value="1"><button type="button"  id="envio" class="fa fa-remove  btn btn-danger"></button><?php echo form_close()?></div><?php }?>
 		<div class="descripcion">
@@ -99,7 +100,7 @@ if($usuario!=$recurso["nombreUsuario"]){
             ?><div class="estrellas"></div><?php
         }?>
 		<?php
-			//echo form_open("comentario/generarComentario/".$idRecurso,["method"=>"post"]);
+			echo form_open("comentario/generarComentario/".$idRecurso,["method"=>"post"]);
 		?> 
 			<!-- <div class="form-group">
 				<label for="descripcion">Comentarios</label>
@@ -157,15 +158,15 @@ if($usuario!=$recurso["nombreUsuario"]){
     		</div>
     		<div class="box-footer">
         		<div class="input-group">
-       	    	    <input class="form-control" placeholder="Enviar mensaje...">
+       	    	    <input class="form-control" name="descripcion" id="descripcion" placeholder="Enviar mensaje...">
             		<div class="input-group-btn">
-            			<button type="button" class="btn btn-success">Enviar</button>
+            			<button type="submit" class="btn btn-success">Enviar</button>
             		</div>
         		</div>
 			</div> 
 		</div>
 		<?php
-			//echo form_close();
+			echo form_close();
 		?>
 	</div> 
 	</div>
