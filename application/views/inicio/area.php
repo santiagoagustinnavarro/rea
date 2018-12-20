@@ -1,3 +1,4 @@
+<script type="text/javascript">$("#estrellas").children('a').attr("class",null);</script>
 <!-- Container fluid -->
 <div class="container-fluid">
 	<br/>

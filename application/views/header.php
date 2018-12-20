@@ -40,7 +40,7 @@
 <!-- AdminLTE App -->
 <script src="<?php echo base_url();?>assets/estilo/dist/js/adminlte.min.js"></script>
 <script>
-  $(function () {
+  /*$(function () {
     $('#example1').DataTable(){
       'paging'      : true,
       'lengthChange': false,
@@ -49,7 +49,7 @@
       'info'        : true,
       'autoWidth'   : false
     })
-  })
+  })*/
 </script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>assets/estilo/dist/js/demo.js"></script>

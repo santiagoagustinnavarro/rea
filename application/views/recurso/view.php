@@ -11,8 +11,27 @@ if (isset($unRecurso[0])) {
 	float:right;
 }
 </style>
+
 <script type="text/javascript">
 $(document).ready(function(){
+<?php if($usuario!=$recurso["nombreUsuario"]){
+    ?>	$(".estrellas").starrr();
+	var i=1;
+	$(".estrellas > a").each(function(){
+		$(this).attr("id","star-"+i);
+		i++;
+	});
+	$(".estrellas > a").click(function(){
+		var valor=$(this).attr("id").substring((($(this).attr("id").indexOf("-"))+1))
+		$.ajax({
+			url:<?php echo "\"".base_url()."recurso/\""; ?>+"valorizar/"+<?php echo $recurso["idRecurso"]; ?>+"/"+valor+"/"+<?php echo "\"".$usuario."\""; ?>,
+			success:function(response){
+				alert(response);
+			},
+			method:"get",
+		})
+	}
+	<?php }?>
 	$("#envio").click(function(){
 	$( "#dialog-confirm" ).dialog({
       resizable: false,
@@ -22,17 +41,13 @@ $(document).ready(function(){
 	 title:"Eliminación",
 	 dialogClass: "no-close",
       buttons: {
-        "Si":  {
-			 text: 'Si', click: function(){ $(this).dialog("close");$("#edicion").submit() }, "class": "btn btn-info" 
-		},
-		"No":  {
-		text: 'No', click: function(){ $(this).dialog("close");}, "class": "btn btn-danger" 		
-		},
+        "Si":  {text: 'Si', click: function(){ $(this).dialog("close");$("#edicion").submit() }, "class": "btn btn-info" },
+		"No":  {text: 'No', click: function(){ $(this).dialog("close");}, "class": "btn btn-danger" },
       }
 	 
 	});
 
-})
+});
 })
 </script>
 <div id="dialog-confirm" hidden>¿Esta seguro de eliminar el recurso?</div>
@@ -77,6 +92,9 @@ $(document).ready(function(){
 		<div class="espacio"></div>
 			<a download href=<?php echo base_url()."assets/upload/".$recurso["nombreUsuario"]."/".$recurso["idRecurso"]."/".$unArchivo["nombre"];?> class="btn btn-success"><i class="fa fa-download"></i> Descargar Recurso</a>
 		<div class="espacio"></div>
+		<?php if($iniciada){
+            ?><div class="estrellas"></div><?php
+        }?>
 		<?php
 			//echo form_open("comentario/generarComentario/".$idRecurso,["method"=>"post"]);
 		?> 
