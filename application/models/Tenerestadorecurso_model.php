@@ -14,9 +14,9 @@ class Tenerestadorecurso_model extends CI_Model
     /*
      * Get tenerestadorecurso by hora
      */
-    function get_tenerestadorecurso($hora)
+    function get_tenerestadorecurso($params)
     {
-        return $this->db->get_where('tenerEstadoRecurso',array('hora'=>$hora))->row_array();
+        return $this->db->get_where('tenerEstadoRecurso',$params)->row_array();
     }
     
     /*

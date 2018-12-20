@@ -2,6 +2,40 @@
 if (isset($unRecurso[0])) {
     $recurso=$unRecurso[0];
 ?>
+<style>
+#actions{float:right}
+.no-close .ui-dialog-titlebar-close {
+  display: none;
+}
+#actions > form{
+	float:right;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#envio").click(function(){
+	$( "#dialog-confirm" ).dialog({
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+	 title:"Eliminación",
+	 dialogClass: "no-close",
+      buttons: {
+        "Si":  {
+			 text: 'Si', click: function(){ $(this).dialog("close");$("#edicion").submit() }, "class": "btn btn-info" 
+		},
+		"No":  {
+		text: 'No', click: function(){ $(this).dialog("close");}, "class": "btn btn-danger" 		
+		},
+      }
+	 
+	});
+
+})
+})
+</script>
+<div id="dialog-confirm" hidden>¿Esta seguro de eliminar el recurso?</div>
 <div class="container">
 	<br/>
 	<div class="box box-primary col-md-10">
@@ -18,6 +52,7 @@ if (isset($unRecurso[0])) {
 			}
 		?>
 		<h1 class="titulo"><?php echo $recurso["titulo"];?></h1><br/>
+		<?php if($edicion){?> <div id="actions"><a href="<?php echo base_url()."recurso/editar_recurso/".$recurso["idRecurso"];?>"><button class="fa fa-pencil btn btn-primary"></button></a><?php echo form_open("recurso/view/".$recurso["idRecurso"],array("id"=>"edicion"));?><input type="hidden" name="eliminar" value="1"><button type="button"  id="envio" class="fa fa-remove  btn btn-danger"></button><?php echo form_close()?></div><?php }?>
 		<div class="descripcion">
 			<h3>Descripcion</h3>
 			<p>	<?php echo $recurso["descripcion"];?></p>

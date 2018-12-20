@@ -104,9 +104,11 @@ class Recurso_model extends CI_Model
         $this->db->join("tema as t", "t.nombre=r.nombreTema");
         $this->db->join("usuario as u", "u.nombreUsuario=r.nombreUsuario");
         $this->db->join("tenercategoria tc", "tc.nombreTema=t.nombre");
+        $this->db->join("tenerestadorecurso ter", "ter.idRecurso=r.idRecurso");
         $this->db->join("categoria as c", "tc.nombreCategoria=c.nombre");
         $this->db->join("poseenivel as p", "p.idRecurso=r.idRecurso");
         $this->db->join("nivel as n", "n.nombre=p.nombreNivel");
+        $this->db->where("ter.nombreEstadoRecurso=\"alta\" and ter.fechaFin is null");
         if ($filtros!="") {
      
            
