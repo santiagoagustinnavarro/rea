@@ -1,6 +1,11 @@
 <br/>
 <div class="container box box-info">
-	<div class="col-md-offset-1 col-md-10">
+	<br/>
+	<div class="col-md-1">
+		<div class="btn btn-success logeo"><a class="logeo" href="<?php echo base_url();?>recurso/listar"><i class="fa fa-reply"></i></a></div>
+	</div>
+	<br/>
+	<div class="col-md-10">
 		<h1>Edicion del recurso</h1>
 		<div class="col-md-offset-3 col-md-6">
 		<?php
@@ -155,17 +160,14 @@
 						<br>
 						<div class="row">
 <div id="droppable" hidden class="col-md-12">
-<i  class="fa fa-trash fa-5x" >
-  
-</i>
+<i class="fa fa-trash fa-5x"></i>
 <a  id="restaurar" class="btn btn-info">Click aqui para restaurar los elementos</a>
 </div>	 
 </div><br><br>
-				<div class="form-group col-md-offset-2 col-md-8 ">
-					<button type="submit" name="form" id="form" class="btn btn-success">Actualizar</button>
-				</div>
-		<?php echo form_close();?>
-		
+	<div class="form-group col-md-offset-2 col-md-8 ">
+		<button type="submit" name="form" id="form" class="btn btn-success">Actualizar</button>
+	</div>
+		<?php echo form_close();?>	
 	</div> <!-- Cierre de la clase col -->
 
 </div> <!-- Cierre de la clase container -->

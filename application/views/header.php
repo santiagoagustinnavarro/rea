@@ -301,7 +301,6 @@
 </nav> <!-- /.navbar-custom-menu -->	
 <?php
 		} elseif ($this->session->rol == 'super administrador') {
-		// TERMINAR DE MODIFICAR
 ?>
 <nav class="navbar navbar">
   <div class="container-fluid">
@@ -348,7 +347,7 @@
         	    	</p>
 							</li>  
               	<!-- Menu Footer-->
-							<li class="user-footer">
+              <li class="user-footer">
                 <div class="pull-left">
 									<div class="btn btn-primary logeo"><a href="<?php echo base_url()."usuario/editarPerfil"?>">Perfil</a></div>
 								</div>
@@ -361,7 +360,7 @@
     	</ul>
 		</div> <!-- /.navbar-custom-menu -->
   </div> <!-- /.container -->
-</nav><!-- /.navbar-custom-menu -->    
+</nav><!-- /.navbar-custom-menu -->   
 	<?php
   	}
   ?>

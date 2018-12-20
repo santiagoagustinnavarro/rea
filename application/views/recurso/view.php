@@ -44,9 +44,7 @@ $(document).ready(function(){
         "Si":  {text: 'Si', click: function(){ $(this).dialog("close");$("#edicion").submit() }, "class": "btn btn-info" },
 		"No":  {text: 'No', click: function(){ $(this).dialog("close");}, "class": "btn btn-danger" },
       }
-	 
 	});
-
 });
 })
 </script>
@@ -66,9 +64,9 @@ $(document).ready(function(){
 			</div>';
 		}
 	?>
+	<?php if($edicion){?> <div id="actions"><a href="<?php echo base_url()."recurso/editar_recurso/".$recurso["idRecurso"];?>"><button class="fa fa-pencil btn btn-primary"></button></a><?php echo form_open("recurso/view/".$recurso["idRecurso"],array("id"=>"edicion"));?><input type="hidden" name="eliminar" value="1"><button type="button"  id="envio" class="fa fa-remove  btn btn-danger"></button><?php echo form_close()?></div><?php }?>
 		<br/>
-		<h1 class="titulo"><?php echo $recurso["titulo"];?></h1><br/>
-		<?php if($edicion){?> <div id="actions"><a href="<?php echo base_url()."recurso/editar_recurso/".$recurso["idRecurso"];?>"><button class="fa fa-pencil btn btn-primary"></button></a><?php echo form_open("recurso/view/".$recurso["idRecurso"],array("id"=>"edicion"));?><input type="hidden" name="eliminar" value="1"><button type="button"  id="envio" class="fa fa-remove  btn btn-danger"></button><?php echo form_close()?></div><?php }?>
+		<h1 class="titulo"><?php echo $recurso["titulo"];?></h1>
 		<div class="descripcion">
 			<h3>Descripcion</h3>
 			<p>	<?php echo $recurso["descripcion"];?></p>
@@ -91,11 +89,13 @@ $(document).ready(function(){
 			?>	
 		</div>
 		<div class="espacio"></div>
-			<a download href=<?php echo base_url()."assets/upload/".$recurso["nombreUsuario"]."/".$recurso["idRecurso"]."/".$unArchivo["nombre"];?> class="btn btn-success"><i class="fa fa-download"></i> Descargar Recurso</a>
+			<a download href= <?php echo base_url()."assets/upload/".$recurso["nombreUsuario"]."/".$recurso["idRecurso"]."/".$unArchivo["nombre"];?> class="btn btn-success"><i class="fa fa-download"></i> Descargar Recurso</a>
+			<?php if($iniciada){
+            ?><div class="estrellas"></div>
+			<?php
+				}
+			?>
 		<div class="espacio"></div>
-		<?php if($iniciada){
-            ?><div class="estrellas"></div><?php
-        }?>
 		<?php
 			echo form_open("comentario/generarComentario/".$idRecurso,["method"=>"post"]);
 		?> 
