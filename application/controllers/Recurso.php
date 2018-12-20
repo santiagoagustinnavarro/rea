@@ -18,7 +18,7 @@ class Recurso extends CI_Controller
         $this->load->model("Tema_model");
         $this->load->model("Poseenivel_model");
         $this->load->library('form_validation');
-       
+       $data["user"]=$this->session->nombreUsuario;
         $data['recurso'] = $this->Recurso_model->get_recurso($idRecurso);//Obtenemos el recurso
         if (isset($data['recurso']['idRecurso'])) {
             $tema=[];//Vacio en la primera carga(Sin seleccion de categoria)
@@ -92,11 +92,12 @@ class Recurso extends CI_Controller
      FROM poseenivel
     WHERE poseenivel.idRecurso =$idRecurso and poseenivel.nombreNivel=nombre)");
     $data["niveles"]=$this->Nivel_model->get_all_nivel();
+    $data['recurso'] = $this->Recurso_model->get_recurso($idRecurso);
   $this->load->view("header", ["title"=>"Modificar recurso","scripts"=>["jquery-ui/jquery-ui.min.js","editar_recurso.js"]]);
                 $this->load->view("recurso/editar_recurso", $data);
                 $this->load->view("footer");
             } else {
-                $this->load->view("header", ["title"=>"Modificar recurso","scripts"=>["jquery-ui/jquery-ui.min.js","editar_recurso.js"]]);
+                $this->load->view("header", ["title"=>"Modificar recurso","scripts"=>["editar_recurso.js"]]);
                 $this->load->view("recurso/editar_recurso", $data);
                 $this->load->view("footer");
             }
@@ -264,6 +265,7 @@ class Recurso extends CI_Controller
         $data["links"] = $this->pagination->create_links();//Generamos los links de las paginaciones
         $data["categoria"]=$this->Categoria_model->get_all_categoria();//Para el select de categorias
         $data["niveles"]=$this->Nivel_model->get_all_nivel();//Para el select de niveles
+        $this->load->model("Valoracion_model");
         $this->load->view('header', ["title"=>'Recursos',"scripts"=>["busquedaRecurso.js","starrr.js"],"styles"=>["styles.css","responsive.css"]]);
         $this->load->view('inicio/area', $data);
         $this->load->view('footer');
@@ -271,14 +273,47 @@ class Recurso extends CI_Controller
     public function view($idRecurso)
     {
         $unRecurso=$this->listarConArchivos("", $idRecurso);
-        if ($unRecurso[0]["nombreUsuario"]==$this->session->nombreUsuario) {
-            redirect("recurso/edit/".$idRecurso);
-        } else {
-            $this->load->view("header", ["title"=>"Ver Recurso"]);
-            $this->load->view("recurso/view", ["unRecurso"=>$unRecurso]);
-            $this->load->view("footer");
+        if (isset($unRecurso[0])){
+        $estado=$this->Tenerestadorecurso_model->get_tenerestadorecurso(array("idRecurso"=>$idRecurso,"fechaFin"=>null));
+        if (strtolower($estado["nombreEstadoRecurso"])=="alta") {
+            if ($this->session->iniciada) {
+
+                if ($unRecurso[0]["nombreUsuario"]==$this->session->nombreUsuario) {
+                    if ($this->input->post("eliminar")!="") {
+                        $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
+                        $this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>"Baja","fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"idRecurso"=>$idRecurso));
+                        redirect("recurso/listar");
+                    }
+                    $this->load->view("header", ["title"=>"Ver Recurso"]);
+          
+                    $this->load->view("recurso/view", ["usuario"=>$this->session->nombreUsuario,"iniciada"=>true,"edicion"=>true,"unRecurso"=>$unRecurso]);
+                    $this->load->view("footer");
+                } else {
+                    $this->load->view("header", ["title"=>"Ver Recurso","scripts"=>["starrr.js"]]);
+                    $this->load->view("recurso/view", ["usuario"=>$this->session->nombreUsuario,"iniciada"=>true,"edicion"=>false,"unRecurso"=>$unRecurso]);
+                    $this->load->view("footer");
+                }
+            }else{
+                $this->load->view("header", ["title"=>"Ver Recurso","scripts"=>["starrr.js"]]);
+                    $this->load->view("recurso/view", ["edicion"=>false,"iniciada"=>false,"unRecurso"=>$unRecurso]);
+                    $this->load->view("footer");
+            }
+        }else{
+            echo "El recurso  se encuentra en  estado ".$estado["nombreEstadoRecurso"];
         }
+    }else{
+        echo "No existe el recurso";
     }
+    }
+   function valorizar($idRecurso,$valor,$nombreUsuario){
+    $this->load->model("Valoracion_model");
+    $valorizar=$this->Valoracion_model->add_valoracion(array("idRecurso"=>$idRecurso,"puntaje"=>$valor,"nombreUsuario"=>$nombreUsuario));
+    if($valorizar){
+        echo "Recurso valorizado con exito";
+    }else{
+        echo "Ya ah valorizado anteriormente el recurso";
+    }
+   }
     private function listarConArchivos($usuario="", $idRecurso="")
     {
         if ($usuario!="" && $idRecurso=="") {//Listamos por nombre de usuario

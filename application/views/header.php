@@ -26,6 +26,8 @@
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/estilo/dist/css/skins/skin-blue.min.css">
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/estilo/css/estilo.css">
   <script src="<?php echo base_url();?>assets/estilo/jquery/dist/jquery.min.js"></script>
+	<script src="<?php echo base_url();?>assets/estilo/js/jquery-ui/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/estilo/js/jquery-ui/jquery-ui.min.css"/>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url();?>assets/estilo/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- DataTables -->
@@ -38,7 +40,7 @@
 <!-- AdminLTE App -->
 <script src="<?php echo base_url();?>assets/estilo/dist/js/adminlte.min.js"></script>
 <script>
-  $(function () {
+  /*$(function () {
     $('#example1').DataTable(){
       'paging'      : true,
       'lengthChange': false,
@@ -47,7 +49,7 @@
       'info'        : true,
       'autoWidth'   : false
     })
-  })
+  })*/
 </script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>assets/estilo/dist/js/demo.js"></script>

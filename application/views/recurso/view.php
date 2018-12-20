@@ -2,6 +2,55 @@
 if (isset($unRecurso[0])) {
     $recurso=$unRecurso[0];
 ?>
+<style>
+#actions{float:right}
+.no-close .ui-dialog-titlebar-close {
+  display: none;
+}
+#actions > form{
+	float:right;
+}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+<?php if($usuario!=$recurso["nombreUsuario"]){
+    ?>	$(".estrellas").starrr();
+	var i=1;
+	$(".estrellas > a").each(function(){
+		$(this).attr("id","star-"+i);
+		i++;
+	});
+	$(".estrellas > a").click(function(){
+		var valor=$(this).attr("id").substring((($(this).attr("id").indexOf("-"))+1))
+		$.ajax({
+			url:<?php echo "\"".base_url()."recurso/\""; ?>+"valorizar/"+<?php echo $recurso["idRecurso"]; ?>+"/"+valor+"/"+<?php echo "\"".$usuario."\""; ?>,
+			success:function(response){
+				alert(response);
+			},
+			method:"get",
+		})
+	}
+	<?php }?>
+	$("#envio").click(function(){
+	$( "#dialog-confirm" ).dialog({
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+	 title:"Eliminación",
+	 dialogClass: "no-close",
+      buttons: {
+        "Si":  {text: 'Si', click: function(){ $(this).dialog("close");$("#edicion").submit() }, "class": "btn btn-info" },
+		"No":  {text: 'No', click: function(){ $(this).dialog("close");}, "class": "btn btn-danger" },
+      }
+	 
+	});
+
+});
+})
+</script>
+<div id="dialog-confirm" hidden>¿Esta seguro de eliminar el recurso?</div>
 <div class="container">
 	<br/>
 	<div class="box box-primary col-md-10">
@@ -19,6 +68,7 @@ if (isset($unRecurso[0])) {
 	?>
 		<br/>
 		<h1 class="titulo"><?php echo $recurso["titulo"];?></h1><br/>
+		<?php if($edicion){?> <div id="actions"><a href="<?php echo base_url()."recurso/editar_recurso/".$recurso["idRecurso"];?>"><button class="fa fa-pencil btn btn-primary"></button></a><?php echo form_open("recurso/view/".$recurso["idRecurso"],array("id"=>"edicion"));?><input type="hidden" name="eliminar" value="1"><button type="button"  id="envio" class="fa fa-remove  btn btn-danger"></button><?php echo form_close()?></div><?php }?>
 		<div class="descripcion">
 			<h3>Descripcion</h3>
 			<p>	<?php echo $recurso["descripcion"];?></p>
@@ -43,6 +93,9 @@ if (isset($unRecurso[0])) {
 		<div class="espacio"></div>
 			<a download href=<?php echo base_url()."assets/upload/".$recurso["nombreUsuario"]."/".$recurso["idRecurso"]."/".$unArchivo["nombre"];?> class="btn btn-success"><i class="fa fa-download"></i> Descargar Recurso</a>
 		<div class="espacio"></div>
+		<?php if($iniciada){
+            ?><div class="estrellas"></div><?php
+        }?>
 		<?php
 			echo form_open("comentario/generarComentario/".$idRecurso,["method"=>"post"]);
 		?> 
