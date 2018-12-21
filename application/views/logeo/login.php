@@ -26,7 +26,7 @@
         	<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 		</div>
 		<div class="form-group">
-			<a href="recuperarcuenta">¿Olvido su contraseña?</a>
+			<a href="<?php echo base_url();?>recuperarcuenta">¿Olvido su contraseña?</a>
 		</div>
       	<div class="row">
 		  	<div class="box-footer">
