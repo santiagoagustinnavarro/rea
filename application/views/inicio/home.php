@@ -119,4 +119,7 @@
 }elseif(strtolower($this->session->rol=="administrador de usuarios")){
 	redirect("usuario");
 }elseif(strtolower($this->session->rol=="administrador de recursos")){
-	redirect("recurso");}
+	redirect("recurso");
+}elseif(strtolower($this->session->rol=="super administrador")){
+	redirect("usuario/listaAdmin");}
+?>

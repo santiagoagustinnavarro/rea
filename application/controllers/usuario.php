@@ -34,8 +34,15 @@ class Usuario extends CI_Controller
         $this->load->view('header', array("title"=>"Lista de Usuario"));
         $this->load->view('usuario/index', $data);
         $this->load->view("footer");
-    }
-
+	}
+	
+	public function listaAdmin()
+    {
+        $this->load->view('header', array("title"=>"Lista de Usuario"));
+        $this->load->view('usuario/listaAdmin', $data);
+        $this->load->view("footer");
+	}
+	
     private function verificarToken($nroToken, $nombreUsuario)
     {
         $token=$this->TokenRecupera_model->get_tokenrecupera($nroToken, array("nombreUsuario"=>$nombreUsuario));

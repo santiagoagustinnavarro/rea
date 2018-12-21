@@ -25,15 +25,14 @@ jQuery.extend(jQuery.expr[":"],
 	<div class="table-responsive">
 		<table class="table table-striped table-bordered text-center" id="tabla">
 			<thead>
-				<tr><th class="titulo" colspan="6"><h1>Lista de Recursos</h1></th></tr>
+				<tr><th class="titulo" colspan="7"><h1>Lista de Recursos</h1></th></tr>
 				<tr><th colspan="2" id="filtro">
-				<div class="col-md-8">
         	        <input type="text" class="form-control" id="busqueda" placeholder="Buscar por ..." />
-                </div>
 				</th></tr>
 				<tr>
 					<th scope="col">Titulo</th>
 					<th scope="col">Nombre del Usuario</th>
+					<th scope="col">Nombre de la Categoria</th>
 					<th scope="col">Nombre del Tema</th>
 					<th scope="col">Estado</th>
 					<th scope="col">Validar</th>
@@ -50,6 +49,9 @@ jQuery.extend(jQuery.expr[":"],
 					</td>
 					<td>
 						<?php echo $r['nombreUsuario']; ?>
+					</td>
+					<td>
+						<?php echo $r['nombreCategoria']; ?>
 					</td>
 					<td>
 						<?php echo $r['nombreTema']; ?>
