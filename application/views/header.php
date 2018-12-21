@@ -251,7 +251,15 @@
 				<li><a href="<?php echo base_url(); ?>inicio">Inicio</a></li>
         <li><a href="<?php echo base_url(); ?>recurso/listar">Area</a></li>
 				<li><a href="<?php echo base_url(); ?>contacto">Contactenos</a></li>
-				<li><a href="<?php echo base_url()."recurso/subirRecurso"?>" alt="Subir Recurso">Subir Recurso</a></li>
+				<li class="dropdown">
+        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Recurso
+      			<span class="caret"></span>
+					</a>
+        	<ul class="dropdown-menu" id="desplegable">
+						<li><a href="<?php echo base_url()."recurso/misRecursos"?>">Mis Recursos</a></li>
+						<li><a href="<?php echo base_url()."recurso/subirRecurso"?>">Subir Recurso</a></li>
+        	</ul>
+      	</li>
     	</ul>
     	<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown user user-menu">

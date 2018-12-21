@@ -17,6 +17,14 @@ class Usuario_model extends CI_Model
         $this->db->join("tienerol","tienerol.nombreUsuario=usuario.nombreUsuario");
         $results=$this->db->where(array('tienerol.nombreRol'=>'profesor','tenerestadousuario.fechaFin'=>null,'tienerol.fechaFin'=>null)); 
         return ($this->db->count_all_results());
+	}
+	function get_all_admin()
+    {   
+		$this->db->from('usuario');
+		$this->db->join("tienerol","tienerol.nombreUsuario=usuario.nombreUsuario");
+		$consulta=$this->db->where(array('tienerol.nombreRol'=>'administrador de recursos'));
+		$consulta2=$this->db->or_where(array('tienerol.nombreRol'=>'administrador de usuarios'));
+        return $this->db->get()->result_array();
     }
     /*
      * Get usuario by nombreUsuario
@@ -38,7 +46,6 @@ class Usuario_model extends CI_Model
             $user= $this->db->get_where('usuario', array('usuario.nombreUsuario'=>$nombreUsuario,'tenerestadousuario.fechaFin'=>null,'tienerol.fechaFin'=>null))->row_array();
            
         }
-       
         return $user;
     }
         

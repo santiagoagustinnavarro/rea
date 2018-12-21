@@ -22,7 +22,14 @@ class Recurso_model extends CI_Model
         
     }
     
-        
+    public function get_all_mis_recursos($nombreUsuario){
+		$this->db->select("recurso.idRecurso,recurso.titulo,usuario.nombreUsuario,recurso.descripcion,tenerestadorecurso.nombreEstadoRecurso,recurso.nombreTema,recurso.nombreCategoria");
+		$this->db->join("usuario","usuario.nombreUsuario=recurso.nombreUsuario");
+		$this->db->join("tenerestadorecurso","tenerestadorecurso.idRecurso=recurso.idRecurso");
+	 $this->db->where(array("usuario.nombreUsuario"=>$nombreUsuario,"tenerestadorecurso.fechaFin"=>null));//->result_array();
+	 return $this->db->get('recurso')->result_array();
+	
+	}
     /*
      * Get all recurso
      */
@@ -32,15 +39,13 @@ class Recurso_model extends CI_Model
             $this->db->limit($filters['limit'], $filters['offset']);
             unset($filters['limit']);
             unset($filters['offset']);
-            $this->db->select("recurso.idRecurso,recurso.titulo,usuario.nombreUsuario,recurso.descripcion,recurso.validado,usuario.email,tenerestadorecurso.nombreEstadoRecurso,recurso.nombreTema");
+            $this->db->select("recurso.idRecurso,recurso.titulo,usuario.nombreUsuario,recurso.descripcion,recurso.validado,usuario.email,tenerestadorecurso.nombreEstadoRecurso,recurso.nombreTema,recurso.nombreCategoria");
         }else{
-            $this->db->select("archivo.nombre as nombreDelUsuario,recurso.idRecurso,archivo.idArchivo,archivo.nombre,archivo.ruta,recurso.titulo,usuario.nombreUsuario,recurso.descripcion,recurso.validado,usuario.email,tenerestadorecurso.nombreEstadoRecurso,recurso.nombreTema");
+            $this->db->select("archivo.nombre as nombreDelUsuario,recurso.idRecurso,archivo.idArchivo,archivo.nombre,archivo.ruta,recurso.titulo,usuario.nombreUsuario,recurso.descripcion,recurso.validado,usuario.email,tenerestadorecurso.nombreEstadoRecurso,recurso.nombreTema,recurso.nombreCategoria");
             $this->db->join("archivo","archivo.idRecurso=recurso.idRecurso");
         }
-       
         
         $this->db->join("tenerestadorecurso","tenerestadorecurso.idRecurso=recurso.idRecurso");
-        
         $this->db->join("usuario","usuario.nombreUsuario=recurso.nombreUsuario");
         $filters["tenerestadorecurso.fechaFin"]=null;
         $results=$this->db->get_where('recurso',$filters)->result_array();; 
@@ -64,8 +69,7 @@ class Recurso_model extends CI_Model
             $this->db->join("categoria as c", "tc.nombreCategoria=c.nombre");
             $this->db->join("poseenivel as p", "p.idRecurso=r.idRecurso");
             $this->db->join("nivel as n", "n.nombre=p.nombreNivel");
-            
-            
+
             
             if (count($filtros["niveles"])>0) {
                 $sql="(";
@@ -91,7 +95,6 @@ class Recurso_model extends CI_Model
             $this->db->select("r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.nombreUsuario as nombreUsuario",false);
             $this->db->from("recurso as r");
             
-           
         }
         return $this->db->count_all_results();
     }
@@ -110,10 +113,7 @@ class Recurso_model extends CI_Model
         $this->db->join("nivel as n", "n.nombre=p.nombreNivel");
         $this->db->where("ter.nombreEstadoRecurso=\"alta\" and ter.fechaFin is null");
         if ($filtros!="") {
-     
-           
-            
-            
+
             if ($filtros["tema"]!="") {
                 $this->db->where(array("t.nombre"=>$filtros["tema"]));
                 
@@ -122,8 +122,6 @@ class Recurso_model extends CI_Model
                     $this->db->where(array("c.nombre"=>$filtros["categoria"]));
                     
                    }
-            
-            
                if (count($filtros["niveles"])>0) {
                 $sql="(";
                 foreach ($filtros["niveles"] as $unNivel) {
@@ -137,9 +135,7 @@ class Recurso_model extends CI_Model
             }
             
         } else {
-          
-                 
-           
+ 
         }
       
         $this->db->limit($limit, $start);

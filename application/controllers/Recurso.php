@@ -120,13 +120,15 @@ class Recurso extends CI_Controller
               if (!$this->input->post('estados') && !$this->input->post('validado')) {
                   $this->form_validation->set_rules('titulo', 'Titulo', 'required|max_length[30]');
                   $this->form_validation->set_rules('descripcion', 'Descripcion', 'required|max_length[80]');
-                  $this->form_validation->set_rules('nombreUsuario', 'NombreUsuario', 'required|max_length[30]');
+				  $this->form_validation->set_rules('nombreUsuario', 'NombreUsuario', 'required|max_length[30]');
+				  $this->form_validation->set_rules('nombreCategoria', 'NombreCategoria', 'required|max_length[50]');
                   $this->form_validation->set_rules('nombreTema', 'NombreTema', 'required|max_length[50]');
                   if ($this->form_validation->run()) {
                       $params = array(
                     'titulo' => $this->input->post('titulo'),
                     'descripcion' => $this->input->post('descripcion'),
-                    'nombreUsuario' => $this->input->post('nombreUsuario'),
+					'nombreUsuario' => $this->input->post('nombreUsuario'),
+					'nombreCategoria' => $this->input->post('nombreCategoria'),
                     'nombreTema' => $this->input->post('nombreTema'),
                     );
                       $this->Recurso_model->update_recurso($idRecurso, $params);
@@ -141,7 +143,7 @@ class Recurso extends CI_Controller
                   if (strtolower($estado)=="alta") {
                       if ($this->mailAlta($this->input->post('nombreUsuario'), $this->input->post('email'))) {
                           ?>
-<?php
+						<?php
                       }
                   }
                   $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
@@ -153,7 +155,7 @@ class Recurso extends CI_Controller
                   if (strtolower($estado)=="alta") {
                       if ($this->mailAlta($this->input->post('nombreUsuario'), $this->input->post('email'))) {
                           ?>
-<?php
+						<?php
                       }
                   }
                   $this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
@@ -207,6 +209,24 @@ class Recurso extends CI_Controller
             $data['recurso'] = $this->Recurso_model->get_all_recurso($params);
             $this->load->view('header', array("title"=>"Lista de Recursos"));
             $this->load->view('recurso/index', $data);
+            $this->load->view("footer");
+        }
+	}
+
+	public function misRecursos($idRecurso="")
+    {
+        if (strtolower($this->session->rol)!="profesor") {
+            echo "Acceso prohibido";
+        } else {
+			if ($this->input->post("eliminar")!="") {
+				$this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
+				$this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>"Baja","fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"idRecurso"=>$idRecurso));
+				redirect("recurso/misRecursos");
+			}
+			$nombreUsuario=$this->session->nombreUsuario;
+			$recursos=$this->Recurso_model->get_all_mis_recursos($nombreUsuario);
+			$this->load->view('header', array("title"=>"Mis Recursos"));
+            $this->load->view('recurso/misRecursos',["recursos"=>$recursos]);
             $this->load->view("footer");
         }
     }
