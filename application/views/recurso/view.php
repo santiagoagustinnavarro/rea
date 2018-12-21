@@ -3,21 +3,50 @@ if (isset($unRecurso[0])) {
     $recurso=$unRecurso[0];
 ?>
 <style>
-#actions{float:right}
+.actions {float:right}
+
 .no-close .ui-dialog-titlebar-close {
   display: none;
 }
-#actions > form{
+.actions > form{
 	float:right;
 }
 .estrellas{
 	font-size: x-large;
 }
+
 </style>
+
 <script type="text/javascript">
+
 $(document).ready(function(){
+		$("#actionsComentario").children('a').click(function(){
+			alert(hola)
+		})
+	<?php if($iniciada){ ?>
+		$("#comentar").click(function(){
+		if($("input[name=descripcion]").val()!=""){
+			$.ajax({
+				url:<?php echo "\"".base_url()."\""?>+"comentario/add",
+				data:{idRecurso:<?php echo $recurso["idRecurso"]; ?>,nombreUsuario:<?php echo "\"".$usuario."\"";?>,fecha:<?php echo "\"".date("Y-m-d")."\"";?>,hora:<?php echo "\"".date("H:i:s")."\"";?>,descripcion:$("#descripcion").val()},
+				method:"POST"
+			})
+			location.reload();
+		}else{
+
+		}
+	})
+
+	<?php
+    } ?>
+	$.ajax({
+	url:<?php echo "\"".base_url()."\""?>+"comentario/listar/"+<?php echo $recurso["idRecurso"]?>,
+	success:function(response){
+		$('#comentarios').html(response);//Probando pero qyue¡¡¡¡¡¡¡¡
+	}	
+	})
 <?php 
-if($usuario!=$recurso["nombreUsuario"]){
+if($iniciada && $usuario!=$recurso["nombreUsuario"]){
 	
     ?>	$(".estrellas").starrr();
 	var i=1;
@@ -69,7 +98,7 @@ if($usuario!=$recurso["nombreUsuario"]){
 			</div>';
 		}
 	?>
-	<?php if($edicion){?> <div id="actions"><a href="<?php echo base_url()."recurso/editar_recurso/".$recurso["idRecurso"];?>"><button class="fa fa-pencil btn btn-primary"></button></a><?php echo form_open("recurso/view/".$recurso["idRecurso"],array("id"=>"edicion"));?><input type="hidden" name="eliminar" value="1"><button type="button"  id="envio" class="fa fa-remove  btn btn-danger"></button><?php echo form_close()?></div><?php }?>
+	<?php if($edicion){?> <div class="actions"><a href="<?php echo base_url()."recurso/editar_recurso/".$recurso["idRecurso"];?>"><button class="fa fa-pencil btn btn-primary"></button></a><?php echo form_open("recurso/view/".$recurso["idRecurso"],array("id"=>"edicion"));?><input type="hidden" name="eliminar" value="1"><button type="button"  id="envio" class="fa fa-remove  btn btn-danger"></button><?php echo form_close()?></div><?php }?>
 		<br/>
 		<h1 class="titulo"><?php echo $recurso["titulo"];?></h1>
 		<div class="descripcion">
@@ -94,7 +123,7 @@ if($usuario!=$recurso["nombreUsuario"]){
 			?>	
 		</div>
 		<div class="espacio"></div>
-			<a download href= <?php echo base_url()."assets/upload/".$recurso["nombreUsuario"]."/".$recurso["idRecurso"]."/".$unArchivo["nombre"];?> class="btn btn-success"><i class="fa fa-download"></i> Descargar Recurso</a>
+			<a download href= "<?php echo base_url()."assets/upload/".$recurso["nombreUsuario"]."/".$recurso["idRecurso"]."/".$unArchivo["nombre"];?>" class="btn btn-success"><i class="fa fa-download"></i> Descargar Recurso</a>
 			<br/><br/>
 			<?php if($iniciada){
             ?><div class="estrellas"></div>
@@ -102,9 +131,8 @@ if($usuario!=$recurso["nombreUsuario"]){
 				}
 			?>
 		<div class="espacio"></div>
-		<?php
-			echo form_open("comentario/generarComentario/".$idRecurso,["method"=>"post"]);
-		?> 
+	
+	
 			<!-- <div class="form-group">
 				<label for="descripcion">Comentarios</label>
 				<textarea type="textarea" class="form-control offset-lg-4 col-lg-5" name="descripcion" id="descripcion"></textarea>
@@ -112,68 +140,29 @@ if($usuario!=$recurso["nombreUsuario"]){
 			<button type="submit" class="btn btn-primary">Enviar</button>
 			</div> -->
 			<div class="container col-md-offset-2 col-md-8">
-			<div class="box box-success">
-			<div class="box-header">
+<div class="box box-success">
+<div class="box-header">
     			<i class="fa fa-comments-o"></i>
     		    <h3 class="box-title"> <b>Comentarios</b></h3>
 			</div>
-			<br/>
-			<div class="box-body chat" id="chat-box">
-        		<div class="item">
-        		    <img src=" <?php echo base_url()?>assets/estilo/dist/img/user4-128x128.jpg" alt="user image">
-					<br/>
-					<p class="message">
-        				<a href="#" class="name">
-            				<small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-        				    Mike Doe
-            		    </a>
-            			I would like to meet you to discuss the latest news about
-            			the arrival of the new theme. They say it is going to be one the
-        	    		best themes on the market
-        	    	</p>
-       		 	</div>
-    			<div class="item">
-        			<img src="<?php echo base_url()?>assets/estilo/dist/img/user3-128x128.jpg" alt="user image">
-					<br/>
-					<p class="message">
-            			<a href="#" class="name">
-            			    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-        	    			Alexander Pierce
-          				</a>
-              			I would like to meet you to discuss the latest news about
-              			the arrival of the new theme. They say it is going to be one the
-            			best themes on the market
-        	    	</p>
-    			</div>
-    	    	<div class="item">
-        			<img src="<?php echo base_url()?>assets/estilo/dist/img/user2-160x160.jpg" alt="user image">
-					<br/>
-					<p class="message">
-            			<a href="#" class="name">
-                			<small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
-        	            	Susan Doe
-            	    	</a>
-              			I would like to meet you to discuss the latest news about
-              			the arrival of the new theme. They say it is going to be one the
-              			best themes on the market
-            		</p>
-        		</div>
-    		</div>
-    		<div class="box-footer">
+<div class="box-body chat" id="chat-box">
+			<div id="comentarios"></div>
+			
+<?php if($iniciada){ ?>
+<div class="box-footer">
         		<div class="input-group">
        	    	    <input class="form-control" name="descripcion" id="descripcion" placeholder="Enviar mensaje...">
             		<div class="input-group-btn">
-            			<button type="submit" class="btn btn-success">Enviar</button>
+            			<button type="button" id="comentar" class="btn btn-success">Enviar</button>
             		</div>
         		</div>
 			</div> 
-		</div>
-		<?php
-			echo form_close();
-		?>
-	</div> 
+<?php } ?>
+</div>
+</div>
 	</div>
 </div>
+
 	<?php 
 	}else{
 		echo "No existe el recurso";

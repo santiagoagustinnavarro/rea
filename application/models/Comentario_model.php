@@ -18,13 +18,29 @@ class Comentario_model extends CI_Model
     {
         return $this->db->get_where('comentario',array('idComentario'=>$idComentario))->row_array();
     }
+    
+    /*
+     * Get all comentario count
+     */
+    function get_all_comentario_count($params=array())
+    {
+        $this->db->where($params);
+        $this->db->from('comentario');
+        return $this->db->count_all_results();
+    }
         
     /*
      * Get all comentario
      */
-    function get_all_comentario()
+    function get_all_comentario($params = array())
     {
         $this->db->order_by('idComentario', 'desc');
+        if(isset($params["limit"]) && isset($params['offset']))
+        {
+            $this->db->limit($params['limit'], $params['offset']);
+        }else{
+            $this->db->where($params);
+        }
         return $this->db->get('comentario')->result_array();
     }
         
