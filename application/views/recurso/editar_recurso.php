@@ -2,7 +2,7 @@
 <div class="container box box-info">
 	<br/>
 	<div class="col-md-1">
-		<div class="btn btn-success logeo"><a class="logeo" href="<?php echo base_url();?>recurso/listar"><i class="fa fa-reply"></i></a></div>
+		<a class="logeo" href="<?php echo base_url();?>recurso/listar"><div class="btn btn-success logeo"><i class="fa fa-reply"></i></div></a>
 	</div>
 	<br/>
 	<div class="col-md-10">

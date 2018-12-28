@@ -1,9 +1,4 @@
 <style>
-.estilo{
-	float:left;
-	position:relative;
-	left:40%;
-}
 .no-close .ui-dialog-titlebar-close {
   display: none;
 }
@@ -81,7 +76,7 @@ jQuery.extend(jQuery.expr[":"],
 					</td>
 					<td>
 						<a href="<?php echo site_url('recurso/editar_recurso/'.$r['idRecurso']); ?>" class="btn btn-success btn-md estilo"><span class="glyphicon glyphicon-edit"></span></a> 
-						<a class="estilo"><?php echo form_open("recurso/misRecursos/".$r["idRecurso"], array("id"=>"edicion".$r["idRecurso"])); ?><input type="hidden" id="eliminar" name="eliminar" value="<?php echo $r["idRecurso"]; ?>"><button class="btn btn-danger btn-md" type="button" name="envio" value="<?php echo $r["idRecurso"]; ?>"><span class="glyphicon glyphicon-trash"></span></button><?php echo form_close()?></a>
+						<a href='<?php echo form_open("recurso/misRecursos/".$r["idRecurso"], array("id"=>"edicion".$r["idRecurso"])); ?> <input type="hidden" id="eliminar" name="eliminar" value="<?php echo $r["idRecurso"]; ?>>'><button class="btn btn-danger btn-md" type="button" name="envio" value="<?php echo $r["idRecurso"]; ?>"><span class="glyphicon glyphicon-trash"></span></button><?php echo form_close()?></a>
 						<?php
 							}
 						}

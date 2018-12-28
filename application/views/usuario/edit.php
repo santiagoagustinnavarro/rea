@@ -4,9 +4,9 @@
 	<div class="container box box-primary">
 		<br/>
 			<div class="col-md-1">
-				<div class="btn btn-success logeo"><a href="<?php echo base_url();?>usuario"><i class="fa fa-reply"></i></a></div>
+				<a href="<?php echo base_url();?>usuario"><div class="btn btn-success logeo"><i class="fa fa-reply"></i></div></a>
 			</div>
-			<br/>
+		<br/>
 		<div>
 			<h1>Editar Usuario</h1><br/>
 			<div class="form-group">

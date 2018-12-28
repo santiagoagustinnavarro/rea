@@ -90,11 +90,11 @@ if($iniciada && $usuario!=$recurso["nombreUsuario"]){
 	<?php
 		if($this->session->rol == 'administrador de recursos'){
 			echo'<div class="col-md-1">
-				 <div class="btn btn-success logeo"><a href='.base_url().'recurso><i class="fa fa-reply"></i></a></div>
+				 <a href='.base_url().'recurso><div class="btn btn-success logeo"><i class="fa fa-reply"></i></div></a>
 				</div>';
 		}else{
 			echo'<div class="col-md-1">
-			<div class="btn btn-success logeo"><a href='.base_url().'recurso/listar><i class="fa fa-reply"></i></a></div>
+			<a href='.base_url().'recurso/listar><div class="btn btn-success logeo"><i class="fa fa-reply"></i></div></a>
 			</div>';
 		}
 	?>
