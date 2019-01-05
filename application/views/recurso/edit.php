@@ -12,7 +12,7 @@ echo form_open('recurso/edit/'.$recurso['idRecurso'], array("class"=>"form-horiz
 		<div class="box box-primary" id="editRec">
 			<br/>
 			<div class="col-md-1">
-				<div class="btn btn-success logeo"><a class="logeo" href="<?php echo base_url();?>recurso"><i class="fa fa-reply"></i></a></div>
+				<a class="logeo" href="<?php echo base_url();?>recurso"><div class="btn btn-success logeo"><i class="fa fa-reply"></i></div></a>
 			</div>
 			<h1>Editar Recurso</h1>
 			<br/>
