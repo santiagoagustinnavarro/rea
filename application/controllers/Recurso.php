@@ -325,13 +325,31 @@ class Recurso extends CI_Controller
         echo "No existe el recurso";
     }
     }
+
+    function obtenerValor($idRecurso,$nombreUsuario){
+        $this->load->model("Valoracion_model");
+        $valorizacion=$this->Valoracion_model->get_valoracion("",$nombreUsuario,$idRecurso);
+   
+        if($valorizacion!=null){
+            echo $valorizacion["puntaje"];
+        }else{
+            echo "0";
+        }
+    }
    function valorizar($idRecurso,$valor,$nombreUsuario){
     $this->load->model("Valoracion_model");
     $valorizar=$this->Valoracion_model->add_valoracion(array("idRecurso"=>$idRecurso,"puntaje"=>$valor,"nombreUsuario"=>$nombreUsuario));
     if($valorizar){
-        echo "Recurso valorizado con exito";
+       $info=["estado"=>true,"estrellas"=>$valor];
     }else{
-        echo "Ya ah valorizado anteriormente el recurso";
+        $valorizar=$this->Valoracion_model->update_valoracion($idRecurso,$nombreUsuario,['puntaje'=>$valor]);
+        if ($valorizar) {
+            $info=["estado"=>true,"estrellas"=>$valor];
+        }else{
+            $info=["estado"=>false];
+        }
+       echo json_encode($info);
+    
     }
    }
     private function listarConArchivos($usuario="", $idRecurso="")

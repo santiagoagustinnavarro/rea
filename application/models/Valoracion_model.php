@@ -18,9 +18,14 @@ class Valoracion_model extends CI_Model
     /*
      * Get valoracion by idValoracion
      */
-    function get_valoracion($idValoracion)
+    function get_valoracion($idValoracion,$nombreUsuario="",$idRecurso="")
     {
-        return $this->db->get_where('valoracion',array('idValoracion'=>$idValoracion))->row_array();
+        if ($nombreUsuario!="" && $idRecurso!="") {
+            return $this->db->get_where('valoracion', array('nombreUsuario'=>$nombreUsuario,'idRecurso'=>$idRecurso))->row_array();
+        }else{
+            return $this->db->get_where('valoracion', array('idValoracion'=>$idValoracion))->row_array();
+           
+        }
     }
     
     /*
@@ -57,9 +62,9 @@ class Valoracion_model extends CI_Model
     /*
      * function to update valoracion
      */
-    function update_valoracion($idValoracion,$params)
+    function update_valoracion($idRecurso,$nombreUsuario,$params)
     {
-        $this->db->where('idValoracion',$idValoracion);
+        $this->db->where(['idRecurso'=>$idRecurso,'nombreUsuario'=>$nombreUsuario]);
         return $this->db->update('valoracion',$params);
     }
     
