@@ -238,6 +238,7 @@ class Recurso extends CI_Controller
         $this->load->model("Tema_model");
         $this->load->model("Nivel_model");
         $this->load->model("Categoria_model");
+        $this->load->model("Valoracion_model");
         $data["temas"]=array();
         $filtros=$_POST;//Array con los filtros de categoria,tema,niveles y el filtrado de la busqueda
         if (count($filtros)<=0) {//No se han recibido filtros
@@ -285,6 +286,10 @@ class Recurso extends CI_Controller
         $data["links"] = $this->pagination->create_links();//Generamos los links de las paginaciones
         $data["categoria"]=$this->Categoria_model->get_all_categoria();//Para el select de categorias
         $data["niveles"]=$this->Nivel_model->get_all_nivel();//Para el select de niveles
+        foreach($data["results"] as $unRecurso){
+            $promedio=$this->Valoracion_model->promedio($unRecurso->idRecurso);
+            $unRecurso->promedio=$promedio;
+        }
         $this->load->model("Valoracion_model");
         $this->load->view('header', ["title"=>'Recursos',"scripts"=>["busquedaRecurso.js","starrr.js"],"styles"=>["styles.css","responsive.css"]]);
         $this->load->view('inicio/area', $data);

@@ -13,7 +13,12 @@ class Valoracion_model extends CI_Model
     function promedio($idRecurso){
         $this->db->select("avg(puntaje)");
        $this->db->where(array("idRecurso"=>$idRecurso));
-        $this->db->get('valoracion')->row();
+    $prom=$this->db->get('valoracion')->row();
+    foreach ($prom as $key => $value){
+       $promedio=$value;
+    }
+    return $promedio;
+        
     }
     /*
      * Get valoracion by idValoracion

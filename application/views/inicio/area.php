@@ -116,7 +116,7 @@
 										echo '<i class="fa fa-check-circle-o"></i>';
 									} ?></a></h4>
 									<ul class="post-footer">
-										<li class="estrellas"></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
+										<li><?php echo "Promedio: <br/>".(int) $data->promedio;?> Estrellas</li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
 									</ul>
 								</div><!-- blog-info -->
 							</div><!-- single-post -->
@@ -140,7 +140,7 @@
 										echo '<i class="fa fa-check-circle-o"></i>';
 									} ?></a></h4>
 									<ul class="post-footer">			
-										<li class="estrellas"></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>		
+										<li><?php echo "Promedio: <br/>".(int) $data->promedio;?> Estrellas</li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>		
 									</ul>
 								</div><!-- blog-info -->
 							</div><!-- single-post -->
@@ -165,7 +165,7 @@
 											echo '<i class="fa fa-check-circle-o"></i>';
 										} ?></a></h4>
 										<ul class="post-footer">				
-											<li class="estrellas"></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
+											<li><?php echo "Promedio: <br/>".(int) $data->promedio;?> Estrellas</li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
 										</ul>
 									</div><!--cierra la clase blog-info -->
 								</div><!--cierra la clase single-post -->
@@ -188,7 +188,7 @@
 												} ?></a>
 											</h4>
 											<ul class="post-footer">
-												<li class="estrellas"></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>	
+												<li><?php echo "Promedio: <br/>".(int) $data->promedio;?> Estrellas</li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>	
 											</ul>
 										</div><!--cierra la clase blog-info -->
 									</div><!--cierra la clase single-post -->
@@ -211,7 +211,7 @@
 												echo '<i class="fa fa-check-circle-o"></i>';
 											} ?></a></h4>
 											<ul class="post-footer">
-												<li class="estrellas"></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
+												<li><?php echo "Promedio: <br/>".(int) $data->promedio;?> Estrellas</li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
 											</ul>
 										</div><!--cierra la clase blog-info -->
 									</div><!--cierra la clase single-post -->
