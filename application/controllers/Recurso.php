@@ -422,7 +422,15 @@ class Recurso extends CI_Controller
             foreach ($archivos["size"] as $size) {
                 $total=$total+$size;
             }
-            if (($total/1024)<6144) {
+            $extension=true;
+            foreach($archivos["name"] as $unArchivo){
+               
+                if(pathinfo($unArchivo,PATHINFO_EXTENSION)=="php" ||pathinfo($unArchivo,PATHINFO_EXTENSION)=="js" ){
+                    $extension=false;
+                    break;
+                }
+            }
+            if (($total/1024)<6144 && $extension) {
                 $nivelesRecibidos=$this->input->post("niveles");
                 $temaRecibido=$this->input->post("tema");
                 if ($nombreRec!="" && count($archivos)>0 && $desc!="") {
@@ -440,10 +448,15 @@ class Recurso extends CI_Controller
                     $this->load->view('recurso/subirRecurso', ["mensaje"=>"<div class='col-md-12 alert alert-danger text-center'><h4>".'Faltan completar campos'."</h4></div>",'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
                     $this->load->view("footer");
                 }
-            } else {
+            } elseif(($total/1024)>=6144) {
                 //Se ah excedido el tamaño de los archivos (6MB)
                 $this->load->view("header", ["title" => "Subir Recurso","scripts"=>["subirRecurso.js"]]);
                 $this->load->view('recurso/subirRecurso', ['mensaje'=>"<div class='col-md-12 alert alert-danger text-center'><h4>".'Tamaño excedido'."</h4></div>",'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
+                $this->load->view("footer");
+            }else{
+                //Se ah subido un archivo php o js
+                $this->load->view("header", ["title" => "Subir Recurso","scripts"=>["subirRecurso.js"]]);
+                $this->load->view('recurso/subirRecurso', ['mensaje'=>"<div class='col-md-12 alert alert-danger text-center'><h4>".'Prohibido subir archivos con extension php o js'."</h4></div>",'categoria'=>$categoria,'niveles'=>$niveles,'tema'=>$tema]);
                 $this->load->view("footer");
             }
         } else {
