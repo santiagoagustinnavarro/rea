@@ -18,7 +18,7 @@ function actualizarTema(){
             dataType: "html",
             success: function(response) {
                 $(".col-md-9").html($(".col-md-9",response).children());
-                $(".estrellas").starrr();
+               
             }
         });  
 }
@@ -42,7 +42,7 @@ $(document).ready(function(){
                 dataType: "html",
                 success: function(response) {
                     $(".col-md-9").html($(".col-md-9", response).children());
-                    $(".estrellas").starrr();
+                   
                 }
             }); 
     }); 
@@ -62,7 +62,7 @@ $(document).ready(function(){
                 dataType: "html",
                 success: function(response) {
                     $(".col-md-9").html($(".col-md-9", response).children());
-                    $(".estrellas").starrr();
+                 
                 }
             }); 
     });
@@ -83,20 +83,13 @@ $(document).ready(function(){
             success: function(response) {
                 $(".col-md-9").html($(".col-md-9", response).children());
                 $("#tema").html($("#tema", response).children());
-                $(".estrellas").starrr();
+             
                
               
             }
         }); 
     });
-    $(".estrellas").starrr();
-    $(".estrellas").click(function(){
-    alert("me clickeaste che")
-    })
-  
-
-  
-    
+     
 });
 
 

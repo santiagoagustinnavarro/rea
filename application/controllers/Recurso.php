@@ -353,9 +353,10 @@ class Recurso extends CI_Controller
         }else{
             $info=["estado"=>false];
         }
-       echo json_encode($info);
+      
     
     }
+    echo json_encode($info);
    }
     private function listarConArchivos($usuario="", $idRecurso="")
     {

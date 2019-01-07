@@ -1,4 +1,6 @@
-<style>.avatar >img{height:100%;}</style>
+<style>.avatar >img{height:100%;}
+.starStatic{width:100%;}
+</style>
 <script type="text/javascript">$("#estrellas").children('a').attr("class",null);</script>
 <!-- Container fluid -->
 <div class="container-fluid">
@@ -116,7 +118,7 @@
 										echo '<i class="fa fa-check-circle-o"></i>';
 									} ?></a></h4>
 									<ul class="post-footer">
-										<li><?php echo "Promedio: <br/>".(int) $data->promedio;?> Estrellas</li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
+										<li class="starStatic"><a><?php for($i=0;$i<(int) $data->promedio;$i++){ echo "&#9733";  } ?></a></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
 									</ul>
 								</div><!-- blog-info -->
 							</div><!-- single-post -->
@@ -140,7 +142,7 @@
 										echo '<i class="fa fa-check-circle-o"></i>';
 									} ?></a></h4>
 									<ul class="post-footer">			
-										<li><?php echo "Promedio: <br/>".(int) $data->promedio;?> Estrellas</li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>		
+										<li class="starStatic"><a><?php for($i=0;$i<(int) $data->promedio;$i++){ echo "&#9733";  } ?></a></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>		
 									</ul>
 								</div><!-- blog-info -->
 							</div><!-- single-post -->
@@ -165,7 +167,7 @@
 											echo '<i class="fa fa-check-circle-o"></i>';
 										} ?></a></h4>
 										<ul class="post-footer">				
-											<li><?php echo "Promedio: <br/>".(int) $data->promedio;?> Estrellas</li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
+											<li class="starStatic"><a><?php for($i=0;$i<(int) $data->promedio;$i++){ echo "&#9733";  } ?></a></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
 										</ul>
 									</div><!--cierra la clase blog-info -->
 								</div><!--cierra la clase single-post -->
@@ -188,7 +190,12 @@
 												} ?></a>
 											</h4>
 											<ul class="post-footer">
-												<li><?php echo "Promedio: <br/>".(int) $data->promedio;?> Estrellas</li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>	
+												<li><?php
+												for($i=0;$i<(int) $data->promedio;$i++){
+													echo "&#9733";
+												}
+												?>
+												</li>
 											</ul>
 										</div><!--cierra la clase blog-info -->
 									</div><!--cierra la clase single-post -->
@@ -211,7 +218,7 @@
 												echo '<i class="fa fa-check-circle-o"></i>';
 											} ?></a></h4>
 											<ul class="post-footer">
-												<li><?php echo "Promedio: <br/>".(int) $data->promedio;?> Estrellas</li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
+											<li class="starStatic"><a><?php for($i=0;$i<(int) $data->promedio;$i++){ echo "&#9733";  } ?></a></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
 											</ul>
 										</div><!--cierra la clase blog-info -->
 									</div><!--cierra la clase single-post -->
