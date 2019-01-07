@@ -1,5 +1,7 @@
 <style>.avatar >img{height:100%;}
-.starStatic{width:100%;}
+.starStatic a{
+	font-size:x-large;
+}
 </style>
 <script type="text/javascript">$("#estrellas").children('a').attr("class",null);</script>
 <!-- Container fluid -->
