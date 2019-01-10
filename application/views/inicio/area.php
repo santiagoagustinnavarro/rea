@@ -1,7 +1,13 @@
 <style>.avatar >img{height:100%;}
 .starStatic a{
 	font-size:x-large;
+	font-weight:bold;
+	color:#18acba;
 }
+.starStaticWhite a{
+	font-weight:bold;
+}
+
 </style>
 <script type="text/javascript">$("#estrellas").children('a').attr("class",null);</script>
 <!-- Container fluid -->
@@ -120,7 +126,13 @@
 										echo '<i class="fa fa-check-circle-o"></i>';
 									} ?></a></h4>
 									<ul class="post-footer">
-										<li class="starStatic"><a><?php for($i=0;$i<(int) $data->promedio;$i++){ echo "&#9733";  } ?></a></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
+									<?php if($data->promedio>0){?>				
+											<li class="starStatic"><a><?php for($i=0;$i<(int) $data->promedio;$i++){ echo "&#9733";  } ?></a></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
+										<?php }else{
+                                            ?><li class="starStaticWhite"><a><?php 
+                                                echo "Sin valorizar";
+                                             ?></a></li><li><a href="<?php echo base_url(); ?>recurso/view/<?php echo $data->idRecurso; ?>"><i class="ion-chatbubble"></i></a></li><?php
+                                        }?>
 									</ul>
 								</div><!-- blog-info -->
 							</div><!-- single-post -->
@@ -144,7 +156,13 @@
 										echo '<i class="fa fa-check-circle-o"></i>';
 									} ?></a></h4>
 									<ul class="post-footer">			
-										<li class="starStatic"><a><?php for($i=0;$i<(int) $data->promedio;$i++){ echo "&#9733";  } ?></a></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>		
+									<?php if($data->promedio>0){?>				
+											<li class="starStatic"><a><?php for($i=0;$i<(int) $data->promedio;$i++){ echo "&#9733";  } ?></a></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
+										<?php }else{
+                                            ?><li class="starStaticWhite"><a><?php 
+                                                echo "Sin valorizar";
+                                             ?></a></li><li><a href="<?php echo base_url(); ?>recurso/view/<?php echo $data->idRecurso; ?>"><i class="ion-chatbubble"></i></a></li><?php
+                                        }?>
 									</ul>
 								</div><!-- blog-info -->
 							</div><!-- single-post -->
@@ -168,8 +186,14 @@
 										<?php if($data->validado==1){
 											echo '<i class="fa fa-check-circle-o"></i>';
 										} ?></a></h4>
-										<ul class="post-footer">				
+										<ul class="post-footer">
+										<?php if($data->promedio>0){?>				
 											<li class="starStatic"><a><?php for($i=0;$i<(int) $data->promedio;$i++){ echo "&#9733";  } ?></a></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
+										<?php }else{
+                                            ?><li class="starStaticWhite"><a><?php 
+                                                echo "Sin valorizar";
+                                             ?></a></li><li><a href="<?php echo base_url(); ?>recurso/view/<?php echo $data->idRecurso; ?>"><i class="ion-chatbubble"></i></a></li><?php
+                                        }?>
 										</ul>
 									</div><!--cierra la clase blog-info -->
 								</div><!--cierra la clase single-post -->
@@ -192,12 +216,13 @@
 												} ?></a>
 											</h4>
 											<ul class="post-footer">
-												<li><?php
-												for($i=0;$i<(int) $data->promedio;$i++){
-													echo "&#9733";
-												}
-												?>
-												</li>
+											<?php if($data->promedio>0){?>				
+											<li class="starStatic"><a><?php for($i=0;$i<(int) $data->promedio;$i++){ echo "&#9733";  } ?></a></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
+										<?php }else{
+                                            ?><li class="starStaticWhite"><a><?php 
+                                             ?></a></li><li><a href="<?php echo base_url(); ?>recurso/view/<?php echo $data->idRecurso; ?>"><i class="ion-chatbubble"></i></a></li><?php
+                                        }?>
+				
 											</ul>
 										</div><!--cierra la clase blog-info -->
 									</div><!--cierra la clase single-post -->
@@ -220,7 +245,13 @@
 												echo '<i class="fa fa-check-circle-o"></i>';
 											} ?></a></h4>
 											<ul class="post-footer">
+											<?php if($data->promedio>0){?>				
 											<li class="starStatic"><a><?php for($i=0;$i<(int) $data->promedio;$i++){ echo "&#9733";  } ?></a></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
+										<?php }else{
+                                            ?><li class="starStaticWhite"><a><?php
+                                                echo "Sin valorizar";
+                                            ?></a></li><li><a href="<?php echo base_url(); ?>recurso/view/<?php echo $data->idRecurso; ?>"><i class="ion-chatbubble"></i></a></li><?php
+                                        }?>
 											</ul>
 										</div><!--cierra la clase blog-info -->
 									</div><!--cierra la clase single-post -->
