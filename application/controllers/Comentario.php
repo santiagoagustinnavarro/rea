@@ -126,10 +126,7 @@ class Comentario extends CI_Controller{
     foreach($comentarios as $unComentario){
         $arrUser[]=$this->Usuario_model->get_usuario($unComentario["nombreUsuario"]);
     }
-    
-        $this->load->view("comentario/listar",["comentarios"=>$comentarios,"usuarios"=>$arrUser]);
-         
-        
+        $this->load->view("comentario/listar",["comentarios"=>$comentarios,"usuarios"=>$arrUser,"usuario"=>$this->session->nombreUsuario]);
     }
     
 }

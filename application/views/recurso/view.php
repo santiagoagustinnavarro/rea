@@ -125,6 +125,7 @@ if (isset($unRecurso[0])) {
 				}
 			});
 		});
+		
 	})
 </script>
 <div id="dialog-confirm" hidden>¿Esta seguro de eliminar el recurso?</div>
