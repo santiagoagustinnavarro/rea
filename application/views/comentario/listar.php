@@ -19,9 +19,29 @@ $(document).ready(function(){
 
                })
             })
+            
     })
+    $(".btn.btn-danger.eliminar").click(function(){
+        var idComentario=$(this).attr("id").charAt($(this).attr("id").length-1);
+               $.ajax({
+                   url:<?php echo "\"".base_url()."comentario/remove/\"";?>+idComentario,
+                   success:function(response){
+                      var confirmar= confirm("Seguro desea eliminar?")
+                      if(confirmar){
+                        location.reload();
+                      }
+                    
+                      
+                   
+                   },
+                   error:function(){
+                       alert("error")
+                   }
+
+               })
+            })
    
-})
+});
 
 </script>
 <?php 
@@ -45,7 +65,7 @@ foreach($comentarios as $unComentario){
             <?php echo $unComentario["nombreUsuario"];?>
             
         </a>
-        <span class="comentario" id="comentario<?php echo $unComentario["idComentario"];?>"><?php echo $unComentario["descripcion"]." ";?></span><?php if($unComentario["nombreUsuario"]==$usuario){?><button  id="editar<?php echo $unComentario["idComentario"]; ?>" class="btn btn-success edicion"><i class="fa fa-pencil"></i></button><button id="eliminar<?php echo $unComentario["idComentario"]; ?>" class="btn btn-danger"><i class="fa fa-trash"></i></button><?php }?>
+        <span class="comentario" id="comentario<?php echo $unComentario["idComentario"];?>"><?php echo $unComentario["descripcion"]." ";?></span><?php if($unComentario["nombreUsuario"]==$usuario){?><button  id="editar<?php echo $unComentario["idComentario"]; ?>" class="btn btn-success edicion"><i class="fa fa-pencil"></i></button><button id="eliminar<?php echo $unComentario["idComentario"]; ?>" class="btn btn-danger eliminar"><i class="fa fa-trash"></i></button><?php }?>
         
     </p>
     </div>
