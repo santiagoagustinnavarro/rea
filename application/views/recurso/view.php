@@ -46,8 +46,7 @@ if (isset($unRecurso[0])) {
 		<?php
     } ?>
 		$.ajax({
-			url: <?php echo "\"".base_url()."\""?>
-				+"comentario/listar/" + <?php echo $recurso["idRecurso"]?> ,
+			url: <?php echo "\"".base_url()."\""?>+"comentario/listar/"+<?php echo $recurso["idRecurso"]?>,
 			success: function(response) {
 				$('#comentarios').html(response); //Probando pero qyue¡¡¡¡¡¡¡¡
 			}

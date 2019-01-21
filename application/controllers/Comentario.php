@@ -66,37 +66,32 @@ class Comentario extends CI_Controller{
     /*
      * Editing a comentario
      */
-    function edit($idComentario)
+    function edit($idComentario,$descripcion)
     {   
         // check if the comentario exists before trying to edit it
         $data['comentario'] = $this->Comentario_model->get_comentario($idComentario);
-        
+      
         if(isset($data['comentario']['idComentario']))
         {
             $this->load->library('form_validation');
 
-			$this->form_validation->set_rules('idRecurso','IdRecurso','required|integer');
-			$this->form_validation->set_rules('nombreUsuario','NombreUsuario','required|max_length[30]');
-			$this->form_validation->set_rules('descripcion','Descripcion','required|max_length[80]');
-		
-			if($this->form_validation->run())     
-            {   
+			 
                 $params = array(
-					'idRecurso' => $this->input->post('idRecurso'),
-					'nombreUsuario' => $this->input->post('nombreUsuario'),
-					'descripcion' => $this->input->post('descripcion'),
+					'idRecurso' =>$data["comentario"]["idRecurso"],
+					'nombreUsuario' => $data["comentario"]["nombreUsuario"],
+					'descripcion' => str_replace("%"," ",$descripcion),
 					'fecha' => $this->input->post('fecha'),
 					'hora' => $this->input->post('hora'),
                 );
 
-                $this->Comentario_model->update_comentario($idComentario,$params);            
-                redirect('comentario/index');
-            }
-            else
-            {
-                $data['_view'] = 'comentario/edit';
-                $this->load->view('layouts/main',$data);
-            }
+                $actualizo=$this->Comentario_model->update_comentario($idComentario,$params);  
+                if($actualizo){
+                    echo "se actualizo creo";
+                }else{
+                    echo "algo paso";
+                }          
+              
+            
         }
         else
             show_error('The comentario you are trying to edit does not exist.');

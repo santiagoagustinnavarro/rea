@@ -2,9 +2,22 @@
 $(document).ready(function(){
     $(".btn.btn-success.edicion").click(function(){
               var idComentario=$(this).attr("id").charAt($(this).attr("id").length-1);
-            $("#comentario"+idComentario).replaceWith("<input class=\"form-control\" value="+"\""+$("#comentario"+idComentario).html()+"\" type=text id="+ $("#comentario"+idComentario)+"><button class=\"btn btn-info guardar\" id=\"guardar"+idComentario+"\">Guardar</button>");
+            $("#comentario"+idComentario).replaceWith("<input class=\"form-control\" value="+"\""+$("#comentario"+idComentario).html()+"\" type=\"text\" id="+ $("#comentario"+idComentario).attr("id")+"><button class=\"btn btn-info guardar\" id=\"guardar"+idComentario+"\">Guardar</button>");
+           
             $(".btn.btn-info.guardar").click(function(){
-                alert("prueba de guardado")
+                var valorActual=$('#comentario'+idComentario).val();
+               $.ajax({
+                   url:<?php echo "\"".base_url()."comentario/edit/\"";?>+idComentario+"/"+valorActual,
+                   data:{"fecha":<?php echo "\"".date("Y-m-d")."\"" ?>,"hora":<?php echo "\"".date("H:i:s")."\"" ?>},
+                   success:function(response){
+                    location.reload();
+                   },
+                   method:"post",
+                   error:function(){
+                       alert("error")
+                   }
+
+               })
             })
     })
    
