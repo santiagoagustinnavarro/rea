@@ -7,9 +7,13 @@ class Inicio extends CI_Controller {
 		$this->load->library("session");
 	}
 	function index(){
+		$this->load->model("Valoracion_model");
+		$destacados=$this->Valoracion_model->ranking();
 		$this->load->view("header",["title"=>"Inicio"]);
-		$this->load->view("inicio/home");
+		$this->load->view("inicio/home",["ranking"=>$destacados]);
 		$this->load->view("footer");
+		
+
 	}
 }
 ?>

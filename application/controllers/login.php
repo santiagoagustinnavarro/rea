@@ -37,9 +37,9 @@ class Login extends CI_Controller
 						
 						redirect('Recurso/index');
 					}else{
-                    	$this->load->view("header", ["title" => "Home"]);
-                	    $this->load->view('inicio/home');
-						$this->load->view("footer");
+                    	
+                	   redirect('inicio');
+						
 					}
 				}
             } else {

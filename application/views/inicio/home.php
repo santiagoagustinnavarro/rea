@@ -57,54 +57,21 @@
         	    	</div><!-- /.box-header -->
             		<div class="box-body">
             			<ul class="products-list product-list-in-box">
-            			    <li class="item">
-                	  			<div class="product-img">
-                    				<img src="dist/img/default-50x50.gif" alt="Product Image">
-                  				</div>
-								<br/>
+						   <?php 
+                           foreach ($ranking as $unElemento) {
+                               ?> 
+						   <li class="item">
                   				<div class="product-info">
-                    				<a href="javascript:void(0)" class="product-title">Samsung TV</a>
+                    				<a href="recurso/view/<?php echo $unElemento["idRecurso"];?>" class="product-title"> <?php echo $unElemento["titulo"];?></a>
                 	    			<span class="product-description">
-                    	      			Samsung 32" 1080p 60Hz LED Smart HDTV.
+										  <?php echo substr($unElemento["descripcion"],0,50)."<a href='recurso/view/".$unElemento["idRecurso"]."'><br/>Leer mas...</a>"; 
+										  ?>
                         			</span>
                   				</div>
             	    		</li> <!-- /.item -->
-                			<li class="item">
-                  				<div class="product-img">
-                    				<img src="dist/img/default-50x50.gif" alt="Product Image">
-                  				</div>
-								  <br/>
-                  				<div class="product-info">
-                    				<a href="javascript:void(0)" class="product-title">Bicycle</a>
-                   	 				<span class="product-description">
-                    	      			26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-                    	    		</span>
-                  				</div>
-                			</li> <!-- /.item -->
-    	            		<li class="item">
-        	          			<div class="product-img">
-            	        			<img src="dist/img/default-50x50.gif" alt="Product Image">
-            	      			</div>
-								  <br/>
-            	      			<div class="product-info">
-                	    			<a href="javascript:void(0)" class="product-title">Xbox One</a>
-                    				<span class="product-description">
-                          				Xbox One Console Bundle with Halo Master Chief Collection.
-                        			</span>
-                  				</div>
-                			</li> <!-- /.item -->
-                			<li class="item">
-                  				<div class="product-img">
-            	        			<img src="dist/img/default-50x50.gif" alt="Product Image">
-                	  			</div>
-								  <br/>
-                  				<div class="product-info">
-                   					<a href="javascript:void(0)" class="product-title">PlayStation 4</a>
-                    				<span class="product-description">
-                          				PlayStation 4 500GB Console (PS4)
-                        			</span>
-                  				</div>
-                			</li> <!-- /.item -->
+							<?php
+                           }
+							?>
               			</ul>
             		</div> <!-- /.box-body -->
             		<div class="box-footer text-center">
