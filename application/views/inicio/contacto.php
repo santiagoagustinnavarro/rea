@@ -6,8 +6,6 @@
 			<?php if(isset($mensaje)){
 				echo $mensaje;
 			}?>
-			<br/>
-			<br/>
     	    <div class="box-header">
         	    <i class="fa fa-envelope"></i>
         		<h3 class="box-title">Envienos un Email</h3>

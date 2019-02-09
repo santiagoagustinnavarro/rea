@@ -3,9 +3,16 @@
 <div class="col-md-offset-2 col-md-8">
 	<div class="container box box-primary">
 		<br/>
-			<div class="col-md-1">
-				<a href="<?php echo base_url();?>usuario"><div class="btn btn-success logeo"><i class="fa fa-reply"></i></div></a>
-			</div>
+		<?php
+        if ($this->session->rol == 'administrador de usuarios') {
+            echo'<div class="col-md-1">
+					<a href="'.base_url().'usuario"><div class="btn btn-success logeo"><i class="fa fa-reply"></i></div></a>
+				</div>';
+        } else if ($this->session->rol == 'super administrador') {
+            echo'<div class="col-md-1">
+					<a href="'.base_url().'usuario/listaAdmin"><div class="btn btn-success logeo"><i class="fa fa-reply"></i></div></a>
+				</div>';
+        } ?>
 		<br/>
 		<div>
 			<h1>Editar Usuario</h1><br/>

@@ -48,7 +48,7 @@ jQuery.extend(jQuery.expr[":"],
 			<tbody>
 				<?php foreach ($usuario as $u) {
     			    $rol=$this->Tienerol_model->get_tienerol($u['nombreUsuario']);
-        			if (strtolower($rol["nombreRol"])=="profesor") {
+        			if ((strtolower($rol["nombreRol"])!="super administrador") && (strtolower($rol["nombreRol"])!="profesor")) {
         	    ?>
 				<tr>
 					<td>

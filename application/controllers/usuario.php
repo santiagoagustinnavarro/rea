@@ -31,15 +31,16 @@ class Usuario extends CI_Controller
         $config['total_rows'] = $this->Usuario_model->get_all_usuario_count();
         $this->pagination->initialize($config);
         $data['usuario'] = $this->Usuario_model->get_all_usuario($params);
-        $this->load->view('header', array("title"=>"Lista de Usuario"));
+        $this->load->view('header', array("title"=>"Lista de Usuarios"));
         $this->load->view('usuario/index', $data);
         $this->load->view("footer");
 	}
 	
 	public function listaAdmin()
     {
-        $this->load->view('header', array("title"=>"Lista de Usuario"));
-        $this->load->view('usuario/listaAdmin', $data);
+		$data['usuario'] = $this->Usuario_model->get_all_usuario();
+        $this->load->view('header', array("title"=>"Lista de Usuarios"));
+        $this->load->view('usuario/listaAdmin',$data);
         $this->load->view("footer");
 	}
 	
