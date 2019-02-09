@@ -28,9 +28,11 @@ class Valoracion_model extends CI_Model
         $this->db->select("avg(v.puntaje) as estrellas,v.idRecurso,r.descripcion,r.titulo");
         $this->db->from("valoracion as v");
         $this->db->join("recurso as r","v.idRecurso=r.idRecurso");
+        $this->db->join("tenerestadorecurso as tr","tr.idRecurso=r.idRecurso");
         $this->db->order_by("avg(v.puntaje)","DESC");
         $this->db->limit(5);
         $this->db->group_by("v.idRecurso");
+        $this->db->where(["tr.fechaFin"=>null,"tr.nombreEstadoRecurso"=>"alta"]);
     $ranking=$this->db->get()->result_array();
    
     
