@@ -2,6 +2,13 @@
 .no-close .ui-dialog-titlebar-close {
   display: none;
 }
+.eliminarEditar div{
+	position:relative;
+	margin-left:40%;
+}
+.eliminarEditar a,form{
+	float:left;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -31,7 +38,7 @@ jQuery.extend(jQuery.expr[":"],
 	 title:"Eliminación",
 	 dialogClass: "no-close",
       buttons: {
-        "Si":  {text: 'Si', click: function(){ $(this).dialog("close");$("#edicion"+val).submit() }, "class": "btn btn-info" },
+        "Si":  {text: 'Si', click: function(){ $(this).dialog("close");$("#edicion"+val).submit(); }, "class": "btn btn-info" },
 		"No":  {text: 'No', click: function(){ $(this).dialog("close");}, "class": "btn btn-danger" },
       }
 	});
@@ -74,11 +81,15 @@ jQuery.extend(jQuery.expr[":"],
 					<td>
 						<?php echo $r['nombreTema']; ?>
 					</td>
-					<td>
+					<td class="eliminarEditar">
+						<div>
 						<a href="<?php echo site_url('recurso/editar_recurso/'.$r['idRecurso']); ?>" class="btn btn-success btn-md estilo"><span class="glyphicon glyphicon-edit"></span></a> 
-						<a href='<?php echo form_open("recurso/misRecursos/".$r["idRecurso"], array("id"=>"edicion".$r["idRecurso"])); ?> <input type="hidden" id="eliminar" name="eliminar" value="<?php echo $r["idRecurso"]; ?>>'><button class="btn btn-danger btn-md" type="button" name="envio" value="<?php echo $r["idRecurso"]; ?>"><span class="glyphicon glyphicon-trash"></span></button><?php echo form_close()?></a>
+						<?php echo form_open("recurso/misRecursos/".$r["idRecurso"], array("id"=>"edicion".$r["idRecurso"])); ?> <input type="hidden" id="eliminar" name="eliminar" value="<?php echo $r["idRecurso"]; ?>"><button class="btn btn-danger btn-md" type="button" name="envio" value="<?php echo $r["idRecurso"]; ?>"><span class="glyphicon glyphicon-trash"></span></button><?php echo form_close()?></div>
 						<?php
 							}
+							?>
+							
+							<?php
 						}
 						?>
 					</td>

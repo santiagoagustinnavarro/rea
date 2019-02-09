@@ -219,7 +219,7 @@ class Recurso extends CI_Controller
             echo "Acceso prohibido";
         } else {
 			if ($this->input->post("eliminar")!="") {
-				$this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso,"fechaFin"=>null));
+				$this->Tenerestadorecurso_model->update_tenerestadorecurso(array("fechaFin"=>date("Y-m-d")), array("idRecurso"=>$idRecurso));
 				$this->Tenerestadorecurso_model->add_tenerestadorecurso(array("nombreEstadoRecurso"=>"Baja","fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"idRecurso"=>$idRecurso));
 				redirect("recurso/misRecursos");
 			}

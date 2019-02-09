@@ -26,7 +26,7 @@ class Recurso_model extends CI_Model
 		$this->db->select("recurso.idRecurso,recurso.titulo,usuario.nombreUsuario,recurso.descripcion,tenerestadorecurso.nombreEstadoRecurso,recurso.nombreTema,recurso.nombreCategoria");
 		$this->db->join("usuario","usuario.nombreUsuario=recurso.nombreUsuario");
 		$this->db->join("tenerestadorecurso","tenerestadorecurso.idRecurso=recurso.idRecurso");
-	 $this->db->where(array("usuario.nombreUsuario"=>$nombreUsuario,"tenerestadorecurso.fechaFin"=>null));//->result_array();
+	 $this->db->where(array("tenerestadorecurso.nombreEstadoRecurso=alta","usuario.nombreUsuario"=>$nombreUsuario,"tenerestadorecurso.fechaFin"=>null));//->result_array();
 	 return $this->db->get('recurso')->result_array();
 	
 	}
