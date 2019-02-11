@@ -101,19 +101,20 @@ class Recurso_model extends CI_Model
     
 
     public function fetch_recurso($limit, $start, $filtros="")
-    {       $this->db->distinct(); 
-        $this->db->select("u.foto,r.validado,c.nombre,r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
-        $this->db->from("recurso as r");
-        $this->db->join("tema as t", "t.nombre=r.nombreTema");
-        $this->db->join("usuario as u", "u.nombreUsuario=r.nombreUsuario");
-        $this->db->join("tenercategoria tc", "tc.nombreTema=t.nombre");
-        $this->db->join("tenerestadorecurso ter", "ter.idRecurso=r.idRecurso");
-        $this->db->join("categoria as c", "tc.nombreCategoria=c.nombre");
-        $this->db->join("poseenivel as p", "p.idRecurso=r.idRecurso");
-        $this->db->join("nivel as n", "n.nombre=p.nombreNivel");
-        $this->db->where("ter.nombreEstadoRecurso=\"alta\" and ter.fechaFin is null");
+    {  
+      
         if ($filtros!="") {
-
+            $this->db->select("u.foto,r.validado,c.nombre,r.idRecurso,r.titulo as titulo,r.descripcion as recursoDesc,r.nombreUsuario as nombreUsuario,t.nombre as nombre",false);
+            $this->db->from("recurso as r");
+            $this->db->join("tema as t", "t.nombre=r.nombreTema");
+            $this->db->join("usuario as u", "u.nombreUsuario=r.nombreUsuario");
+            $this->db->join("tenercategoria tc", "tc.nombreTema=t.nombre");
+            $this->db->join("tenerestadorecurso ter", "ter.idRecurso=r.idRecurso");
+            $this->db->join("categoria as c", "tc.nombreCategoria=c.nombre");
+            $this->db->join("poseenivel as p", "p.idRecurso=r.idRecurso");
+            $this->db->join("nivel as n", "n.nombre=p.nombreNivel");
+            $this->db->where("ter.nombreEstadoRecurso=\"alta\" and ter.fechaFin is null");
+            $this->db->distinct("r.idrecurso"); 
             if ($filtros["tema"]!="") {
                 $this->db->where(array("t.nombre"=>$filtros["tema"]));
                 
@@ -135,7 +136,15 @@ class Recurso_model extends CI_Model
             }
             
         } else {
- 
+            $this->db->select("*");
+            $this->db->from("recurso as r");
+            $this->db->join("tenerestadorecurso ter", "ter.idRecurso=r.idRecurso");
+            $this->db->join("usuario as u", "u.nombreUsuario=r.nombreUsuario");
+            $this->db->distinct("r.idrecurso"); 
+            $this->db->where("ter.nombreEstadoRecurso=\"alta\" and ter.fechaFin is null");
+
+
+
         }
       
         $this->db->limit($limit, $start);

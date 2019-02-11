@@ -17,7 +17,7 @@ class Usuario extends CI_Controller
         $this->load->model("TenerEstadoUsuario_model");
         $this->load->library("pagination");
     }
-
+    
    
     /*
       * Lista a los usuarios que son de rol profesor
@@ -34,16 +34,16 @@ class Usuario extends CI_Controller
         $this->load->view('header', array("title"=>"Lista de Usuarios"));
         $this->load->view('usuario/index', $data);
         $this->load->view("footer");
-	}
-	
-	public function listaAdmin()
+    }
+    
+    public function listaAdmin()
     {
-		$data['usuario'] = $this->Usuario_model->get_all_usuario();
+        $data['usuario'] = $this->Usuario_model->get_all_usuario();
         $this->load->view('header', array("title"=>"Lista de Usuarios"));
-        $this->load->view('usuario/listaAdmin',$data);
+        $this->load->view('usuario/listaAdmin', $data);
         $this->load->view("footer");
-	}
-	
+    }
+    
     private function verificarToken($nroToken, $nombreUsuario)
     {
         $token=$this->TokenRecupera_model->get_tokenrecupera($nroToken, array("nombreUsuario"=>$nombreUsuario));
@@ -72,7 +72,7 @@ class Usuario extends CI_Controller
                 'apellido' => $this->input->post('apellido'),
                 'nombre' => $this->input->post('nombre'),
                 'estudio' => $this->input->post('estudio'),
-				'email' => $this->input->post('email'),
+                'email' => $this->input->post('email'),
                 'nombreUsuario' => $this->input->post('nombreUsuario'),
             );
             $insercion = $this->Usuario_model->add_usuario($params);
@@ -143,16 +143,19 @@ class Usuario extends CI_Controller
                 
                 $rol=$this->input->post('roles');
                 $estado= $this->input->post('estados');
-                if(strtolower($estado)=="alta"){
-                    if($this->mailAlta($nombreUsuario,$this->input->post('email'))){
-                        ?> <script>alert("enviado");</script><?php
+                if (strtolower($estado)=="alta") {
+                    if ($this->mailAlta($nombreUsuario, $this->input->post('email'))) {
+                        ?>
+<script>
+    alert("enviado");
+</script><?php
                     }
                 }
-                $this->TieneRol_model->update_tienerol(array("fechaFin"=>date("Y-m-d")),array("nombreUsuario"=>$nombreUsuario,"fechaFin"=>null));
+                $this->TieneRol_model->update_tienerol(array("fechaFin"=>date("Y-m-d")), array("nombreUsuario"=>$nombreUsuario,"fechaFin"=>null));
                 $this->TieneRol_model->add_tienerol(array("fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"nombreUsuario"=>$nombreUsuario,"nombreRol"=>$rol));
-            $this->TenerEstadoUsuario_model->update_tenerEstadoUsuario(array("fechaFin"=>date("Y-m-d")),array("nombreUsuario"=>$nombreUsuario,"fechaFin"=>null));
-            $this->TenerEstadoUsuario_model->add_tenerEstadoUsuario(array("fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"nombreUsuario"=>$nombreUsuario,"nombreEstadoUsuario"=>$estado));    
-            redirect('usuario/index');
+                $this->TenerEstadoUsuario_model->update_tenerEstadoUsuario(array("fechaFin"=>date("Y-m-d")), array("nombreUsuario"=>$nombreUsuario,"fechaFin"=>null));
+                $this->TenerEstadoUsuario_model->add_tenerEstadoUsuario(array("fechaInicio"=>date("Y-m-d"),"hora"=>date("H:i:s"),"nombreUsuario"=>$nombreUsuario,"nombreEstadoUsuario"=>$estado));
+                redirect('usuario/index');
             }
         } else {
             show_error('The usuario you are trying to edit does not exist.');
@@ -181,7 +184,7 @@ class Usuario extends CI_Controller
 
         //Send HTML or Plain Text email
         $mail->isHTML(true);
-$mensaje='Bienvenido a la plataforma Rea su usuario ha sido dado de alta ingrese su usuario y contraseña en '.base_url().'login ';
+        $mensaje='Bienvenido a la plataforma Rea su usuario ha sido dado de alta ingrese su usuario y contraseña en '.base_url().'login ';
         $mail->Subject ="Usuario validado";
         $mail->Body = $mensaje;
         $mail->AltBody = $mensaje;
@@ -191,8 +194,7 @@ $mensaje='Bienvenido a la plataforma Rea su usuario ha sido dado de alta ingrese
            // echo "Mailer Error: " . $mail->ErrorInfo;
             $envio=false;
         } else {
-            
-          $envio=true;
+            $envio=true;
         }
         return $envio;
     }
@@ -257,8 +259,8 @@ $mensaje='Bienvenido a la plataforma Rea su usuario ha sido dado de alta ingrese
             $apellido=$this->input->post("apellido");
             $domicilio=$this->input->post("domicilio");
             $dni=$this->input->post("dni");
-			$email=$this->input->post("email");
-            $foto=$_FILES["foto"];  
+            $email=$this->input->post("email");
+            $foto=$_FILES["foto"];
             $estudio=$this->input->post("estudio");
             $clave=$this->input->post("clave");
             $claveNueva=$this->input->post("clave1");
@@ -269,44 +271,42 @@ $mensaje='Bienvenido a la plataforma Rea su usuario ha sido dado de alta ingrese
                 if (!is_dir($unaRuta)) {
                     mkdir($unaRuta, 0777, true);
                 }
-            } 
-            move_uploaded_file($foto['tmp_name'],"./assets/upload/fotoPerfil/".$this->session->nombreUsuario."/".$foto["name"]);     
+            }
+            move_uploaded_file($foto['tmp_name'], "./assets/upload/fotoPerfil/".$this->session->nombreUsuario."/".$foto["name"]);
             $usuarioBuscado=$this->Usuario_model->get_usuario($nombUser);
             if ($usuarioBuscado!=null) {
-                $existeMail=$this->Usuario_model->get_usuario("",array("usuario.email"=>$this->input->post("email")));
-                if (hash('sha224', $clave)==$usuarioBuscado["clave"] && ($existeMail==null || $email==$this->session->email) ) {
-                    if($claveNueva!="" && $claveNueva==$claveNuevaRep){
-                        if($foto["name"]==""){
+                $existeMail=$this->Usuario_model->get_usuario("", array("usuario.email"=>$this->input->post("email")));
+                if (hash('sha224', $clave)==$usuarioBuscado["clave"] && ($existeMail==null || $email==$this->session->email)) {
+                    if ($claveNueva!="" && $claveNueva==$claveNuevaRep) {
+                        if ($foto["name"]=="") {
                             $imagen=$this->session->foto;
-                        }else{
+                        } else {
                             $imagen=$foto["name"];
                         }
-                        $datos=["foto"=>$imagen,"nombre"=>$nombre,"apellido"=>$apellido,"estudio"=>$estudio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224',$claveNueva)];
+                        $datos=["foto"=>$imagen,"nombre"=>$nombre,"apellido"=>$apellido,"estudio"=>$estudio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224', $claveNueva)];
                         $res=$this->Usuario_model->update_usuario($nombUser, $datos);//Estaba por aca
                         
                         if ($res) {
-                           
                             $this->actualizarSesion($datos);
                             $this->load->view("header", ["title" => "Editar Perfil"]);
                             $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-success text-center"><h4>'.'Datos Actualizados Correctamente'.'</h4></div>']);
                             $this->load->view("footer");
                         } else {
-                           
                             $this->load->view("header", ["title" => "Editar Perfil"]);
                             $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Error al tratar de cargar los datos'.'</h4></div>']);
                             $this->load->view("footer");
                         }
-                    }elseif($claveNueva!=$claveNuevaRep){
+                    } elseif ($claveNueva!=$claveNuevaRep) {
                         $this->load->view("header", ["title" => "Editar Perfil"]);
                         $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'Las claves no coinciden'.'</h4></div>']);
                         $this->load->view("footer");
-                    }else{
-                        if($foto["name"]==""){
+                    } else {
+                        if ($foto["name"]=="") {
                             $imagen=$this->session->foto;
-                        }else{
+                        } else {
                             $imagen=$foto["name"];
                         }
-                        $datos=["foto"=>$imagen,"nombre"=>$nombre,"apellido"=>$apellido,"estudio"=>$estudio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224',$clave)];
+                        $datos=["foto"=>$imagen,"nombre"=>$nombre,"apellido"=>$apellido,"estudio"=>$estudio,"dni"=>$dni,"email"=>$email,"clave"=>hash('sha224', $clave)];
                         $res=$this->Usuario_model->update_usuario($nombUser, $datos);//Estaba por aca
                     
                         if ($res) {
@@ -320,11 +320,11 @@ $mensaje='Bienvenido a la plataforma Rea su usuario ha sido dado de alta ingrese
                             $this->load->view("footer");
                         }
                     }
-                } elseif($existeMail!=null) {
+                } elseif ($existeMail!=null) {
                     $this->load->view("header", ["title" => "Editar Perfil"]);
                     $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'El email ya existe'.'</h4></div>']);
                     $this->load->view("footer");
-                }else{
+                } else {
                     $this->load->view("header", ["title" => "Editar Perfil"]);
                     $this->load->view('usuario/editarPerfil', ['mensaje'=>'<div class="offset-md-3 col-md-6 alert alert-danger text-center"><h4>'.'La clave actual es invalida'.'</h4></div>']);
                     $this->load->view("footer");
@@ -345,11 +345,10 @@ $mensaje='Bienvenido a la plataforma Rea su usuario ha sido dado de alta ingrese
         $_SESSION["nombre"]=$datos["nombre"];
         $_SESSION["apellido"]=$datos["apellido"];
         $_SESSION["estudio"]=$datos["estudio"];
-		$_SESSION["dni"]=$datos["dni"];
-		$_SESSION["foto"]=$datos["foto"];
+        $_SESSION["dni"]=$datos["dni"];
+        $_SESSION["foto"]=$datos["foto"];
         $_SESSION["email"]=$datos["email"];
         $_SESSION["clave"]=$datos["clave"];
-      
     }
     /*
      * Eliminar un usuario
