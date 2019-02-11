@@ -160,23 +160,43 @@ class Usuario extends CI_Controller
     }
     private function mailAlta($nombreUsuario, $email)
     {
-        $config['protocol'] = 'sendmail';
-        $config['mailpath'] = "\"D:\\xampp\\sendmail\\sendmail.exe\" -t";
-        $config['charset'] = 'iso-8859-1';
-        $config['wordwrap'] = true;
-        $this->email->initialize($config);
-        $this->email->from('reanotreply@gmail.com', 'Programacionnet');
-        $this->email->subject('Test Email (TEXT)');
-        $this->email->to($email);
-        $this->email->message('Bienvenido por cambio a la plataforma Rea su usuario ah sido dado de alta ingrese su usario y contraseña en '.base_url().'login ');
+        $this->load->library("PHPMailer");
+        $mail = $this->phpmailer->load();
+        $mail->From = "rea@not-reply.com";
+        $mail->IsSMTP();
+        $mail->CharSet="UTF-8";
+        $mail->SMTPSecure = 'tls';
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = 587;
+        $mail->Username = 'santiago.navarro@est.fi.uncoma.edu.ar';
+        $mail->Password = '38365920s';
+        $mail->SMTPAuth = true;
+        $mail->FromName = "Rea";
+        //To address and name
+        $mail->addAddress($email);
+        //$mail->addAddress("recepient1@example.com"); //Recipient name is optional
+
+        //Address to which recipient will reply
+        $mail->addReplyTo("santiago.navarro@est.fi.uncoma.edu.ar", "Reply");
+
+        //Send HTML or Plain Text email
+        $mail->isHTML(true);
+$mensaje='Bienvenido a la plataforma Rea su usuario ha sido dado de alta ingrese su usuario y contraseña en '.base_url().'login ';
+        $mail->Subject ="Usuario validado";
+        $mail->Body = $mensaje;
+        $mail->AltBody = $mensaje;
         echo "<span class='fa fa-spinner fa-spin'></span>";
-        if ($this->email->send()) {
-            $res=true;
+        if (!$mail->send()) {
+            
+           // echo "Mailer Error: " . $mail->ErrorInfo;
+            $envio=false;
         } else {
-            $res=false;
+            
+          $envio=true;
         }
-        return $res;
+        return $envio;
     }
+ 
     /**
      * Funcion auxiliar encargada de modificar el estado o el rol segun corresponda
      * donde $datos corresponde a un array asociativo donde entraran las claves tabla,nombreUsuario,antiguo,nuevo
