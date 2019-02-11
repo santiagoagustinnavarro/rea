@@ -219,7 +219,8 @@
 											<?php if($data->promedio>0){?>				
 											<li class="starStatic"><a><?php for($i=0;$i<(int) $data->promedio;$i++){ echo "&#9733";  } ?></a></li><li><a href="<?php echo base_url();?>recurso/view/<?php echo $data->idRecurso;?>"><i class="ion-chatbubble"></i></a></li>
 										<?php }else{
-                                            ?><li class="starStaticWhite"><a><?php 
+											?><li class="starStaticWhite"><a><?php 
+											echo "Sin valorizar";
                                              ?></a></li><li><a href="<?php echo base_url(); ?>recurso/view/<?php echo $data->idRecurso; ?>"><i class="ion-chatbubble"></i></a></li><?php
                                         }?>
 				
