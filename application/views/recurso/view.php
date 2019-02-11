@@ -175,8 +175,7 @@ if (isset($unRecurso[0])) {
             } ?>
 		</div>
 		<div class="espacio"></div>
-		<a download href="<?php echo base_url()."assets/upload/".$recurso["nombreUsuario"]."/".$recurso["idRecurso"]."/".$unArchivo["nombre"]; ?>"
-		 class="btn btn-success"><i class="fa fa-download"></i> Descargar Recurso</a>
+		
 		<br /><br />
 		<?php if ($iniciada) {
                 ?>
