@@ -10,12 +10,14 @@
 			
 			<div class="row">
 				<div class="col-md-6">
+				<?php echo form_error('nombre'); ?>
   					<div class="form-group has-feedback">
 						<input type="text" class="form-control" id="nombre" placeholder="Nombre/s (*)" name="nombre" minlength="3" maxlength="25" value="<?php echo set_value('nombre'); ?>">
     		    		<span class="glyphicon glyphicon-user form-control-feedback"></span>
 					</div>
 				</div>
 				<div class="col-md-6">
+				<?php echo form_error('apellido'); ?>
 					<div class="form-group has-feedback">
 						<input type="text" class="form-control" id="apellido" placeholder="Apellido/s (*)" name="apellido" minlength="4" maxlength="30" value="<?php echo set_value('apellido'); ?>">
     		    		<span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -30,6 +32,7 @@
 					</div>
 				</div>
 				<div class="col-md-6">
+				<?php echo form_error('estudio'); ?>
 					<div class="form-group has-feedback">
 						<input type="text" class="form-control" id="estudio" minlength="4" maxlength="40" placeholder="Terciario o Universidad (*)" name="estudio" value="<?php echo set_value('estudio'); ?>">
     		    		<span class="glyphicon glyphicon-book form-control-feedback"></span>

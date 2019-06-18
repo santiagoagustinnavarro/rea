@@ -7,9 +7,12 @@ class Registro extends CI_Controller{
     function index(){
         $this->load->library("form_validation");
         if($this->input->post()){
-           $this->form_validation->set_rules('nombreUsuario','usuario','callback_validaUsuario');
-           $this->form_validation->set_rules('clave2','clave','callback_verificarClaves[clave]');
-           $this->form_validation->set_rules('email','email','callback_validaEmail');  
+           $this->form_validation->set_rules('nombre','nombre','required');
+           $this->form_validation->set_rules('apellido','apellido','required');
+           $this->form_validation->set_rules('estudio','estudio','required');
+           $this->form_validation->set_rules('clave2','clave','required|matches[clave]',array('matches'=>'Las claves no coinciden'));
+           $this->form_validation->set_rules('email','email','required|callback_validaEmail');  
+           $this->form_validation->set_rules('nombreUsuario','nombreUsuario','required|callback_validaUsuario');
                 if($this->form_validation->run() === true){
                     $insercion = $this->Usuario_model->add_usuario($params);
                     if ($insercion) {
@@ -25,11 +28,15 @@ class Registro extends CI_Controller{
                         $this->load->view("header", ["title" => "Registro"]);
                         $this->load->view('logeo/registrarse', array("mensaje" => '<div class="col-md-offset-2 col-md-8 alert alert-success text-center"><h4>'."Se ha registrado correctamente espere a que un administrador valide su cuenta".'</h4></div>'));
                         $this->load->view("footer");
+                }else{
+                    $this->load->view("header", ["title" => "Registro"]);
+                    $this->load->view('logeo/registrarse',array("mensaje"=>'<div class="col-md-offset-2 col-md-8 alert alert-danger text-center"><h4>'."Ah ocurrido un error con la base de datos".'</h4></div>'));
+                    $this->load->view("footer");
                 }
     //Los datos son correctos
                 }else{
                     $this->load->view("header", ["title" => "Registro"]);
-                    $this->load->view('logeo/registrarse',array("mensaje"=>'<div class="col-md-offset-2 col-md-8 alert alert-danger text-center"><h4>'."Datos proporcionados incorrectos".'</h4></div>'));
+                    $this->load->view('logeo/registrarse',array("mensaje"=>'<div class="alert alert-danger text-center"><h4>'."Datos proporcionados incorrectos".'</h4></div>'));
                     $this->load->view("footer");
                   
     //Los datos no son correctos
@@ -48,11 +55,14 @@ class Registro extends CI_Controller{
     }
     function validaUsuario($nombreUsuario){
         $existe=$this->Usuario_model->get_usuario($nombreUsuario);
-        if($existe==null){
+        if($existe==null && $nombreUsuario!=""){
             $validacion=true;
         }else{
             $validacion=false;
-            $this->form_validation->set_message("validaUsuario", "El nombre de usuario ya existe");
+            if($nombreUsuario==""){
+                $this->form_validation->set_message("validaUsuario", "El campo nombreUsuario es obligatorio");   
+            }else{
+            $this->form_validation->set_message("validaUsuario", "El nombre de usuario ya existe");}
           
         }
         return $validacion;
@@ -68,17 +78,7 @@ class Registro extends CI_Controller{
         }
         return $validacion;
     }
-    function verificarClaves($repeticion,$clave){
-        $clave=hash('sha224',$clave);
-        $clave2=hash('sha224',$repeticion);
-        if($clave==$clave2){
-            $validacion=true;
-        }else{
-            $validacion=false;
-            $this->form_validation->set_message("verificarClaves", "Las claves no coinciden");
-        }
-        return $validacion;
-    }
+    
     
 }
 
