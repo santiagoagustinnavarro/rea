@@ -36,7 +36,7 @@ class Registro extends CI_Controller{
     //Los datos son correctos
                 }else{
                     $this->load->view("header", ["title" => "Registro"]);
-                    $this->load->view('logeo/registrarse',array("mensaje"=>'<div class="alert alert-danger text-center"><h4>'."Datos proporcionados incorrectos".'</h4></div>'));
+                    $this->load->view('logeo/registrarse',array("mensaje"=>'<div class="col-md-offset-2 col-md-8 alert alert-danger text-center"><h4>'."Datos proporcionados incorrectos".'</h4></div>'));
                     $this->load->view("footer");
                   
     //Los datos no son correctos
