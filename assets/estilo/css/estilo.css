@@ -1,0 +1,88 @@
+/* Estilo de la pagina con Bootstrap y CSS */
+/** ######################## HEADER/MENU ############################# */
+/* Tamaño de la imagen del logo */
+body{
+	text-align: center;
+}
+#myNavbar{
+	font-size: larger;
+}
+.logeo{
+	margin-top: 3%;
+	margin-bottom:3%;
+	font-size: medium;
+	color:white;
+	padding:10px!important;	
+}
+.logeo{
+	color:white;
+}
+.logeo:hover{
+	color:white;
+}
+#logo{
+	width: 60px; 
+	height: 45px;
+}
+#icono{
+	width: 20%; 
+	height: 20%;
+}
+/** Tiene un fonde de color gris claro */
+#desplegable{
+	background:#1385a1;
+	text-align: center;
+}
+/** Tamaño de la letra en mediano, y negrita normal */
+#desplegable a{
+	font-weight: normal;
+	font-size: medium;
+	color: white;
+}
+/** Tamaño de la letra en mediano, y negrita normal, fondo gris oscuro y color de la letra blanco */
+#desplegable a:hover{
+	font-weight: normal;
+	font-size: medium;
+	background: #ffffff;
+	color: #1e79cf;
+}
+
+/** Se le aplica un margen a la parte superior de 6% */
+#contacto{
+	margin-top:6%;
+}
+/** Se le aplica un margen superior 5% y un relleno de 3% y color de fondo blanco */
+#registro{
+	margin-top:5%;
+	padding: 3%;
+	background: #ffffffcb;
+}
+/** A las clases de tipo recurso se añade un fondo de color blanco */
+.recurso {
+	background:white;
+	padding:3%;
+}
+.espacio{
+	padding: 3%;
+}
+#chat-box{
+	text-align: left;
+	font-size:normal;
+}
+/** Todos los input de la clase form-group se centran */
+.form-group input {
+	text-align: center;
+}
+/* Indica en que numero de pagina y el tipo de cantidad de paginas que hay */
+.pagination {
+	margin-bottom: 15px;
+}
+/** ############################## PIE DE PAGINA ################################### */
+/** flex-end me situa el footer al final de la pagina, width toma el 100% de la pagina*/
+#footer{
+	padding: 1%;
+	background:#1871bb;
+	color: #ffffff;
+	width:100%;
+	font-family:sans-serif;
+}
