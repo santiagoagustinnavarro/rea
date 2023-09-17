@@ -39,7 +39,7 @@
 	<!-- FastClick -->
 	<script src="<?php echo base_url(); ?>assets/js/fastclick/fastclick.js"></script>
 	<!-- AdminLTE App -->
-	<script src="<?php echo base_url(); ?>assets/adminlte/js/adminlte.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/adminlte/adminlte.min.js"></script>
 
 	<!-- AdminLTE for demo purposes -->
 	<script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
