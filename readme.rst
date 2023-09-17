@@ -24,7 +24,9 @@ Installation
 ************
 
 1- Una vez descargado el proyecto por favor ejecute el siguiente comando en su consola: 
-- composer install 
+'''console
+$ composer install
+'''
 
 2- Luego de haber instalado las dependencias por favor solicite acceso a los archivos .sql de creación de base de datos al siguiente enlace:
 https://drive.google.com/drive/u/0/folders/15-Ut9GfOhhm-3A7G5AbmBrlhVsUJHTwI
