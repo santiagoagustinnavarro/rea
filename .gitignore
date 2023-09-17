@@ -31,4 +31,13 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/tests/
 /tests/results/
 
-application/assets/upload/*
+# Ignorar todos los archivos en la carpeta application/assets/upload/
+assets/upload/*
+
+# Excepto la subcarpeta fotoPerfil y su archivo user-default.png
+!assets/upload/fotoPerfil/
+!assets/upload/fotoPerfil/user-default.png
+
+# Ignorar todos los archivos en la subcarpeta fotoPerfil excepto user-default.png
+assets/upload/fotoPerfil/*
+!assets/upload/fotoPerfil/user-default.png
