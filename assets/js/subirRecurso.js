@@ -6,7 +6,7 @@ $(document).ready(function(){
             niveles.push($(this).val());
         })
         $.ajax({
-            url:"subirRecurso",
+            url:window.location.pathname,
             data:{"categoria":$("#categoria").val()},
             dataType:"html",
             method:'get',
@@ -17,8 +17,13 @@ $(document).ready(function(){
         })
     
     });
-
+   
 });
+function remove(unElemento){
+   $(unElemento).parent().hide();
+   $('body').append("<input type=\"hidden\" name=archivo[] id=archivo[] value="+$(unElemento).attr('id')+"/>").hide();
+
+}
 function subirrecurso(form){
    var valido=false;
  form.find(':input').each(function(){

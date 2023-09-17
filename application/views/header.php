@@ -26,28 +26,28 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/estilo/dist/css/skins/_all-skins.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/estilo/dist/css/skins/skin-blue.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/estilo/css/estilo.css">
-	<script src="<?php echo base_url(); ?>assets/estilo/jquery/dist/jquery.min.js"></script>
-	<script src="<?php echo base_url(); ?>assets/estilo/js/jquery-ui/jquery-ui.min.js"></script>
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/estilo/js/jquery-ui/jquery-ui.min.css" />
+	<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/jquery-ui/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/jquery-ui/jquery-ui.min.css" />
 	<!-- Bootstrap 3.3.7 -->
-	<script src="<?php echo base_url(); ?>assets/estilo/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/bootstrap/bootstrap.min.js"></script>
 	<!-- DataTables -->
-	<script src="<?php echo base_url(); ?>assets/estilo/datatables.net/js/jquery.dataTables.min.js"></script>
-	<script src="<?php echo base_url(); ?>assets/estilo/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/datatables.net/jquery.dataTables.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/datatables.net-bs/dataTables.bootstrap.min.js"></script>
 	<!-- SlimScroll -->
-	<script src="<?php echo base_url(); ?>assets/estilo/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<!-- FastClick -->
-	<script src="<?php echo base_url(); ?>assets/estilo/fastclick/lib/fastclick.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/fastclick/fastclick.js"></script>
 	<!-- AdminLTE App -->
-	<script src="<?php echo base_url(); ?>assets/estilo/dist/js/adminlte.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/adminlte/js/adminlte.min.js"></script>
 
 	<!-- AdminLTE for demo purposes -->
-	<script src="<?php echo base_url(); ?>assets/estilo/dist/js/demo.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/demo.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.md5.js"></script>
 	<?php
 	if (isset($scripts)) { //Invocacion de scripts propios
 		foreach ($scripts as $unScript) {
-			echo "<script type=\"text/javascript\" src=\"" . base_url() . "assets/estilo/js/" . $unScript . "\"></script>";
+			echo "<script type=\"text/javascript\" src=\"" . base_url() . "assets/js/" . $unScript . "\"></script>";
 		}
 	}
 	if (isset($styles)) { //Invocacion de estilos propios
