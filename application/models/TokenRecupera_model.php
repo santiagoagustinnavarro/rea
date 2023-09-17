@@ -8,9 +8,9 @@ class TokenRecupera_model extends CI_Model
     {
         if (count($params)>0) {
             $params['nroToken']=$nroToken;
-            $tokenR=$this->db->get_where('tokenrecupera', $params)->row_array();
+            $tokenR=$this->db->get_where('tokenRecupera', $params)->row_array();
         } else {
-            $tokenR= $this->db->get_where('tokenrecupera', array('nroToken'=>$nroToken))->row_array();
+            $tokenR= $this->db->get_where('tokenRecupera', array('nroToken'=>$nroToken))->row_array();
         }
         return $tokenR;
     }
@@ -20,7 +20,7 @@ class TokenRecupera_model extends CI_Model
     */
     public function add_tokenrecupera($params)
     {
-       return $this->db->insert('tokenrecupera', $params);
+       return $this->db->insert('tokenRecupera', $params);
         //return $this->db->insert_id();
     }
 }

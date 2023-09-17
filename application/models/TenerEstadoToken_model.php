@@ -19,9 +19,9 @@ class TenerEstadoToken_model extends CI_Model
 
         if (count($params)>0) {
             $params["nroToken"]=$nroToken;
-            $estado=$this->db->get_where('tenerestadotoken',$params)->row_array();
+            $estado=$this->db->get_where('tenerEstadoToken',$params)->row_array();
         } else {
-            $estado=$this->db->get_where('tenerestadotoken', array('nroToken'=>$nroToken,'fechaFin'=>null))->row_array();
+            $estado=$this->db->get_where('tenerEstadoToken', array('nroToken'=>$nroToken,'fechaFin'=>null))->row_array();
         }
         return $estado;
     }
@@ -32,7 +32,7 @@ class TenerEstadoToken_model extends CI_Model
     public function get_all_tenerestadotoken()
     {
         $this->db->order_by('idToken', 'desc');
-        return $this->db->get('tenerestadotoken')->result_array();
+        return $this->db->get('tenerEstadoToken')->result_array();
     }
         
     /*
@@ -41,7 +41,7 @@ class TenerEstadoToken_model extends CI_Model
     public function add_tenerestadotoken($params)
     {
        // return
-        return $this->db->insert('tenerestadotoken', $params);
+        return $this->db->insert('tenerEstadoToken', $params);
          //return $this->db->insert_id();
     }
     
