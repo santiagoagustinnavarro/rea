@@ -67,319 +67,97 @@
 
 <body class="hold-transition skin-blue layout-top-nav">
 	<header class="main-header">
-		<?php
-		if (!$this->session->iniciada) {
-		?>
-			<nav class="navbar navbar">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-							<i class="fa fa-bars"></i>
-						</button>
-						<a class="navbar-brand" href="<?php echo base_url(); ?>inicio">Rea</a>
-					</div>
-					<div class="collapse navbar-collapse" id="myNavbar">
+
+
+		<nav class="navbar navbar">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<i class="fa fa-bars"></i>
+					</button>
+					<a class="navbar-brand" href="<?php echo base_url(); ?>inicio"> Rea </a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<?php if ($this->session->iniciada) : ?>
 						<ul class="nav navbar-nav">
 							<li><a href="<?php echo base_url(); ?>inicio">Inicio</a></li>
 							<li><a href="<?php echo base_url(); ?>recurso/listar">Recursos</a></li>
 							<li><a href="<?php echo base_url(); ?>contacto">Contactenos</a></li>
+							<?php if ($this->session->rol == 'profesor') : ?>
+								<li class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" href="#">Recurso
+										<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu" id="desplegable">
+										<li><a href="<?php echo base_url() . "recurso/misRecursos" ?>">Mis Recursos</a></li>
+										<li><a href="<?php echo base_url() . "recurso/subirRecurso" ?>">Subir Recurso</a></li>
+									</ul>
+								</li>
+							<?php elseif ($this->session->rol == 'administrador de recursos') : ?>
+								<li class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" href="#">Agregar Seccion
+										<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu" id="desplegable">
+										<li><a href="<?php echo base_url(); ?>categoria/add">Añadir Secciones</a></li>
+										<li><a href="<?php echo base_url(); ?>categoria">Editar Categoria</a></li>
+										<li><a href="<?php echo base_url(); ?>tema">Editar Temas</a></li>
+									</ul>
+								</li>
+
+							<?php endif ?>
 						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown user user-menu">
+								<!-- Menu Toggle Button -->
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<!-- The user image in the navbar-->
+									<img src="<?= base_url('assets/upload/fotoPerfil/') . ($this->session->foto == '' ? 'user-default.png' : $this->session->nombreUsuario . '/' . $this->session->foto) ?>" class="user-image" alt="User Image" />
+									<!-- hidden-xs hides the username on small devices so only the image appears. -->
+									<span class="hidden-xs"><?php echo $this->session->nombreUsuario; ?></span>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<!-- The user image in the menu -->
+									<li class="user-header">
+										<img src="<?php
+													if ($this->session->foto == "") {
+														echo base_url() . "assets/upload/fotoPerfil/user-default.png";
+													} else {
+														echo base_url() . "assets/upload/fotoPerfil/" . $this->session->nombreUsuario . "/" . $this->session->foto;
+													}
+													?>" class="img-circle" alt="User Image">
+										<p><?php echo $this->session->nombreUsuario; ?>
+											<small><?= $this->session->userdata('rol'); ?></small>
+
+										</p>
+									</li>
+									<!-- Menu Footer-->
+									<li class="user-footer">
+										<div class="pull-left">
+											<a href="<?php echo base_url() . "usuario/editarPerfil" ?>">
+												<div class="btn btn-primary logeo">Perfil</div>
+											</a>
+										</div>
+										<div class="pull-right">
+											<a href="<?php echo base_url(); ?>login/cerrarSession">
+												<div class="btn btn-danger logeo">Cerrar Sesión</div>
+											</a>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					<?php else : ?>
 						<ul class="nav navbar-nav navbar-right">
 							<li>
 								<a class="btn btn-success logeo" href="<?php echo base_url(); ?>login">Iniciar Sesión</a>
 							</li>
 						</ul>
-					</div> <!-- /.navbar-custom-menu -->
-				</div> <!-- /.container fluid-->
-			</nav><!-- /.navbar-custom-menu -->
-		<?php
-		} elseif ($this->session->rol == 'administrador de usuarios') {
-		?>
-			<nav class="navbar navbar">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-							<i class="fa fa-bars"></i>
-						</button>
-						<a class="navbar-brand" href="<?php echo base_url(); ?>inicio">Rea</a>
-					</div>
-					<div class="collapse navbar-collapse" id="myNavbar">
-						<ul class="nav navbar-nav">
-							<li><a href="<?php echo base_url(); ?>inicio">Inicio</a></li>
-							<li><a href="<?php echo base_url(); ?>recurso/listar">Recursos</a></li>
-							<li><a href="<?php echo base_url(); ?>contacto">Contactenos</a></li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="dropdown user user-menu">
-								<!-- Menu Toggle Button -->
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<!-- The user image in the navbar-->
-									<img src="<?php
-												if ($this->session->foto == "") {
-													echo base_url() . "assets/upload/fotoPerfil/user-default.png";
-												} else {
-													echo base_url() . "assets/upload/fotoPerfil/" . $this->session->nombreUsuario . "/" . $this->session->foto;
-												}
-												?>
-          	" class="user-image" alt="User Image" />
-									<!-- hidden-xs hides the username on small devices so only the image appears. -->
-									<span class="hidden-xs"><?php echo $this->session->nombreUsuario; ?></span>
-								</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<!-- The user image in the menu -->
-									<li class="user-header">
-										<img src="<?php
-													if ($this->session->foto == "") {
-														echo base_url() . "assets/upload/fotoPerfil/user-default.png";
-													} else {
-														echo base_url() . "assets/upload/fotoPerfil/" . $this->session->nombreUsuario . "/" . $this->session->foto;
-													}
-													?>" class="img-circle" alt="User Image">
-										<p><?php echo $this->session->nombreUsuario; ?>
-											<small>Administrador de Usuarios</small>
-										</p>
-									</li>
-									<!-- Menu Footer-->
-									<li class="user-footer">
-										<div class="pull-left">
-											<a href="<?php echo base_url() . "usuario/editarPerfil" ?>">
-												<div class="btn btn-primary logeo">Perfil</div>
-											</a>
-										</div>
-										<div class="pull-right">
-											<a href="<?php echo base_url(); ?>login/cerrarSession">
-												<div class="btn btn-danger logeo">Cerrar Sesión</div>
-											</a>
-										</div>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div> <!-- /.navbar-custom-menu -->
-				</div> <!-- /.container -->
-			</nav><!-- /.navbar-custom-menu -->
-		<?php
-		} elseif ($this->session->rol == 'administrador de recursos') {
-		?>
-			<nav class="navbar navbar">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-							<i class="fa fa-bars"></i>
-						</button>
-						<a class="navbar-brand" href="<?php echo base_url(); ?>inicio">Rea</a>
-					</div>
-					<div class="collapse navbar-collapse" id="myNavbar">
-						<ul class="nav navbar-nav">
-							<li><a href="<?php echo base_url(); ?>inicio">Inicio</a></li>
-							<li><a href="<?php echo base_url(); ?>recurso/listar">Recursos</a></li>
-							<li><a href="<?php echo base_url(); ?>contacto">Contactenos</a></li>
-							<li class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Agregar Seccion
-									<span class="caret"></span>
-								</a>
-								<ul class="dropdown-menu" id="desplegable">
-									<li><a href="<?php echo base_url(); ?>categoria/add">Añadir Secciones</a></li>
-									<li><a href="<?php echo base_url(); ?>categoria">Editar Categoria</a></li>
-									<li><a href="<?php echo base_url(); ?>tema">Editar Temas</a></li>
-								</ul>
-							</li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="dropdown user user-menu">
-								<!-- Menu Toggle Button -->
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<!-- The user image in the navbar-->
-									<img src="
-	          <?php
-				if ($this->session->foto == "") {
-					echo base_url() . "assets/upload/fotoPerfil/user-default.png";
-				} else {
-					echo base_url() . "assets/upload/fotoPerfil/" . $this->session->nombreUsuario . "/" . $this->session->foto;
-				}
-				?> " class="user-image" alt="User Image" />
-									<!-- hidden-xs hides the username on small devices so only the image appears. -->
-									<span class="hidden-xs"><?php echo $this->session->nombreUsuario; ?></span>
-								</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<!-- The user image in the menu -->
-									<li class="user-header">
-										<img src="
-            	<?php
-				if ($this->session->foto == "") {
-					echo base_url() . "assets/upload/fotoPerfil/user-default.png";
-				} else {
-					echo base_url() . "assets/upload/fotoPerfil/" . $this->session->nombreUsuario . "/" . $this->session->foto;
-				}
-				?>" class="img-circle" alt="User Image">
-										<p><?php echo $this->session->nombreUsuario; ?>
-											<small>Administrador de Recursos</small>
-										</p>
-									</li>
-									<!-- Menu Footer-->
-									<li class="user-footer">
-										<div class="pull-left">
-											<a href="<?php echo base_url() . "usuario/editarPerfil" ?>">
-												<div class="btn btn-primary logeo">Perfil</div>
-											</a>
-										</div>
-										<div class="pull-right">
-											<a href="<?php echo base_url(); ?>login/cerrarSession">
-												<div class="btn btn-danger logeo">Cerrar Sesión</div>
-											</a>
-										</div>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div> <!-- /.navbar-custom-menu -->
-				</div> <!-- /.container fluid-->
-			</nav><!-- /.navbar-custom-menu -->
-		<?php
-		} elseif ($this->session->rol == 'profesor') {
-		?>
-			<nav class="navbar navbar">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-							<i class="fa fa-bars"></i>
-						</button>
-						<a class="navbar-brand" href="<?php echo base_url(); ?>inicio">Rea</a>
-					</div>
-					<div class="collapse navbar-collapse" id="myNavbar">
-						<ul class="nav navbar-nav">
-							<li><a href="<?php echo base_url(); ?>inicio">Inicio</a></li>
-							<li><a href="<?php echo base_url(); ?>recurso/listar">Recursos</a></li>
-							<li><a href="<?php echo base_url(); ?>contacto">Contactenos</a></li>
-							<li class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Recurso
-									<span class="caret"></span>
-								</a>
-								<ul class="dropdown-menu" id="desplegable">
-									<li><a href="<?php echo base_url() . "recurso/misRecursos" ?>">Mis Recursos</a></li>
-									<li><a href="<?php echo base_url() . "recurso/subirRecurso" ?>">Subir Recurso</a></li>
-								</ul>
-							</li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="dropdown user user-menu">
-								<!-- Menu Toggle Button -->
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<!-- The user image in the navbar-->
-									<img src="
-              <?php
-				if ($this->session->foto == "") {
-					echo base_url() . "assets/upload/fotoPerfil/user-default.png";
-				} else {
-					echo base_url() . "assets/upload/fotoPerfil/" . $this->session->nombreUsuario . "/" . $this->session->foto;
-				}
-				?>" class="user-image" alt="User Image" />
-									<!-- hidden-xs hides the username on small devices so only the image appears. -->
-									<span class="hidden-xs"><?php echo $this->session->nombreUsuario; ?></span>
-								</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<!-- The user image in the menu -->
-									<li class="user-header">
-										<img src="
-                <?php
-				if ($this->session->foto == "") {
-					echo base_url() . "assets/upload/fotoPerfil/user-default.png";
-				} else {
-					echo base_url() . "assets/upload/fotoPerfil/" . $this->session->nombreUsuario . "/" . $this->session->foto;
-				}
-				?>" class="img-circle" alt="User Image">
-										<p><?php echo $this->session->nombreUsuario; ?>
-											<small>Profesor</small>
-										</p>
-									</li>
-									<!-- Menu Footer-->
-									<li class="user-footer">
-										<div class="pull-left">
-											<a href="<?php echo base_url() . "usuario/editarPerfil" ?>">
-												<div class="btn btn-primary logeo">Perfil</div>
-											</a>
-										</div>
-										<div class="pull-right">
-											<a href="<?php echo base_url(); ?>login/cerrarSession">
-												<div class="btn btn-danger logeo">Cerrar Sesión</div>
-											</a>
-										</div>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div> <!-- /.navbar-custom-menu -->
-				</div> <!-- /.container fluid-->
-			</nav> <!-- /.navbar-custom-menu -->
-		<?php
-		} elseif ($this->session->rol == 'super administrador') {
-		?>
-			<nav class="navbar navbar">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-							<i class="fa fa-bars"></i>
-						</button>
-						<a class="navbar-brand" href="<?php echo base_url(); ?>inicio">Rea</a>
-					</div>
-					<div class="collapse navbar-collapse" id="myNavbar">
-						<ul class="nav navbar-nav">
-							<li><a href="<?php echo base_url(); ?>inicio">Inicio</a></li>
-							<li><a href="<?php echo base_url(); ?>recurso/listar">Recursos</a></li>
-							<li><a href="<?php echo base_url(); ?>contacto">Contactenos</a></li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="dropdown user user-menu">
-								<!-- Menu Toggle Button -->
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<!-- The user image in the navbar-->
-									<img src="<?php
-												if ($this->session->foto == "") {
-													echo base_url() . "assets/upload/fotoPerfil/user-default.png";
-												} else {
-													echo base_url() . "assets/upload/fotoPerfil/" . $this->session->nombreUsuario . "/" . $this->session->foto;
-												}
-												?>
-          	" class="user-image" alt="User Image" />
-									<!-- hidden-xs hides the username on small devices so only the image appears. -->
-									<span class="hidden-xs"><?php echo $this->session->nombreUsuario; ?></span>
-								</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<!-- The user image in the menu -->
-									<li class="user-header">
-										<img src="<?php
-													if ($this->session->foto == "") {
-														echo base_url() . "assets/upload/fotoPerfil/user-default.png";
-													} else {
-														echo base_url() . "assets/upload/fotoPerfil/" . $this->session->nombreUsuario . "/" . $this->session->foto;
-													}
-													?>" class="img-circle" alt="User Image">
-										<p><?php echo $this->session->nombreUsuario; ?>
-											<small>Super Administrador</small>
-										</p>
-									</li>
-									<!-- Menu Footer-->
-									<li class="user-footer">
-										<div class="pull-left">
-											<a href="<?php echo base_url() . "usuario/editarPerfil" ?>">
-												<div class="btn btn-primary logeo">Perfil</div>
-											</a>
-										</div>
-										<div class="pull-right">
-											<a href="<?php echo base_url(); ?>login/cerrarSession">
-												<div class="btn btn-danger logeo">Cerrar Sesión</div>
-											</a>
-										</div>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div> <!-- /.navbar-custom-menu -->
-				</div> <!-- /.container -->
-			</nav><!-- /.navbar-custom-menu -->
-		<?php
-		}
-		?>
+				</div> <!-- /.navbar-custom-menu -->
+			</div> <!-- /.container fluid-->
+		</nav><!-- /.navbar-custom-menu -->
+	<?php endif ?>
 	</header>
 	<!-- Full Width Column -->
 	<div class="content-wrapper">
