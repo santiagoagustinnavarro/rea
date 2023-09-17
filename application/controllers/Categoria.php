@@ -20,7 +20,7 @@ class Categoria extends CI_Controller
             $this->form_validation->set_rules('nuevaCategoria', 'nombre de categoria', 'required', array('required'=>"Debe seleccionar una categoria o ingresar una"));
         }
         if ($this->form_validation->run() == false) {//Si no se cumplen las validaciones del formulario
-            $this->load->view("header", ["title"=>"Agregar Seccion","scripts"=>["agregarCat.js"]]);
+            $this->load->view("header", ["title"=>"Agregar Seccion","scripts"=>["agregarCat"]]);
             $this->load->view("categoria/add", ['categorias'=>$categoria,'temas'=>array()]);
             $this->load->view("footer");
         } else {//Se cumplen las validaciones del formulario
@@ -43,11 +43,11 @@ class Categoria extends CI_Controller
                         $this->Categoria_model->add_categoria(array("nombre"=>$this->input->post("nuevaCategoria"),"descripcion"=>$this->input->post("descNuevaCategoria")));
                     }
                     $this->Tenercategoria_model->add_tenercategoria(array("nombreCategoria"=>$this->input->post("nuevaCategoria"),"nombreTema"=>$this->input->post("nuevoTema")));
-                    $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat.js"]]);
+                    $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat"]]);
                     $this->load->view("categoria/add", ['mensaje'=>'<div class="alert alert-success col-md-offset-3 col-md-6 text-center"><h4>'.'Agregado con exito'.'</h4></div>','categorias'=>$categoria,'temas'=>array()]);
                     $this->load->view("footer");
                 } else {
-                    $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat.js"]]);
+                    $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat"]]);
                     $this->load->view("categoria/add", ['mensaje'=>'<div class="alert alert-danger col-md-offset-3 col-md-6 text-center"><h4>'.'La categoria ya existe'.'</h4></div>','categorias'=>$categoria,'temas'=>array()]);
                     $this->load->view("footer");
                 }
@@ -56,11 +56,11 @@ class Categoria extends CI_Controller
                 $existeTenerCat=$this->Tenercategoria_model->get_tenercategoria($this->input->post("nuevoTema"), $this->input->post("categoria"));
                 if ($existeTenerCat==null) {
                     $this->Tenercategoria_model->add_tenercategoria(array("nombreCategoria"=>$this->input->post("categoria"),"nombreTema"=>$this->input->post("nuevoTema")));
-                    $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat.js"]]);
+                    $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat"]]);
                     $this->load->view("categoria/add", ['mensaje'=>'<div class="alert alert-success col-md-offset-3 col-md-6 text-center"><h4>'.'Agregado con exito'.'</h4></div>','categorias'=>$categoria,'temas'=>array()]);
                     $this->load->view("footer");
                 } else {
-                    $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat.js"]]);
+                    $this->load->view("header", ["title"=>"Agregar Seccion ","scripts"=>["agregarCat"]]);
                     $this->load->view("categoria/add", ['mensaje'=>'<div class="alert alert-danger col-md-offset-3 col-md-6 text-center"><h4>'.'El tema ya se encuentra vinculado a la categoria'.'</h4></div>','categorias'=>$categoria,'temas'=>array()]);
                     $this->load->view("footer");
                 }
@@ -68,7 +68,7 @@ class Categoria extends CI_Controller
         }
         if (count($_GET)>0) {//Caso ajax
             $tema=$this->Tema_model->get_all_tema($this->input->post("seleccionado"));
-            $this->load->view("header", ["title"=>"Agregar Seccion","scripts"=>["agregarCat.js"]]);
+            $this->load->view("header", ["title"=>"Agregar Seccion","scripts"=>["agregarCat"]]);
             $this->load->view("categoria/add", ["categorias"=>$categoria,"temas"=>$tema]);
             $this->load->view("footer");
         }

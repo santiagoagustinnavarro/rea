@@ -47,7 +47,7 @@
 	<?php
 	if (isset($scripts)) { //Invocacion de scripts propios
 		foreach ($scripts as $unScript) {
-			echo "<script type=\"text/javascript\" src=\"" . base_url() . "assets/js/" . $unScript . "\"></script>";
+			echo "<script type=\"text/javascript\" src=\"" . base_url() . "assets/js/" . $unScript . ".js\"></script>";
 		}
 	}
 	if (isset($styles)) { //Invocacion de estilos propios

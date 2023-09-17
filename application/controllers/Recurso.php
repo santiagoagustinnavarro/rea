@@ -92,11 +92,11 @@ class Recurso extends CI_Controller
     WHERE poseeNivel.idRecurso =$idRecurso and poseeNivel.nombreNivel=nombre)");
                 $data["niveles"] = $this->Nivel_model->get_all_nivel();
                 $data['recurso'] = $this->Recurso_model->get_recurso($idRecurso);
-                $this->load->view("header", ["title" => "Modificar recurso", "scripts" => ["jquery-ui/jquery-ui.min.js", "editar_recurso.js"]]);
+                $this->load->view("header", ["title" => "Modificar recurso", "scripts" => ["jquery-ui/jquery-ui.min", "editar_recurso"]]);
                 $this->load->view("recurso/editar_recurso", $data);
                 $this->load->view("footer");
             } else {
-                $this->load->view("header", ["title" => "Modificar recurso", "scripts" => ["editar_recurso.js"]]);
+                $this->load->view("header", ["title" => "Modificar recurso", "scripts" => ["editar_recurso"]]);
                 $this->load->view("recurso/editar_recurso", $data);
                 $this->load->view("footer");
             }
@@ -290,7 +290,7 @@ class Recurso extends CI_Controller
             $unRecurso->promedio = $promedio;
         }
         $this->load->model("Valoracion_model");
-        $this->load->view('header', ["title" => 'Recursos', "scripts" => ["busquedaRecurso.js", "starrr.js"], "styles" => ["styles.css", "responsive.css"]]);
+        $this->load->view('header', ["title" => 'Recursos', "scripts" => ["busquedaRecurso", "starrr"], "styles" => ["styles.css", "responsive.css"]]);
         $this->load->view('inicio/area', $data);
         $this->load->view('footer');
     }
@@ -313,12 +313,12 @@ class Recurso extends CI_Controller
                         $this->load->view("recurso/view", ["usuario" => $this->session->nombreUsuario, "iniciada" => true, "edicion" => true, "unRecurso" => $unRecurso]);
                         $this->load->view("footer");
                     } else {
-                        $this->load->view("header", ["title" => "Ver Recurso", "scripts" => ["starrr.js"]]);
+                        $this->load->view("header", ["title" => "Ver Recurso", "scripts" => ["starrr"]]);
                         $this->load->view("recurso/view", ["usuario" => $this->session->nombreUsuario, "iniciada" => true, "edicion" => false, "unRecurso" => $unRecurso]);
                         $this->load->view("footer");
                     }
                 } else {
-                    $this->load->view("header", ["title" => "Ver Recurso", "scripts" => ["starrr.js"]]);
+                    $this->load->view("header", ["title" => "Ver Recurso", "scripts" => ["starrr"]]);
                     $this->load->view("recurso/view", ["edicion" => false, "iniciada" => false, "unRecurso" => $unRecurso]);
                     $this->load->view("footer");
                 }
@@ -438,26 +438,26 @@ class Recurso extends CI_Controller
                     $params = ['nombreRecurso' => $nombreRec, 'arrArc' => $archivos["name"], 'descripcion' => $desc, 'arrTmp' => $archivos["tmp_name"], 'categoria' => $categoriaRecibida, 'niveles' => $nivelesRecibidos, 'tema' => $temaRecibido];
                     $recurso = $this->subida($params);
                     if ($recurso) {
-                        $this->load->view("header", ["title" => "Subir Recurso", "scripts" => ["subirRecurso.js"]]);
+                        $this->load->view("header", ["title" => "Subir Recurso", "scripts" => ["subirRecurso"]]);
                         $this->load->view('recurso/subirRecurso', ["mensaje" => "<div class='col-md-12 alert alert-success text-center'><h4>" . 'Recurso subido con exito' . "</h4></div>", 'categoria' => $categoria, 'niveles' => $niveles, 'tema' => $tema]);
                         $this->load->view("footer");
                     } else {
                     }
                 } else {
                     // Error falta completar alguno de los campos
-                    $this->load->view("header", ["title" => "Subir Recurso", "scripts" => ["subirRecurso.js"]]);
+                    $this->load->view("header", ["title" => "Subir Recurso", "scripts" => ["subirRecurso"]]);
                     $this->load->view('recurso/subirRecurso', ["mensaje" => "<div class='col-md-12 alert alert-danger text-center'><h4>" . 'Faltan completar campos' . "</h4></div>", 'categoria' => $categoria, 'niveles' => $niveles, 'tema' => $tema]);
                     $this->load->view("footer");
                 }
             } else {
                 //Se ah excedido el tamaño de los archivos (6MB)
-                $this->load->view("header", ["title" => "Subir Recurso", "scripts" => ["subirRecurso.js"]]);
+                $this->load->view("header", ["title" => "Subir Recurso", "scripts" => ["subirRecurso"]]);
                 $this->load->view('recurso/subirRecurso', ['mensaje' => "<div class='col-md-12 alert alert-danger text-center'><h4>" . 'Tamaño excedido' . "</h4></div>", 'categoria' => $categoria, 'niveles' => $niveles, 'tema' => $tema]);
                 $this->load->view("footer");
             }
         } else {
             // Si no subio ningun archivo, muestra vista del subir archivo
-            $this->load->view("header", ["title" => "Subir Recurso", "scripts" => ["subirRecurso.js"]]);
+            $this->load->view("header", ["title" => "Subir Recurso", "scripts" => ["subirRecurso"]]);
             $this->load->view('recurso/subirRecurso', ['categoria' => $categoria, 'niveles' => $niveles, 'tema' => $tema]);
             $this->load->view("footer");
         }
@@ -526,7 +526,7 @@ class Recurso extends CI_Controller
             $this->form_validation->set_rules('nuevaCategoria', 'nombre de categoria', 'required', array('required' => "Debe seleccionar una categoria o ingresar una"));
         }
         if ($this->form_validation->run() == false) { //Si no se cumplen las validaciones del formulario
-            $this->load->view("header", ["title" => "Agregar Seccion", "scripts" => ["agregarCat.js"]]);
+            $this->load->view("header", ["title" => "Agregar Seccion", "scripts" => ["agregarCat"]]);
             $this->load->view("recurso/agregarSeccion", ['categorias' => $categoria, 'temas' => array()]);
             $this->load->view("footer");
         } else { //Se cumplen las validaciones del formulario
@@ -550,7 +550,7 @@ class Recurso extends CI_Controller
                     }
                     $this->Tenercategoria_model->add_tenercategoria(array("nombreCategoria" => $this->input->post("nuevaCategoria"), "nombreTema" => $this->input->post("nuevoTema")));
                 } else {
-                    $this->load->view("header", ["title" => "Agregar Seccion ", "scripts" => ["agregarCat.js"]]);
+                    $this->load->view("header", ["title" => "Agregar Seccion ", "scripts" => ["agregarCat"]]);
                     $this->load->view("recurso/agregarSeccion", ['mensaje' => 'La categoria ya existe', 'categorias' => $categoria, 'temas' => array()]);
                     $this->load->view("footer");
                 }
@@ -559,11 +559,11 @@ class Recurso extends CI_Controller
                 $existeTenerCat = $this->Tenercategoria_model->get_tenercategoria($this->input->post("nuevoTema"), $this->input->post("categoria"));
                 if ($existeTenerCat == null) {
                     $this->Tenercategoria_model->add_tenercategoria(array("nombreCategoria" => $this->input->post("categoria"), "nombreTema" => $this->input->post("nuevoTema")));
-                    $this->load->view("header", ["title" => "Agregar Seccion ", "scripts" => ["agregarCat.js"]]);
+                    $this->load->view("header", ["title" => "Agregar Seccion ", "scripts" => ["agregarCat"]]);
                     $this->load->view("recurso/agregarSeccion", ['mensaje' => 'Agregado con exito', 'categorias' => $categoria, 'temas' => array()]);
                     $this->load->view("footer");
                 } else {
-                    $this->load->view("header", ["title" => "Agregar Seccion ", "scripts" => ["agregarCat.js"]]);
+                    $this->load->view("header", ["title" => "Agregar Seccion ", "scripts" => ["agregarCat"]]);
                     $this->load->view("recurso/agregarSeccion", ['mensaje' => 'El tema ya se encuentra vinculado a la categoria', 'categorias' => $categoria, 'temas' => array()]);
                     $this->load->view("footer");
                 }
@@ -571,7 +571,7 @@ class Recurso extends CI_Controller
         }
         if (count($_GET) > 0) { //Caso ajax
             $tema = $this->Tema_model->get_all_tema($this->input->post("seleccionado"));
-            $this->load->view("header", ["title" => "Agregar Seccion", "scripts" => ["agregarCat.js"]]);
+            $this->load->view("header", ["title" => "Agregar Seccion", "scripts" => ["agregarCat"]]);
             $this->load->view("recurso/agregarSeccion", ["categorias" => $categoria, "temas" => $tema]);
             $this->load->view("footer");
         }

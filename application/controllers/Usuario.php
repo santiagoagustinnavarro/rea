@@ -96,7 +96,7 @@ class Usuario extends CI_Controller
             }
             // redirect('usuario/index');
         } else {
-            $this->load->view("header", ["title" => "Registro","scripts"=>["validacion.js"]]);
+            $this->load->view("header", ["title" => "Registro","scripts"=>["validacion"]]);
             $this->load->view('inicio/registrarse');
             $this->load->view("footer");
         }

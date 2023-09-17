@@ -9,7 +9,7 @@ class Inicio extends CI_Controller {
 	function index(){
 		$this->load->model("Valoracion_model");
 		$destacados=$this->Valoracion_model->ranking();
-		$this->load->view("header",["title"=>"Inicio","scripts"=>["validacion.js"]]);
+		$this->load->view("header",["title"=>"Inicio","scripts"=>["validacion"]]);
 		$this->load->view("inicio/home",["ranking"=>$destacados]);
 		$this->load->view("footer");
 		
