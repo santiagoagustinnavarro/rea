@@ -8,7 +8,7 @@ Este proyecto ha sido realizado utilizando el Framework codeigniter 3.1.13-0
 Release Information
 *******************
 
-Encontrará en github el repositorio para su descarga en https://github.com/santiagoagustinnavarro/Rea 
+Encontrará en github el repositorio para su descarga en https://github.com/santiagoagustinnavarro/rea 
 
 ¡¡¡¡¡¡¡¡¡¡¡El proyecto se encuentra en modo develop!!!!!!!!!!!!!!!!!!
 
